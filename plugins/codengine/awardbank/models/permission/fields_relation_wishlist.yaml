@@ -1,0 +1,58 @@
+fields:
+    type:
+        label: 'codengine.awardbank::lang.awardbank.permissiontype'
+        default: wishlist
+        readOnly: true
+        span: full
+        type: text
+    exclusive_filter:
+        label: 'Exclusive Filter'
+        type: switch
+        span: full
+        default: false
+    access_types:
+        label: 'Access Types'
+        type: checkboxlist
+        span: full
+        options:
+            organizations: Organizations     
+            programs: Programs    
+            regions: Region 
+            teams: Team                     
+            users: User
+    organizations_input:
+        label: 'codengine.awardbank::lang.awardbank.organizations'
+        type: checkboxlist
+        span: full
+        dependsOn: [access_types] 
+        hidden: true  
+        showSearch: true
+        defaultFrom: organazationdefaultfunction   
+    programs_input:
+        label: 'codengine.awardbank::lang.awardbank.programs'
+        type: checkboxlist
+        span: full
+        dependsOn: [access_types, exclusive_filter, organizations_input,] 
+        hidden: true 
+        showSearch: true            
+    regions_input:
+        label: 'codengine.awardbank::lang.awardbank.regions'
+        type: checkboxlist
+        span: full
+        dependsOn: [access_types, exclusive_filter, organizations_input, programs_input] 
+        hidden: true 
+        showSearch: true            
+    teams_input:
+        label: 'codengine.awardbank::lang.awardbank.teams'
+        type: checkboxlist
+        span: full
+        dependsOn: [access_types, exclusive_filter, organizations_input, programs_input, regions_input] 
+        hidden: true
+        showSearch: true                                                                    
+    users_input:
+        label: 'codengine.awardbank::lang.awardbank.users'
+        type: checkboxlist
+        span: full  
+        dependsOn: [access_types, exclusive_filter, organizations_input, programs_input, regions_input, teams_input] 
+        hidden: true           
+        showSearch: true        

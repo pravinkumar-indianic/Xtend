@@ -1,0 +1,21 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    include_deleted:
+        label: Show Deleted
+        type: checkbox
+        default: false
+        scope: filterWithDeleted        
+    filter_no_products:
+        label: Filter No Products
+        type: checkbox
+        default: false
+        scope: filterWithoutProducts    
+    filter_no_image:
+        label: Filter No Image
+        type: checkbox
+        default: false
+        scope: filterWithoutImage                              
+ 

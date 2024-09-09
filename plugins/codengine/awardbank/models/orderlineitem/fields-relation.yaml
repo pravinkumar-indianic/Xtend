@@ -1,0 +1,144 @@
+fields:
+    last_po_email_sent:
+        label: codengine.awardbank::lang.OrderLineitem.last_po_email_sent
+        type: text
+        span: full
+        readOnly: true   
+    purchase_order_id:
+        label: codengine.awardbank::lang.OrderLineitem.purchase_order_id
+        type: text
+        span: full
+        readOnly: true   
+    product_volume:
+        label: codengine.awardbank::lang.OrderLineitem.product_volume
+        type: number
+        span: full
+    notes:
+        label: 'Line Item Notes'
+        type: richeditor
+        span: full
+    product_status:
+        label: codengine.awardbank::lang.OrderLineitem.product_status
+        type: dropdown
+        span: full
+tabs:    
+    defaultTab: Product:
+    fields:
+        product_deliver_base:
+            label: codengine.awardbank::lang.OrderLineitem.product_deliver_base
+            type: switch
+            span: auto
+            tab: codengine.awardbank::lang.Product.Product
+        product_voucher:
+            label: codengine.awardbank::lang.OrderLineitem.product_voucher
+            type: switch
+            span: auto
+            tab: codengine.awardbank::lang.Product.Product
+        product_voucher_code:
+            label: codengine.awardbank::lang.OrderLineitem.product_voucher_code
+            type: text
+            span: full
+            tab: codengine.awardbank::lang.Product.Product
+        option1_selection:
+            label: codengine.awardbank::lang.OrderLineitem.option1_selection
+            type: text
+            span: auto
+            tab: codengine.awardbank::lang.Product.Product
+        option2_selection:
+            label: codengine.awardbank::lang.OrderLineitem.option2_selection
+            type: text
+            span: auto
+            tab: codengine.awardbank::lang.Product.Product
+        option3_selection:
+            label: codengine.awardbank::lang.OrderLineitem.option3_selection
+            type: text
+            span: full
+            tab: codengine.awardbank::lang.Product.Product 
+        invoice_id:
+            label: codengine.awardbank::lang.OrderLineitem.invoice_id
+            type: text
+            span: full
+            tab: Invoicing & Shipping 
+        connote_id:
+            label: codengine.awardbank::lang.OrderLineitem.connote_id
+            type: text
+            span: full
+            tab: Invoicing & Shipping 
+        shipping_id:
+            label: codengine.awardbank::lang.OrderLineitem.shipping_id
+            type: text
+            span: full
+            tab: Invoicing & Shipping 
+        shipping_name:
+            label: codengine.awardbank::lang.OrderLineitem.shipping_name
+            type: text
+            span: full
+            tab: Invoicing & Shipping 
+        shipped_date:
+            label: codengine.awardbank::lang.OrderLineitem.shipped_date
+            type: datepicker
+            span: auto
+            tab: Invoicing & Shipping 
+        arrived_date:
+            label: codengine.awardbank::lang.OrderLineitem.arrived_date
+            type: datepicker
+            span: auto
+            tab: Invoicing & Shipping 
+        product_invoiced_amount:
+            label: codengine.awardbank::lang.OrderLineitem.product_invoiced_amount
+            type: number
+            span: auto
+            tab: Invoicing & Shipping  
+        product_invoiced_freight:
+            label: codengine.awardbank::lang.OrderLineitem.product_invoiced_freight
+            type: number
+            span: auto
+            tab: Invoicing & Shipping  
+        product_invoiced_delivery cost:
+            label: codengine.awardbank::lang.OrderLineitem.product_invoiced_delivery
+            type: number
+            span: auto
+            tab: Invoicing & Shipping  
+        invoice_po_variance:
+            label: codengine.awardbank::lang.OrderLineitem.invoice_po_variance
+            type: number
+            span: auto
+            tab: Invoicing & Shipping  
+        invoice_freight_variance:
+            label: codengine.awardbank::lang.OrderLineitem.invoice_freight_variance
+            type: number
+            span: auto
+            tab: Invoicing & Shipping  
+        order_supplier_name:
+            label: Supplier Name
+            type: text
+            span: auto
+            readOnly: true
+            tab: Product 
+        order_program_id:
+            label: Program ID
+            type: text
+            span: auto
+            readOnly: true
+            tab: Program 
+        order_program_name:
+            label: Program Name
+            type: text
+            span: auto
+            readOnly: true
+            tab: Program 
+        order_customer_address:
+            label: codengine.awardbank::lang.OrderLineitem.order_customer_address
+            type: text
+            readOnly: true
+            tab: codengine.awardbank::lang.OrderLineitem.order_placer 
+        order_customer_email:
+            label: codengine.awardbank::lang.OrderLineitem.order_customer_email
+            type: text
+            readOnly: true
+            tab: codengine.awardbank::lang.OrderLineitem.order_placer 
+        order_customer_phone_number:
+            label: codengine.awardbank::lang.OrderLineitem.order_customer_phone_number
+            type: text
+            readOnly: true
+            tab: codengine.awardbank::lang.OrderLineitem.order_placer 

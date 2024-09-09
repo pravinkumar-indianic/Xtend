@@ -1,0 +1,77 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+address:
+    label: Address
+    modelClass: Codengine\Awardbank\Models\Address        
+    view:
+        toolbarButtons: create|update|remove          
+        form: $/codengine/awardbank/models/address/fields.yaml  
+        list: $/codengine/awardbank/models/address/columns.yaml    
+
+    manage:
+        form: $/codengine/awardbank/models/address/fields.yaml
+        list: $/codengine/awardbank/models/address/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+
+shipping_rate:
+    label: Address
+    modelClass: Codengine\Awardbank\Models\shippingrate
+    view:
+        toolbarButtons: add|remove   
+        form: $/codengine/awardbank/models/address/fields.yaml  
+        list: $/codengine/awardbank/models/address/columns.yaml    
+
+    manage:
+        form: $/codengine/awardbank/models/address/fields_relation.yaml
+        list: $/codengine/awardbank/models/address/columns_relation.yaml
+        emptyMessage: backend::lang.list.no_records
+
+products:
+    label: codengine.awardbank::lang.awardbank.products
+    modelClass: Codengine\Awardbank\Models\Product    
+    view:
+        toolbarButtons: add|create|remove          
+        list: $/codengine/awardbank/models/product/columns.yaml
+        showSearch: true
+        scope: relatedSupplierOnly
+    manage:
+        form: $/codengine/awardbank/models/product/fields_relation.yaml
+        list: $/codengine/awardbank/models/product/columns.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true          
+
+owners:
+    label: codengine.awardbank::lang.awardbank.owners
+    modelClass: Codengine\Awardbank\Models\Permission    
+    view:
+        toolbarButtons: create|remove          
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isOwner
+        recordOnClick: false     
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_owner.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true            
+        scope: isOwner                   
+
+viewability:
+    label: codengine.awardbank::lang.awardbank.viewability
+    modelClass: Codengine\Awardbank\Models\Permission    
+    view:
+        toolbarButtons: create|remove          
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isViewable
+        recordOnClick: false            
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_viewability.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true            
+        scope: isViewable           
+
+

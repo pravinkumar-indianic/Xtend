@@ -1,0 +1,13 @@
+<div class="ui segment">
+    <h3>Order Totals</h3>
+    <div class="ui four columns stackable center aligned grid">
+        <div class="column">
+            {% partial '@statistic' value = orders.count label = 'Total Orders' %}
+        </div>
+        <div class="column">
+            {% partial '@statistic' value = orderstotal label = 'Total Order ' ~ user.currentProgram.points_name ~ ' value' %}
+        </div>
+    </div>
+    <h3>Orders</h3>
+    {% partial '@orderslist' orders = orders %}
+</div>

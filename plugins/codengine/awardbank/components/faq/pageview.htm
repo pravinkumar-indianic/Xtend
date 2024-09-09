@@ -1,0 +1,40 @@
+<div class="ui container program-faq-page">
+    <div class="ui segment raised" id="html1target">
+        <div class="ui one column grid grid-no-margin">
+            {% if program.faq_banner_image %}
+            <div class="hero full-screen-feature-image" >
+                <img src="{{ access.program.faq_banner_image.thumb(1040 , 250, 'fit')  }}" style="width:100%;height:auto" >
+            </div>
+            {% endif %}
+
+            <h1>FAQs</h1>
+
+            {% for key, faq in faqs %}
+            <div class="ui one column grid grid-no-margin faq-item-wrapper">
+                <div class="ui column">
+                    <div class="faq-question" data-id="{{ key }}">
+                        <h4><i class="icon question circle"></i>{{ faq.question }}</h4>
+                    </div>
+                </div>
+                <div class="faq-answer-wrapper" id="faq-answer-{{ key }}">
+                    <div class="faq-answer">{{ faq.answer|raw }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+{% put scripts %}
+
+<script>
+  $('body').on('click', '.faq-question', function (e) {
+    e.preventDefault();
+    var id = $(this).attr('data-id');
+    if (id) {
+        $('#faq-answer-' + id).toggle();
+    }
+  });
+</script>
+{% endput %}

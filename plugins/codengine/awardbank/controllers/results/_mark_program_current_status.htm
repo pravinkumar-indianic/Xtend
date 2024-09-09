@@ -1,0 +1,149 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="popup">×</button>
+    <h4 class="modal-title">Mark current status of programs
+    </h4>
+
+</div>
+
+<div class="modal-body">
+    <div class="form-elements">
+        <!-- Text Input (Left) -->
+        <div class="form-group text-field span-left is-required">
+            <label>Start @ ID</label>
+            <input type="number" name="" value="" class="form-control" placeholder="First"
+                   id="process_all_results_first_int"/>
+            <p class="help-block">Input the record to start process at. Leave blank for first.</p>
+        </div>
+
+        <!-- Text Input (Right) -->
+        <div class="form-group text-field span-right is-required">
+            <label>End @ ID</label>
+            <input type="number" name="" value="" class="form-control" placeholder="Last"
+                   id="process_all_results_last_int"/>
+            <p class="help-block">Input the record to end process at. Leave blank for last.</p>
+        </div>
+
+    </div>
+
+    <select class="form-control" id="statusResultValue">
+        <option value="1">Mark program results current</option>
+        <option value="0">Mark program results not current</option>
+    </select>
+
+    <hr>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" id="process_all_results_progress_bar" aria-valuenow="0"
+             aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+            <span class="sr-only"><span class="number">0</span>% Complete</span>
+        </div>
+    </div>
+    <div class="loading-indicator-container" id="process_all_results_loading_indicator"
+         style="margin-bottom:20px;display:none;">
+        <div class="loading-indicator">
+            <span></span>
+            <div>Processing <span class="current">First</span> to <span class="final">Last</span></div>
+        </div>
+    </div>
+    <p>Please Be Aware, this may take some time to process every results</p>
+</div>
+
+<div class="modal-footer">
+
+    <button
+            id="process_all_results"
+            class="btn btn-primary">
+        Process All
+    </button>
+
+    <button
+            type="button"
+            class="btn btn-default"
+            data-dismiss="popup">
+        Cancel
+    </button>
+
+</div>
+
+
+<script>
+    $("#process_all_results").on("click", function () {
+        startval = $('#process_all_results_first_int').val();
+        endval = $('#process_all_results_last_int').val();
+
+        if (startval === null || startval <= 0 || startval === '') {
+            startval = 1;
+        } else {
+            startval = parseInt(startval);
+        }
+
+        if (endval === null || endval <= startval || endval === '') {
+            endval = null;
+        } else {
+            endval = parseInt(endval);
+        }
+
+
+        onMarkResults(startval,endval,startval)
+    });
+
+
+    function onMarkResults(startval, endval, offset) {
+
+        var progressBar = $('#process_all_results_progress_bar');
+
+        var loadingIcon = $('#process_all_results_loading_indicator');
+
+        loadingIcon.find('.current').html(offset);
+
+        if ((endval !== null) && offset + 49 <= endval) {
+
+            loadingIcon.find('.final').html(offset + 49);
+
+        } else if (endval != null) {
+
+            loadingIcon.find('.final').html(endval);
+
+        }
+
+        loadingIcon.show();
+
+        const currentStatus = $('#statusResultValue').val();
+
+        console.log("Status", currentStatus);
+
+        $.request('onMarkProgramCurrentStatus', {
+
+            data: {
+                'startval': startval,
+                'endval': endval,
+                'offset': offset,
+                'currentStatus': currentStatus
+            },
+
+            success: function (data) {
+
+                startval = data['startval'];
+                endval = data['endval'];
+                offset = data['offset'];
+
+                if (offset <= endval) {
+                    var percent = (offset - startval) / (endval - startval);
+                    progressBar.css("width", (Math.ceil(percent * 100)) + '%');
+                    progressBar.find('.number').html(percent);
+                    onMarkResults(startval, endval, offset);
+                } else {
+                    loadingIcon.hide();
+                    progressBar.css("width", '100%');
+                    progressBar.find('.number').html('100');
+                    location.reload();
+                }
+            },
+
+            error: function (data) {
+                throw data;
+            },
+        });
+
+    }
+
+</script>

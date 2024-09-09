@@ -1,0 +1,12 @@
+<div class="ui container" id="usermanagement" data-navoption = "{{ __SELF__.navoption }}">
+	<div class="ui stackable grid">
+        {% if manager == true and __SELF__.html1 %}
+		<div class="six wide tablet four wide computer column" id="html1target-dont-use">
+			{{ __SELF__.html1|raw }}
+		</div>
+        {% endif %}
+		<div class="ten wide tablet twelve wide computer column" id="html2target">
+			{{ __SELF__.html2|raw }}
+		</div>
+	</div>
+</div>

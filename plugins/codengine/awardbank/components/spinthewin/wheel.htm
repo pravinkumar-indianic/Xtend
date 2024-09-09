@@ -1,0 +1,59 @@
+<div id="spin-the-wheel">
+    <div class="ui stackable grid">
+        <div class="sixteen wide tablet nine wide computer column" id="chart-wrapper">
+            <div id="chart"></div>
+            <div id="chart-loading">
+                <span>Verifying...</span>
+            </div>
+        </div>
+        <div class="sixteen wide tablet seven wide computer column">
+            <div id="content">
+                <div id="close-button-wrapper">
+                    <button class="ui button" id="hide-spin-the-wheel">Close</button>
+                </div>
+                <div id="spin-count">
+                    <p>
+                        <span>You have:</span> <span id="spin-count-label" class="program-default-color">{{ available_spins_count }}</span> <span class="program-default-color">Spins</span>
+                    </p>
+                </div>
+                <div id="price-wrapper">
+                    {% partial('@price') %}
+                </div>
+            </div>
+        </div>
+        <div class="sixteen wide tablet sixteen wide computer column">
+            <div id="how-to-claim">
+                <h2>Should you be a lucky winner, follow the below steps to claim your prize:</h2>
+                <div class="ui stackable grid border-bottom top-section-wrapper">
+                    <div class="sixteen wide tablet five wide computer column">
+                        <h3>1.</h3>
+                        {# ASE 2023  #}
+                        {% if access.program.id == 112 %}
+                        <p>Keep an eye on your inbox – we will confirm your prize.</p>
+                        {% else %}
+                        <p>Keep an eye on your email inbox – we will confirm your prize.</p>
+                        {% endif %}
+                    </div>
+                    <div class="sixteen wide tablet five wide computer column">
+                        <h3>2.</h3>
+                        {# ASE 2023  #}
+                        {% if access.program.id == 112 %}
+                        <p>Your Elite Points won via Spin to Win will be uploaded to your account within 1 Business Day.</p>
+                        {% else %}
+                        <p>Follow the prompts to provide your contact details and delivery address.</p>
+                        {% endif %}
+                    </div>
+                    <div class="sixteen wide tablet five wide computer column">
+                        <h3>3.</h3>
+                        {# ASE 2023  #}
+                        {% if access.program.id == 112 %}
+                        <p>Redeem your Elite Points by selecting a reward of your choice via the AfterSales Elite Rewards Website.</p>
+                        {% else %}
+                        <p>Take a photo of you and your team enjoying your prize and share it via the 5STEP social feed!</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

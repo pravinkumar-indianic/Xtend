@@ -1,0 +1,24 @@
+<div style="margin-left:auto;margin-right:auto;">
+<img src="
+
+<?php 
+
+	if( $record->feature_image != null){
+
+		echo $record->feature_image->getThumb('auto', 100);
+
+    } else {
+
+		if( $record->external_image_url != null)
+		{ 
+
+			echo $record->external_image_url;
+
+		} 
+
+	}
+
+?>
+
+" style="width:auto;height:100px;">
+</div>

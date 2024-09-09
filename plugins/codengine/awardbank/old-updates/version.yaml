@@ -1,0 +1,715 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table codengine_awardbank_products'
+    - builder_table_create_codengine_awardbank_products.php
+1.0.3:
+    - 'Created table codengine_awardbank_suppliers'
+    - builder_table_create_codengine_awardbank_suppliers.php
+1.0.4:
+    - 'Created table codengine_awardbank_votes'
+    - builder_table_create_codengine_awardbank_votes.php
+1.0.5:
+    - 'Created table codengine_awardbank_nominations'
+    - builder_table_create_codengine_awardbank_nominations.php
+1.0.6:
+    - 'Created table codengine_awardbank_awards'
+    - builder_table_create_codengine_awardbank_awards.php
+1.0.7:
+    - 'Created table codengine_awardbank_prizes'
+    - builder_table_create_codengine_awardbank_prizes.php
+1.0.9:
+    - 'Created table codengine_awardbank_category_allocation'
+    - builder_table_create_codengine_awardbank_category_allocation.php
+1.0.11:
+    - 'Created table codengine_awardbank_tag_allocation'
+    - builder_table_create_codengine_awardbank_tag_allocation.php
+1.0.12:
+    - 'Created table codengine_awardbank_addresses'
+    - builder_table_create_codengine_awardbank_addresses.php
+1.0.13:
+    - 'Created table codengine_awardbank_points'
+    - builder_table_create_codengine_awardbank_points.php
+1.0.14:
+    - 'Created table codengine_awardbank_pointallocations'
+    - builder_table_create_codengine_awardbank_pointallocations.php
+1.0.15:
+    - 'Created table codengine_awardbank_order_points'
+    - builder_table_create_codengine_awardbank_order_points.php
+1.0.16:
+    - 'Created table codengine_awardbank_orders'
+    - builder_table_create_codengine_awardbank_orders.php
+1.0.17:
+    - 'Created table codengine_awardbank_transactions'
+    - builder_table_create_codengine_awardbank_transactions.php
+1.0.18:
+    - 'Created table codengine_awardbank_kitty'
+    - builder_table_create_codengine_awardbank_kitty.php
+1.0.19:
+    - 'Created table codengine_awardbank_results'
+    - builder_table_create_codengine_awardbank_results.php
+1.0.20:
+    - 'Created table codengine_awardbank_result_type'
+    - builder_table_create_codengine_awardbank_result_type.php
+1.0.21:
+    - 'Created table codengine_awardbank_permission_entity_allocation'
+    - builder_table_create_codengine_awardbank_permission_entity_allocation.php
+1.0.22:
+    - 'Created table codengine_awardbank_permissions'
+    - builder_table_create_codengine_awardbank_permissions.php
+1.0.23:
+    - 'Created table codengine_awardbank_credits'
+    - builder_table_create_codengine_awardbank_credits.php
+1.0.24:
+    - 'Created table codengine_awardbank_permission_access_allocation'
+    - builder_table_create_codengine_awardbank_permission_access_allocation.php
+1.0.25:
+    - 'Created table codengine_awardbank_teams'
+    - builder_table_create_codengine_awardbank_teams.php
+1.0.26:
+    - 'Created table codengine_awardbank_u_t'
+    - builder_table_create_codengine_awardbank_u_t.php
+1.0.27:
+    - 'Created table codengine_awardbank_regions'
+    - builder_table_create_codengine_awardbank_regions.php
+1.0.28:
+    - 'Created table codengine_awardbank_t_r'
+    - builder_table_create_codengine_awardbank_t_r.php
+1.0.29:
+    - 'Created table codengine_awardbank_programs'
+    - builder_table_create_codengine_awardbank_programs.php
+1.0.30:
+    - 'Created table codengine_awardbank_organizations'
+    - builder_table_create_codengine_awardbank_organizations.php
+1.0.31:
+    - 'Created table codengine_awardbank_access_manager_allocation'
+    - builder_table_create_codengine_awardbank_access_manager_allocation.php
+1.0.32:
+    - 'Created table codengine_awardbank_posts'
+    - builder_table_create_codengine_awardbank_posts.php
+1.0.33:
+    - 'Updated table codengine_awardbank_credits'
+    - builder_table_update_codengine_awardbank_credits.php
+1.0.34:
+    - 'Created table codengine_awardbank_categories'
+    - builder_table_create_codengine_awardbank_categories.php
+1.0.35:
+    - 'Created table codengine_awardbank_tags'
+    - builder_table_create_codengine_awardbank_tags.php
+1.0.36:
+    - 'Created table codengine_awardbank_comments'
+    - builder_table_create_codengine_awardbank_comments.php
+1.0.37:
+    - 'Created table codengine_awardbank_p_comment'
+    - builder_table_create_codengine_awardbank_p_comment.php
+1.0.38:
+    - 'Created table codengine_awardbank_likes'
+    - builder_table_create_codengine_awardbank_likes.php
+1.0.39:
+    - 'Created table codengine_awardbank_p_like'
+    - builder_table_create_codengine_awardbank_p_like.php
+1.0.40:
+    - 'Created table codengine_awardbank_order_products'
+    - builder_table_create_codengine_awardbank_order_products.php
+1.0.41:
+    - 'Update Users'
+    - update_users.php
+1.0.42:
+    - 'Created table codengine_awardbank_menu_item'
+    - builder_table_create_codengine_awardbank_menu_item.php
+1.0.43:
+    - 'Updated table codengine_awardbank_tags'
+    - builder_table_update_codengine_awardbank_tags.php
+1.0.44:
+    - 'Created table codengine_awardbank_post_viewer'
+    - builder_table_create_codengine_awardbank_post_viewer.php
+1.0.46:
+    - 'Updated table codengine_awardbank_user'
+    - builder_table_update_codengine_awardbank_user.php
+1.0.47:
+    - 'Updated table codengine_awardbank_awards'
+    - builder_table_update_codengine_awardbank_awards.php
+1.0.48:
+    - 'Updated table codengine_awardbank_orders'
+    - 'builder_table_update_codengine_awardbank_orders.php'''
+1.0.49:
+    - 'Created table codengine_awardbank_delivery'
+    - builder_table_create_codengine_awardbank_delivery.php
+1.0.50:
+    - 'Updated table codengine_awardbank_suppliers'
+    - builder_table_update_codengine_awardbank_suppliers.php
+1.0.51:
+    - 'Updated table codengine_awardbank_delivery'
+    - builder_table_update_codengine_awardbank_shipping_rate.php
+1.0.53:
+    - 'Updated table codengine_awardbank_pointallocations'
+    - builder_table_update_codengine_awardbank_pointallocations.php
+1.0.54:
+    - 'Updated table codengine_awardbank_pointallocations'
+    - builder_table_update_codengine_awardbank_pointallocations_2.php
+1.0.55:
+    - 'Updated table codengine_awardbank_orders'
+    - builder_table_update_codengine_awardbank_orders_2.php
+1.0.56:
+    - 'Updated table codengine_awardbank_orders'
+    - builder_table_update_codengine_awardbank_orders_3.php
+1.0.57:
+    - 'Created table codengine_awardbank_activity_log'
+    - builder_table_create_codengine_awardbank_activity_log.php
+1.0.58:
+    - 'Updated table codengine_awardbank_prizes'
+    - builder_table_update_codengine_awardbank_prizes.php
+1.0.60:
+    - 'Updated table codengine_awardbank_regions'
+    - builder_table_update_codengine_awardbank_regions.php
+1.0.61:
+    - 'Updated table codengine_awardbank_results'
+    - builder_table_update_codengine_awardbank_results.php
+1.0.62:
+    - 'Updated table codengine_awardbank_result_type'
+    - builder_table_update_codengine_awardbank_result_type.php
+1.0.63:
+    - 'Updated table codengine_awardbank_regions'
+    - builder_table_update_codengine_awardbank_regions.php
+1.0.64:
+    - 'Updated table codengine_awardbank_posts'
+    - builder_table_update_codengine_awardbank_posts.php
+1.0.65:
+    - 'Updated table codengine_awardbank_awards'
+    - builder_table_update_codengine_awardbank_awards_2.php
+1.0.66:
+    - 'Updated table codengine_awardbank_categories'
+    - builder_table_update_codengine_awardbank_categories.php
+1.0.67:
+    - 'Updated table codengine_awardbank_tags'
+    - builder_table_update_codengine_awardbank_tags.php
+1.0.68:
+    - 'Updated table codengine_awardbank_products'
+    - builder_table_update_codengine_awardbank_products.php
+1.0.69:
+    - 'Updated table codengine_awardbank_suppliers'
+    - builder_table_update_codengine_awardbank_suppliers_2.php
+1.0.70:
+    - 'Updated table codengine_awardbank_programs'
+    - builder_table_update_codengine_awardbank_programs.php
+1.0.71:
+    - 'Updated table codengine_awardbank_regions'
+    - builder_table_update_codengine_awardbank_regions_2.php
+1.0.72:
+    - 'Updated table codengine_awardbank_organizations'
+    - builder_table_update_codengine_awardbank_organizations.php
+1.0.73:
+    - 'Updated table codengine_awardbank_teams'
+    - builder_table_update_codengine_awardbank_teams.php
+1.0.74:
+    - 'Updated Users2'
+    - update_users2.php
+1.0.75:
+    - 'Update Users3'
+    - update_users3.php
+1.0.76:
+    - 'Updated table codengine_awardbank_teams'
+    - builder_table_update_codengine_awardbank_teams_2.php
+1.0.77:
+    - 'Updated table codengine_awardbank_regions'
+    - builder_table_update_codengine_awardbank_regions_3.php
+1.0.78:
+    - 'Updated table codengine_awardbank_programs'
+    - builder_table_update_codengine_awardbank_programs_2.php
+1.0.79:
+    - 'Updated table codengine_awardbank_organizations'
+    - builder_table_update_codengine_awardbank_organizations_2.php
+4.0.01:
+    - 'Updated table codengine_awardbank_regions4'
+    - builder_table_update_codengine_awardbank_regions_4.php
+4.0.2:
+    - 'Updated table codengine_awardbank_programs3'
+    - builder_table_update_codengine_awardbank_programs_3.php
+4.0.3:
+    - 'Updated table codengine_awardbank_regions5'
+    - builder_table_update_codengine_awardbank_regions_5.php
+4.0.4:
+    - 'Updated table codengine_awardbank_teams3'
+    - builder_table_update_codengine_awardbank_teams_3.php
+4.0.5:
+    - 'Updated table codengine_awardbank_programs4'
+    - builder_table_update_codengine_awardbank_programs_4.php
+4.0.6:
+    - 'Updated table codengine_awardbank_programs5'
+    - builder_table_update_codengine_awardbank_programs_5.php
+4.0.7:
+    - 'Updated table codengine_awardbank_products2'
+    - builder_table_update_codengine_awardbank_products_2.php
+4.0.8:
+    - 'Updated table codengine_awardbank_products3'
+    - builder_table_update_codengine_awardbank_products_3.php
+4.0.9:
+    - 'Updated table codengine_awardbank_credits'
+    - builder_table_update_codengine_awardbank_credits.php
+4.0.10:
+    - 'Update Users 4'
+    - update_users4.php
+4.0.11:
+    - 'Updated table codengine_awardbank_orders4'
+    - builder_table_update_codengine_awardbank_orders_4.php
+4.0.12:
+    - 'Updated table codengine_awardbank_orders5'
+    - builder_table_update_codengine_awardbank_orders_5.php
+4.0.13:
+    - 'Updated table codengine_awardbank_suppliers3'
+    - builder_table_update_codengine_awardbank_suppliers_3.php
+4.0.14:
+    - 'Update Users 5'
+    - update_users5.php
+4.0.15:
+    - 'Updated table codengine_awardbank_suppliers4'
+    - builder_table_update_codengine_awardbank_suppliers_4.php
+4.0.16:
+    - 'Created table codengine_awardbank_thankyous'
+    - builder_table_create_codengine_awardbank_thankyous.php
+4.0.17:
+    - 'Updated table codengine_awardbank_products4'
+    - builder_table_update_codengine_awardbank_products_4.php
+4.0.18:
+    - 'Created table codengine_awardbank_activity_feed'
+    - builder_table_create_codengine_awardbank_activity_feed.php
+4.0.19:
+    - 'Created table codengine_awardbank_messages'
+    - builder_table_create_codengine_awardbank_messages.php
+4.0.20:
+    - 'Created table codengine_awardbank_order_line_item'
+    - builder_table_create_codengine_awardbank_order_line_item.php
+4.0.21:
+    - 'Updated table codengine_awardbank_orders'
+    - builder_table_update_codengine_awardbank_orders6.php
+4.0.22:
+    - 'Updated table codengine_awardbank_nominations'
+    - builder_table_update_codengine_awardbank_nominations.php
+4.0.23:
+    - 'Updated table codengine_awardbank_nominations'
+    - builder_table_update_codengine_awardbank_nominations_2.php
+4.0.24:
+    - 'Updated table codengine_awardbank_nominations'
+    - builder_table_update_codengine_awardbank_nominations_3.php
+4.0.25:
+    - 'Updated table codengine_awardbank_votes'
+    - builder_table_update_codengine_awardbank_votes.php
+4.0.26:
+    - 'Updated table codengine_awardbank_nominations'
+    - builder_table_update_codengine_awardbank_nominations_4.php
+4.0.28:
+    - 'Updated table codengine_awardbank_order_line_item'
+    - builder_table_update_codengine_awardbank_order_line_item.php
+4.0.29:
+    - 'Update Users 6'
+    - update_users6.php
+4.0.30:
+    - 'Updated table codengine_awardbank_awards3'
+    - builder_table_update_codengine_awardbank_awards_3.php
+4.0.31:
+    - 'Updated table codengine_awardbank_programs'
+    - builder_table_update_codengine_awardbank_programs_6.php
+4.0.32:
+    - 'Update Users 7'
+    - update_users7.php
+4.0.34:
+    - 'Updated table codengine_awardbank_awards4'
+    - builder_table_update_codengine_awardbank_awards_4.php
+4.0.35:
+    - 'Updated table codengine_awardbank_prizes3'
+    - builder_table_update_codengine_awardbank_prizes_3.php
+4.0.37:
+    - 'Updated table codengine_awardbank_products5'
+    - builder_table_update_codengine_awardbank_products_5.php
+4.0.38:
+    - 'Create table codengine_awardbank_product_program_exclusion'
+    - builder_table_create_codengine_awardbank_product_program_exclusion.php
+4.0.39:
+    - 'Create table codengine_awardbank_product_category_exclusion'
+    - builder_table_create_codengine_awardbank_product_category_exclusions.php
+4.0.40:
+    - 'Create table codengine_awardbank_award_award_paired'
+    - builder_table_create_codengine_awardbank_award_award_paired.php
+4.0.41:
+    - 'Updated table codengine_awardbank_awards5'
+    - builder_table_update_codengine_awardbank_awards_5.php
+4.0.44:
+    - 'Updated table codengine_awardbank_activity_feed'
+    - builder_table_update_codengine_awardbank_activity_feed.php
+4.0.45:
+    - 'Updated table codengine_awardbank_products6'
+    - builder_table_update_codengine_awardbank_products_6.php
+4.0.46:
+    - 'Updated table codengine_awardbank_programs7'
+    - builder_table_update_codengine_awardbank_programs_7.php
+4.0.47:
+    - 'Updated table codengine_awardbank_awards6'
+    - builder_table_update_codengine_awardbank_awards_6.php
+4.0.49:
+    - 'Updated table codengine_awardbank_nominations5'
+    - builder_table_update_codengine_awardbank_nominations_5.php
+4.0.50:
+    - 'Update Users 8'
+    - update_users8.php
+4.0.52:
+    - 'Update Users 9'
+    - update_users9.php
+4.0.53:
+    - 'Created table codengine_awardbank_billingcontact'
+    - builder_table_create_codengine_awardbank_billingcontact.php
+4.0.54:
+    - 'Updated table codengine_awardbank_billingcontact'
+    - builder_table_update_codengine_awardbank_billingcontact.php
+4.0.55:
+    - 'Updated table codengine_awardbank_billingcontact'
+    - builder_table_update_codengine_awardbank_billingcontact_2.php
+4.0.56:
+    - 'Updated table codengine_awardbank_programs8'
+    - builder_table_update_codengine_awardbank_programs_8.php
+4.0.57:
+    - 'Updated table codengine_awardbank_programs9'
+    - builder_table_update_codengine_awardbank_programs_9.php
+4.0.58:
+    - 'Updated table codengine_awardbank_organizations3'
+    - builder_table_update_codengine_awardbank_organizations_3.php
+4.0.59:
+    - 'Created table codengine_awardbank_billinginvoice'
+    - builder_table_create_codengine_awardbank_billinginvoice.php
+4.0.60:
+    - 'Updated table codengine_awardbank_programs10'
+    - builder_table_update_codengine_awardbank_programs10.php
+4.0.61:
+    - 'Updated table codengine_awardbank_programs11'
+    - builder_table_update_codengine_awardbank_programs_11.php
+4.0.62:
+    - 'Update Users 10'
+    - update_users10.php
+4.0.63:
+    - 'Updated table codengine_awardbank_programs12'
+    - builder_table_update_codengine_awardbank_programs_12.php
+4.0.64:
+    - 'Updated table codengine_awardbank_programs13'
+    - builder_table_update_codengine_awardbank_programs_13.php
+4.0.65:
+    - 'Updated table codengine_awardbank_addresses'
+    - builder_table_update_codengine_awardbank_addresses.php
+4.0.66:
+    - 'Updated table codengine_awardbank_programs14'
+    - builder_table_update_codengine_awardbank_programs14.php
+4.0.67:
+    - 'Updated table codengine_awardbank_billingcontact3'
+    - builder_table_update_codengine_awardbank_billingcontact3.php
+4.0.68:
+    - 'Updated table codengine_awardbank_billinginvoice'
+    - builder_table_update_codengine_awardbank_billing_invoice.php
+4.0.69:
+    - 'Updated table codengine_awardbank_awards7'
+    - builder_table_update_codengine_awardbank_awards7.php
+4.0.70:
+    - 'Updated table codengine_awardbank_programs15'
+    - builder_table_update_codengine_awardbank_programs_15.php
+4.0.71:
+    - 'Updated table codengine_awardbank_programs16'
+    - builder_table_update_codengine_awardbank_programs16.php
+4.0.72:
+    - 'Update Users 11'
+    - update_users11.php
+4.0.73:
+    - 'Updated table codengine_awardbank_nominations6'
+    - builder_table_update_codengine_awardbank_nominations_6.php
+4.0.74:
+    - 'Updated table codengine_awardbank_votes2'
+    - builder_table_update_codengine_awardbank_votes_2.php
+4.0.75:
+    - 'Updated table codengine_awardbank_nominations7'
+    - builder_table_update_codengine_awardbank_nominations_7.php
+4.0.76:
+    - 'Updated table codengine_awardbank_programs17'
+    - builder_table_update_codengine_awardbank_programs_17.php
+4.0.77:
+    - 'Updated table codengine_awardbank_votes3'
+    - builder_table_update_codengine_awardbank_votes_3.php
+4.0.78:
+    - 'Updated table codengine_awardbank_awards8'
+    - builder_table_update_codengine_awardbank_awards_8.php
+4.0.79:
+    - 'Created table BuilderTableCreateCodengineAwardbankPW'
+    - builder_table_create_codengine_awardbank_p_w.php
+4.0.80:
+    - 'Updated table codengine_awardbank_prizes4'
+    - builder_table_update_codengine_awardbank_prizes_4.php
+4.0.81:
+    - 'Updated table codengine_awardbank_awards9'
+    - builder_table_update_codengine_awardbank_awards_9.php
+4.0.82:
+    - 'Update Users 12'
+    - update_users12.php
+4.0.83:
+    - 'Updated table codengine_awardbank_programs18'
+    - builder_table_update_codengine_awardbank_programs_18.php
+4.0.84:
+    - 'Updated table codengine_awardbank_programs19'
+    - builder_table_update_codengine_awardbank_programs_19.php
+4.0.85:
+    - 'Updated table codengine_awardbank_programs20'
+    - builder_table_update_codengine_awardbank_programs_20.php
+4.0.86:
+    - 'Updated table codengine_awardbank_transactions1'
+    - builder_table_update_codengine_awardbank_transactions_1.php
+4.0.87:
+    - 'Updated table codengine_awardbank_billinginvoice2'
+    - builder_table_update_codengine_awardbank_billinginvoice_2.php
+4.0.88:
+    - 'Updated table codengine_awardbank_programs21'
+    - builder_table_update_codengine_awardbank_programs_21.php
+4.0.89:
+    - 'Updated table codengine_awardbank_programs22'
+    - builder_table_update_codengine_awardbank_programs_22.php
+4.0.90:
+    - 'Updated table codengine_awardbank_orders7'
+    - builder_table_update_codengine_awardbank_orders7.php
+4.0.91:
+    - 'Updated table codengine_awardbank_order_line_item_2'
+    - builder_table_update_codengine_awardbank_order_line_item_2.php
+4.0.93:
+    - 'Updated table codengine_awardbank_programs23'
+    - builder_table_update_codengine_awardbank_programs_23.ph
+4.0.94:
+    - 'Updated table codengine_awardbank_products7'
+    - builder_table_update_codengine_awardbank_products_7.php
+5.0.01:
+    - 'Updated table codengine_awardbank_billinginvoice3'
+    - builder_table_update_codengine_awardbank_billinginvoice_3.php
+5.0.02:
+    - 'Updated table codengine_awardbank_regions6'
+    - builder_table_update_codengine_awardbank_regions_6.php
+5.0.03:
+    - 'Updated table codengine_awardbank_teams4'
+    - builder_table_update_codengine_awardbank_teams_4.php
+5.0.04:
+    - 'Update Users 13'
+    - update_users13.php
+5.0.06:
+    - 'Updated table codengine_awardbank_result_type2'
+    - builder_table_update_codengine_awardbank_result_type_2.php
+5.0.07:
+    - 'Updated table codengine_awardbank_results2'
+    - builder_table_update_codengine_awardbank_results_2.php
+5.0.08:
+    - 'Updated table codengine_awardbank_results2'
+    - builder_table_update_codengine_awardbank_results_2.php
+5.0.09:
+    - 'Created table codengine_awardbank_result_group'
+    - builder_table_create_codengine_awardbank_result_group.php
+5.0.10:
+    - 'Updated table codengine_awardbank_results3'
+    - builder_table_update_codengine_awardbank_results_3.php
+5.0.11:
+    - 'Updated table codengine_awardbank_result_type3'
+    - builder_table_update_codengine_awardbank_result_type_3.php
+5.0.16:
+    - 'Updated table codengine_awardbank_results_group_1'
+    - builder_table_update_codengine_awardbank_results__group_1.php
+5.0.17:
+    - 'Update Users 14'
+    - update_users14.php
+5.0.18:
+    - 'Updated table codengine_awardbank_programs24'
+    - builder_table_update_codengine_awardbank_programs_24.php
+5.0.19:
+    - 'Updated table codengine_awardbank_results4'
+    - builder_table_update_codengine_awardbank_results_4.php
+5.0.20:
+    - 'Updated table codengine_awardbank_order_line_item_3'
+    - builder_table_update_codengine_awardbank_order_line_item_3.php
+5.0.21:
+    - 'Updated table codengine_awardbank_order_line_item_4'
+    - builder_table_update_codengine_awardbank_order_line_item_4.php
+5.0.22:
+    - 'Updated table codengine_awardbank_orders_8'
+    - builder_table_update_codengine_awardbank_orders_8.php
+5.0.23:
+    - 'Create table Tarteging Tags'
+    - builder_table_create_codengine_awardbank_targeting_tags.php
+5.0.24:
+    - 'Updated table codengine_awardbank_programs25'
+    - builder_table_update_codengine_awardbank_programs_25.php
+5.0.25:
+    - 'Category Exclusions'
+    - builder_table_create_codengine_awardbank_product_category_exclusions.php
+5.0.26:
+    - 'Updated table codengine_awardbank_order_line_item'
+    - builder_table_update_codengine_awardbank_order_line_item_5.php
+5.0.27:
+    - 'Updated table codengine_awardbank_order_line_item'
+    - builder_table_update_codengine_awardbank_order_line_item_6.php
+5.0.28:
+    - 'Updated table codengine_awardbank_order_line_item'
+    - builder_table_update_codengine_awardbank_order_line_item_7.php
+5.0.29:
+    - 'Updated table codengine_awardbank_order_line_item'
+    - builder_table_update_codengine_awardbank_order_line_item_8.php
+5.0.30:
+    - 'Created table codengine_awardbank_points_ledger'
+    - builder_table_create_codengine_awardbank_points_ledger.php
+5.0.31:
+    - 'Update Users 15'
+    - update_users15.php
+5.0.32:
+    - 'Updated table codengine_awardbank_points_ledger'
+    - builder_table_update_codengine_awardbank_points_ledger.php
+5.0.33:
+    - 'Updated table codengine_awardbank_orders'
+    - builder_table_update_codengine_awardbank_orders_6.php
+5.0.34:
+    - 'Updated table codengine_awardbank_result_group'
+    - builder_table_update_codengine_awardbank_result_group.php
+5.0.35:
+    - 'Updated table codengine_awardbank_result_group'
+    - builder_table_update_codengine_awardbank_result_group_2.php
+5.0.36:
+    - 'Updated table codengine_awardbank_result_type'
+    - builder_table_update_codengine_awardbank_result_type_4.php
+5.0.37:
+    - 'Created table codengine_awardbank_tt_res'
+    - builder_table_create_codengine_awardbank_tt_res.php
+5.0.38:
+    - 'Updated table codengine_awardbank_result_group'
+    - builder_table_update_codengine_awardbank_result_group_3.php
+5.0.39:
+    - 'Updated table codengine_awardbank_result_group'
+    - builder_table_update_codengine_awardbank_result_group_4.php
+5.0.40:
+    - 'Updated table codengine_awardbank_points_ledger'
+    - builder_table_update_codengine_awardbank_points_ledger_2.php
+5.0.41:
+    - 'Update User 16'
+    - update_users16.php
+5.0.42:
+    - 'Updated table codengine_awardbank_results'
+    - builder_table_update_codengine_awardbank_results_5.php
+5.0.43:
+    - 'Update Users 17'
+    - update_users17.php
+5.0.44:
+    - 'Created table codengine_awardbank_u_p'
+    - builder_table_create_codengine_awardbank_u_p.php
+5.0.45:
+    - 'Created table codengine_awardbank_u_pm'
+    - builder_table_create_codengine_awardbank_u_pm.php
+5.0.46:
+    - 'Created table codengine_awardbank_u_tm'
+    - builder_table_create_codengine_awardbank_u_tm.php
+5.0.47:
+    - 'Updated table codengine_awardbank_teams'
+    - builder_table_update_codengine_awardbank_teams_5.php
+5.0.48:
+    - 'Updated table codengine_awardbank_points_ledger'
+    - builder_table_update_codengine_awardbank_points_ledger_3.php
+5.0.49:
+    - 'Updated table codengine_awardbank_regions'
+    - builder_table_update_codengine_awardbank_regions_7.php
+5.0.50:
+    - 'Created table codengine_awardbank_cronchecker'
+    - builder_table_create_codengine_awardbank_cronchecker.php
+5.0.51:
+    - 'Updated table codengine_awardbank_posts'
+    - builder_table_update_codengine_awardbank_posts_2.php
+5.0.52:
+    - 'Created table codengine_awardbank_po_pr'
+    - builder_table_create_codengine_awardbank_po_pr.php
+5.0.53:
+    - 'Created table codengine_awardbank_po_te'
+    - builder_table_create_codengine_awardbank_po_te.php
+5.0.54:
+    - 'Created table codengine_awardbank_po_ma'
+    - builder_table_create_codengine_awardbank_po_ma.php
+5.0.55:
+    - 'Created table codengine_awardbank_po_co'
+    - builder_table_create_codengine_awardbank_po_co.php
+5.0.56:
+    - 'Created table codengine_awardbank_po_li'
+    - builder_table_create_codengine_awardbank_po_li.php
+5.0.57:
+    - 'Created table codengine_awardbank_leads'
+    - builder_table_create_codengine_awardbank_leads.php
+5.0.58:
+    - 'Updated table codengine_awardbank_messages'
+    - builder_table_update_codengine_awardbank_messages.php
+5.0.59:
+    - 'Updated table codengine_awardbank_thankyous'
+    - builder_table_update_codengine_awardbank_thankyous.php
+5.0.60:
+    - 'Created table codengine_awardbank_aw_ma'
+    - builder_table_create_codengine_awardbank_aw_ma.php
+5.0.61:
+    - 'Created table codengine_awardbank_aw_vt'
+    - builder_table_create_codengine_awardbank_aw_vt.php
+5.0.62:
+    - 'Created table codengine_awardbank_aw_nt'
+    - builder_table_create_codengine_awardbank_aw_nt.php
+5.0.63:
+    - 'Created table codengine_awardbank_aw_vot'
+    - builder_table_create_codengine_awardbank_aw_vot.php
+5.0.64:
+    - 'Created table codengine_awardbank_aw_nm'
+    - builder_table_create_codengine_awardbank_aw_nm.php
+5.0.65:
+    - 'Created table codengine_awardbank_aw_wm'
+    - builder_table_create_codengine_awardbank_aw_wm.php
+5.0.66:
+    - 'Updated table codengine_awardbank_awards'
+    - builder_table_update_codengine_awardbank_awards_10.php
+5.0.67:
+    - 'Created table codengine_awardbank_aw_na'
+    - builder_table_create_codengine_awardbank_aw_na.php
+5.0.68:
+    - 'Created table codengine_awardbank_aw_vota'
+    - builder_table_create_codengine_awardbank_aw_vota.php
+5.0.69:
+    - 'Created table codengine_awardbank_aw_nu'
+    - builder_table_create_codengine_awardbank_aw_nu.php
+5.0.70:
+    - 'Updated table codengine_awardbank_awards'
+    - builder_table_update_codengine_awardbank_awards_11.php
+5.0.71:
+    - 'Updated table codengine_awardbank_awards'
+    - builder_table_update_codengine_awardbank_awards_12.php
+5.0.72:
+    - 'Updated table codengine_awardbank_votes'
+    - builder_table_update_codengine_awardbank_votes_4.php
+5.0.73:
+    - 'Updated table codengine_awardbank_prizes'
+    - builder_table_update_codengine_awardbank_prizes_2.php
+5.0.74:
+    - 'Updated table codengine_awardbank_prizes'
+    - builder_table_update_codengine_awardbank_prizes_5.php
+5.0.75:
+    - 'Created table codengine_awardbank_pr_uw'
+    - builder_table_create_codengine_awardbank_pr_uw.php
+5.0.76:
+    - 'Created table codengine_awardbank_pr_tw'
+    - builder_table_create_codengine_awardbank_pr_tw.php
+5.0.77:
+    - 'Updated table codengine_awardbank_results'
+    - builder_table_update_codengine_awardbank_results_6.php
+5.0.78:
+    - 'Updated table codengine_awardbank_awards'
+    - builder_table_update_codengine_awardbank_awards_13.php
+    - 'Created table codengine_awardbank_xero_api'
+    - builder_table_create_codengine_awardbank_xero_api.php
+5.0.79:
+    - 'Updated table codengine_awardbank_xero_api'
+    - builder_table_update_codengine_awardbank_xero_api.php
+5.0.80:
+    - 'Updated table codengine_awardbank_xero_api'
+    - builder_table_update_codengine_awardbank_xero_api_2.php
+5.0.81:
+    - 'Updated table codengine_awardbank_xero_api'
+    - builder_table_update_codengine_awardbank_xero_api_3.php
+5.0.82:
+    - 'Updated table codengine_awardbank_awards'
+    - builder_table_update_codengine_awardbank_awards_14.php
+5.0.83:
+    - 'Created table codengine_awardbank_reports'
+    - builder_table_create_codengine_awardbank_reports.php

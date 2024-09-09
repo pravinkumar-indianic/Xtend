@@ -1,0 +1,26 @@
+<h5>Create New Criteria</h5>
+<form class="criteria-form ui form" id="new-criteria-form">
+    <div class="ui stackable grid">
+        <div class="sixteen wide tablet six wide computer column">
+            <input type="text" name="key" placeholder="Key">
+        </div>
+        <div class="sixteen wide tablet ten wide computer column">
+            <input type="text" name="label" placeholder="Label">
+        </div>
+        <div class="sixteen wide tablet sixteen wide computer column">
+            <textarea type="text" name="tooltip" class="tinymceeditor" rows="4"></textarea>
+        </div>
+
+        <div class="sixteen wide tablet sixteen wide computer column">
+            <div class="ui toggle checkbox">
+                <label>Display on dashboard only</label>
+                <input type="checkbox" name="dashboard_only">
+            </div>
+        </div>
+
+        <div class="five wide tablet five wide computer column">
+            <input type="hidden" name="section_id" value="{{ current_section.id }}">
+            <button class="ui button primary new-section-criteria save">Create Criteria</button>
+        </div>
+    </div>
+</form>

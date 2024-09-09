@@ -1,0 +1,31 @@
+{% set messages = __SELF__.messages %}
+{% if messages | length > 0 %}
+	<div class="ui dropdown item">
+	<i class="bell icon"></i> Inbox
+{% else %}
+	<div class="ui item">
+	   <a href="/message/inbox"><i class="bell icon"></i> Inbox</a>
+{% endif %}
+    
+        <div class="ui small label" style="background-color: {{ __SELF__.programsecondarycolor }}">{{messages | length}}</div>
+
+        {% if messages | length > 0 %}
+        <div class="menu transition hidden">
+        	{% if messages %}
+            {% for message in messages %}
+            <div class="item">
+            	<div class="content">
+                    <a class="header" href="/message/{{message.id}}"><b>{{ html_limit(html_strip(message.title), 40, '...') }}</b></a>
+                    <div class="description"><small>{{message.created_at|date("M jS \\a\\t g:ia")}}</small></div>
+                </div>
+            </div>    
+            {% endfor %}
+
+            <div class="header center floated">
+                <span><a href="/message/inbox">See All</a></span>
+            </div>
+            
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>

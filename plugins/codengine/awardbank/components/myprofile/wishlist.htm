@@ -1,0 +1,8 @@
+<div class="ui segment">
+    <h3>Wishlist</h3>
+    <div class="ui one columns grid">
+    	<div class="column wishlisttarget">
+    		{% partial '@wishlistlist' products = wishlistproducts  points_name = user.currentProgram.points_name %}
+		</div>
+	</div>
+</div>

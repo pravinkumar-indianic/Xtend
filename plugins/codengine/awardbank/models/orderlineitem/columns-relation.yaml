@@ -1,0 +1,235 @@
+columns:
+    id:
+        label: codengine.awardbank::lang.general.id
+        type: number
+        sortable: true     
+        searchable: false
+        invisible: false 
+    created_at:
+        label: codengine.awardbank::lang.general.created_at
+        type: datetime
+        sortable: true     
+        searchable: false
+        invisible: true 
+    updated_at:
+        label: codengine.awardbank::lang.general.updated_at
+        type: datetime
+        sortable: true     
+        searchable: false
+        invisible: false 
+    deleted_at:
+        label: codengine.awardbank::lang.general.deleted_at
+        type: datetime
+        sortable: true     
+        searchable: false
+        invisible: true 
+    purchase_order_id:
+        label: codengine.awardbank::lang.OrderLineitem.purchase_order_id
+        type: text
+        sortable: true     
+        searchable: true
+        invisible: false 
+    last_po_email_sent:
+        label: codengine.awardbank::lang.OrderLineitem.last_po_email_sent
+        type: datetime
+        sortable: true     
+        searchable: false
+        invisible: false 
+    product_volume:
+        label: codengine.awardbank::lang.OrderLineitem.product_volume
+        type: number
+        sortable: true     
+        searchable: false
+        invisible: false       
+    product_id:
+        label: codengine.awardbank::lang.OrderLineitem.product_id
+        type: number
+        sortable: true     
+        searchable: false
+        invisible: false
+    product_name:
+        label: codengine.awardbank::lang.OrderLineitem.product_name
+        type: text
+        sortable: false     
+        searchable: true
+        invisible: false
+    product_image:
+        label: codengine.awardbank::lang.OrderLineitem.product_image
+        type: text
+        sortable: false     
+        searchable: true
+        invisible: true
+    product_dollar_value:
+        label: codengine.awardbank::lang.OrderLineitem.product_dollar_value
+        type: number
+        sortable: true     
+        searchable: false
+        invisible: false
+    product_slug:
+        label: codengine.awardbank::lang.OrderLineitem.product_slug
+        type: text
+        sortable: false     
+        searchable: false
+        invisible: true 
+    product_deliver_base:
+        label: codengine.awardbank::lang.OrderLineitem.product_deliver_base
+        type: switch
+        sortable: true     
+        searchable: false
+        invisible: false 
+    product_category_array:
+        label: codengine.awardbank::lang.OrderLineitem.product_category_array
+        type: text
+        sortable: false     
+        searchable: true
+        invisible: true 
+    product_supplier_id:
+        label: codengine.awardbank::lang.OrderLineitem.product_supplier_id
+        type: number
+        sortable: true     
+        searchable: false
+        invisible: true 
+    product_supplier_name:
+        label: codengine.awardbank::lang.OrderLineitem.product_supplier_name
+        type: text
+        sortable: false     
+        searchable: true
+        invisible: false 
+    product_status_columns:
+        label: codengine.awardbank::lang.OrderLineitem.product_status
+        type: text
+        sortable: true     
+        searchable: false
+        invisible: false 
+    product_voucher:
+        label: codengine.awardbank::lang.OrderLineitem.product_voucher
+        type: text
+        sortable: true     
+        searchable: false
+        invisible: true 
+    product_voucher_code:
+        label: codengine.awardbank::lang.OrderLineitem.product_voucher_code
+        type: text
+        sortable: false     
+        searchable: true
+        invisible: true 
+    invoice_id:
+        label: codengine.awardbank::lang.OrderLineitem.invoice_id
+        type: text
+        sortable: false     
+        searchable: true
+        invisible: false 
+    connote_id:
+        label: codengine.awardbank::lang.OrderLineitem.connote_id
+        type: text
+        sortable: false     
+        searchable: true
+        invisible: false 
+    shipping_id:
+        label: codengine.awardbank::lang.OrderLineitem.shipping_id
+        type: text
+        sortable: false     
+        searchable: true
+        invisible: false 
+    shipping_name:
+        label: codengine.awardbank::lang.OrderLineitem.shipping_name
+        type: text
+        sortable: false     
+        searchable: true
+        invisible: false 
+    shipped_date:
+        label: codengine.awardbank::lang.OrderLineitem.shipped_date
+        type: text
+        sortable: true     
+        searchable: false
+        invisible: false 
+    arrived_date:
+        label: codengine.awardbank::lang.OrderLineitem.arrived_date
+        type: text
+        sortable: true     
+        searchable: false
+        invisible: false 
+    option1_selection:
+        label: codengine.awardbank::lang.OrderLineitem.option1_selection
+        type: text
+        sortable: false     
+        searchable: true
+        invisible: false 
+    option2_selection:
+        label: codengine.awardbank::lang.OrderLineitem.option2_selection
+        type: text
+        sortable: false     
+        searchable: true
+        invisible: false 
+    option3_selection:
+        label: codengine.awardbank::lang.OrderLineitem.option3_selection
+        type: text
+        sortable: false     
+        searchable: true
+        invisible: false 
+    order_customer_address:
+        label: codengine.awardbank::lang.OrderLineitem.order_customer_address
+        type: text
+        sortable: false     
+        searchable: true
+        invisible: false 
+    order_customer_email:
+        label: codengine.awardbank::lang.OrderLineitem.order_customer_email
+        type: text
+        sortable: true     
+        searchable: true
+        invisible: false 
+    order_customer_phone_number:
+        label: codengine.awardbank::lang.OrderLineitem.order_customer_phone_number
+        type: text
+        sortable: true     
+        searchable: true
+        invisible: false 
+    order_supplier_name:
+        label: codengine.awardbank::lang.OrderLineitem.order_supplier_name
+        type: text
+        sortable: true     
+        searchable: true
+        invisible: false 
+    order_program_id:
+        label: codengine.awardbank::lang.OrderLineitem.order_program_id
+        type: number
+        sortable: true     
+        searchable: false
+        invisible: true 
+    order_program_name:
+        label: codengine.awardbank::lang.OrderLineitem.order_program_name
+        type: text
+        sortable: true     
+        searchable: true
+        invisible: false 
+    notes:
+        label: codengine.awardbank::lang.OrderLineitem.notes
+        type: text
+        sortable: false     
+        searchable: true
+        invisible: true 
+    product_invoiced_freight:
+        label: codengine.awardbank::lang.OrderLineitem.product_invoiced_freight
+        type: text
+        sortable: true     
+        searchable: false
+        invisible: false    
+    product_invoiced_delivery:
+        label: codengine.awardbank::lang.OrderLineitem.product_invoiced_delivery
+        type: text
+        sortable: true     
+        searchable: false
+        invisible: false    
+    invoice_po_variance:
+        label: codengine.awardbank::lang.OrderLineitem.invoice_po_variance
+        type: text
+        sortable: true     
+        searchable: false
+        invisible: false
+    invoice_freight_variance:
+        label: codengine.awardbank::lang.OrderLineitem.invoice_freight_variance
+        type: text
+        sortable: true     
+        searchable: false
+        invisible: false

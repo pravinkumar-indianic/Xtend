@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{{ page.title }}</title>
+        <meta name="description" content="{{ page.descript }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% partial 'ga' %}         
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-P6CN26D');</script>
+        <!-- End Google Tag Manager -->
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="stylesheet" href="{{[
+            'assets/css/fullpage.css',
+            'assets/dist/semantic.min.css',
+            'assets/vendor/slick/slick.min.css',
+            'assets/less/homepage.less'
+        ]|theme }}" />
+        {% styles %}
+    </head>
+    <body>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6CN26D"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        {% page %}       
+        <div class="ui modal">
+            <div class="header"><h1>Contact Us</h1></div>
+            <div class="content">
+                <form class="ui form" id="contact-form">
+                    <div class="field">
+                        <label>First Name <b style="color:red;">*</b></label>
+                        <input type="text" name="First Name" placeholder="First Name">
+                    </div>
+                    <div class="field">
+                        <label>Last Name <b style="color:red;">*</b></label>
+                        <input type="text" name="Last Name" placeholder="Last Name">
+                    </div>
+                    <div class="field">
+                        <label>Email <b style="color:red;">*</b></label>
+                        <input type="email" name="Email" placeholder="name@email.com">
+                    </div>
+                    <div class="field">
+                        <label>Phone Number <b style="color:red;">*</b></label>
+                        <input type="text" name="Phone" placeholder="+61 400 000 000">
+                    </div>               
+                </div>
+                <div class="actions">
+                    <button class="ui button" type="submit" id="contact-submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <script src="{{[
+            'assets/js/vendor/jquery.min.js',
+            'assets/js/fullpage.js',
+            'assets/js/fullpage.extensions.js',
+            'assets/js/scrolloverflow.js',    
+            'assets/dist/semantic.min.js',
+            'assets/vendor/slick/slick.min.js',
+            'assets/js/Homepage110919.js'
+        ]|theme }}"></script>
+        {% framework extras %}
+        {% scripts %}       
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<div class="ui segment">
+	<h3>{{ results.teamname }} - {{ results.partsservice}} - Eligibility</h3>
+	{% if results.data|length >= 1  %}
+		<table class="ui table">
+			<thead>
+				<th>Criteria</th>
+				<th>Status</th>
+			</thead>
+			<tbody>
+				{% for key, row in results.data %}
+					<tr>
+						<td>{{ row.resulttype.name }}</td>
+						<td>{% if row.value >= 1 %}<div style="background-color:green;width:30px;height:30px;border-radius:15px;margin-left:auto;margin-right:auto;"></div>{% else %}		<div style="background-color:red;width:30px;height:30px;border-radius:15px;margin-left:auto;margin-right:auto;"></div>{% endif %}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<h4>No data available for this Dealer under {{ results.partsservice}}. Please try another dealer or category.</h4>
+	{% endif %}
+</div>

@@ -1,0 +1,5 @@
+title: ActivityFeeds
+nameFrom: id
+modelClass: Codengine\Awardbank\Models\ActivityFeed
+toolbar:
+    buttons: reorder_toolbar

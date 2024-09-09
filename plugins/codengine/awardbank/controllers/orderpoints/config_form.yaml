@@ -1,0 +1,10 @@
+name: OrderPoints
+form: $/codengine/awardbank/models/orderpoint/fields.yaml
+modelClass: Codengine\Awardbank\Models\OrderPoint
+defaultRedirect: codengine/awardbank/orderpoints
+create:
+    redirect: 'codengine/awardbank/orderpoints/update/:id'
+    redirectClose: codengine/awardbank/orderpoints
+update:
+    redirect: codengine/awardbank/orderpoints
+    redirectClose: codengine/awardbank/orderpoints

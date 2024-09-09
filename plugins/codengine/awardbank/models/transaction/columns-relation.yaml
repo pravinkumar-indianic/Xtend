@@ -1,0 +1,22 @@
+columns:
+    id:
+        label: id
+        type: number
+    user_id:
+        label: user_id
+        type: number
+    paymentgateway_id:
+        label: paymentgateway_id
+        type: number
+    value:
+        label: value
+        type: number
+    success:
+        label: success
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

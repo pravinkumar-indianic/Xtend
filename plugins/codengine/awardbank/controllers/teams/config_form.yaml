@@ -1,0 +1,10 @@
+name: Teams
+form: $/codengine/awardbank/models/team/fields.yaml
+modelClass: Codengine\Awardbank\Models\Team
+defaultRedirect: codengine/awardbank/teams
+create:
+    redirect: 'codengine/awardbank/teams/update/:id'
+    redirectClose: codengine/awardbank/teams
+update:
+    redirect: codengine/awardbank/teams
+    redirectClose: codengine/awardbank/teams

@@ -1,0 +1,23 @@
+fields:
+    id:
+        label: codengine.awardbank::lang.general.id
+        type: number
+        readOnly: true
+    followed_up:
+        label: codengine.awardbank::lang.Lead.followed_up
+        type: switch
+    follow_up_by:
+        label: codengine.awardbank::lang.Lead.follow_up_by
+        type: text
+    name:
+        label: codengine.awardbank::lang.Lead.name
+        type: text
+    surname:
+        label: codengine.awardbank::lang.Lead.surname
+        type: text
+    email:
+        label: codengine.awardbank::lang.Lead.email
+        type: text
+    phone:
+        label: codengine.awardbank::lang.Lead.phone
+        type: text

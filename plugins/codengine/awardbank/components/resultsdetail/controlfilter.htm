@@ -1,0 +1,21 @@
+{% for key,value in results.data %}
+	{% if value|length >= 2 %}
+		<div class="ui column">
+			{% if key == 'tags' %}
+				<h3>Select Parts Or Service:</h3>
+			{% elseif key == 'teams' %}
+				<h3>Select Dealer For Results:</h3>
+			{% else %}
+				<h3>Select View:</h3>
+			{% endif %}
+		    <div class="filter-sortby" style="max-width:100%;">
+		        <select class="ui dropdown" id="filter-{{ key }}" name="filter-{{ key }}">
+	        		
+		            {% for key2, value2 in value %}
+		                <option value="{{ key2 }}" {% if key == 'tags' and key2 == results.currentag %}selected{% endif %}{% if key == 'teams' and key2 == results.currentteam %}selected{% endif %}{% if key == 'types' and key2 == results.currentype %}selected{% endif %}>{{ value2 }}</option>
+		            {% endfor %}
+		        </select>
+		    </div>
+	    </div>
+    {% endif %}
+{% endfor %}

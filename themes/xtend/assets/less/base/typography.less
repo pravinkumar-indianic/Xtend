@@ -1,0 +1,77 @@
+// HTML Default
+
+body {
+  background-color: @gray-lightest;
+  font-family: @font-default;
+}
+.pushable,
+.pusher {
+  background-color: @gray-lightest;
+}
+
+a {
+    transition: 150ms color;
+    color:@brand-aqua;
+    &:hover {
+    	color:@brand-aqua-hover;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: @font-semibold;
+}
+
+h1 {
+  font-size: 21px;
+}
+
+h2 {
+  font-size: 21px;
+}
+
+strong {
+  font-family: @font-semibold;
+}
+
+a.underlined:not(.button) {
+  text-decoration:underline!important;
+}
+
+
+a.primary:not(.button) {
+    color:@brand-aqua!important;
+    &:hover {
+      color:@brand-aqua-hover!important;
+    }
+}
+
+a.secondary:not(.button) {
+    color:@black!important;
+    &:hover {
+      color:@gray-dark!important;
+    }
+}
+
+.align-text-right {
+  text-align:right!important;
+}
+.align-text-center {
+  text-align:center!important;
+}
+
+.align-block-center {
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+@media(max-width:530px) {
+  .table-scroller {
+    overflow-x: scroll;
+    position:relative;
+  }
+}
+
+.table-scroller-full {
+  overflow-x: scroll;
+  position:relative;
+}

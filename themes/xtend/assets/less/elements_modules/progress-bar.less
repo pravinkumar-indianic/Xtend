@@ -1,0 +1,26 @@
+/* Progress Bar */
+
+.ui.indicating.progress {
+    border-radius: 6.5px;
+    background: @gray-lighter;
+    height: 13px;
+    .bar {
+        border-radius:6.5px;
+        height: 100%;
+    }
+    //overrides default
+    &:not([data-percent^="100"]) {
+        .bar {
+            background: @brand-purple;      
+        }
+    }
+    &[data-percent^="100"] {
+        .bar {
+            background: @brand-aqua;
+        }
+    }
+    &:last-child {
+        margin: 0;
+    }
+}
+

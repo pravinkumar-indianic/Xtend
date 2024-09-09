@@ -1,0 +1,11 @@
+<div class="ui segment">
+    <div class="ui one column stackable grid">
+        <div class="column">
+            <h3>Billing Details</h3>
+        </div>
+    </div>
+	<form class="ui form" id="billing-details-update">
+    	{% partial '@billingcontactform' billingcontact = billingcontact publishablekey = publishablekey %}
+    </form>
+	<button type="submit" class="ui primary submit button disabled" id="update_billing_details">Update Billing Details</button>
+</div>

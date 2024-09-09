@@ -1,0 +1,198 @@
+#leaderboard-wrapper {
+    .header {
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+        }
+    }
+
+    .criteria {
+        width: 100%;
+        margin: 20px 0;
+
+        .circle-criterium-wrapper {
+            float:left;
+            width: 25%;
+            padding: 10px;
+
+            @media screen and (max-width: @small-monitor) {
+                width: 50%;
+            }
+
+            @media screen and (max-width: @mobile-max) {
+                width: 100%;
+            }
+
+            .circle-criterium {
+                text-align: center;
+                border-radius: 75px;
+                height: 150px;
+                width: 150px;
+                margin: 0 auto;
+                padding: 30px 10px 0 10px;
+                color: white;
+                cursor: pointer;
+                color: #0789a7;
+                background-color: #e7effa;
+
+                &.active {
+                    color: white;
+                    background-color: #4db5ce;
+                }
+
+                &.inactive {
+                    opacity: 0.5;
+                }
+
+                &.criterium-1 {
+                    padding-top: 60px;
+                }
+
+                &.criterium-2 {
+                    padding-top: 36px;
+                }
+
+                &.criterium-3 {
+                    padding-top: 50px;
+                }
+
+                &.criterium-4 {
+                    padding-top: 50px;
+                }
+
+                h5 {
+                    font-size: 1.3rem;
+                    margin-bottom: 0px;
+                }
+
+                span {
+                    font-weight: bold;
+                    font-size: 1.125rem;
+                }
+            }
+        }
+    }
+
+    .leaderboard-tables {
+        width: 100%;
+
+        .leaderboard-table {
+            width: 100%;
+            margin: 0 auto;
+
+            table {
+                tr {
+                    &.header {
+                        th {
+                            background-color: #e6e6e6;
+                        }
+                    }
+                    &.highlighted > td {
+                        background: #e0ffff91;
+                    }
+                }
+                th {
+                    text-align: left;
+                    text-transform: uppercase;
+
+                    &.border-ethical {
+                        border-bottom: 4px solid #9fc7e5;
+                    }
+
+                    &.border-gold {
+                        border-bottom: 4px solid #ffd700;
+                    }
+
+                    &.border-silver {
+                        border-bottom: 4px solid #c0c0c0;
+                    }
+
+                    &.border-bronze {
+                        border-bottom: 4px solid #CD7F32;
+                    }
+                }
+                td {
+                    cursor: default;
+                    border-bottom: 2px solid #e6e6e6;
+                    text-align: left;
+
+                    &.criterium {
+                        font-weight: bold;
+                    }
+
+                    &.white {
+                        background-color: white;
+                        border-right: 2px solid #e6e6e6;
+                    }
+                    &.green {
+                        background-color: #badfce;
+                        border-right: 2px solid #e6e6e6;
+                    }
+                    &.grey {
+                        background-color: #e6e6e6;
+                    }
+                    &.darkgrey {
+                        background-color: #666666;
+                        border-bottom: 2px solid #555;
+                        color: white;
+                    }
+                    &.no-right-border {
+                        border-right: none;
+                    }
+
+                    div.tooltip {
+                        display:inline-block;
+                        position:relative;
+                        border-bottom:1px dotted #ccc;
+                        text-align:left;
+
+                        .right {
+                            min-width:200px;
+                            top:50%;
+                            left:100%;
+                            margin-left:20px;
+                            transform:translate(0, -50%);
+                            padding:10px 20px;
+                            color:#444444;
+                            background-color:#FFFFFF;
+                            font-weight:normal;
+                            font-size:13px;
+                            border-radius:8px;
+                            position:absolute;
+                            z-index:99999999;
+                            box-sizing:border-box;
+                            box-shadow:0 1px 8px rgba(0,0,0,0.5);
+                            display:none;
+                        }
+
+                        &:hover .right {
+                            display:block;
+                        }
+
+                        .right i {
+                            position:absolute;
+                            top:50%;
+                            right:100%;
+                            margin-top:-12px;
+                            width:12px;
+                            height:24px;
+                            overflow:hidden;
+                        }
+
+                        .right i::after {
+                            content:'';
+                            position:absolute;
+                            width:12px;
+                            height:12px;
+                            left:0;
+                            top:50%;
+                            transform:translate(50%,-50%) rotate(-45deg);
+                            background-color:#FFFFFF;
+                            box-shadow:0 1px 8px rgba(0,0,0,0.5);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

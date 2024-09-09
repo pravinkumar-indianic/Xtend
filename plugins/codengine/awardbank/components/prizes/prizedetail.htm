@@ -1,0 +1,58 @@
+{% set prize = __SELF__.prize %}
+{% set owner = __SELF__.owner %}
+
+{% put scripts %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+           
+        });
+    </script>
+{% endput %}
+
+{% if showHeading == true %}
+    <div class="ui segment">
+        <div class="ui header">
+            <i class="{{ __SELF__.moduleFAIcon }} icon inverted big" style="color: {{__SELF__.programsecondarycolor}};"></i>
+            <div class="content"><h3 style="color: {{__SELF__.programsecondarycolor}};">{{ __SELF__.moduleHeading }}</h3></div>
+        </div>
+    </div>
+{% endif %}
+
+{% if prize %}
+        
+<div class="ui one column grid">
+  <div class="column">
+    <div class="ui grid">
+        <div class="row">
+            <div class="sixteen wide column">
+                <div class="ui form">
+                    <h6 class="ui horizontal divider header">
+                      <i class="bar chart icon"></i>
+                      Prize
+                    </h6>
+                    <a class="header" href="/prize/{{ prize.id }}">
+                        <h2 class="ui header entry-title">AWARD: {{prize.name}}</h2> 
+                    </a>
+                    <div class="meta"> 
+                        <div class="description entry-summary">
+                            <p>{{ prize.awards.name }}</p>
+                        </div>
+                    </div>
+                    <div class="meta"> 
+                        <div class="totalpoint entry-summary">
+                            <p>{{ access.program.points_name }}: {{ prize.totalpoints }}</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+    {% else %}
+        <div class="ui card raised">
+            No Prize Found
+        </div>
+    {% endif %}

@@ -1,0 +1,58 @@
+<div class="table-scroller">
+<table class="ui unstackable table award-table">	
+	<thead>
+		<tr>
+			<th>Order ID</th>
+			<th>Line Item Created At</th>
+			<th>User Name</th>
+			{# <th>User Email</th> #}
+			<th>Product Name</th>
+			<th>Product Points Value</th>
+			<th>Product Dollar Value</th>
+			<th>Product Shipping Address</th>
+			<th>Product Status</th>
+			<!--
+			<th>Product Shipped Date</th>
+			<th>Product Delivered Date</th>
+			-->
+		</tr>
+	</thead>
+	<tbody>
+		{% for line in lineitems %}
+			<tr>
+				<td style="word-break:break-all;">{{ line.order.order_id }}</td>
+				<td>{{ line.created_at }}</td>
+				<td>{{ line.order.customer_full_name_string}}
+				{# <td>{{ line.order_customer_email }}</td> #}
+				<td>{{ line.product_name }}</td>
+				<td>{{ line.product_dollar_value * scale_points_by }}</td>
+				<td>{{ line.product_dollar_value }}</td>
+				<td>{{ line.order_customer_address }}</td>
+				<td>
+					{% if line.product_status == 1 %}
+						Order Placed With Supplier
+					{% elseif line.product_status == 2 %}
+						On Backorder
+					{% elseif line.product_status == 3 %}
+						In Warehouse
+					{% elseif line.product_status == 4 %}
+						Item Ready For Dispatch
+					{% elseif line.product_status == 5 %}
+						Item Dispatched
+					{% elseif line.product_status == 6 %}
+						Product Delivered
+					{% elseif line.product_status == 7 %}	
+						Product Cancelled
+					{% else %}
+						Processing
+					{% endif %}				
+				</td>
+				<!--
+				<td>{% if line.shipped_date != null %} {{ line.shipped_date }} {% else %} Not shipped. {% endif %}</td>
+				<td>{% if line.arrived_date != null %} {{ line.arrived_date }} {% else %} Not delivered. {% endif %}</td>
+				-->
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+</div>

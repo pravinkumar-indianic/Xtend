@@ -1,0 +1,17 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    name:
+        label: 'codengine.awardbank::lang.awardbank.suppliername'
+        type: text
+        searchable: true
+        sortable: true
+    address:
+        label: 'codengine.awardbank::lang.awardbank.address'
+        relation: address
+        select: full_address
+        searchable: false
+        sortable: false   

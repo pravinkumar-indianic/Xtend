@@ -1,0 +1,40 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    access_names:
+        label: 'Access Names'
+        emptyOption: 'No Permissions Of The Type Exist'  
+        searchable: false
+        sortable: true        
+    entity_names:
+        label: 'Entity Names'
+        emptyOption: 'No Permissions Of The Type Exist'  
+        searchable: false
+        sortable: true                
+    type:
+        label: type
+        type: text
+        searchable: true
+        sortable: true
+    active:
+        label: active
+        type: text
+        searchable: true
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        searchable: true
+        sortable: true
+    updated_at:
+        label: updated_at
+        type: datetime
+        searchable: true
+        sortable: true
+    deleted_at:
+        label: deleted_at
+        type: datetime
+        invisible: true

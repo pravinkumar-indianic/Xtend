@@ -1,0 +1,168 @@
+{% set post = __SELF__.post %}
+{% set enableComment = __SELF__.enableComment %}
+
+{% put styles %}
+    <link href="{{ 'assets/css/flexslider.css'|theme }}" rel="stylesheet" />
+    <style type="text/css">
+        .ui.items > .item > .image:not(.ui) {
+            width: 500px;
+        }
+        
+        &.landscape img{
+            border-radius: 0 !important;
+            position:absolute;
+            top:0;
+            bottom:0;
+            margin:auto;
+        }
+    </style>
+{% endput %}
+
+{% put scripts %}
+    <script type="text/javascript" src="{{ 'assets/js/jquery.flexslider.js'|theme }}"></script>
+    <script type="text/javascript" src="{{ 'assets/js/slider.js'|theme }}"></script>
+
+{% endput %}
+
+
+<div class="ui container post-container">
+
+    <div class="ui segment grid">
+
+        <div class="breadcrumbs eight wide column">
+            <a href="/posts"> < Back</a>
+        </div>
+
+        <div class="ui eight wide column">
+            <a href="/post/{{ post.slug }}/edit" class="ui button primary square right">Edit post</a>
+        </div>
+
+    {% if post %}
+        {% put scripts %}
+            <script>
+                function handle_{{ post.id }}(el) {
+                    $(el).request('{{ __SELF__}}::onLikeClick',
+                        {
+                            error: function(jqXHR) {
+                                console.log(jqXHR.responseJSON);
+                            },
+                            update: {'{{__SELF__}}::postlike': '#likeresult{{ __SELF__ }}_{{ post.id }}'}
+                        }
+                    );
+
+                    $(el).on('ajaxSuccess', function(){
+                        if ($('#btnlike_{{ __SELF__ }}_{{ post.id }}').html() == 'Liked'){
+                            $('#btnlike_{{ __SELF__ }}_{{ post.id }}').html('Like');
+                            $('#iconlike_{{ __SELF__ }}_{{ post.id }}').removeClass('outline');
+                        }else{
+                            $('#btnlike_{{ __SELF__ }}_{{ post.id }}').html('Liked');
+                            $('#iconlike_{{ __SELF__ }}_{{ post.id }}').addClass('outline');
+                        }
+                    });
+                }
+            </script>
+        {% endput %}
+
+
+        
+<div class="ui sixteen wide column grid post-full">
+
+    {% if post.images | length > 0 %}
+        <div class="flexslider">
+            <ul class="slides">
+                {% if post.feature_image %}
+                    <li>
+                        <img src="{{ post.feature_image.path }}" class="ui centered fluid image" />
+                    </li>
+                {% endif %}
+                {% for img in post.images %}
+                    <li>
+                        <img src="{{ img.path }}" class="ui centered fluid image" />
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <div class="post-full-image">
+            <img class="ui fluid image centered" src="{{ post.feature_image.path }}" >
+        </div>
+    {% endif %}
+
+        <div class="post-full-categories">
+            {% if post.categories|length > 0 %}
+                {% for cat in post.categories %}
+                    <a class="ui purple basic label">
+                        <i class="small folder icon"></i>
+                        {{ cat.name }}
+                        
+                    </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <!--<div class="ui sixteen wide tablet twelve wide computer column post-full-content">-->
+            <h1 class="post-full-header">{{post.title}}</h1> 
+
+            <div class="post-full-meta"> 
+                <time class="date updated" datetime="">{{post.created_at|date("F jS Y")}}</time>
+                {% if post.MyPoster %}
+                    <span class="compact item">by
+                    {% for permission in post.MyPoster %}
+                        {% for poster in permission.poster %}
+                            <a class="fn nickname item" href="/{{poster.type}}/{{poster.id}}" rel="author">
+                                {{poster.name}}
+                            </a>
+                        {% endfor %}
+                    {% endfor %}
+                    </span>
+                {% endif %}
+            </div>
+
+
+            <div class="post-full-description">
+                {{ post.content|raw }}
+            </div>
+
+            <div class="post-full-tags">
+                {% if post.tags|length > 0 %}
+                    {% for tag in post.tags %}
+                        <a class="ui gray basic label">
+                            {{ tag.name }}
+                            <i class="small tags icon"></i>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+                
+            </div>
+
+        <!--</div>-->
+
+                
+                {% if enableComment ==  'enable' %}
+                <div class="extra"> 
+                    
+                    <div class="col-sm-12 col-xs-12 no-padding">
+                        <div class="btnlike" id="likeresult{{ __SELF__ }}_{{ post.id }}">
+                            {% partial __SELF__ ~ '::postlike' post=post %}
+                        </div>
+                    </div>
+                    
+                </div>
+                {% endif %}
+
+
+
+
+                {% if enableComment ==  'enable' %}
+                    {% partial __SELF__ ~ '::postcomment' post=post %}
+                {% endif %}
+        
+
+    </div>
+    {% else %}
+
+            No Post
+
+    {% endif %}
+</div>
+</div>

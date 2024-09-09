@@ -1,0 +1,86 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+        searchable: true
+    created_at:
+        label: created_at
+        type: datetime
+        sortable: true
+        searchable: false
+    updated_at:
+        label: updated_at
+        type: datetime
+        sortable: true
+        searchable: false
+    deleted_at:
+        label: deleted_at
+        type: datetime
+        sortable: true
+        searchable: false
+        invisible: true
+    title:
+        label: title
+        type: text
+        searchable: true
+        sortable: true
+    feature_image:
+        label: Feature Image
+        relation: feature_image
+        type: partial
+        path: ~/plugins/codengine/awardbank/models/_feature_image_partial.htm
+        searchable: false
+        sortable: false
+    content:
+        label: Content
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true
+    post_type:
+        label: Post Type
+        type: text
+        searchable: true
+        sortable: true
+    video_url:
+        label: Video URL
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true
+    poster:
+        label: 'Poster'
+        relation: poster
+        select: full_name
+        searchable: true
+        sortable: true
+        invisible: false
+    managers:
+        label: 'Managers'
+        relation: poster
+        select: full_name
+        searchable: true
+        sortable: true
+        invisible: false
+    teams:
+        label: 'Teams'
+        relation: teams
+        select: name
+        searchable: true
+        sortable: true
+        invisible: false
+    programs:
+        label: 'Programs'
+        relation: programs
+        select: name
+        searchable: true
+        sortable: true
+        invisible: false
+    targetingtags:
+        label: 'Targeting Tags'
+        relation: targetingtags
+        select: name
+        searchable: true
+        sortable: true
+        invisible: false

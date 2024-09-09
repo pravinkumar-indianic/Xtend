@@ -1,0 +1,10 @@
+name: TargetingTags
+form: $/codengine/awardbank/models/targetingtag/fields.yaml
+modelClass: Codengine\Awardbank\Models\TargetingTag
+defaultRedirect: codengine/awardbank/targetingtags
+create:
+    redirect: 'codengine/awardbank/targetingtags/update/:id'
+    redirectClose: codengine/awardbank/targetingtags
+update:
+    redirect: codengine/awardbank/targetingtags
+    redirectClose: codengine/awardbank/targetingtags

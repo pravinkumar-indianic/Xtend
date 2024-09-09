@@ -1,0 +1,64 @@
+<div class="ui segment">
+    <h3>Prizes</h3>
+    {% if prices is empty %}
+        <p>There are no prizes defined yet.</p>
+    {% else %}
+        <div class="price-list">
+            <div class="ui stackable grid table-header">
+                <div class="sixteen wide tablet four wide computer column">
+                    <span>Label</span>
+                </div>
+                <div class="sixteen wide tablet four wide computer column">
+                    <span>Quantity</span>
+                </div>
+                <div class="sixteen wide tablet four wide computer column">
+                    <span>Probability of Winning</span>
+                </div>
+                <div class="sixteen wide tablet three wide computer mobile-hide column">
+
+                </div>
+            </div>
+            {% for price in prices %}
+                <div class="ui stackable grid section-price-row">
+                    <div class="sixteen wide tablet four wide computer column">
+                        <span>{{ price.label }}</span>
+                    </div>
+                    <div class="sixteen wide tablet four wide computer column">
+                        <span>{{ price.quantity }}</span>
+                    </div>
+                    <div class="sixteen wide tablet four wide computer column">
+                        <span>{{ price.probability }}</span>
+                    </div>
+                    <div class="two wide tablet three wide computer column">
+                        <button class="primary price edit" data-id="{{ price.id }}" title="Edit">
+                            <i class="icon edit"></i>
+                        </button>
+                        <button class="red price delete" data-id="{{ price.id }}" title="delete">
+                            <i class="icon trash"></i>
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+                <div class="ui stackable grid section-price-row total-sums">
+                    <div class="sixteen wide tablet four wide computer column">
+                        <span>Total</span>
+                    </div>
+                    <div class="sixteen wide tablet three wide computer column">
+                        <span>{{ prices.sum('quantity') }}</span>
+                    </div>
+                    <div class="sixteen wide tablet three wide computer column">
+                        <span>{{ prices.sum('probability') }}</span>
+                    </div>
+                    <div class="sixteen wide tablet three wide computer column">
+                        <span>{{ prices.sum('items_left') }}</span>
+                    </div>
+                    <div class="two wide tablet three wide computer column">
+                    </div>
+                </div>
+        </div>
+    {% endif %}
+
+    <hr />
+
+    {% partial '@newpriceform' %}
+</div>

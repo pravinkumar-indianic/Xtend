@@ -1,0 +1,10 @@
+name: Reports
+form: $/codengine/awardbank/models/report/fields.yaml
+modelClass: Codengine\Awardbank\Models\Report
+defaultRedirect: codengine/awardbank/reports
+create:
+    redirect: 'codengine/awardbank/reports/preview/:id'
+    redirectClose: codengine/awardbank/reports
+update:
+    redirect: codengine/awardbank/reports
+    redirectClose: codengine/awardbank/reports

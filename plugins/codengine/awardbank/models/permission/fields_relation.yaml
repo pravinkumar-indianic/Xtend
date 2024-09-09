@@ -1,0 +1,44 @@
+fields:
+    type:
+        label: 'codengine.awardbank::lang.awardbank.permissiontype'
+        oc.commentPosition: ''
+        options:
+            cascade: cascade
+            direct: direct
+            ascend: ascend
+            owner: owner
+            target: target
+            winner: winner
+            alias: alias
+            approver: approver
+            manager: manager
+            wishlist: wishlist
+            toppick: toppick
+            shipaddress: shipaddress
+        span: full
+        type: dropdown
+    active:
+        label: 'codengine.awardbank::lang.awardbank.permissionactive'
+        span: auto
+        type: switch    
+    suppliers:
+        label: 'codengine.awardbank::lang.awardbank.suppliers'
+        oc.commentPosition: ''
+        select: name
+        descriptionFrom: name
+        span: full
+        type: relation    
+    products:
+        label: 'codengine.awardbank::lang.awardbank.products'
+        oc.commentPosition: ''
+        select: name
+        descriptionFrom: name
+        span: full
+        type: relation        
+    users:
+        label: 'codengine.awardbank::lang.awardbank.users'
+        oc.commentPosition: ''
+        select: CONCAT(name,' ', surname)
+        descriptionFrom: description
+        span: full
+        type: relation     

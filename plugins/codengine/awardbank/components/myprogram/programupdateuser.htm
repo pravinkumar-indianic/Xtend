@@ -1,0 +1,8 @@
+<div class="ui segment">
+    <h3>{{ user.full_name }}</h3>
+    <form class="ui form" id="program-update-user-form">
+        <input type="hidden" name="id" value="{{ user.id }}">
+        {% partial '@userform' user = user %}
+        <button type="submit" class="ui primary submit  button" data-attach-loading>Update user</button>
+    </form>
+</div>

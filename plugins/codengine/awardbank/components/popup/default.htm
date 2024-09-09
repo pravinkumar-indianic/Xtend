@@ -1,0 +1,24 @@
+{% if hasPopup %}
+
+{% put scripts %}
+    <script>
+      $(document).ready(function() {
+
+        $('.ui.modal .header').html('{{ title|raw }}');
+        $('.ui.modal .content').html('{{ content|raw }}');
+        $('.ui.modal .actions').html('<button class="ui red right square small button" id="popup_component_confirm_modal">Close</button>');
+        $('.ui.modal').modal({
+          inverted: true
+        }).modal('show');
+
+        $('body').on('click', '#popup_component_confirm_modal', function(event) {
+            $('.ui.modal').modal('hide');
+            let data = {'source' : '{{ source }}'};
+            requestFactory('Popup::onPopupClosed', data);
+        });
+
+      });
+    </script>
+{% endput %}
+
+{% endif %}

@@ -1,0 +1,61 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        searchable: false
+        sortable: true
+    updated_at:
+        label: updated_at
+        type: datetime
+        sortable: true
+    deleted_at:
+        label: deleted_at
+        type: datetime
+        invisible: true
+    country_id:
+        label: 'codengine.awardbank::lang.awardbank.country'
+        type: number
+        searchable: true
+        sortable: true
+    state:
+        label: 'codengine.awardbank::lang.awardbank.state'
+        type: text
+        searchable: true
+        sortable: true
+    city:
+        label: 'codengine.awardbank::lang.awardbank.city'
+        type: text
+        searchable: true
+        sortable: true
+    suburb_name:
+        label: 'codengine.awardbank::lang.awardbank.suburbname'
+        type: text
+        searchable: true
+        sortable: true        
+    unit_number:
+        label: 'codengine.awardbank::lang.awardbank.unitnumber'
+        type: number
+        searchable: true
+        sortable: true
+    street_number:
+        label: 'codengine.awardbank::lang.awardbank.street_number'
+        type: number
+        searchable: true
+        sortable: true
+    street_name:
+        label: 'codengine.awardbank::lang.awardbank.streetname'
+        type: text
+        searchable: true
+        sortable: true  
+    postcode:
+        label: 'codengine.awardbank::lang.awardbank.postcode'
+        type: number
+        searchable: true
+        sortable: true
+
+

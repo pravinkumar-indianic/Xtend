@@ -1,0 +1,10 @@
+name: Votes
+form: $/codengine/awardbank/models/vote/fields.yaml
+modelClass: Codengine\Awardbank\Models\Vote
+defaultRedirect: codengine/awardbank/votes
+create:
+    redirect: 'codengine/awardbank/votes/update/:id'
+    redirectClose: codengine/awardbank/votes
+update:
+    redirect: codengine/awardbank/votes
+    redirectClose: codengine/awardbank/votes

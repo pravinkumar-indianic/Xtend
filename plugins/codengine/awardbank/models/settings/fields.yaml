@@ -1,0 +1,8 @@
+tabs:
+    fields:
+      amex_rate:
+        label: Amex CC Rate
+        type: number
+      card_rate:
+        label: Standard CC Rate
+        type: number

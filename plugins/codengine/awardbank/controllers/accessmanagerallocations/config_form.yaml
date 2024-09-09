@@ -1,0 +1,10 @@
+name: AccessManagerAllocations
+form: $/codengine/awardbank/models/accessmanagerallocation/fields.yaml
+modelClass: Codengine\Awardbank\Models\AccessManagerAllocation
+defaultRedirect: codengine/awardbank/accessmanagerallocations
+create:
+    redirect: 'codengine/awardbank/accessmanagerallocations/update/:id'
+    redirectClose: codengine/awardbank/accessmanagerallocations
+update:
+    redirect: codengine/awardbank/accessmanagerallocations
+    redirectClose: codengine/awardbank/accessmanagerallocations

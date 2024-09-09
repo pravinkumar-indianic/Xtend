@@ -1,0 +1,10 @@
+name: Orders
+form: $/codengine/awardbank/models/order/fields.yaml
+modelClass: Codengine\Awardbank\Models\Order
+defaultRedirect: codengine/awardbank/orders
+create:
+    redirect: 'codengine/awardbank/orders/update/:id'
+    redirectClose: codengine/awardbank/orders
+update:
+    redirect: codengine/awardbank/orders
+    redirectClose: codengine/awardbank/orders

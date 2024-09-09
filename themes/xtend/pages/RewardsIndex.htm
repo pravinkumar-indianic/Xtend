@@ -1,0 +1,53 @@
+title = "Rewards"
+url = "/rewards"
+layout = "default-v2"
+description = "Rewards"
+is_hidden = 0
+
+[viewBag]
+metaarea = 1
+
+[session]
+security = "user"
+redirect = "login"
+
+[ContentBlock1]
+imageNamesArray = "media/contentblocks/Facial massage.jpg"
+headingText = "Book Yourself An Experience You'll Love"
+buttonText = "Book Today"
+buttonLink = "/rewards/category/wellbeing-experiences"
+
+[ContentBlock2]
+lhsImageNamesArray = "media/contentblocks/skydive.jpg"
+lhsHeadingIcon = "announcement"
+lhsHeadingText = "Reward yourself with the best in new technology"
+lhsLine1 = "Browse the latest TVs, Phones, Tablets, Smart Devices and more"
+lhsLine2 = "All of your favourite brands online"
+lhsLink = "/rewards/category/technology"
+rhsImageNamesArray = "media/contentblocks/SamsungQ900RLifestyle-920x629.jpg"
+rhsLine1 = "Find exciting new gifts for your home"
+rhsline2 = "Kitchen, Homewares, Garden and more"
+rhsLink = "/rewards/category/kitchen-dining"
+
+[RewardsCategoryTiles]
+
+[RewardsCoverFlow]
+
+[CustomStyles]
+
+[Sidebar]
+
+[Cart]
+
+[SwitchProgram]
+
+[RewardsNav]
+
+[FooterUsefullInfo]
+==
+{% component 'CustomStyles' %}   
+{% component 'RewardsNav' %}
+{% component 'ContentBlock1' %}
+{% component 'ContentBlock2' %}
+{% component 'RewardsCategoryTiles' %}
+{% component 'RewardsCoverFlow' %}

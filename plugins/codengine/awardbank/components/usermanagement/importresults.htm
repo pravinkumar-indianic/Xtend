@@ -1,0 +1,28 @@
+<div class="import-results" style="margin-top: 20px;">
+    {% if import_stats %}
+    <div class="stats" style="background: #00B5AD; color: white; padding: 20px;">
+        {% for message in import_stats %}
+        <p>
+            {{ message }}
+        </p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if import_errors %}
+    <div class="errors" style="background: red; color: white; padding: 20px;">
+        {% for error in import_errors['file_errors'] %}
+        <p>
+            {{ error }}
+        </p>
+        {% endfor %}
+
+        {% for record_errors in import_errors['data_errors'] %}
+        {% for error in record_errors %}
+        <p>
+            {{ error }}
+        </p>
+        {% endfor %}
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>

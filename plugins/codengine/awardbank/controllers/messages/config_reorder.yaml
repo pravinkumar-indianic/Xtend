@@ -1,0 +1,5 @@
+title: Messages
+nameFrom: id
+modelClass: Codengine\Awardbank\Models\Message
+toolbar:
+    buttons: reorder_toolbar

@@ -1,0 +1,25 @@
+fields:
+    permissionaccessallocatable_type:
+        label: 'codengine.awardbank::lang.awardbank.permissionaccesstype'
+        oc.commentPosition: ''
+        options:
+            RainLab\User\Models\User: User
+            Codengine\Awardbank\Models\Address: Address
+            Codengine\Awardbank\Models\Team: Team
+            Codengine\Awardbank\Models\Region: Region
+            Codengine\Awardbank\Models\Program: Program
+            Codengine\Awardbank\Models\Organization: Organization
+        span: full
+        type: dropdown
+    permissionaccessallocatable_id:
+        label: 'codengine.awardbank::lang.awardbank.permissionaccessid'
+        oc.commentPosition: ''
+        span: full
+        type: number
+    permission:
+        label: 'codengine.awardbank::lang.awardbank.permission'
+        oc.commentPosition: ''
+        select: CONCAT(id,' ', type)
+        descriptionFrom: description
+        span: full
+        type: relation

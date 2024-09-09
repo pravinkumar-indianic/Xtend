@@ -1,0 +1,73 @@
+<div class="table-scroller">
+
+{% for key, level in levels %}
+
+	{% if key == 'user' %}
+
+		<table class="ui tablet unstackable table award-table">	
+			<tbody>
+				<tr>
+					<th>Points Level</th>
+					<th>Points Spent</th>
+					<th>Points Unspent</th>
+					<th>Points Pending / In Cart</th>
+					<th>Points Total</th>
+				</tr>
+				<tr>
+					<th style="background-color:grey;color:white;">{{ key|capitalize }}s</th>
+					<th style="background-color:grey;color:white;">{% if level.spent %}{{ level.spent * scale_points_by }}{% else %}0{% endif %}</th>
+					<th style="background-color:grey;color:white;">{% if level.unspent %}{{ level.unspent * scale_points_by }}{% else %}0{% endif %}</th>
+					<th style="background-color:grey;color:white;">{% if level.pending %}{{ level.pending * scale_points_by }}{% else %}0{% endif %}</th>
+					<th style="background-color:grey;color:white;">{{ level.total * scale_points_by }}</th>
+				</tr>
+				{% for key, child in level.children %}
+
+					<tr>
+						<td>{{ key }}</td>
+						<td>{% if child.spent %}{{ child.spent * scale_points_by }}{% else %}0{% endif %}</td>
+						<td>{% if child.unspent %}{{ child.unspent * scale_points_by }}{% else %}0{% endif %}</td>
+						<td>{% if child.pending %}{{ child.pending * scale_points_by }}{% else %}0{% endif %}</td>
+						<td>{{ child.total * scale_points_by }}</td>
+					</tr>
+
+				{% endfor %}
+			</tbody>
+ 
+		</table>
+
+	{% else %}
+
+		<table class="ui tablet unstackable table award-table">	
+			<tbody>
+				<tr>
+					<th>Points Level</th>
+					<th>Points Unallocated</th>
+					<th>Points Total</th>
+				</tr>
+				<tr>
+					<th style="background-color:grey;color:white;">{{ key|capitalize }}s</th>
+					<th style="background-color:grey;color:white;">{% if level.unspent %}{{ level.unspent * scale_points_by }}{% else %}0{% endif %}</th>
+					<th style="background-color:grey;color:white;">{{ level.total * scale_points_by }}</th>
+				</tr>
+				{% for key, child in level.children %}
+
+					<tr>
+						<td>{{ key }}</td>
+						<td>{% if child.unspent %}{{ child.unspent * scale_points_by }}{% else %}0{% endif %}</td>
+						<td>{{ child.total * scale_points_by }}</td>
+					</tr>
+
+				{% endfor %}
+
+
+
+			</tbody>
+		</table>
+
+	{% endif %}
+
+{% endfor %}
+
+
+</div>
+

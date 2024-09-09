@@ -1,0 +1,81 @@
+title = "Sign Up"
+url = "/sign-up/signup-step-3"
+layout = "signup"
+description = "Sign-up Step 3"
+is_hidden = 0
+
+[account]
+redirect = "home"
+paramCode = "code"
+forceSecure = 0
+
+==
+
+function onStart()
+{
+
+    use Codengine\Awardbank\Models\Program as Program;
+    $this['slug'] = $this->param('slug');
+    $program = Program::where('slug','=', $this['slug'])->first();
+
+    if($program != null){
+
+      $this['backgroundImage'] = $program->login_image->getThumb(420,420);
+      $this['backgroundColor'] = $program->primary_color;
+      $this['registration'] = $program->registration_open;
+
+    } else {
+
+      $this['backgroundImage'] = 'https://s3-ap-southeast-2.amazonaws.com/production-upload-xtend/media/loginbackup.jpg';
+      $this['registration'] = false;
+
+    }
+}
+
+==  
+
+    <!-- Form step 3 -->
+  <div class="ui row">
+
+    <div class="ui column sixteen wide">
+
+      <div class="heading">
+        <h2>Set up your program</h2>
+      </div>
+
+        <div class="signup-form">
+
+        <form class="ui form">
+          <h4 class="ui header">Step 1 of 3: <strong>Personalise your points</strong></h4>
+
+          <div class="field">
+            <label for="signup-points">Name your points</label>
+            <input type="text" name="address[line-1]" placeholder="i.e., rewards points, donuts, etc" id="signup-points">
+          </div>
+
+          <div class="field clearfix">
+            <label for="signup-scale">Scale your points</label>
+            <span class="signup-scale-example">i.e. $ value x 2 - or x 5</span>
+            <input class="signup-scale-input" type="text" name="address[line-1]" placeholder="" id="signup-scale">
+            <span class="signup-scale-define">$1 = 5 points</span>
+          </div>     
+
+          <div class="field clearfix">
+            <label for="signup-set-rewards" class="signup-set-rewards">Set max/min rewards points of products displayed</label>
+            <input class="signup-set-rewards-input" type="text" name="address[line-1]" placeholder="" id="signup-set-rewards">
+            <i class="exclamation circle icon link inline" data-content="This is based on the max points that can be earned."></i>
+          </div>     
+
+
+          <div class="form-footer align-text-right">
+            <input class="ui button primary button-price" type="submit" value="Next">
+          </div>
+
+
+          </form> 
+
+        </div>
+    </div>
+
+  </div>
+    <!-- /Form step 3 -->

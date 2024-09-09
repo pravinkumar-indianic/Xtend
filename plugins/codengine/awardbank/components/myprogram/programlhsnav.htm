@@ -1,0 +1,17 @@
+<div class="ui segment profile-summary">
+	<div class="userlogin">
+		<div class="profile-summary-image">
+			{% if program.feature_image %}
+				<img src="{{ program.feature_image.thumb(150 , 150, 'crop') }}" class="ui small circular image avatar">
+			{% endif %}
+		</div>
+		<div class="profile-summary-description center alligned">
+			<h2 class="profile-summary-name">{{ program.name }}</h2>
+		</div>
+	</div>
+	<div class="ui vertical secondary menu profile-menu">
+		{% for key,value in navoptions %}
+			<a class="item change-tab {% if key == navoption %}active{% endif %}" data-id="{{ key }}">{{ value }}</a>
+		{% endfor %}
+	</div>
+</div>

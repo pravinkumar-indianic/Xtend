@@ -1,0 +1,95 @@
+<div class="field">
+    <label>Status <b style="color:red;">*</b></label>
+    <select class="ui selection dropdown" name="status">
+        <option value="publish" {% if post.status=='publish' %}selected{% endif %}>Publish</option>
+        <option value="unpublish" {% if post.status=='unpublish' %}selected{% endif %}>Unpublish</option>
+    </select>
+</div>
+{% if posttype != 'static-page' %}
+<div class="field">
+	<label>Post Type <b style="color:red;">*</b></label>
+	<select class="ui selection dropdown" name="Post Type">
+		<option value="post" {% if posttype=='post' %}selected{% endif %}>Post</option>
+		<option value="program-tool" {% if posttype=='program-tool' %}selected{% endif %}>Program Tool</option>
+		<option value="useful-information" {% if posttype=='useful-information' %}selected{% endif %}>Useful Information</option>
+        {# <option value="static-page" {% if posttype=='static-page' %}selected{% endif %}>Static Page</option> #}
+	</select>
+</div>
+{% else %}
+    <input type="hidden" name="Post Type" value="static-page">
+{% endif %}
+<div class="field">
+  	<label>Title <b style="color:red;">*</b></label>
+  	<input placeholder="Post Title" type="text" name="Title" value="{{ post.title }}">
+</div>
+<div class="field">
+    <label>Pinned</label>
+    <select class="ui selection dropdown" name="pinned">
+        <option value="1" {% if post.pinned == 1 %}selected{% endif  %}>Yes</option>
+        <option value="0" {% if post.pinned == 0 %}selected{% endif  %}>No</option>
+    </select>
+</div>
+<div class="field">
+	<label>Post Live From <b style="color:red;">*</b></label>
+	<div class="ui calendar" id="Award Start Dat">
+		<div class="ui input left icon">
+			<i class="calendar icon"></i>
+			<input type="date" name="Post Live From" {% if post.post_live_date %}value="{{ post.post_live_date|date('Y-m-d') }}"{% else %}value="{{ 'today'|date('Y-m-d') }}"{% endif %}>
+		</div>
+	</div>
+</div>
+<div class="field">
+  	<label>Content <b style="color:red;">*</b></label>
+  	<textarea placeholder="Post Content" type="text" class="tinymceeditor" name="Content" id="contenttxt">{{ post.content }}</textarea>
+</div>
+{#
+<div class="field">
+	<label class="" for="categories">Category</label>
+	<select multiple="multiple" placeholder="Search category" class="ui fluid search dropdown not required" id="category_dropdown" name="Categories">
+	    {% for category in categories %}
+	    	<option value="{{category.id}}">{{category.name}}</option>
+	    {% endfor %}
+	</select>
+</div>
+
+	<div class="field">
+		<label>Tags</label>
+		<div class="ui multiple selection searchable dropdown" id="tags_dropdown_new">
+			<div class="default text">Select</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				{% for tag in post.tags %}
+					<div class="item" data-value="{{tag.name}}">{{tag.name}}</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+#}
+{% if new == false %}
+	<div class="field">
+		<label>Editing Managers</label>
+		<div class="ui multiple selection searchable dropdown" id="Managers" name="Managers" data-selected='{% for manager in post.managers %}{{ manager.id }}{% if not loop.last %},{% endif %}{% endfor %}'>
+			<div class="default text">Select</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				{% for user in post.program.users %}
+					<div class="item" data-value='{{ user.id }}'>{{ user.full_name|capitalize }}</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	{#
+		<div class="field">
+			<label>Alias</label>
+			<div class="ui multiple selection searchable dropdown" id="Alias" name="Alias" data-selected='{% for manager in award.managers %}{{ manager.id }}{% if not loop.last %},{% endif %}{% endfor %}'>
+				<div class="default text">Select</div>
+				<i class="dropdown icon"></i>
+				<div class="menu">
+					{% for user in award.program.users %}
+						<div class="item" data-value='{{ user.id }}'>{{ user.full_name|capitalize }}</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	#}
+{% endif %}

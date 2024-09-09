@@ -1,0 +1,72 @@
+fields:
+    full_processed:
+        label: codengine.awardbank::lang.Order.full_processed
+        type: switch  
+        span: auto
+    order_has_vouchers:
+        label: codengine.awardbank::lang.Order.order_has_vouchers
+        type: switch  
+        span: auto
+    order_full_redeemed_vouchers:
+        label: codengine.awardbank::lang.Order.order_full_redeemed_vouchers
+        type: switch  
+        span: full
+    order_id:
+        label: codengine.awardbank::lang.Order.order_id
+        type: text
+        span: full  
+    overall_order_status:
+        label: codengine.awardbank::lang.Order.overall_order_status
+        type: dropdown
+        span: auto 
+        options:
+            0 : 'Processing'
+            1 : 'Products Ordered'
+            2 : 'Products Fully Shipped'
+            3 : 'Products Partial Shipped / Partial Back Order'
+            4 : 'Products Fully Backordered'
+            5 : 'Products Partialy Arrived / Products Partially Shipped'
+            6 : 'Products Partialy Arrived / Products Partially Backordered'
+            7 : 'Order Complete'
+    points_value:
+        label: codengine.awardbank::lang.Order.points_value
+        type: number  
+        span: auto
+        readOnly: true
+    dollar_value:
+        label: codengine.awardbank::lang.Order.dollar_value
+        type: number  
+        span: auto
+        readOnly: true
+    delivery_notes:
+        label: codengine.awardbank::lang.Order.delivery_notes
+        type: richeditor
+        span: full
+tabs:    
+    defaultTab: ccodengine.awardbank::lang.OrderLineitem.OrderLineitems:
+    fields:
+        orderlineitems:
+            label: codengine.awardbank::lang.OrderLineitem.OrderLineitems
+            type: partial
+            path: field_orderlineitems
+            tab: codengine.awardbank::lang.OrderLineitem.OrderLineitems 
+        shippingaddress:
+            label: codengine.awardbank::lang.Order.shippingaddress
+            type: partial
+            path: field_shippingaddress
+            tab: codengine.awardbank::lang.Order.shippingaddress
+        orderplacer:
+            label: codengine.awardbank::lang.Order.orderplacer
+            type: partial
+            path: field_orderplacer
+            tab: codengine.awardbank::lang.Order.orderplacer
+        program:
+            label: codengine.awardbank::lang.Program.Program
+            type: partial
+            path: field_program
+            tab: codengine.awardbank::lang.Program.Program
+        pointsledgers:
+            label: codengine.awardbank::lang.PointsLedger.PointsLedgers
+            type: partial
+            path: field_pointsledgers
+            tab: codengine.awardbank::lang.PointsLedger.PointsLedger

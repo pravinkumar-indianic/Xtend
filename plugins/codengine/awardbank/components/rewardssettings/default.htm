@@ -1,0 +1,35 @@
+<div class="ui container" id="dashboard-settings">
+    <div class="ui stackable grid">
+        <div class="ten wide tablet sixteen wide computer column">
+            <div class="ui segment">
+                <h3>Rewards Page Settings</h3>
+                <form class="ui form" id="rewardssettingsform">
+                    <div class="ui form">
+                        <div class="form-group">
+                            <div class="field">
+                                <label>Dashboard Image (Left Block)</label>
+                                <div class="file-upload">
+                                    {% component 'dashboard_image_first' %}
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label>Dashboard Image (Right Block)</label>
+                                <div class="file-upload">
+                                    {% component 'dashboard_image_second' %}
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label>Reward Banner Image</label>
+                                <div class="file-upload">
+                                    {% component 'reward_banner_image' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<h3>Current FAQ List:</h3>
+<div class="faq-table">
+    <div class="ui grid two columns row results-column">
+        <div class="ui column">
+
+        </div>
+        <div class="ui column">
+            <button class="ui button faq add">Add New QA</button>
+        </div>
+    </div>
+    <div class="ui grid two columns row results-column">
+        <div class="ui column">
+            <strong>Question</strong>
+        </div>
+        <div class="ui column">
+
+        </div>
+    </div>
+    {% for index, faq in faqs %}
+    <div class="ui grid two columns row results-column">
+        <div class="ui column">
+            <span>{{ faq.question }}</span>
+        </div>
+        <div class="ui column">
+            <button class="ui primary button faq edit" data-id="{{ index }}">Edit</button>
+            <button class="ui red button faq delete" data-id="{{ index }}">Delete</button>
+        </div>
+    </div>
+    {% endfor %}
+</div>

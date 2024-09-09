@@ -1,0 +1,65 @@
+fields:
+    full_processed:
+        label: 'Order Fully Processed'
+        type: switch  
+        span: auto
+    order_has_vouchers:
+        label: 'Order Has Vouchers'
+        type: switch  
+        span: auto
+    order_full_redeemed_vouchers:
+        label: 'Order Vouchers Fully Redeemed'
+        type: switch  
+        span: full
+    order_id:
+        label: 'Order ID'
+        type: text
+        span: full  
+    overall_order_status:
+        label: 'Order Status'
+        type: dropdown
+        span: auto 
+        options:
+            0 : 'Processing'
+            1 : 'Products Ordered'
+            2 : 'Products Fully Shipped'
+            3 : 'Products Partial Shipped / Partial Back Order'
+            4 : 'Products Fully Backordered'
+            5 : 'Products Partialy Arrived / Products Partially Shipped'
+            6 : 'Products Partialy Arrived / Products Partially Backordered'
+            7 : 'Order Complete'
+    points_value:
+        label: 'Points Value'
+        type: number  
+        span: auto
+        readOnly: true
+
+    current_shipping_addr_string:
+        label: 'Order Shipping Address'
+        type: text  
+        span: full
+        readOnly: true
+    customer_full_name_string:
+        label: 'Customer Name'
+        type: text  
+        span: full 
+        readOnly: true
+    customer_full_email_string:
+        label: 'Customer E-mail'
+        type: text  
+        span: full
+        readOnly: true
+    customer_full_phone_number_string:
+        label: 'Customer Phone Number'
+        type: text  
+        span: full
+        readOnly: true
+    order_program_name:
+        label: 'Order Program'
+        type: text  
+        span: full
+        readOnly: true
+    order_notes:
+        label: 'Order Notes'
+        type: richeditor
+        span: full

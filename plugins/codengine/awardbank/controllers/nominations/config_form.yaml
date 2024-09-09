@@ -1,0 +1,10 @@
+name: Nominations
+modelClass: Codengine\Awardbank\Models\Nomination
+form: $/codengine/awardbank/models/nomination/fields.yaml
+defaultRedirect: codengine/awardbank/nominations
+create:
+    redirect: 'codengine/awardbank/nominations/update/:id'
+    redirectClose: codengine/awardbank/nominations
+update:
+    redirect: codengine/awardbank/nominations
+    redirectClose: codengine/awardbank/nominations

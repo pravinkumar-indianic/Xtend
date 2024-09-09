@@ -1,0 +1,24 @@
+<input type="hidden" name="id" value="{{ billingcontact.id }}">
+<div class="field">
+	<label>First Name <b style="color:red;">*</b></label>
+	<input placeholder="First Name" name="First Name" type="text" value="{{ billingcontact.firstname }}">
+</div>
+<div class="field">
+	<label>Surname <b style="color:red;">*</b></label>
+	<input placeholder="Surname" name="Surname" type="text" value="{{ billingcontact.lastname }}">
+</div>
+<div class="field">
+	<label>Email <b style="color:red;">*</b></label>
+	<input placeholder="Email" name="Email" type="text" value="{{ billingcontact.emailaddress }}">
+</div>
+<div class="ui disabled field ">
+	<label>Current Card Type</label>
+	<input placeholder="Card Type" name="Card Type" type="text" value="{{ billingcontact.payment_terms }}" readonly>
+</div>
+<div class="ui disabled field">
+	<label>Current Card Numbers</label>
+	<input placeholder="Card Numbers" name="Card Numbers" type="text" value="{{ billingcontact.defaultcurrent }}" readonly>
+</div>
+	<div class="paywaycontainer" style="width:370px;margin-right:auto;margin-left:auto;margin-bottom:20px;">
+	<div id="payway-credit-card" data-publishablekey="{{ publishablekey }}"></div>
+</div>

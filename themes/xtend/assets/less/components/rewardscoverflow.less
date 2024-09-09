@@ -1,0 +1,96 @@
+// RewardsCoverFlow styles
+// Components: RewardsCoverFlow.php
+
+.ui.container.container-coverflow {
+    //padding:3rem 0;
+}
+
+.product-list-cover-flow {
+    box-shadow: none;
+    background:transparent;
+    @media screen and (max-width: @mobile-max) {
+        padding-left:0!important;
+        padding-right:0!important;
+    }
+    .slick-list {
+        padding:2rem 0!important;
+        @media screen and(min-width:@tablet) {
+           padding-top:60px!important;
+           padding-bottom:60px!important;
+        }
+    }
+    .slick-track {
+        min-width:100%!important;
+    }
+    .slick-slide.ui.segment.product-segment {
+        position:relative;
+        z-index:1;
+        visibility:visible;
+        opacity:0;
+        transition: transform @fast, opacity @fast, margin @fast;
+        &:not(.product-segment-detail) .product-image-box {
+            @media screen and(max-width:@mobile-max) {
+                margin: 0px -15px 27px;
+            }
+        }
+        .product-segment-inner { 
+            @media screen and(max-width:@mobile-max) {
+                margin:0 -75px;
+                padding:15px;
+                position:relative;
+            }
+            .product-buttons {
+                @media screen and(max-width:@mobile-max) {
+                    right: 6px;
+                    top: 244px;
+                }   
+            }
+        }
+        &.slick-current:first-child:last-child,
+        &.slick-active {
+            z-index:5;
+            visibility:visible;
+            opacity:0.6;
+        }
+        &.slick-current.slick-active {
+            z-index:10;
+            opacity:1;
+            transform: scale(1.22);
+            @media screen and (max-width: @tablet-max) {
+                transform: scale(1.10);
+            }
+            .product-segment-inner { 
+                margin:0 -55px;
+                @media screen and(max-width:@mobile-max) {
+                    margin:0 -75px;
+                    padding:15px;
+                    
+                }
+            }
+        }
+    }
+    // Slider fallback
+    .product-coverflow:not(.slick-initialized) {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        clear: both;
+        padding: 18px 0 0;
+        line-height: 1;
+        white-space: nowrap;
+        > div {
+            display:inline-block;
+            width:100%;
+        }
+    }
+}
+
+.ProductsListCoverFlow {
+    .ui.segment.product-segment:not(.product-segment-detail) {
+        .product-buttons {
+            top: 250px;
+            @media screen and (min-width: @tablet) {
+                top: 262px;
+            }
+        }
+    }
+}

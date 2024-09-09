@@ -1,0 +1,5 @@
+title: Nominations
+modelClass: Codengine\Awardbank\Models\Nomination
+nameFrom: id
+toolbar:
+    buttons: reorder_toolbar

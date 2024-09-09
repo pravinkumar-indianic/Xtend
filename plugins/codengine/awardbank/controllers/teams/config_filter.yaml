@@ -1,0 +1,30 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    parent:
+        label: Parent
+        modelClass: Codengine\Awardbank\Models\Team  
+        scope: filterHasParent
+        nameFrom: name        
+    program:
+        label: Program
+        modelClass: Codengine\Awardbank\Models\Program  
+        scope: filterHasProgram
+        nameFrom: name
+    billingcontact:
+        label: Billing Contact
+        modelClass: Codengine\Awardbank\Models\BillingContact  
+        scope: filterHasBillingContact
+        nameFrom: name
+    users:
+        label: Users
+        modelClass: Rainlab\User\Models\User  
+        scope: filterHasUsers
+        nameFrom: full_name
+    managers:
+        label: Managers
+        modelClass: Rainlab\User\Models\User  
+        scope: filterHasManagers
+        nameFrom: full_name

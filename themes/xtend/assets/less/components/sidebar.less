@@ -1,0 +1,128 @@
+// Push Nav
+// Components:
+
+.sidebar-nav.ui.menu.sidebar {
+	border:none;
+}
+
+.sidebar-nav-inner {
+	min-height:100%;
+}
+
+.pushable:not(body) {
+    transform:none;
+}
+
+.sidebar-nav.ui.menu.sidebar {
+    position:fixed;
+    padding-top:60px;
+    @media all and (max-width: @tablet) {
+        padding-top: 41px;
+    }
+}
+
+.ui.sidebar{
+    .window.close.outline.icon.red{
+        margin-top:16px;
+        margin-left:16px;
+        margin-bottom:16px;
+    }
+}
+
+.ui.vertical.menu.sidebar-nav-simple-menu {
+	margin:2rem auto;
+	padding: 0 2rem;
+	.item {
+		font-size:14px;
+		color:@black;
+		&:hover {
+			color:@gray-dark;
+		}
+	}
+	@media only screen and (min-width: @tablet) {
+		display:none;
+	}
+}
+
+.ui.menu.mobile-trigger {
+	background:none;
+	box-shadow:none;
+	border:none;
+	float:left;
+	@media only screen and (min-width: @tablet) {
+		display:none;
+	}
+	.item {
+		border:none;
+	}
+}
+
+.ui.vertical.menu.sidebar-nav-menu {
+    margin:1rem -2rem;
+    width:auto;
+    .item {
+        border-top: 1px solid @gray-dark;
+        margin:0;
+        border-radius:0px!important;
+        position:relative;
+        padding:10px 2rem;
+        transition:background @fast;
+        font-size:16px;
+        line-height:30px;
+        color:@black;
+        transition:color @fast;
+        .icon {
+        	color:@gray;
+        	transition:color @fast;
+        	display:inline-block;
+        	vertical-align:middle;
+        	font-size:30px;
+        }
+        span {
+        	font-family: @font-semibold;
+            &:before {
+                content:"";
+                position:absolute;
+                top:0;
+                left:0;
+                width:0px;
+                height: 100%;
+                background:@white;
+                transition:width @fast;
+            }
+        }
+				&:hover {
+					color:@gray-dark;
+				}
+        &.active {
+            //background:#ddf5f4;
+            span {
+                display:block;
+                color:@brand-pink;
+                &:before {
+                    width:5px;
+                    background:@brand-pink;
+                }
+                .icon {
+                	color:@brand-pink;
+                }
+            }
+        }
+        &:last-child {
+        	border-bottom: 1px solid @gray-dark;
+        }
+    }
+
+    .subitem {
+        border: none;
+        font-size: .9rem;
+        padding: 0 0 10px 4rem;
+
+        span.subitem-icon {
+            i {
+                vertical-align: top;
+                font-size: 1.3rem;
+            }
+        }
+    }
+}

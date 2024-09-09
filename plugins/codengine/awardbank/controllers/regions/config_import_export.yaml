@@ -1,0 +1,14 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+ 
+import:
+    title: Import entries
+    modelClass: Codengine\Awardbank\Models\RegionImport
+    list: $/codengine/awardbank/models/region/columns.yaml
+ 
+export:
+    title: Export entries
+    modelClass: Codengine\Awardbank\Models\RegionExport
+    list: $/codengine/awardbank/models/region/columns.yaml
+    # useList: true

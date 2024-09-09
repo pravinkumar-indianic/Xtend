@@ -1,0 +1,123 @@
+// Fonts
+/**
+ * !@license
+ * MyFonts Webfont Build ID 3517374, 2018-01-28T20:36:54-0500
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Torus-Thin by Paulo Goode
+ * URL: https://www.myfonts.com/fonts/paulo-goode/torus/thin/
+ * 
+ * Webfont: Torus-SemiBold by Paulo Goode
+ * URL: https://www.myfonts.com/fonts/paulo-goode/torus/semi-bold/
+ * 
+ * Webfont: Torus-Regular by Paulo Goode
+ * URL: https://www.myfonts.com/fonts/paulo-goode/torus/regular/
+ * 
+ * Webfont: Torus-Light by Paulo Goode
+ * URL: https://www.myfonts.com/fonts/paulo-goode/torus/light/
+ * 
+ * Webfont: Torus-Heavy by Paulo Goode
+ * URL: https://www.myfonts.com/fonts/paulo-goode/torus/heavy/
+ * 
+ * Webfont: Torus-Bold by Paulo Goode
+ * URL: https://www.myfonts.com/fonts/paulo-goode/torus/bold/
+ * 
+ * 
+ * License: https://www.myfonts.com/viewlicense?type=web&buildid=3517374
+ * Licensed pageviews: 10,000
+ * Webfonts copyright: Copyright &#x00A9; 2017 by Paulo Goode. All rights reserved.
+ * 
+ * © 2018 MyFonts Inc
+*/
+  
+@font-face {font-family: 'torus-thin';src: url('fonts/35ABBE_0_0.eot');src: url('fonts/35ABBE_0_0.eot?#iefix') format('embedded-opentype'),url('fonts/35ABBE_0_0.woff2') format('woff2'),url('fonts/35ABBE_0_0.woff') format('woff'),url('fonts/35ABBE_0_0.ttf') format('truetype');}
+  
+@font-face {font-family: 'torus-semibold';src: url('fonts/35ABBE_1_0.eot');src: url('fonts/35ABBE_1_0.eot?#iefix') format('embedded-opentype'),url('fonts/35ABBE_1_0.woff2') format('woff2'),url('fonts/35ABBE_1_0.woff') format('woff'),url('fonts/35ABBE_1_0.ttf') format('truetype');}
+
+@font-face {font-family: 'torus-regular';src: url('fonts/35ABBE_2_0.eot');src: url('fonts/35ABBE_2_0.eot?#iefix') format('embedded-opentype'),url('fonts/35ABBE_2_0.woff2') format('woff2'),url('fonts/35ABBE_2_0.woff') format('woff'),url('fonts/35ABBE_2_0.ttf') format('truetype');}
+ 
+@font-face {font-family: 'torus-light';src: url('fonts/35ABBE_3_0.eot');src: url('fonts/35ABBE_3_0.eot?#iefix') format('embedded-opentype'),url('fonts/35ABBE_3_0.woff2') format('woff2'),url('fonts/35ABBE_3_0.woff') format('woff'),url('fonts/35ABBE_3_0.ttf') format('truetype');}
+ 
+@font-face {font-family: 'torus-heavy';src: url('fonts/35ABBE_4_0.eot');src: url('fonts/35ABBE_4_0.eot?#iefix') format('embedded-opentype'),url('fonts/35ABBE_4_0.woff2') format('woff2'),url('fonts/35ABBE_4_0.woff') format('woff'),url('fonts/35ABBE_4_0.ttf') format('truetype');}
+ 
+@font-face {font-family: 'torus-bold';src: url('fonts/35ABBE_5_0.eot');src: url('fonts/35ABBE_5_0.eot?#iefix') format('embedded-opentype'),url('fonts/35ABBE_5_0.woff2') format('woff2'),url('fonts/35ABBE_5_0.woff') format('woff'),url('fonts/35ABBE_5_0.ttf') format('truetype');}
+ 
+
+@font-fallback: Arial,Helvetica,sans-serif;
+@font-default: 'torus-regular', @font-fallback;
+@font-thin: 'torus-thin', @font-fallback;
+@font-light: 'torus-light', @font-fallback;
+@font-semibold: 'torus-semibold', @font-fallback;
+@font-bold: 'torus-bold', @font-fallback;
+@font-heavy: 'torus-heavy', @font-fallback;
+
+@font-face {
+  font-family: 'xtend-icons';
+  src: url('fonts/xtend-icons.eot?63642928');
+  src: url('fonts/xtend-icons.eot?63642928#iefix') format('embedded-opentype'),
+       url('fonts/xtend-icons.woff2?63642928') format('woff2'),
+       url('fonts/xtend-icons.woff?63642928') format('woff'),
+       url('fonts/xtend-icons.ttf?63642928') format('truetype'),
+       url('fonts/xtend-icons.svg?63642928#xtend-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'xtend-icons';
+    src: url('../font/xtend-icons.svg?63642928#xtend-icons') format('svg');
+  }
+}
+*/
+ 
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "xtend-icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+ 
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.icon-awards:before { content: '\e800'; } /* '' */
+.icon-dashboard:before { content: '\e801'; } /* '' */
+.icon-posts:before { content: '\e802'; } /* '' */
+.icon-rewards:before { content: '\e803'; } /* '' */
+.icon-users:before { content: '\e804'; } /* '' */
+.icon-clipboard:before { content: '\e804'; } /* '' */
+
+

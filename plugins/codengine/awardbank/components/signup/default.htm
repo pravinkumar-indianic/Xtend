@@ -1,0 +1,1201 @@
+{% set me = __SELF__.user %}
+
+<div class="ui {% if __SELF__.container == true %} container {% endif %} signup-container" id="scrolltoptarget">
+
+	<div class="ui grid grid-no-margin">
+
+		<div class="ui sixteen wide column column-no-padding {% if __SELF__.flushtop == true %}flushtop{% endif %} {% if __SELF__.flushbottom == true %}flushbottom{% endif %}">
+
+			<div class="ui segment signup signup-create {{ __SELF__ }}">
+
+		      	<div class="signupcreatewrapper_{{__SELF__}}">
+
+		          	<div class="ui inverted dimmer">
+
+		            	<div class="ui text loader">Loading</div>
+
+		          	</div>
+
+						<div class="signup-create-menu">
+
+							<div class="ui top attached tabular menu menu-slide">
+							  <a class="item active" data-tab="first">Step 1</a>
+							  <a class="item disabled" data-tab="second">Step 2</a>
+							  <a class="item disabled" data-tab="third">Step 3</a>
+							  <a class="item disabled" data-tab="fourth">Step 4</a>
+							  <a class="item disabled" data-tab="five">Step 5</a>
+							  <div class="line"><div class="slider-line"></div></div>
+							</div>
+
+						</div>
+
+						<div class="signup-create-tabs">
+
+							<!-- FIRST -->
+							<div class="ui bottom attached tab active" data-tab="first">
+
+
+								<div class="ui form signup-fields">
+
+						        	<div class="heading">
+
+						        		<h3>Simple And Affordable Pricing.</h3>
+
+					        		</div> 
+
+				        		</div>
+								 
+ 								<div class="ui three column stackable grid grid-no-margin">
+
+									   <div class="ui column" style="text-align:center;">
+									   		<h2 class="price-item-title-outside">0 - 10 Users</h2>
+									      <div class="price-item">
+									        <h2 class="price-item-title">$10</h2>
+									        <p class="price-item-desc">Per Month
+									        <span class="price-item-price">14 Day Trial For Free</p>
+									      </div>
+									    </div>
+
+									    <div class="ui column" style="text-align:center;">
+									   		<h2 class="price-item-title-outside">10 - 250 Users</h2>									    	
+									      <div class="price-item">
+									        <h2 class="price-item-title">$6</h2>
+									        <p class="price-item-desc">Per User Per Month
+									        <span class="price-item-price">14 Day Trial For Free</span></p>
+									      </div>
+									    </div>
+
+									    <div class="ui column" style="text-align:center;">
+									   		<h2 class="price-item-title-outside">250+ Users</h2>
+									      <div class="price-item">
+									      <h2 class="price-item-title">Let's Talk</h2>
+									      <p class="price-item-desc">
+									      Over 250 Users? <a href="mailto: hello@xtendsystem.com" style="color:white;">E-mail Us!</a>
+									      </div>
+									    </div>
+
+								    </div>
+
+									{{ form_open({ id: 'signupform', class: 'ui form' }) }}
+
+							        <div class="ui form signup-fields" style="margin-top:2rem;">
+
+										<div class="field">
+								            <div class="two fields">
+								              <div class="field">
+								            	<label for="signup-program-name">How would you like to pay? <span style="color:red;">*</span></label>
+								              </div>
+								               	<div class="field">
+													<div class="ui selection dropdown" style="width:100%">
+													  <input type="hidden" name="paymentfreq">
+													  <i class="dropdown icon"></i>
+													  <div class="default text">Monthy Payment</div>
+													  <div class="menu">
+													    <div class="item" data-value="0">Monthly Payment</div>
+													    <div class="item" data-value="1">Annual Upfront Payment - Receive A 20% Discount</div>
+													  </div>
+													</div>
+												</div>
+								            </div>
+								          </div> 
+
+						         	</div>
+
+									<div class="ui grid grid-no-margin">
+
+										<div class="row">
+
+									        <div class="ui column sixteen wide price-terms" style="text-align:center;">
+									          By creating an account, you agree to our <a href="http://www.xtendsystem.com/terms-of-use/" target="_blank">Terms of Service</a> and have read and understood the <a href="http://www.xtendsystem.com/privacy-policy" target="_blank">Privacy Policy</a>.
+									        </div>
+
+								        </div>
+
+							      </div>
+
+									<div class="ui grid grid-no-margin form signup-footer-buttons">
+
+										<div class="ui sixteen wide mobile sixteen wide computer column">
+											<a class="ui primary button stretch square item right" id="step2">Next Step</a>
+											{% put scripts %}
+												<script>
+													$('#step2')
+													  .on('click', function() {
+													    // programmatically activating tab
+													    $.tab('change tab', 'second');
+													    $('.item').removeClass('active');
+														$('.item[data-tab = second]').addClass('active');
+														$('.item[data-tab = second]').removeClass('disabled');
+													    $([document.documentElement, document.body]).animate({
+													        scrollTop: $("#scrolltoptarget").offset().top
+													    }, 500);																								
+													  })
+													;
+												</script>
+											{% endput %}
+										</div>
+
+									</div>
+
+							</div>
+							<!-- /FIRST -->
+
+							<!-- SECOND -->		
+							<div class="ui bottom attached tab" data-tab="second">
+
+						        <div class="ui form signup-fields">
+
+						        	<div id="usererror">
+
+					        		</div>
+
+						        	<div class="heading">
+
+						        		<h3>User Details</h3>
+
+					        		</div>
+							          <div class="field">
+							            <div class="two fields">
+							              <div class="field">
+								          	<label>E-mail <span style="color:red;">*</span></label>
+							              </div>
+							              <div class="field">
+									          <div class="ui left icon input">
+									            <i class="mail icon"></i>
+									            <input name="email" placeholder="Enter your email" type="email" required>
+									          </div>
+							              </div>
+							            </div>
+							          </div> 
+							          <div class="field">
+							            <div class="two fields">
+							              <div class="field">
+								          	<label>First Name <span style="color:red;">*</span></label>
+							              </div>
+							              <div class="field">
+									          <div class="ui left icon input">
+									            <i class="user icon"></i>
+									            <input name="firstname" placeholder="Enter your first name" type="text" required>
+									          </div>
+							              </div>
+							            </div>
+							          </div> 
+							          <div class="field">
+							            <div class="two fields">
+							              <div class="field">
+								          	<label>Last Name <span style="color:red;">*</span></label>
+							              </div>
+							              <div class="field">
+									          <div class="ui left icon input">
+									            <i class="user icon"></i>
+									            <input name="surname" placeholder="Enter your surname" type="text" required>
+									          </div>
+							              </div>
+							            </div>
+							          </div> 
+							          <div class="field">
+							            <div class="two fields">
+							              <div class="field">
+								          	<label>Contact Phone Number</label>
+							              </div>
+							              <div class="field">
+									          <div class="ui left icon input">
+									            <i class="phone icon"></i>
+									            <input name="phonenumber" placeholder="Enter your Contact Number" type="text" required>
+									          </div>
+							              </div>
+							            </div>
+							          </div> 
+							          <div class="field">
+							            <div class="two fields">
+							              <div class="field">
+								          	<label>Password <span style="color:red;">*</span></label>
+							              </div>
+							              <div class="field">
+									          <div class="ui left icon input">
+									            <i class="lock icon"></i>
+									            <input name="password" placeholder="Enter your password" type="password" required>
+									          </div>
+							              </div>
+							            </div>
+							          </div> 
+							          <div class="field">
+							            <div class="two fields">
+							              <div class="field">
+								          	<label>Confirm Password <span style="color:red;">*</span></label>
+							              </div>
+							              <div class="field">
+									          <div class="ui left icon input">
+									            <i class="lock icon"></i>
+									            <input name="confirmpassword" placeholder="Confirm your password" type="password" required>
+									          </div>
+							              </div>
+							            </div>
+							          </div> 
+						          	</div>
+
+								<div class="ui grid grid-no-margin form signup-footer-buttons">
+
+									<div class="ui sixteen wide mobile sixteen wide computer column">
+										<a class="ui primary button stretch square item right" id="step3">Next Step</a>
+										{% put scripts %}
+											<script>
+												$('#step3')
+												  .on('click', function() {
+												  	$(this).addClass('oc-loading');
+												  	var result = validateSignUpFormPage1();
+												  	console.log(result);
+												  	if(result != false){
+													    // programmatically activating tab
+													    $(this).removeClass('oc-loading');
+													    $.tab('change tab', 'third');
+													    $('.item').removeClass('active');
+														$('.item[data-tab = third]').addClass('active');
+														$('.item[data-tab = third]').removeClass('disabled');
+													    $([document.documentElement, document.body]).animate({
+													        scrollTop: $("#scrolltoptarget").offset().top
+													    }, 500);	
+													} else {
+														$(this).removeClass('oc-loading');
+													}
+
+												  })
+												;
+											</script>
+										{% endput %}
+									</div>
+
+								</div>
+
+						    </div>    
+
+							<div class="ui bottom attached tab" data-tab="third">
+
+								<div class="ui form signup-fields">
+
+							        	<div id="programerror">
+
+						        		</div>
+
+							        	<div class="heading">
+
+							        		<h3>Program Details</h3>
+
+						        		</div>
+
+							          <div class="field">
+							            <div class="two fields">
+							              <div class="field">
+							            	<label for="signup-program-name">Name your Organisation / Business <span style="color:red;">*</span></label>
+							              </div>
+							              <div class="field">
+						            		<input type="text" name="businessname" placeholder="Create a organisation name" id="signup-organization-name">
+							              </div>
+							            </div>
+							          </div> 
+
+							          <div class="field">
+							            <div class="two fields">
+							              <div class="field">
+							            	<label for="signup-program-name">Name your program <span style="color:red;">*</span></label>
+							              </div>
+							              <div class="field">
+						            		<input type="text" name="programname" placeholder="Create a program name" id="signup-program-name">
+							              </div>
+							            </div>
+							          </div> 
+
+							          <div class="field">
+							            <div class="two fields">
+							              <div class="field">
+							            	<label for="signup-program-name">Set your program sub-domain</label>
+							              </div>
+							              <div class="field">
+						            		<input type="text" name="subdomain" placeholder="" id="signup-program-subdomain">
+							              </div>
+							            </div>
+							          </div> 
+										<div class="field">
+								            <div class="two fields">
+								              <div class="field">
+								            	<label for="signup-program-name">Set Your Program Country<span style="color:red;">*</span></label>
+								              </div>
+								               	<div class="field">
+													<div class="ui selection dropdown" style="width:100%">
+													  <input type="hidden" name="programterritory">
+													  <i class="dropdown icon"></i>
+													  <div class="default text">AU</div>
+													  <div class="menu">
+													    <div class="item" data-value="AU">AU</div>
+													    <div class="item" data-value="NZ">NZ</div>
+													    <div class="item" data-value="UK">UK</div>												    
+													  </div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+							          	<div class="field">
+							            	<div class="two fields">
+								              	<div class="field">
+								                	<label class="color-label middle-label">Choose your program primary colour</label>
+								              	</div>
+								              	<div class="field">
+													<input type="text" id="primarycolor" name="primarycolor" class="auto" value="#3ed0c7">
+											 	</div>
+												{% put scripts %}
+													<script>
+														$("#primarycolor").spectrum({
+														    color: "#3ed0c7"
+														});
+													</script>
+												{% endput %}							                
+							              	</div>
+							            </div>
+
+							          <div class="field">
+							            <div class="two fields">
+							              <div class="field">
+							                <label class="color-label middle-label">Choose your program secondary colour</label>
+							              </div>
+							              	<div class="field">
+												<input type="text" id="secondarycolor" name="secondarycolor" class="auto" value="#3ed0c7">
+										 	</div>
+											{% put scripts %}
+												<script>
+													$("#secondarycolor").spectrum({
+													    color: "#3ed0c7"
+													});
+												</script>
+											{% endput %}
+							            </div>
+							          </div> 
+
+									{{ form_close() }}
+
+								</div>
+
+								<div class="ui grid grid-no-margin form signup-footer-buttons">
+
+									<div class="ui sixteen wide mobile sixteen wide computer column">
+										<a class="ui primary button stretch square item right" id="step4">Next Step</a>
+										{% put scripts %}
+											<script>
+												$('#step4')
+												  .on('click', function() {
+												  	$(this).addClass('oc-loading');
+												  	var result = validateSignUpFormPage2();
+												  	console.log(result);
+												  	if(result != false){		
+												  		$(this).removeClass('oc-loading');	  	
+													    // programmatically activating tab
+													    $.tab('change tab', 'fourth');
+													    $('.item').removeClass('active');
+														$('.item[data-tab = fourth]').addClass('active');
+														$('.item[data-tab = fourth]').removeClass('disabled');	
+													    $([document.documentElement, document.body]).animate({
+													        scrollTop: $("#scrolltoptarget").offset().top
+													    }, 500);														
+													} else {
+														$(this).removeClass('oc-loading');
+													}													
+												  })
+												;
+											</script>
+										{% endput %}
+									</div>
+
+								</div>
+						    </div>    
+							       
+							<!-- THIRD -->
+							<div class="ui bottom attached tab" data-tab="fourth">
+
+								<div class="signup-fields">
+
+						        	<div class="heading">
+
+						        		<h3>Structure Details</h3>
+						        		<a class="structure_details show">Click For Setup Tips</a>
+						        		<div id="hidden_instructions" style="display:none;">
+						        			<img src="/plugins/codengine/awardbank/assets/images/XTEND_Team-Setup-Mock_v1_vertical-2.jpg">
+					        			</div>
+						        		{% put scripts %}
+						        			<script>
+
+												$('body').on('click', '.structure_details.show', function(event) {
+													event.preventDefault();
+													$('#hidden_instructions').show();
+													$(this).text('Click To Hide Tips');
+													$(this).removeClass('show');
+													$(this).addClass('hide');
+											  	});
+
+												$('body').on('click', '.structure_details.hide', function(event) {
+													event.preventDefault();
+													$('#hidden_instructions').hide();
+													$(this).text('Click To Show Setup Tips');
+													$(this).removeClass('hide');
+													$(this).addClass('show');
+											  	});
+
+											</script>
+						        		{% endput %}
+
+					        		</div>
+
+									<div id="program-tree-setup">
+										<ul class='regions' id="program-tree">
+										  <li class="region-li"><div class="ui blue big label data-div" data-type="region" data-id="new" data-name="Region 1"  data-email="" data-changed="0" data-moved="0"><i class="expand arrows alternate icon regionsort"></i><span class="text-target">Region 1</span></div><div class='ui blue big label'><i class='pencil alternate icon'></i></div>
+										  	<ul class="teams children">										  		
+												<li class="team-li"><div class="ui teal big label data-div" data-type="team" data-id="new" data-changed="0" data-name="Team 1" data-email="" data-moved="0"><i class="expand arrows alternate icon teamsort"></i><span class="text-target">Team 1</span></div><div class='ui blue big label'><i class='pencil alternate icon'></i></div>
+												  	<ul class="users children">											  															  		
+									  					<li class="user-li"><div class="ui grey big label data-div" data-type="user" data-id="me" data-name="me" data-email="me" data-changed="0" data-moved="0"><i class="expand arrows alternate icon usersort"></i><span class="text-target" id="me">Me</span></div></li>
+											  			<li class="user-li empty-target"></li> 
+										  			</ul>
+										  			<li class="team-li empty-target"></li> 
+									  			</li>
+									  		</ul>
+										  </li>
+										</ul>
+									</div>
+								{% put scripts %}
+
+									<script>
+
+										var selected = null;
+										$(function  () {
+
+											runSortable();
+
+									 	 });
+
+										function runSortable(){
+
+										  	$(".regions").sortable({
+											 	connectWith: ".regions",
+							                    dropOnEmpty: true,
+										        axis: 'y',
+										        zIndex: 1003,
+									          	handle: ".regionsort"
+
+											});
+
+										  	$(".teams").sortable({
+											 	connectWith: ".teams",
+							                    dropOnEmpty: true,
+										        axis: 'y',
+										        zIndex: 1004,
+									          	handle: ".teamsort"
+											});
+
+										  	$(".users").sortable({
+											 	connectWith: ".users",
+							                    dropOnEmpty: true,
+										        axis: 'y',
+										        zIndex: 1005,
+									          	handle: ".usersort"
+											});
+
+										}
+
+										$('body').on('click', '.ui.red.big.label', function() {
+
+											$(this).parent().remove();
+											$("body").getNiceScroll().resize();	
+
+										});
+
+
+										$('body').on('click', '.pencil.alternate.icon', function() {
+
+											if($(this).parent().parent().find('.data-div').first().attr('data-type') == 'user'){
+												var name = $(this).parent().parent().find('.data-div').first().attr('data-name');
+												var email = $(this).parent().parent().find('.data-div').first().attr('data-email');
+												$(this).parent().append('<span class="open-text"><input type="text" class="nameinput" value="'+name+'" style="margin-right:10px;color:black;padding-left:5px;"></span><span class="open-email"><input type="text" class="emailinput" value="'+email+'" style="margin-right:10px;color:black;padding-left:5px;"></span><i class="save icon"></i>');
+											} else {
+												var text = $(this).parent().parent().find('.data-div').first().attr('data-name');
+												$(this).parent().append('<span class="open-text"><input type="text" value="'+text+'" style="margin-right:10px;color:black;padding-left:5px;"></span><i class="save icon"></i>');
+											}
+
+											$(this).removeClass('pencil');
+											$(this).removeClass('alternate');
+											$(this).addClass('ban')
+										});
+
+										$('body').on('click', '.ban.icon', function() {
+
+												$(this).removeClass('ban');
+												$(this).addClass('pencil');
+												$(this).addClass('alternate');
+												$(this).parent().find('.open-text').remove();
+												$(this).parent().find('.open-email').remove();
+												$(this).parent().find('.save.icon').remove();
+											
+										});		
+
+										$('body').on('click', '.save.icon', function() {	
+
+											if($(this).parent().parent().find('.data-div').first().attr('data-type') == 'user'){
+												var name = $(this).parent().find('input.nameinput').first().val();
+												var email = $(this).parent().find('input.emailinput').first().val();
+												var text = name+ ' - '+email;
+												$(this).parent().parent().find('.data-div').first().attr('data-changed', 1);
+												$(this).parent().parent().find('.data-div').first().attr('data-name', name);
+												$(this).parent().parent().find('.data-div').first().attr('data-email', email);									
+
+											} else { 
+												var text = $(this).parent().find('input').first().val();
+												$(this).parent().parent().find('.data-div').first().attr('data-changed', 1);
+												$(this).parent().parent().find('.data-div').first().attr('data-name', text);										
+											}
+											$(this).parent().parent().find('.text-target').first().text(text);
+											$(this).parent().find('.ban.icon').addClass('pencil');
+											$(this).parent().find('.ban.icon').addClass('alternate');
+											$(this).parent().find('.ban.icon').removeClass('ban');
+											$(this).parent().find('.open-text').remove();
+											$(this).parent().find('.open-email').remove();
+											$(this).remove(); 
+
+										});	
+									</script>
+
+								{% endput %}
+
+
+									<div class="ui form">
+										<div class="field">
+											<p>This is where you set-up the structure of your program.  In most cases this will mimic the organisational chart of your business. You can do this now, or go to ‘Next Step’ and do this later. </p>
+										</div>
+							          <div class="field">
+							            <div class="four fields">
+							              <div class="field">
+							                <label class="color-label middle-label">Add Region <i class="exclamation circle icon link inline" data-content="These are the broader areas your business falls into eg. NSW/QLD or Sales / HR.  Each Region will have people looking after it, but we’ll get to that later."></i>	</label>							                						                
+							              </div>
+							              <div class="field">
+	        								<input type="text" name="add-region" placeholder="Region Name" id="addregiontext">
+							              </div>
+							              <div class="field">
+					              		  </div>
+							              <div class="field">
+											<button class="ui primary button stretch square item right" id="addregion">Add Region</button>
+						              		</div>
+							            </div>
+								            <div class="one fields region-error" style="display:none;color:red;">
+								            	<div class="field">
+								            		<label  style="color:red;">You must enter a name.</label>
+							            		</div>
+						            		</div>
+							          </div>  
+
+								{% put scripts %}
+
+									<script>
+
+										$('body').on('click', '#addregion', function() {
+											var name = $('#addregiontext').val();
+											if(name != ''){	
+												var html = "<li class='region-li'><div class='ui blue big label data-div' data-type='region' data-id='new' data-name='"+ name +"'' data-email='' data-changed='0' data-moved='0'><i class='expand arrows alternate icon regionsort'></i><span class='text-target'>"+ name +"</span></div><div class='ui blue big label'><i class='pencil alternate icon'></i></div><div class='ui red big label'><i class='trash icon'></i></div><ul class='teams children'><li class='team-li empty-target'></li><li class='team-li'><ul class='users children'><li class='user-li empty-target'></li></ul></li></ul></li>";
+												$('#program-tree-setup ul.regions').append(html);
+												$('.region-error').hide();
+												$('#addregiontext').val('');
+												runSortable();	
+												$("body").getNiceScroll().resize();	
+										
+											} else {
+												$('.region-error').show();		
+												$("body").getNiceScroll().resize();										
+											}												
+										});
+
+									</script>
+
+								{% endput %}
+
+							          <div class="field">
+							            <div class="four fields">
+							              <div class="field">
+							                <label class="color-label middle-label">Add Team <i class="exclamation circle icon link inline" data-content="The main thing to remember is that they must sit underneath a Region. Again, you will probably want a Team Leader for each of your Teams, but we’ll get to that later."></i>	</label> 						                
+							              </div>
+							              <div class="field">
+	        								<input type="text" name="addteamtext" placeholder="Team Name" id="addteamtext">
+							              </div>
+							              <div class="field">
+					              		  </div>
+							              <div class="field">
+											<button class="ui primary button stretch square item right" id="addteam">Add Team</button>
+						              		</div>
+					              		</div>
+							            <div class="one fields team-error" style="display:none;color:red;">
+							            	<div class="field">
+							            		<label  style="color:red;">You must enter a name.</label>
+						            		</div>
+					            		</div>
+							          </div>  
+
+								{% put scripts %}
+
+									<script>
+
+										$('body').on('click', '#addteam', function() {
+											var name = $('#addteamtext').val();
+											if(name != ''){	
+												var html = "<li class='team-li'><div class='ui teal big label data-div' data-type='team' data-id='new' data-name='"+ name +"'' data-email='' data-changed='0' data-moved='0'><i class='expand arrows alternate icon teamsort'></i><span class='text-target'>"+ name +"</span></div><div class='ui blue big label'><i class='pencil alternate icon'></i></div><div class='ui red big label'><i class='trash icon'></i></div><ul class='users children'><li class='user-li empty-target'></li></ul></li>";
+												$('#program-tree-setup ul.regions ul.teams').last().append(html);
+												$('.team-error').hide();
+												$('#addteamtext').val('');
+												runSortable();		
+												$("body").getNiceScroll().resize();		
+							
+											} else {
+												$('.team-error').show();
+												$("body").getNiceScroll().resize();																
+											}
+										});
+
+									</script>
+
+								{% endput %}
+
+							          <div class="field">
+							            <div class="four fields">
+							              <div class="field">
+							                	<label class="color-label middle-label">Add User <i class="exclamation circle icon link inline" data-content="These are the individuals who will use the system, and they all need to belong to a Team.  Remember that Region Managers & Team Leaders are people too – so they must be set-up as users. You will notice that you have already been included."></i></label> 
+							              </div>
+							              <div class="field">
+	        								<input type="text" name="addusertext" placeholder="User Name" id="addusertext">
+							              </div>
+							              <div class="field">
+	        								<input type="email" name="adduseremail" placeholder="User Email" id="adduseremail">
+							              </div>
+							              <div class="field">
+											<button class="ui primary button stretch square item right" id="adduser">Add User</button>
+				              				</div>
+							            </div>
+							            <div class="one fields e-mail-error" style="display:none;color:red;">
+							            	<div class="field">
+							            		<label  style="color:red;">You must enter a name and a valid e-mail.</label>
+						            		</div>
+					            		</div>
+							          </div>
+							          <div class="field">
+							          	<p>As you add your Regions, Teams & Users, you are able to simply drag them into the right structure.  When you are happy with your structure you can move to the next step.  It’s important to note that you can always add and change your structure later.</p>
+							          </div>  
+						         	</div>
+
+									{% put scripts %}
+
+										<script>
+
+											$('body').on('click', '#adduser', function() {
+
+												var name = $('#addusertext').val();
+												var email = $('#adduseremail').val();	
+												if(name != '' && email != '' && isValidEmailAddress(email) == true){												
+													var html = "<li class='user-li'><div class='ui grey big label data-div' data-type='user' data-id='new' data-name='"+ name +"'' data-email='"+email+"'' data-changed='0' data-moved='0'><i class='expand arrows alternate icon usersort'></i><span class='text-target'>"+name+" - "+email+"</span></div><div class='ui blue big label'><i class='pencil alternate icon'></i></div><div class='ui red big label'><i class='trash icon'></i></div></li>";
+													$('#program-tree-setup ul.regions ul.teams ul.users').last().append(html);
+													$('#adduseremail').val('');	
+													$('#addusertext').val('');
+													$('.e-mail-error').hide();
+													runSortable();		
+													$("body").getNiceScroll().resize();
+													$('#savestructure').show();								
+												} else {
+													$('.e-mail-error').show();
+													$("body").getNiceScroll().resize();																	
+												}
+
+											});
+
+										</script>
+
+									{% endput %}
+
+								</div>
+
+
+								<div class="ui grid form grid-no-margin signup-footer-buttons">
+									<div class="ui sixteen wide mobile sixteen wide computer column">
+										<a class="ui primary button stretch square item right" id="step5">Next Step</a>
+										{% put scripts %}
+											<script>
+												$('#step5')
+												  .on('click', function() {
+												    // programmatically activating tab
+												    $.tab('change tab', 'five');
+												    $('.item').removeClass('active');
+													$('.item[data-tab = five]').addClass('active');
+													$('.item[data-tab = five]').removeClass('disabled');	
+												    $([document.documentElement, document.body]).animate({
+												        scrollTop: $("#scrolltoptarget").offset().top
+												    }, 500);																										
+												  })
+												;
+											</script>
+										{% endput %}
+									</div>
+								</div>
+							</div>
+							<!-- /THIRD -->
+
+							<!-- FOURTH -->		
+							<div class="ui bottom attached tab" data-tab="five">
+
+								<div class="ui form signup-fields">
+
+						        	<div id="paymenterror">
+
+					        		</div>
+
+						        	<div class="heading">
+
+						        		<h3>Payment Details</h3>
+
+					        		</div>
+
+							      	<div class="paywaycontainer" style="width:370px;margin-right:auto;margin-left:auto;margin-bottom:20px;">			    	
+							        	<div id="payway-credit-card"></div>
+						        	</div>
+
+						          	<div class="field" style="text-align:center;">
+						            	<strong>Note: </strong> Your credit card will not be charged until your trial expires and you choose to continue or if you utilise this card to upload Reward Points.
+						          	</div>
+						          	<div id="card_event"></div>
+					          	</div>
+
+								<div class="ui grid grid-no-margin signup-footer-buttons">
+
+									<div class="ui eight wide column">
+									</div>
+
+									<div class="ui eight wide column">
+										<button type="submit" class="ui button secondary square right disabled" id="signupaward">Signup</button>
+									</div>
+
+								</div>
+
+							</div>
+							<!-- /FOURTH -->	
+						</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="sixteen wide column column-no-padding sign-up-terms-box">
+
+			<div class="ui message">
+
+				<p>If you require support with branding, program structure and setting up your program please contact Xtend on 1800 638 856 or email <a href="mailto:hello@xtendsystem.com">hello@xtendsystem.com</a></p>
+
+				<p>If you are having problems with the sign-up process, you can also <a href="https://s3-ap-southeast-2.amazonaws.com/xtendsystem/guide_documents/XTEND_User+Guide.pdf" target="_blank">download our user guide here.</a></p>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+{% put scripts %}
+
+    <script type="text/javascript">
+
+
+		$('body').on('keyup', 'input[name=firstname]', function(){
+
+			var text = $(this).val() +' '+$('input[name=surname]').val()+' - '+$('input[name=email]').val();
+			console.log(text);
+			$('#me').html(text);
+
+		});
+
+
+		$('body').on('keyup', 'input[name=surname]', function(){
+
+			var text = $('input[name=firstname]').val() +' '+$(this).val()+' - '+$('input[name=email]').val();
+			console.log(text);
+			$('#me').html(text);
+
+		});
+
+		$('body').on('keyup', 'input[name=email]', function(){
+
+			var text = $('input[name=surname]').val() +' '+$('input[name=surname]').val()+' - '+$(this).val();
+			console.log(text);
+			$('#me').html(text);
+
+		});
+
+		$('body').on('keyup', 'input[name=programname]', function(){
+
+			var text = $(this).val();
+			text = convertToSlug(text);
+			console.log(text);
+			$('input[name=subdomain]').val(text);
+			$('input[name=subdomain]').text(text);
+
+		});
+
+
+		function convertToSlug(Text)
+		{
+		    return Text
+		        .toLowerCase()
+		        .replace(/ /g,'-')
+		        .replace(/[^\w-]+/g,'')
+		        ;
+		}
+
+   		function validateSignUpFormPage1(){
+
+   			$valid = false;
+
+   			if($('input[name=email]').val() != ''){
+   				if(isValidEmailAddress($('input[name=email]').val())){
+   					$valid = true;
+				} else {
+					$valid = false
+					$error = 'You must enter your valid e-mail address to proceed.';	
+					$page = 2;			
+				}
+   			} else {
+				$error = 'You must enter your e-mail address to proceed.';	
+				$page = 2;	
+   			}
+
+   			if($valid == true){
+   				$valid = false;
+	   			if($('input[name=firstname]').val() != ''){
+	   				$valid = true;
+	   			} else {
+					$error = 'You must enter your First Name to proceed.';	
+					$page = 2;	
+	   			}
+   			}
+
+   			if($valid == true){
+   				$valid = false;
+	   			if($('input[name=surname]').val() != ''){
+	   				$valid = true;
+	   			} else {
+					$error = 'You must enter your Last Name to proceed.';	
+					$page = 2;	
+	   			}
+   			}
+   			if($valid == true){
+   				$valid = false;
+	   			if($('input[name=password]').val() != '' && $('input[name=confirmpassword]').val() != ''){
+	   				if($('input[name=password]').val().length > 4 && $('input[name=confirmpassword]').val().length > 4){
+		   				if($('input[name=password]').val() != $('input[name=confirmpassword]').val()){
+							$error = 'Your Password and Confirmation must match to proceed.';	
+							$page = 2;	
+		   				} else {
+							$valid = true;	   					
+		   				}
+	   				} else {
+						$error = 'Your Password must be atleast 5 characters long.';	
+						$page = 2;		   					
+	   				}
+
+	   			} else {
+					$error = 'You must enter & confirm your Password to proceed.';	
+					$page = 2;	
+	   			}
+   			}
+
+   			if($valid == true){
+
+   				$valid = false;
+
+				var email = $('input[name=email]').val();
+				console.log(email);
+
+	        	$.request('onCheckEmailUnique', {
+       				async: false,
+		        	data: {
+
+		        		'email': email,
+
+		        	},
+
+			        success: function(data) 
+	                {
+	                	console.log(data);
+	                	if(data['found'] == true){
+
+							$error = 'The email Provided Is Already In Use. Please Select Another Or  <a href="/login/default">Log In As That User</a>.';
+							$page = 2;	
+
+	                	} else {
+	                		$valid = true;
+                		}
+
+	                },
+
+		            error: function(XMLHttpRequest, textStatus, errorThrown){
+		            	$valid = false;
+		            },
+
+        		});   				
+   			}
+
+   			if($valid == false){
+
+   				var html = '';
+				html += '<div class="ui negative message" style="margin-bottom:20px;">';
+  				html += '<div class="header">';
+    			html += $error;
+    			html += '</div>';
+    			html += '</div>';
+
+			    $.tab('change tab', 'second');
+			    $('.item').removeClass('active');
+				$('.item[data-tab = second]').addClass('active');
+				$('#usererror').html('');
+				$('#programerror').html('');
+				$('#usererror').append(html);
+			    $([document.documentElement, document.body]).animate({
+			        scrollTop: $("#scrolltoptarget").offset().top
+			    }, 500);
+				$('#signupaward').removeClass('oc-loading');
+				$('#signupaward').removeClass('disabled');	
+   			} else {
+ 				$('#usererror').html('');
+				$('#programerror').html('');  				
+   			}
+
+   			return $valid;
+
+		}
+
+   		function validateSignUpFormPage2(){
+
+   			
+			$valid = false;
+
+   			if($('input[name=businessname]').val() != ''){
+   				$valid = true;
+   			} else {
+				$error = 'You must enter your Organisation Name to proceed.';	
+				$page = 3;	
+   			}  
+   			
+
+   			if($valid == true){
+   				$valid = false;
+	   			if($('input[name=programname]').val() != ''){
+	   				$valid = true;
+	   			} else {
+					$error = 'You must enter your Program Name to proceed.';	
+					$page = 3;	
+	   			}
+   			}
+
+   			if($valid == false){
+
+   				var html = '';
+				html += '<div class="ui negative message" style="margin-bottom:20px;">';
+  				html += '<div class="header">';
+    			html += $error;
+    			html += '</div>';
+    			html += '</div>';
+
+			    $.tab('change tab', 'third');
+			    $('.item').removeClass('active');
+				$('.item[data-tab = third]').addClass('active');
+				$('#usererror').html('');
+				$('#programerror').html('');
+				$('#programerror').append(html);	
+			    $([document.documentElement, document.body]).animate({
+			        scrollTop: $("#scrolltoptarget").offset().top
+			    }, 500);	
+				$('#signupaward').removeClass('oc-loading');
+				$('#signupaward').removeClass('disabled');				    					
+   			} else {
+ 				$('#usererror').html('');
+				$('#programerror').html('');     				
+   			}
+
+   			return $valid;
+   		}
+
+		function isValidEmailAddress(emailAddress) {
+		    var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+		    return pattern.test(emailAddress);
+		}
+
+		function runValidation(frame){
+
+			//console.log('clicked');
+
+			if(validateSignUpFormPage1() != false){
+
+				if(validateSignUpFormPage2() != false){
+
+					processPaymentSetup(frame);
+
+				};
+
+			}
+
+		};
+
+	    function processOneLi(node) {       
+
+	        var aNode = node.children("div:first");
+	        var retVal = {
+	            "id": aNode.attr("data-id"),
+	            "changed": aNode.attr("data-changed"),
+	            "moved": aNode.attr("data-moved"),
+	            "name": aNode.attr("data-name"),
+	            "email": aNode.attr("data-email"),
+	        };
+
+	        node.find("> .children > li").each(function() {
+	            if (!retVal.hasOwnProperty("children")) {
+	                retVal.children = [];
+	            }
+	            retVal.children.push(processOneLi($(this)));
+	        });
+
+	        return retVal;
+	    }
+
+		function processSubmit(data){
+
+			var out = [];
+
+		    $("#program-tree").children("li").each(function() {
+		        out.push(processOneLi($(this)));
+		    });
+
+			out = JSON.stringify(out);
+			var primarycolor_hex = '#'+$('#primarycolor').spectrum('get').toHex() ;
+			var secondarycolor_hex = '#'+$('#secondarycolor').spectrum('get').toHex() ;
+
+		    //console.log("got the following JSON from your HTML:", JSON.stringify(out));});
+
+        	$('#signupform').request('onCreateASignUp', {
+
+	        	data: {
+
+	        		'structure': out,
+	        		'primaryhex': primarycolor_hex,
+	        		'secondaryhex': secondarycolor_hex,
+		          	'responsedata' : data,
+	        	},
+
+                success: function(response)
+                {
+
+					window.location.replace("/dashboard");
+
+                },
+
+	            error: function(XMLHttpRequest, textStatus, errorThrown){
+
+	            	console.log(XMLHttpRequest);
+	            	console.log(textStatus);
+	            	console.log(errorThrown);
+
+	   				var html = '';
+					html += '<div class="ui negative message" style="margin-bottom:20px;">';
+	  				html += '<div class="header">';
+	    			html += errorThrown;
+	    			html += '</div>';
+	    			html += '</div>';
+				    $.tab('change tab', 'second');
+				    $('.item').removeClass('active');
+					$('.item[data-tab = second]').addClass('active');
+					$('#usererror').html('');
+					$('#programerror').html('');
+					$('#usererror').append(html);
+	             	throw errorThrown;
+
+					$('#signupaward').removeClass('oc-loading');
+					$('#signupaward').removeClass('disabled');	
+
+	            },
+	        });
+
+
+    	}
+
+    	function processPaymentSetup(frame){
+			frame.getToken( tokenCallback );
+    	}
+
+    	/**
+
+        var submit = document.getElementById('payway-cc-submit');
+
+        $('#transactionform').submit(function(e){
+                e.preventDefault();
+                console.log('block submit');
+        });
+
+		**/
+
+		var createdCallback = function( err, frame ) {
+
+			$('#signupaward').removeClass('disabled');
+
+	      	if ( !err ) {
+				$('body').on('click', '#signupaward', function(){
+					console.log('click');
+					$(this).addClass('oc-loading');
+					$(this).addClass('disabled');
+					runValidation(frame);
+				});   
+			};	
+
+		};
+
+
+
+		var tokenCallback = function( err, data ) {
+		  if ( err ) {
+			var html = '';
+			html += '<div class="ui negative message" style="margin-bottom:20px;">';
+				html += '<div class="header">';
+			html += err.message;
+			html += '</div>';
+			html += '</div>';
+		    $.tab('change tab', 'five');
+		    $('.item').removeClass('active');
+			$('.item[data-tab = five]').addClass('active');
+			$('#usererror').html('');
+			$('#programerror').html('');
+			$('#paymenterror').html('');
+			$('#paymenterror').append(html);
+			$('#signupaward').removeClass('oc-loading');
+			$('#signupaward').removeClass('disabled');	
+		  } else { 
+
+				processSubmit(data);
+
+		  } 
+		};
+
+		var styleobject = {
+		    'div.payway-account' : { 'background-color': 'white', 
+		                             'border-radius': '0em' ,
+		                             'width': '100%',
+		                         },
+		    '.payway-account label' : { },
+		    '.payway-account input' : {  }
+		};
+
+		payway.createCreditCardFrame({
+		    publishableApiKey: '{{ __SELF__.publishableAPI }}',
+		    onValid: function() { console.log('valid'); },
+		    onInvalid: function() { console.log('invalid'); },
+		    tokenMode: 'callback' },
+		    createdCallback
+		);
+
+	</script>
+
+{% endput %}

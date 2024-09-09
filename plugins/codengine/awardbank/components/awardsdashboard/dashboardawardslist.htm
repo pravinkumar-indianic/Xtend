@@ -1,0 +1,87 @@
+<div class="ui sixteen wide column">
+	<div class="ui grid">
+		<h2 class="ui header sixteen wide column">Your Award Opportunities</h2>
+  		<div class="sixteen wide column">
+  			{% if featured_award %}
+  				{% partial '@awardbanner' award = featured_award %}
+                {% if featured_award.hide_nominations_tab == true %}
+
+
+                    {% if featured_award.nomination_submit_button_text %}
+
+                    <a href="/award/{{featured_award.slug}}" class="ui button primary square">
+                        {{featured_award.nomination_submit_button_text}}
+                    </a>
+
+                    {% else %}
+                        <a href="/award/{{featured_award.slug}}" class="ui button primary square">
+                            Nominate Now
+                        </a>
+                    {% endif %}
+
+
+      			{% endif %}
+  			{% endif %}
+		</div>
+		<h3 class="ui header sixteen wide column">Current Awards</h3>
+		<div class="sixteen wide column">
+			<div class="table-scroller">
+				<table class="ui tablet unstackable table award-table">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Opens</th>
+							<th>Closes</th>
+							<th>{{ access.program.points_name }}</th>
+							<th>Submit</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% if awards|length >= 1 %}
+							{% for award in awards %}
+								<tr>
+									<td><a href="/award/{{award.slug}}">{{ award.name }}</a></td>
+									<td><time class="date updated" datetime="">{{award.award_open_at|date("F jS")}}</time></td>
+									<td><time class="date updated" datetime="">{{award.award_close_at|date("F jS")}}</time></td>
+									<td>
+										{{ award.pointstotal }} {% if award.pointstotal > 0 %}{{ access.program.points_name }}{% endif %}
+									</td>
+									<td>
+                                        {% if award.hide_nominations_tab == false %}
+                                        <a href="/award/{{award.slug}}"  class="ui button primary square">
+                                            View
+                                        </a>{% else %}
+
+                                            {% if award.nomination_submit_button_text %}
+                                               <a href="/award/{{award.slug}}"  class="ui button primary square">
+                                                    {{award.nomination_submit_button_text}}
+                                               </a>
+                                            {% else %}
+                                                <a href="/award/{{award.slug}}"  class="ui button primary square">
+                                                    Submit {{ award.nomination_display_string }}
+                                                </a>
+                                            {% endif %}
+                                        </a>
+                                        {% endif %}
+                                    </td>
+								</tr>
+							{% endfor %}
+						{% else %}
+							<tr>
+								<td colspan="5">
+							  		<span class="pre-content">Awards will appear here once they have been created by a manager.</span>
+								</td>
+							</tr>
+						{% endif %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+      	<div class="sixteen wide column ">
+      		<a href="/awards" class="ui button secondary square">View all</a>
+	      	{% if manager == true %}
+	      		<a href="/award/create/edit" class="ui button primary square">Create Award</a>
+	      	{% endif %}
+		</div>
+	</div>
+</div>

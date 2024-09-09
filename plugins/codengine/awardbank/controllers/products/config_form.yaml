@@ -1,0 +1,10 @@
+name: Products
+form: $/codengine/awardbank/models/product/fields-onepage.yaml
+modelClass: Codengine\Awardbank\Models\Product
+defaultRedirect: codengine/awardbank/products
+create:
+    redirect: 'codengine/awardbank/products/update/:id'
+    redirectClose: codengine/awardbank/products
+update:
+    redirect: 'codengine/awardbank/products/update/:id'
+    redirectClose: codengine/awardbank/products

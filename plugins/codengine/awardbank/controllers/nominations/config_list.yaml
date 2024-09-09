@@ -1,0 +1,13 @@
+title: Nominations
+modelClass: Codengine\Awardbank\Models\Nomination
+list: $/codengine/awardbank/models/nomination/columns.yaml
+recordUrl: 'codengine/awardbank/nominations/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+filter: config_filter.yaml
+recordsPerPage: 20

@@ -1,0 +1,32 @@
+<div class="table-scroller">
+<table class="ui tablet unstackable table award-table">	
+	<thead>
+		<tr>
+			<td>Point ID</td>
+			<td>Transaction ID</td>
+			<td>Credit ID</td>
+			<td>Is Current Allocation</td>
+			<td>Previous Allocation</td>
+			<td>Current Allocation Type</td>
+			<td>Current Allocation ID</td>
+			<td>Spent</td>
+			<td>Pending</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% for point in points %}
+			<tr>
+				<td>{{ point.id }}</td>
+				<td>{{ point.transaction_id }}</td>
+				<td>{{ point.credit_id }}</td>
+				<td>{{ point.current_allocation }}</td>
+				<td>{{ point.previous_allocation_id }}</td>
+				<td>{{ point.pointallocatable_type }}</td>
+				<td>{{ point.pointallocatable_id }}</td>
+				<td>{{ point.spent }}</td>
+				<td>{{ point.pending }}</td>		
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+</div>

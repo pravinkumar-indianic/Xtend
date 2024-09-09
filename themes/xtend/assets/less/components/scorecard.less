@@ -1,0 +1,223 @@
+#scorecard-wrapper {
+    .full-screen-feature-image {
+        img {
+            width: 100%;
+        }
+    }
+
+    #stats {
+        margin:0 auto;
+        .total-points-earned-to-date {
+            text-align: center;
+
+            h4 {
+                color: #4db5ce;
+                text-transform: uppercase;
+            }
+
+            .circle {
+                width: 100px;
+                height: 100px;
+                border-radius: 50px;
+                margin: 0 auto;
+                padding: 38px 10px 0 10px;
+                background-color: #4db5ce;
+                color: white;
+                font-weight: bold;
+                font-size: 1.4rem;
+            }
+        }
+    }
+
+    .steps {
+        width: 100%;
+        margin: 20px 0;
+
+        .circle-step-wrapper {
+            float:left;
+            width: 20%;
+            padding: 10px;
+
+            @media screen and (max-width: @small-monitor) {
+                width: 50%;
+            }
+
+            @media screen and (max-width: @mobile-max) {
+                width: 100%;
+            }
+
+            .circle-step {
+                text-align: center;
+                border-radius: 75px;
+                height: 150px;
+                width: 150px;
+                margin: 0 auto;
+                padding: 30px 10px 0 10px;
+                color: white;
+                cursor: pointer;
+
+                &.active {
+                    color: black;
+                }
+
+                &.step-1 {
+                    background-color: #9fc7e5;
+                }
+
+                &.step-2 {
+                    background-color: #599fce;
+                }
+
+                &.step-3 {
+                    background-color: #f9bf59;
+                }
+
+                &.step-4 {
+                    background-color: #bbd562;
+                }
+
+                &.step-5 {
+                    background-color: #5981ae;
+                }
+
+                h5 {
+                    font-size: 2rem;
+                    margin-bottom: 0px;
+                }
+
+                span {
+                    font-weight: bold;
+                    font-size: 1.125rem;
+                }
+            }
+        }
+    }
+
+    .scorecard-tables {
+        width: 100%;
+
+        .scorecard-table {
+            width: 100%;
+            margin: 0 auto;
+
+            table {
+                tr {
+                    &.header {
+                        th {
+                            background-color: #e6e6e6;
+                        }
+                    }
+                }
+                th {
+                    text-align: center;
+
+                    &.border-ethical {
+                        border-bottom: 4px solid #9fc7e5;
+                    }
+
+                    &.border-gold {
+                        border-bottom: 4px solid #ffd700;
+                    }
+
+                    &.border-silver {
+                        border-bottom: 4px solid #c0c0c0;
+                    }
+
+                    &.border-bronze {
+                        border-bottom: 4px solid #CD7F32;
+                    }
+
+                    &.header {
+                        font-size: 1.3rem;
+                        font-weight: bold;
+                        text-transform: uppercase;
+                    }
+                }
+                td {
+                    cursor: default;
+                    border-bottom: 2px solid #e6e6e6;
+                    text-align: center;
+
+                    &.criterium {
+                        font-weight: bold;
+                    }
+
+                    &.white {
+                        background-color: white;
+                        border-right: 2px solid #e6e6e6;
+                    }
+                    &.green {
+                        background-color: #badfce;
+                        border-right: 2px solid #e6e6e6;
+                    }
+                    &.grey {
+                        background-color: #e6e6e6;
+                    }
+                    &.darkgrey {
+                        background-color: #666666;
+                        border-bottom: 2px solid #555;
+                        color: white;
+                    }
+                    &.no-right-border {
+                        border-right: none;
+                    }
+
+                    div.tooltip {
+                        position:relative;
+                        border-bottom:1px dotted #ccc;
+                        text-align:left;
+
+                        &.centered {
+                            text-align: center;
+                        }
+
+                        .right {
+                            min-width:200px;
+                            top:50%;
+                            left:100%;
+                            margin-left:20px;
+                            transform:translate(0, -50%);
+                            padding:10px 20px;
+                            color:#444444;
+                            background-color:#FFFFFF;
+                            font-weight:normal;
+                            font-size:13px;
+                            border-radius:8px;
+                            position:absolute;
+                            z-index:99999999;
+                            box-sizing:border-box;
+                            box-shadow:0 1px 8px rgba(0,0,0,0.5);
+                            display:none;
+                        }
+
+                        &:hover .right {
+                            display:block;
+                        }
+
+                        .right i {
+                            position:absolute;
+                            top:50%;
+                            right:100%;
+                            margin-top:-12px;
+                            width:12px;
+                            height:24px;
+                            overflow:hidden;
+                        }
+
+                        .right i::after {
+                            content:'';
+                            position:absolute;
+                            width:12px;
+                            height:12px;
+                            left:0;
+                            top:50%;
+                            transform:translate(50%,-50%) rotate(-45deg);
+                            background-color:#FFFFFF;
+                            box-shadow:0 1px 8px rgba(0,0,0,0.5);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

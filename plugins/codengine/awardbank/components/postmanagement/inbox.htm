@@ -1,0 +1,34 @@
+{% set messages = __SELF__.messages %}
+{% set messagetype = __SELF__.messagetype %}
+{% set message = __SELF__.message %}
+
+{% put styles %}
+    <link href="{{ 'assets/css/dataTables.semanticui.min.css'|theme }}" rel="stylesheet" />
+
+{% endput %}
+
+{% put scripts %}
+    <script type="text/javascript" src="{{ 'assets/js/vendor/jquery.dataTables.min.js'|theme }}"></script>
+    <script type="text/javascript" src="{{ 'assets/js/vendor/dataTables.semanticui.min.js'|theme }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#{{messagetype}}table').DataTable({
+              autoWidth: false,
+              columnDefs: [
+                  { width: '50%', targets: 2 }
+              ],
+              "order": [[ 0, "desc" ]]
+            });
+        });
+    </script>
+{% endput %}
+
+<div class="ui container container-inbox">
+
+    <div class="ui grid">
+
+    {% partial __SELF__ ~ '::inbox_new' %}
+
+    </div>
+
+</div>

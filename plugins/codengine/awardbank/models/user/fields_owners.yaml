@@ -1,0 +1,8 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+    ownerscheckbox:
+        label: Owners
+        type: dropdown

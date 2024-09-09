@@ -1,0 +1,4 @@
+title: Permissions
+modelClass: Codengine\Awardbank\Models\Permission
+toolbar:
+    buttons: reorder_toolbar

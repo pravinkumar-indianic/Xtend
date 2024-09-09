@@ -1,0 +1,4 @@
+title: Suppliers
+modelClass: Codengine\Awardbank\Models\Supplier
+toolbar:
+    buttons: reorder_toolbar

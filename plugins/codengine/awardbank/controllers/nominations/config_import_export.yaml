@@ -1,0 +1,14 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+ 
+import:
+    title: Import entries
+    modelClass: Codengine\Awardbank\Models\NominationImport
+    list: $/codengine/awardbank/models/nomination/columns.yaml
+ 
+export:
+    title: Export entries
+    modelClass: Codengine\Awardbank\Models\NominationExport
+    list: $/codengine/awardbank/models/nomination/columns.yaml
+    # useList: true

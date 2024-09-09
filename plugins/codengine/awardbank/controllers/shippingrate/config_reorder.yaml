@@ -1,0 +1,4 @@
+title: ShippingRate
+modelClass: Codengine\Awardbank\Models\ShippingRate
+toolbar:
+    buttons: reorder_toolbar

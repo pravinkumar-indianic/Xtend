@@ -1,0 +1,31 @@
+title = "Order Create"
+url = "/ordercheckout"
+layout = "default-v2"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "login"
+
+[OrderCreate]
+
+/** GLOBAL COMPONENTS **/
+
+[viewBag]
+metaarea = 1
+
+[CustomStyles]
+
+[Sidebar]
+
+[Cart]
+
+[SwitchProgram]
+
+[RewardsNav]
+
+[FooterUsefullInfo]
+
+==
+{% component 'CustomStyles' %}     
+{% component 'OrderCreate' %}

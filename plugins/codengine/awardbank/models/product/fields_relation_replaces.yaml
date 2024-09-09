@@ -1,0 +1,10 @@
+fields:
+    name:
+        label: 'codengine.awardbank::lang.awardbank.product_name'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    model_number:
+        label: 'Model Number'
+        span: auto
+        type: text

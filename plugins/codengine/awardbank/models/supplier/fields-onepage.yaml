@@ -1,0 +1,121 @@
+fields:
+    product_details:
+        label: Supplier Details
+        type: section        
+    name:
+        label: 'codengine.awardbank::lang.awardbank.suppliername'
+        oc.commentPosition: ''
+        span: full
+        required: 1
+        type: text             
+    description:
+        label: 'codengine.awardbank::lang.awardbank.supplierdescription'
+        size: ''
+        oc.commentPosition: ''
+        span: full
+        required: 1
+        type: richeditor 
+    territory:
+        label: Territory
+        span: full
+        type: dropdown    
+        options:
+            'AU' : Australia
+            'NZ' : New Zealand
+            'IRL': Ireland
+            'UK' : UK  
+            'PH' : Phillipines
+    mark_up_type:
+        label: 'Mark Up Type'
+        oc.commentPosition: ''
+        span: auto
+        type: dropdown
+        options:
+            percent: Percent
+            dollar: Dollars
+            none: None
+    mark_up_integer:
+        label: 'Mark Up #'
+        oc.commentPosition: ''
+        span: auto
+        type: number   
+    primary_color:
+        label: 'Product Primage Color'
+        oc.commentPosition: ''
+        span: full
+        type: colorpicker       
+    orders_email:
+        label: 'Order E-mail'
+        oc.commentPosition: ''
+        span: full
+        type: text    
+    cc_primary:
+        label: 'CC Primary Email Orders'
+        oc.commentPosition: ''
+        span: full
+        type: switch                                                     
+    primary_contact_name:
+        label: 'codengine.awardbank::lang.awardbank.primarycontactname'
+        oc.commentPosition: ''
+        span: full
+        type: text                  
+    primary_contact_email:
+        label: 'codengine.awardbank::lang.awardbank.primarycontactemail'
+        oc.commentPosition: ''
+        span: auto
+        type: text         
+    primary_contact_number:
+        label: 'codengine.awardbank::lang.awardbank.primarycontactnumber'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    cc_secondary:
+        label: 'CC Secondary Email Orders'
+        oc.commentPosition: ''
+        span: full
+        type: switch    
+    secondary_contact_name:
+        label: 'codengine.awardbank::lang.awardbank.secondarycontactemail'
+        oc.commentPosition: ''
+        span: full
+        type: text                        
+    secondary_contact_email:
+        label: 'codengine.awardbank::lang.awardbank.secondarycontactemail'
+        oc.commentPosition: ''
+        span: auto
+        type: text       
+    secondary_contact_number:
+        label: 'codengine.awardbank::lang.awardbank.secondarycontactnumber'
+        oc.commentPosition: ''
+        span: auto
+        type: text                           
+    feature_image:
+        label: 'codengine.awardbank::lang.awardbank.supplierfeatureimage'
+        type: fileupload
+        mode: image
+        imageHeight: 260
+        imageWidth: 260
+        tab: Image Management
+        thumbOptions:
+            mode: crop
+            offset:
+                - 0
+                - 0
+            quality: 90
+            sharpen: 0
+            extension: auto
+    images:
+        label: 'codengine.awardbank::lang.awardbank.supplierimages'
+        type: fileupload
+        mode: image
+        imageHeight: 260
+        imageWidth: 260
+        tab: Image Management
+        thumbOptions:
+            mode: crop
+            offset:
+                - 0
+                - 0
+            quality: 90
+            sharpen: 0
+            extension: auto

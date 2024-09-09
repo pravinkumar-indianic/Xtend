@@ -1,0 +1,50 @@
+<input name="id" type="hidden" value="{{ prize.id }} ">
+<div class="field">
+	<label>Name <b style="color:red;">*</b></label>
+	<input placeholder="Name" name="Name" type="text" value="{{ prize.name }} ">
+</div>
+<div class="field">
+    <label>Description:</label>
+    <textarea class="not-required" name="Description">{{ prize.description|striptags }}</textarea>
+</div>
+<div class="field">
+    <label>{{ prize.points_name }} Value:</label>
+    <input placeholder="1" name="Prize Value" type="number" value="{{ prize.prize_value }}">
+</div>
+<div class="field">
+    <label>List Order:</label>
+    <input placeholder="1" name="Order" type="number" value="{{ prize.order }}">
+</div>
+{% if prize.winnermanaged and prize.new == false %}
+	<div class="field">
+	    <label>Declare Prize Won <b style="color:red;">*</b></label>
+	    <select class="ui selection dropdown" name="Prize Won">
+	        <option value="1"{% if prize.iswon == 1 %} selected{% endif %}>Yes</option>
+	        <option value="0"{% if prize.iswon == 0 %} selected{% endif %}>No</option>
+	    </select>
+	</div>
+	<div class="field">
+		<label>User Winner</label>	
+		<div class="ui multiple selection searchable dropdown" id="UserWinners" name="UserWinners" data-selected='{% for user in prize.userwinners %}{{ user.id }}{% if not loop.last %},{% endif %}{% endfor %}'>
+			<div class="default text">Select</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				{% for user in prize.award.program.users %}
+					<div class="item" data-value='{{ user.id }}'>{{ user.full_name|capitalize }}</div>
+				{% endfor %}
+			</div>
+		</div>	
+	</div>	
+	<div class="field">
+		<label>Team Winners</label>	
+		<div class="ui multiple selection searchable dropdown" id="TeamWinners" name="TeamWinners" data-selected='{% for team in prize.teamwinners %}{{ team.id }}{% if not loop.last %},{% endif %}{% endfor %}'>
+			<div class="default text">Select</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				{% for team in prize.award.program.teams %}
+					<div class="item" data-value='{{ team.id }}'>{{ team.name|capitalize }}</div>
+				{% endfor %}
+			</div>
+		</div>	
+	</div>	
+{% endif %}

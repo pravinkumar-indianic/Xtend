@@ -1,0 +1,68 @@
+fields:
+    map:
+        label: 'Select your address from Google Maps'
+        oc.commentPosition: ''
+        span: full
+        type: backendmaps
+    country_id:
+        label: 'codengine.awardbank::lang.awardbank.country'
+        oc.commentPosition: ''
+        span: auto
+        type: dropdown
+        options:
+            1: Australia
+            2: New Zealand
+        readOnly: true
+    state:
+        label: 'codengine.awardbank::lang.awardbank.state'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+        readOnly: true    
+    city:
+        label: 'codengine.awardbank::lang.awardbank.city'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+        readOnly: true    
+    suburb_name:
+        label: 'codengine.awardbank::lang.awardbank.suburbname'
+        oc.commentPosition: ''
+        span: auto
+        type: text 
+        readOnly: true            
+    unit_number:
+        label: 'codengine.awardbank::lang.awardbank.unitnumber'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+        readOnly: true             
+    street_number:
+        label: 'codengine.awardbank::lang.awardbank.street_number'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+        readOnly: true             
+    street_name:
+        label: 'codengine.awardbank::lang.awardbank.streetname'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+        readOnly: true             
+    street_type:
+        label: 'codengine.awardbank::lang.awardbank.streettype'
+        oc.commentPosition: ''
+        options:
+            street: Street
+            avenue: Avenue
+            lane: Lane
+            road: Road
+        span: auto
+        type: dropdown
+        readOnly: true               
+    postcode:
+        label: 'codengine.awardbank::lang.awardbank.postcode'
+        oc.commentPosition: ''
+        span: auto
+        type: number    
+        readOnly: true                

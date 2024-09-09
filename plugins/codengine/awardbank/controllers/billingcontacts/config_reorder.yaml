@@ -1,0 +1,4 @@
+title: BillingContacts
+modelClass: Codengine\Awardbank\Models\BillingContact
+toolbar:
+    buttons: reorder_toolbar

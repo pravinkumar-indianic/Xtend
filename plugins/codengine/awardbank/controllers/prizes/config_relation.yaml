@@ -1,0 +1,34 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+userwinners:
+    label: 'User Winners'
+    modelClass: Rainlab\User\Models\User   
+    view:
+        toolbarButtons: add|remove        
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        showSearch: true
+        recordsPerPage: 10 
+    manage:
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 10    
+teamwinners:
+    label: 'Team Winners'
+    modelClass: Codengine\Awardbank\Models\Team   
+    view:
+        toolbarButtons: add|remove        
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        showSearch: true
+        recordsPerPage: 10 
+    manage:
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 10   

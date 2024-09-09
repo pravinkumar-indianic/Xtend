@@ -1,0 +1,39 @@
+
+
+<!--  PROFILE -->
+	<!-- Taken from /components/myprofile/myprofile.htm:-->
+
+		<div class="ui segment">
+			<div class="ui grid">
+
+				<h2 class="ui header sixteen wide column">Activity Feed</h2>
+				<div class="ui sixteen wide column">
+					<div class="ui feed">
+						{% if __SELF__.activityfeed|length >= 1 %}
+					    	{% for activity in __SELF__.activityfeed %}
+							  	<div class="event">
+							    <div class="label">
+							    	{% if activity.user.avatar %}
+							      		<img class="ui circular image" src="{{ activity.user.avatar.getThumb(50,50) }}">
+							    	{% else %}
+							    		<img class="ui circular image" src="https://app.xtendsystem.com/themes/xtend/assets/img/avatar/people/Enid.png" style="width:50px; length:50px;">
+							    	{% endif %}
+							    </div>
+								    <div class="content">
+								      <div class="summary">
+								      	{{ activity.html |raw }}
+								        <div class="date">
+								          {{ activity.created_at|date("d/m/Y", "Australia/Sydney")}}
+								        </div>
+								      </div>
+								    </div>
+							  	</div>
+						  	{% endfor %}
+					  	{% else %}
+					  		<span class="pre-content">Activity will appear here once users start using your program.<span>
+					  	{% endif %}
+			  		</div>
+				</div>
+			</div>
+		</div>
+

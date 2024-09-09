@@ -1,0 +1,179 @@
+<div class="shared-product-list ui {{ cardwidth }} column stackable grid" data-searchable="{{searchable}}">
+  {% if products | length >= 1 %}
+      {% for product in products %}
+        <div class="column">
+          <div class="ui segment raised product-segment {% if product.featured == true %} featured {% endif %}">
+            <div class="product-segment-inner">
+              <div class="product-buttons"> 
+                {% if (product.points_value * scale_points_by) <= mypoint %}
+
+                    <button class="circular ui icon button add-to-cart-on-product product-{{product.id}}" data-id="{{product.id}}" data-view='list' data-content="Add Product To Your Cart">
+                        <i class="plus icon"></i>
+                    </button> 
+
+                {% endif %} 
+                {% if Wishlist %}
+                  {% if product.id in Wishlist.wishlistArray %}
+                    <button class="circular ui icon button in-wishlist product-{{product.id}}" data-id="{{product.id}}" data-view='list' data-content="Remove Product From Your Wishlist">
+                        <i class="empty heart icon"></i>
+                    </button>
+
+                  {% else %}
+
+                    <button class="circular ui icon button out-wishlist product-{{product.id}}" data-id="{{product.id}}" data-view='list' data-content="Add Product To Your Wishlist">
+                        <i class="empty heart icon"></i>      
+                    </button>    
+
+                  {% endif %} 
+
+                {% endif %}
+
+
+            </div>
+
+            {#
+
+              Product Image + Link
+
+            #}
+
+            <a class="product-image-box-link" href="/rewards/{{ product.slug }}">
+
+              <div class="product-image-box">
+
+                <div class="product-image-internal-box" 
+
+                  {% if product.feature_image %}
+
+                      style="background-image:url('{{ product.feature_image.thumb(auto, auto) }}')"  
+
+                  {% else %}
+
+                      {% if product.image_valid == 0 or product.external_image_url == "https://s3-ap-southeast-2.amazonaws.com/xtendsystem/media/products/10106/No Image" %}
+
+                          style="background-image:url('https://s3-ap-southeast-2.amazonaws.com/xtendsystem/media/imageemptybackup.png')"                        
+
+                      {% else %}
+
+                          style="background-image:url('{{ product.external_image_url }}')"
+
+                      {% endif %}  
+
+                  {% endif %}
+                >
+
+                </div>
+
+              </div>
+
+            </a>
+
+            {#
+
+              Product Image + Link
+
+            #}
+
+            <div class="product-details">
+
+            <div class="product-points">
+
+              <div class="ui fluid labeled" tabindex="0">
+
+                <a class="ui basic fluid label" href="/rewards/{{ product.slug }}">
+
+                  {% if scale_points_by >= 1%}
+                      {{ product.points_value * scale_points_by }} 
+                  {% else %}
+                      {{ product.points_value }} 
+                  {% endif %}
+                  {{ points_name }}
+
+                </a>
+
+              </div>
+
+            </div>
+
+            <div class="product-header">
+
+                <h4  {% if cart_options == true %} style="margin-bottom:8px;" {% endif %}><a href="/rewards/{{ product.slug }}">{{ product.name|length > 50 ? product.name|slice(0, 50) ~ '...' : product.name  }}</a></h4>
+
+              {% if cart_options == true %}
+                  {% if product.color != null %}
+                    <p style="font-size:10px;">Color: {{ product.color }}</p>
+                  {% endif %}
+                  {% if product.size != null %}
+                    <p style="font-size:10px;">Size: {{ product.size }}</p>
+                  {% endif %}
+                  {% if product.custom_option != null %}
+                    <p style="font-size:10px;">Custom Options: {{ product.custom_option }}</p>
+                  {% endif %}
+                  {% if product.order_customer_email != null %}
+                    <p style="font-size:10px;">Voucher E-mail: {{ product.order_customer_email }}</p>
+                  {% endif %}
+                  {% if product.shipped_date != null %}
+                    <p style="font-size:10px;">Preferred Date: {{ product.shipped_date }}</p>
+                  {% endif %}
+              {% endif %}
+
+            </div>
+
+            <div class="progress-bar">
+                {% if mypoint < (product.points_value * scale_points_by) %}
+                    <div class="ui indicating progress active" data-percent="{{ mypoint/product.points_value*100 }}">
+                        <div class="bar" style="width: {{ mypoint/(product.points_value * scale_points_by)*100 }}%;"></div>
+                {% else %}
+                    <div class="ui indicating progress active" data-percent="100">
+                        <div class="bar" style="width: 100%;"></div>
+                {% endif %}
+                </div>
+            </div>
+              {% if mypoint < (product.points_value * scale_points_by) %}
+                <div class="product-points-to-go">
+                  {% if scale_points_by >= 1%}
+                      {{ (product.points_value * scale_points_by)-mypoint }}
+                  {% else %}
+                      {{ product.points_value-mypoint }} 
+                  {% endif %}
+                  {{ points_name }} to go</div>
+              {% else %}
+                <div class="product-points-to-go">Ready To redeem</div>
+              {% endif %}
+
+              {% if mypoint < (product.points_value * scale_points_by) and can_buy_points == true %}
+                  {% if points_limit != 0 and ((product.points_value * scale_points_by)-mypoint) >= points_limit %}
+
+                      <div class="product-sale-button">
+                          <button class="primary ui button fluid disabled" data-id="{{product.id}}">Earn More To Redeem</i></button>
+                      </div>                      
+                  {% else %}
+                      <div class="product-sale-button">
+                          <a class="secondary ui button fluid" href="/transaction/{{ product.points_value-mypoint}}">Buy {{ points_name }}</a>
+                      </div>
+                  {% endif %}
+
+              {% elseif mypoint < (product.points_value * scale_points_by) %}
+                   <div class="product-sale-button">
+                        <button class="primary ui button fluid in-cart product-{{product.id}} disabled" data-id="{{product.id}}">Earn More To Redeem</i></button>
+                  </div>
+              {% else %}
+                  <div class="product-sale-button">
+                        <button class="primary ui button fluid add-to-cart-on-product product-{{product.id}}" data-id="{{product.id}}" data-view='list' data-content="Add Product To Your Cart">Redeem</button>
+                  </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        </div>
+  {% endfor %}
+{% else %}
+  <div class="column">
+    <div class="ui segment raised">
+      <div class="product-header">
+          <h4>{% if __SELF__ == 'WishlistDisplay' %} <a href="/rewards">View rewards</a> to add to your wishlist.{% else %} No Results {% endif %}</h4>
+      </div>                
+    </div>
+  </div>
+{% endif %}
+</div>  

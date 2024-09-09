@@ -1,0 +1,16 @@
+<div class="item">
+    <div class="ui small image">
+      <img src="{{ product.imagepath }}">
+    </div>
+    <div class="content">
+        <div class="description">    
+            <p>{{ product.name }}</p>
+            <p>{{ product.points_value }} {{ points_name }} each.</p>  
+        </div>
+        <div class="extra">
+            <div class="ui right floated secondary button small plus-product-in-cart" data-id="{{product.id}}">+</div>  
+            <div class="ui right floated secondary button small minus-product-in-cart" data-id="{{product.id}}">-</div>
+            <div class="ui right floated"><p>{{ product.volume }}x in cart</p></div>      
+        </div>
+    </div>
+</div>

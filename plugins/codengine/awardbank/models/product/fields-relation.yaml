@@ -1,0 +1,33 @@
+
+fields:
+    product_details:
+        label: Product Details
+        type: section
+    name:
+        label: 'codengine.awardbank::lang.awardbank.product_name'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    model_number:
+        label: 'Model Number'
+        type: text
+        span: auto
+    brand:
+        label: 'Brand'
+        type: text
+        span: auto
+    activate:
+        label: 'Activate'
+        type: text
+        span: auto
+    category-string:
+        label: 'Category (string)'
+        type: text
+        span: auto
+    description:
+        label: 'codengine.awardbank::lang.awardbank.productdescription'
+        size: ''
+        oc.commentPosition: ''
+        span: full
+        type: richeditor
+

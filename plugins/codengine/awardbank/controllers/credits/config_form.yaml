@@ -1,0 +1,10 @@
+name: Credits
+form: $/codengine/awardbank/models/credit/fields.yaml
+modelClass: Codengine\Awardbank\Models\Credit
+defaultRedirect: codengine/awardbank/credits
+create:
+    redirect: 'codengine/awardbank/credits/update/:id'
+    redirectClose: codengine/awardbank/credits
+update:
+    redirect: codengine/awardbank/credits
+    redirectClose: codengine/awardbank/credits

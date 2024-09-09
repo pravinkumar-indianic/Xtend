@@ -1,0 +1,25 @@
+<div class="ui one column grid">
+	{% if messages|length >= 1 %}
+	    {% for message in messages %}
+		  	<div class="column">
+			  	<div class="ui raised card fluid">
+				    <div class="content">
+				      	<div class="header">#{{ message.id }} - {{ message.sender.full_name }} sent {{ message.reciever.full_name }} a Message</div>
+				      	<div class="meta">Created At - {{ message.created_at|date('d/m/Y') }}</div>
+				      	<div>{{ message.message_text|striptags }}</div>
+				      	{% if readable == true and message.read == false %}<div><button class="ui button primary small message-read-button" data-id="{{ message.id }}"style="margin-top:10px;">Mark Read</button>
+			      		{% endif %}
+				    </div>		  		
+			  	</div>
+		  	</div>
+	  	{% endfor %}
+  	{% else %}
+	  	<div class="column">
+		  	<div class="ui raised card fluid no-results">
+		  		<div class="content">
+			      	<div class="header">No Results Found.</div>
+		      	</div>
+	      	</div>
+      	</div>
+  	{% endif %}
+</div>

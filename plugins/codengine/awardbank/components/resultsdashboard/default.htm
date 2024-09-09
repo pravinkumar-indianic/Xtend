@@ -1,0 +1,169 @@
+{% if __SELF__.specificResults != null %}
+	<h2 class="ui header center aligned sixteen wide column">
+	    Results
+	</h2>
+
+	<div class="ui sixteen wide tablet sixteen wide computer column">
+
+		{% if __SELF__.regiontags is not empty %}
+
+		    <div class="filter-sortby">
+
+		        <select class="ui dropdown regionsFilter" id="regionsFilter" name="regionsFilter">
+
+		            <option value="default">{% if __SELF__.region != null %}{{ __SELF__.region.name }}{% else %}{{ access.program.region_label}}{%endif%}</option>
+
+		            {% for key, value in __SELF__.regiontags %}
+
+		                <option value="{{ key }}">{{ value }}</option>
+
+		            {% endfor %}
+
+		        </select>
+
+		    </div>
+
+	    {% endif %}
+
+		{% if __SELF__.teamtags is not empty %}
+
+		    <div class="filter-sortby">
+
+		        <select class="ui dropdown teamsFilter" id="teamsFilter" name="teamsFilter">
+
+		            <option value="default">{% if __SELF__.team != null %}{{ __SELF__.team.name }}{% else %}{{ access.program.team_label}}{%endif%}</option>
+
+		            {% for key, value in __SELF__.teamtags %}
+
+		                <option value="{{ key }}">{{ value }}</option>
+
+		            {% endfor %}
+
+		        </select>
+
+		    </div>
+
+	    {% endif %}
+
+		{% if __SELF__.usertags is not empty %}
+
+		    <div class="filter-sortby">
+
+		        <select class="ui dropdown teamsFilter" id="userFilter" name="teamsFilter">
+
+		            <option value="default">Users</option>
+
+		            {% for key, value in __SELF__.usertags %}
+
+		                <option value="{{ key }}">{{ value }}</option>
+
+		            {% endfor %}
+
+		        </select>
+
+		    </div>
+
+	    {% endif %}
+
+	</div>
+
+	<!--
+	<div class="ui sixteen wide tablet sixteen wide computer column">
+		{% for key, value in __SELF__.regiontags %}
+				<div class="ui yellow label resultfilter" data-type="region" data-id="{{key}}">{{ value }}</div>
+		{% endfor %}
+	</div>
+
+	<div class="ui sixteen wide tablet sixteen wide computer column">
+		{% for key, value in __SELF__.teamtags %}
+				<div class="ui blue label resultfilter" data-type="team" data-id="{{key}}">{{ value }}</div>
+		{% endfor %}
+	</div>
+
+	<div class="ui sixteen wide tablet sixteen wide computer column">
+		{% for key, value in __SELF__.usertags %}
+				<div class="ui red label resultfilter" data-type="user" data-id="{{key}}">{{ value }}</div>
+		{% endfor %}
+	</div>
+	-->
+	{% put scripts %}
+		<script>
+
+			var type = null;
+			var id = null
+
+	        $('body').on('change', '#regionsFilter', function() {
+	        	id = $(this).find(":selected").val();
+	        	type = 'region';
+	        	if(id != 'default'){
+	        		runAjax();
+	        	}
+	        });
+
+	        $('body').on('change', '#teamsFilter', function() {
+	        	id = $(this).find(":selected").val();
+	        	type = 'team';
+	        	if(id != 'default'){
+	        		runAjax();
+	        	}
+	        });
+
+
+	        $('body').on('change', '#userFilter', function() {
+	        	id = $(this).find(":selected").val();
+	        	type = 'user';
+	        	if(id != 'default'){
+	        		runAjax();
+	        	}
+
+	        });
+
+			function runAjax(){ 	
+
+				$('#dimmer_target').dimmer('show');
+
+		        $.request('onUpdateResults', {
+
+		        	data: {
+
+		        		'data-type' : type,
+		        		'data-id' : id,
+
+		        	},
+		            success: function(data) {
+
+		                $('#results_target').html(data['html']);
+	    				$('#dimmer_target').dimmer('hide');
+	    				$('.ui.results.progress').progress();
+
+		            },
+		            error: function(data){
+	        			$('#dimmer_target').dimmer('hide');
+		                throw data;
+		            },
+
+		        });
+
+	        }
+
+		</script>
+
+	{% endput %}
+
+	<div class="ui sixteen wide tablet sixteen wide computer column">
+		<div id="dimmer_target">
+			<div class="ui inverted dimmer">
+
+			    <div class="ui text loader">Loading</div>
+
+			</div>
+			<div class="ui grid no-margin" id="results_target">
+                {% if access.program.id == 104 %}
+                {% partial __SELF__ ~ '::tables_render_drive_program' results = __SELF__.specificResults level = __SELF__.level userrole = __SELF__.userrole %}
+                {% else %}
+				{% partial __SELF__ ~ '::tables_render' results = __SELF__.specificResults level = __SELF__.level %}
+                {% endif %}
+			</div>
+		</div>
+	</div>
+{% endif %}

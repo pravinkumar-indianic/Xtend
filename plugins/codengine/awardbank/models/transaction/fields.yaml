@@ -1,0 +1,21 @@
+fields:
+    user_id:
+        label: User
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    paymentgateway_id:
+        label: 'Payment ID'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    value:
+        label: Value
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    success:
+        label: Success
+        oc.commentPosition: ''
+        span: auto
+        type: text

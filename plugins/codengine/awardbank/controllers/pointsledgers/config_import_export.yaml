@@ -1,0 +1,14 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+ 
+import:
+    title: Import entries
+    modelClass: Codengine\Awardbank\Models\PointsLedgerImport
+    list: $/codengine/awardbank/models/pointsledger/columns-export.yaml
+ 
+export:
+    title: Export entries
+    modelClass: Codengine\Awardbank\Models\PointsLedgerExport
+    list: $/codengine/awardbank/models/pointsledger/columns-export.yaml
+    # useList: true

@@ -1,0 +1,122 @@
+{% if addwrapper %}
+<div id="social-post-wrapper-{{ post.id }}">
+{% endif %}
+<div class="social-post">
+    <div class="ui grid grid-no-margin user-profile">
+        <div class="sixteen wide tablet sixteen wide computer column column-no-padding right floated right aligned">
+            {% if manager or post.poster.id == user.id %}
+            <div id="post-manager-tools-{{ post.id }}" class="post-manager-tools">
+                {% if manager == true %}
+                <button id="social-post-action-unpin-button-{{ post.id }}"
+                        class="ui button red social-post-action"
+                        data-action="unpin"
+                        data-id="{{ post.id }}"
+                        {% if post.pinned=='0' %}style="display:none"{% endif %}
+                >
+                    <i class="in remove icon icon"></i>Unpin
+                </button>
+                <button
+                    id="social-post-action-pin-button-{{ post.id }}"
+                    class="ui button primary social-post-action"
+                    data-action="pin"
+                    data-id="{{ post.id }}"
+                    {% if post.pinned=='1' %}style="display:none"{% endif %}
+                >
+                    <i class="in pin icon icon"></i>Pin to top
+                </button>
+                {% endif %}
+                {% if manager or post.poster.id == user.id %}
+                <button
+                    id="social-post-action-delete-button-{{ post.id }}"
+                    class="ui button red social-post-action"
+                    data-action="delete"
+                    data-id="{{ post.id }}"
+                >
+                    <i class="in trash icon icon"></i>Delete Post
+                </button>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="sixteen wide tablet sixteen wide computer column column-no-padding">
+            <div class="user-avatar">
+                {% if post.poster.avatar %}
+                <img width="40" height="40"
+                     src="{{ post.poster.avatar.thumb(40 , 40, 'crop') }}"
+                     class="circular avatar"
+                >
+                {% else %}
+                <img width="40" height="40"
+                     src="{{ 'assets/img/avatar/people/Enid.png'|theme }}"
+                     class="circular avatar"
+                >
+                {% endif %}
+            </div>
+            <div class="user-name">
+                <p class="fullname">
+                    {{ post.poster.fullbusinessname|raw }}
+                </p>
+                <p class="date">
+                    <small>{{ post.created_at|date("d F Y H:i", "Australia/Sydney") }}</small>
+                </p>
+            </div>
+        </div>
+        <div class="sixteen wide tablet sixteen wide computer column column-no-padding">
+            <div class="content-wrapper no-padding">
+                <p class="content main">
+                    {{ post.content|raw }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="ui grid grid-no-margin attachments">
+        <p class="images">
+            {% for attachment in post.attachments %}
+                {%if str_contains(attachment.content_type, 'image/') %}
+                    <a href="{{ attachment.path }}" target="_blank">
+                        <img src="{% if mode=='dashboard' %}{{attachment.thumb(480 , 400, 'fit')}}{% else %}{{attachment.thumb(1045 , 400, 'fit')}}{% endif %}">
+                    </a>
+                {% else %}
+                <span class="comment-file-download">
+                    <a href="{{ attachment.path }}" target="_blank">
+                        <i class="icon outline download"></i>
+                        {{ attachment.file_name }}
+                    </a>
+                </span>
+                {% endif %}
+            {% endfor %}
+        </p>
+    </div>
+    <div class="ui grid grid-no-margin interactive-tools">
+        <div class="ui grid grid-no-margin social-post-stats-wrapper" id="social-post-stats-{{ post.id }}">
+            {% partial '@poststats' post=post %}
+        </div>
+        <div class="controls">
+            <div
+                class="social-post-control-like"
+                id="social-post-control-like-{{ post.id }}"
+                data-id="{{ post.id }}"
+            >
+                {% partial '@postlike' post=post %}
+            </div>
+            <!-- span class="comment">
+                <a href="#social-post-control-new-comment-wrapper-{{ post.id }}"
+                   class="social-post-comment-anchor"
+                   data-id="{{ post.id }}"
+                >
+                    <i class="icon outline comment"></i>Comment
+                </a>
+            </span -->
+        </div>
+        <div class="ui grid grid-no-margin social-post-control-comments"
+             id="social-post-control-comments-wrapper-{{ post.id }}">
+            <div id="social-post-control-comments-{{ post.id }}" class="comments-list">
+                {% partial '@postcomments' post=post mode=mode %}
+            </div>
+            <div id="social-post-control-new-comment-wrapper-{{ post.id }}" class="new-comment-wrapper">
+                {% partial '@newcomment' post=post %}
+            </div>
+        </div>
+    </div>
+</div>
+{% if addwrapper %}</div>{% endif %}

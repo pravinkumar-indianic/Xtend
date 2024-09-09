@@ -1,0 +1,10 @@
+name: CronCheckers
+form: $/codengine/awardbank/models/cronchecker/fields.yaml
+modelClass: Codengine\Awardbank\Models\CronChecker
+defaultRedirect: codengine/awardbank/croncheckers
+create:
+    redirect: 'codengine/awardbank/croncheckers/update/:id'
+    redirectClose: codengine/awardbank/croncheckers
+update:
+    redirect: codengine/awardbank/croncheckers
+    redirectClose: codengine/awardbank/croncheckers

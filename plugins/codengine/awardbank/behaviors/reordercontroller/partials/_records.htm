@@ -1,0 +1,33 @@
+<?php foreach ($records as $record): ?>
+
+    <li data-record-id="<?= $record->getKey() ?>"
+        <?php if ($reorderSortMode === 'simple') : ?>
+            data-record-sort-order="<?= $record->{$record->getSortOrderColumn()} ?>"
+        <?php endif ?>
+    >
+        <div class="record">
+            <a href="javascript:;" class="move"></a>
+            <a href="<?= $this->reorderGetRecordUpdateURL($record) ?>" class="btn btn-primary" style="background-color:<?= $this->reorderGetRecordColor($record) ?>"><?= $this->reorderGetRecordName($record) ?></a>
+            <button
+                type="button"
+                class="oc-icon-trash-o btn-icon danger"
+                data-request="onDeleteReorder"
+                data-request-data="id: <?= $this->reorderGetRecordID($record) ?>"
+                data-request-update = "reorder_form: '#layout-body'"
+                data-load-indicator="<?= e(trans('backend::lang.form.deleting')) ?>"
+                data-request-confirm="<?= e(trans('backend::lang.form.confirm_delete')) ?> - Please Be Aware That Deleting A Parent Category Will Delete It's Children"
+                >
+            </button>
+            <input name="record_ids[]" type="hidden" value="<?= $record->getKey() ?>" />
+        </div>
+
+        <?php if ($reorderShowTree): ?>
+            <ol>
+                <?php if ($record->children): ?>
+                    <?= $this->reorderMakePartial('records', ['records' => $record->children]) ?>
+                <?php endif ?>
+            </ol>
+        <?php endif ?>
+    </li>
+
+<?php endforeach ?>

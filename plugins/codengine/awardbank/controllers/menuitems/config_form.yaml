@@ -1,0 +1,10 @@
+name: MenuItems
+form: $/codengine/awardbank/models/menuitem/fields.yaml
+modelClass: Codengine\Awardbank\Models\MenuItem
+defaultRedirect: codengine/awardbank/menuitems
+create:
+    redirect: 'codengine/awardbank/menuitems/update/:id'
+    redirectClose: codengine/awardbank/menuitems
+update:
+    redirect: codengine/awardbank/menuitems
+    redirectClose: codengine/awardbank/menuitems

@@ -1,0 +1,19 @@
+<div class="ui container posts-list-container">
+    <div class="ui segment grid segment-header">
+        <h2 class="ui header center aligned sixteen wide column">
+            Posts
+        </h2>
+    </div>
+    {% if __SELF__.header %}
+        {% if manager %}
+        <div class="ui segment" style="text-align: center;">
+            <a href="/post/create/edit" class="ui button primary">Create new post</a>
+        </div>
+        {% endif %}
+    {% endif %}
+    <div class="ui segment posts-list" id="html1target">
+        {{ __SELF__.html1|raw }}
+    </div>
+</div>
+
+{% partial '@postslistscripts' %}

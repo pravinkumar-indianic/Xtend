@@ -1,0 +1,337 @@
+// Category Filter/Navigation styles
+// Components: topnavigation.htm
+
+
+@normal:@black;
+@hover:@black;
+@size:35px;
+
+
+.mobile-nav-text {
+	display:block;
+	width:100%;
+	padding:10px;
+	border-bottom:1px solid @gray-light;
+	font-size: 16px;
+	line-height:1.1em;
+	font-family:@font-default;
+	&:hover {
+		color:@brand-aqua;
+	}
+}
+
+@media only screen and (max-width: @tablet) {
+	.ui.menu.header-top .burger.dropdown {
+		height: @size!important;
+	}
+	.fixed.top.menu {
+		display:block!important;
+	}
+
+	.burger {
+	  position: absolute;
+	  height: @size;
+	  width: 50px;
+	  border: 2px solid transparent;
+	  transition: 300ms linear all;
+	  display: block;
+	  top:6px;
+	  &:before,
+	  &:after {
+	    position: absolute;
+	    content: "";
+	    border-top: 2px solid @normal;
+	    left: 50%;
+	    width: 50%;
+	    margin-left: -25%;
+	  }
+	  &:before {
+	    top: 20%;
+	    box-shadow: 0 8px 0 @normal;
+	    transition: 300ms linear border, 200ms linear box-shadow;
+	  }
+	  &:after {
+	    bottom: 20%;
+	    transition: 300ms linear border; 
+	  }
+	}
+
+	.header-top-inner.active .burger {
+	    border-radius: @size;
+	    transform: rotate(180deg);
+	    border-color: transparent;
+	    &:before,
+	    &:after {
+	      border-color: @hover;
+	      bottom:auto;
+	      top:50%;
+	      margin:-1px 0 0 -25%;
+	    }
+	    &:before {
+	      transform: rotate(45deg);
+	      box-shadow: none;
+	      transition: 300ms linear border, 1ms linear box-shadow;
+	    }
+	    &:after {
+	      transform: rotate(-45deg);
+	    }
+	}
+	.ui.menu.header-top {
+		.simple-account,
+		.simple-avatar,
+		.top-cart {
+			display:none!important;
+		}
+		.header-top-inner {
+			position:relative;
+			outline:none;
+			z-index: 10;
+		}
+		.header-top-inner-wrap {
+			.ui.segment;
+			top: 44px;
+			position:absolute;
+			background:@white;
+			width: 300px;
+			border-radius: 0 0 3px 3px;
+			overflow: hidden;
+			left:-1px;
+			box-shadow: 0 5px 10px 0 rgba(34, 36, 38, 0.15);
+			border:1px solid @gray-light;
+			border-bottom:none;
+			display: none;
+    		visibility: hidden;
+			.item {
+				width:100%;
+				display: block !important;
+				padding:0!important;
+				.ui.dropdown {
+					width:100%;
+					display:block;
+					.menu {
+						border:none!important;
+						display: block !important;
+						position:static !important;
+						padding:0!important;
+						visibility: visible!important;
+						.item {
+							padding:0!important;
+						}
+						.menu-avatar {
+							height:50px;
+							width:50px;
+						}
+						.menu-team-switch {
+							margin:0;
+						}
+					}
+					.menu-listing, li {
+						list-style:none;
+						padding:0;
+						margin:0;
+						border:none;
+						a {
+							.mobile-nav-text;
+							&:before {
+								display:none;
+							}
+						}
+					}
+				}
+			}
+			.right.menu {
+				display: block !important;
+				float:none!important;
+				.utlity-nav {
+					a {
+						.mobile-nav-text;
+					}
+				}
+			}
+			.ui.dropdown.top-cart .menu {
+				display:none!important;
+			}
+		}
+	}
+}
+
+
+@media only screen and (min-width: @tablet) {
+	.ui.menu.header-top {
+		.header-top-inner {
+			width:100%;
+			.menu.header-top-inner-wrap {
+				display:flex;
+				visibility:visible;
+			}
+		}
+	}
+}
+
+
+.ui.menu.header-top {
+	.menu.right .dropdown:last-child .menu {
+    	right: -20px;
+	}
+	.menu.right .dropdown:last-child .menu.simple-avatar-menu {
+	    .item{
+	    	a{
+	    		font-family:@font-default;
+	    		color:@black;
+	    		font-size:16px;
+    		}
+	    }
+	}
+	.dropdown {
+		height: 100%;
+		.menu {
+			box-shadow: none;
+			border-radius: 0px;
+			//left: -21px;
+			//border:1px solid @gray-light;
+			//top:52px;
+			padding:20px;
+		
+			.item {
+				padding:0;
+				&:hover, 	
+				&:focus, 
+				&:active {
+					background:none!important;
+					box-shadow:none!important;
+				}
+			}
+			.menu-avatar {
+				margin:20px;
+				height:110px;
+				max-width:250px;
+				margin:0 auto;
+				background-size:contain;
+				background-position: center center;
+				background-repeat: no-repeat;
+			}
+			.menu-team-switch {
+				font-family: @font-default;
+				text-decoration:none;
+				//margin:20px 0;
+				font-size:14px;
+				display:block;
+				+ .menu-listing {
+					padding-top: 20px;
+					border-top:1px solid @gray-light;
+				}
+				&.heading{
+					font-family: @font-light;				
+				}
+				.team-option,
+				.item{
+					.icon{
+						margin-left:10px;
+					}
+					&:before {
+						background:unset;
+					}
+				}
+			}
+			.menu-listing {
+				margin:0;
+				padding:0;
+				li {
+					margin:10px 0;
+				}
+				a {
+					padding:5px 0 5px 15px;
+					color:@black;
+					position:relative;
+					&:hover, 	
+					&:focus, 
+					&:active {
+						color:@brand-aqua;
+					}
+					&:before  {
+						user-select: none;
+						pointer-events: none;
+						position: absolute;
+						top: auto;
+						left: 0;
+						font-weight: 400;
+						content: '•';
+						opacity: 1;
+						color: inherit;
+						vertical-align: top;
+					}
+				}
+			}
+		}
+	}
+}
+
+// Navigation
+
+// --Topbar`
+
+.dropdown-toggle {
+  color: #cccccc;
+}
+.layout-header {
+    background-color: #1a1a1a;
+}
+
+.navbar-top-links {
+    margin-right: 0;
+}
+
+.navbar-top-links li {
+    display: inline-block;
+}
+
+.navbar-top-links li:last-child {
+    margin-right: 15px;
+}
+
+.navbar-top-links li a {
+    padding: 15px;
+    min-height: 50px;
+}
+
+.navbar-top-links .dropdown-menu li {
+    display: block;
+}
+
+.navbar-top-links .dropdown-menu li:last-child {
+    margin-right: 0;
+}
+
+.navbar-top-links .dropdown-menu li a {
+    padding: 3px 20px;
+    min-height: 0;
+}
+
+.navbar-top-links .dropdown-menu li a div {
+    white-space: normal;
+}
+
+.navbar-top-links .dropdown-messages,
+.navbar-top-links .dropdown-tasks,
+.navbar-top-links .dropdown-alerts {
+    width: 310px;
+    min-width: 0;
+}
+
+.navbar-top-links .dropdown-messages {
+    margin-left: 5px;
+}
+
+.navbar-top-links .dropdown-tasks {
+    margin-left: -59px;
+}
+
+.navbar-top-links .dropdown-alerts {
+    margin-left: -123px;
+}
+
+.navbar-top-links .dropdown-user {
+    right: 0;
+    left: auto;
+}
+

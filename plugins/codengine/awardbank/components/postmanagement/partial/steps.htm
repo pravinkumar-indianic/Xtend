@@ -1,0 +1,48 @@
+
+{% set steps = __SELF__.steps %}
+
+{% if steps == 'content' %}
+  {% set content = 'active' %}
+{% elseif steps == 'config' %}
+  {% set config = 'active' %}
+{% elseif steps == 'media' %}
+  {% set media = 'active' %}
+{% endif %}
+
+<div class="ui mini steps">
+  <div class="{{content}} step">
+    <i class="info circle icon"></i>
+    <div class="content">
+        <div class="title">
+          Content
+      </div>
+      <div class="description">Title and Post content</div>
+    </div>
+  </div>
+  <div class="{{config}} step">
+    <i class="plane icon"></i>
+    <div class="content">
+      <div class="title">
+          Configuration
+      </div>
+      <div class="description">Category, Tag, etc</div>
+    </div>
+  </div>
+  <div class="{{media}} step">
+    <i class="image icon"></i>
+    <div class="content">
+      <div class="title">
+          Media
+      </div>
+      <div class="description">Feature images</div>
+    </div>
+  </div>
+</div>
+
+{% if steps == 'content' %}
+  {% partial __SELF__ ~ '::partial/_content' %}
+{% elseif steps == 'config' %}
+  {% partial __SELF__ ~ '::partial/_config' %}
+{% elseif steps == 'media' %}
+  {% partial __SELF__ ~ '::partial/_media' %}
+{% endif %}

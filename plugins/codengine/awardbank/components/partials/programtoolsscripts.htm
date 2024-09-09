@@ -1,0 +1,59 @@
+{% put scripts %}
+<script>
+  $('#program-tools').on('click', 'ul.pagination a', function (e) {
+    console.log('click detected');
+    var page = $(this).attr('href').split('=').pop();
+    e.preventDefault();
+    if (page) {
+      var data = {
+        'page': page
+      };
+      requestFactory('ProgramToolsDashboard::onPostsPaginate', data, ['#program-tools']);
+    }
+  });
+
+  $('body').on('click', 'a.program-tool-delete-button', function (e) {
+    e.preventDefault();
+
+    if (confirm("Are you sure you want to delete this program content?")){
+      var postId = $(this).attr('data-id');
+      if (postId) {
+        $('#post-wrapper-' + postId).dimmer('show');
+        $.request('ProgramToolsList::onPostDelete', {
+          data: {
+            postId: postId,
+          },
+          success: function(data) {
+            if (data.success === true) {
+              $('#program-tool-wrapper-' + postId).dimmer('hide');
+              $('#program-tool-wrapper-' + postId).remove();
+              $.oc.flashMsg({
+                'text': 'Post has been successfully deleted.',
+                'class': 'success',
+                'interval': 3
+              });
+            } else {
+              $('#program-tool-wrapper-' + postId).dimmer('hide');
+              $.oc.flashMsg({
+                'text': 'Invalid server response. The post might have not been deleted. Please refresh the page.',
+                'class': 'error',
+                'interval': 3
+              });
+            }
+          },
+          error: function(data){
+            $('#program-tool-wrapper-' + postId).dimmer('hide');
+            $.oc.flashMsg({
+              'text': 'Error while deleting post. Please refresh the page and try again.',
+              'class': 'error',
+              'interval': 3
+            });
+            throw data;
+          },
+
+        });
+      }
+    }
+  });
+</script>
+{% endput %}

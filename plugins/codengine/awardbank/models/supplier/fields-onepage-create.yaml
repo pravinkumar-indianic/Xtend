@@ -1,0 +1,120 @@
+fields:
+    product_details:
+        label: Supplier Details
+        type: section        
+    name:
+        label: 'codengine.awardbank::lang.awardbank.suppliername'
+        oc.commentPosition: ''
+        span: full
+        required: 1
+        type: text             
+    description:
+        label: 'codengine.awardbank::lang.awardbank.supplierdescription'
+        size: ''
+        oc.commentPosition: ''
+        span: full
+        required: 1
+        type: richeditor 
+    mark_up_type:
+        label: 'Mark Up Type'
+        oc.commentPosition: ''
+        span: auto
+        type: dropdown
+        options:
+            Percent: Percent
+            Dollars: Dollars
+            None: None
+    mark_up_integer:
+        label: 'Mark Up #'
+        oc.commentPosition: ''
+        span: auto
+        type: number                                             
+    primary_contact_name:
+        label: 'codengine.awardbank::lang.awardbank.primarycontactname'
+        oc.commentPosition: ''
+        span: full
+        type: text                  
+    primary_contact_email:
+        label: 'codengine.awardbank::lang.awardbank.primarycontactemail'
+        oc.commentPosition: ''
+        span: auto
+        type: text          
+    primary_contact_number:
+        label: 'codengine.awardbank::lang.awardbank.primarycontactnumber'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    secondary_contact_name:
+        label: 'codengine.awardbank::lang.awardbank.secondarycontactemail'
+        oc.commentPosition: ''
+        span: full
+        type: text                        
+    secondary_contact_email:
+        label: 'codengine.awardbank::lang.awardbank.secondarycontactemail'
+        oc.commentPosition: ''
+        span: auto
+        type: text          
+    secondary_contact_number:
+        label: 'codengine.awardbank::lang.awardbank.secondarycontactnumber'
+        oc.commentPosition: ''
+        span: auto
+        type: text          
+    product_details:
+        label: Product Details
+        type: section 
+    product_details:
+        label: Product Details
+        type: section    
+
+    product_details:
+        label: Image Details
+        type: section                       
+    feature_image:
+        label: 'codengine.awardbank::lang.awardbank.supplierfeatureimage'
+        type: fileupload
+        mode: image
+        imageHeight: 260
+        imageWidth: 260
+        tab: Image Management
+        thumbOptions:
+            mode: crop
+            offset:
+                - 0
+                - 0
+            quality: 90
+            sharpen: 0
+            extension: auto
+    images:
+        label: 'codengine.awardbank::lang.awardbank.supplierimages'
+        type: fileupload
+        mode: image
+        imageHeight: 260
+        imageWidth: 260
+        tab: Image Management
+        thumbOptions:
+            mode: crop
+            offset:
+                - 0
+                - 0
+            quality: 90
+            sharpen: 0
+            extension: auto
+
+    product_details:
+        label: Address Details
+        type: section    
+
+    address:
+        type: partial
+        path: field_address
+        tab: Address
+
+    product_details:
+        label: Product Details
+        type: section    
+       
+    permission_details:
+        label: Permission Details
+        type: section    
+         
+

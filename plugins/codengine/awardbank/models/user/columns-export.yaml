@@ -1,0 +1,43 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: rainlab.user::lang.user.id
+    username:
+        label: rainlab.user::lang.user.username
+    name:
+        label: rainlab.user::lang.user.name
+    surname:
+        label: rainlab.user::lang.user.surname
+    email:
+        label: rainlab.user::lang.user.email
+    is_activated:
+        label: 'Is Activated'
+    slug:
+        label: 'Slug'
+    new_tenure:
+        label: 'Tenure Date'       
+    new_birthday:
+        label: 'Birth Date'   
+    phone_number:
+        label: 'Phone Number'   
+    company_position:
+        label: 'Company Job Title'          
+    current_territory:
+        label: 'Territory'   
+    t_and_c_accept:
+        label: 'T&Cs Accepted'   
+    email_confirmed:
+        label: 'Email Confirmed'  
+    business_name:
+        label: 'Business Name'   
+    teams:
+        label: 'Teams'
+    teams_manager:
+        label: 'Teams Manager'         
+    programs:
+        label: 'Programs'
+    programs_manager:
+        label: 'Programs Manager'  

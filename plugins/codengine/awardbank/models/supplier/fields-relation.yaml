@@ -1,0 +1,40 @@
+fields:
+    name:
+        label: 'codengine.awardbank::lang.awardbank.suppliername'
+        oc.commentPosition: ''
+        span: full
+        required: 1
+        type: text
+        tab: Supplier Details               
+    description:
+        label: 'codengine.awardbank::lang.awardbank.supplierdescription'
+        size: ''
+        oc.commentPosition: ''
+        span: full
+        required: 1
+        type: richeditor
+        tab: Supplier Details               
+    primary_contact_email:
+        label: 'codengine.awardbank::lang.awardbank.primarycontactemail'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+        tab: Supplier Details              
+    primary_contact_number:
+        label: 'codengine.awardbank::lang.awardbank.primarycontactnumber'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+        tab: Supplier Details               
+    secondary_contact_email:
+        label: 'codengine.awardbank::lang.awardbank.secondarycontactemail'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+        tab: Supplier Details               
+    secondary_contact_number:
+        label: 'codengine.awardbank::lang.awardbank.secondarycontactnumber'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+        tab: Supplier Details              

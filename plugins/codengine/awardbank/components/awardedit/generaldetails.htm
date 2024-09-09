@@ -1,0 +1,11 @@
+<div class="ui segment">
+    <div class="ui one column stackable grid">
+        <div class="column">
+            <h3>General Details</h3>
+        </div>
+    </div>
+	<form class="ui form" {% if new == false %}id="award-general-details-update"{% else %}id="award-general-details-create"{% endif %}>
+    	{% partial '@awardform' award = award new = new %}
+		<button type="submit" class="ui primary submit button" data-attach-loading>Save Award</button>
+	</form>
+</div>

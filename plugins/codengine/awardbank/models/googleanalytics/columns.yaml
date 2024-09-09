@@ -1,0 +1,26 @@
+columns:
+    created_at:
+        label: Date
+        type: datetime
+        searchable: false
+        sortable: true
+    user_name:
+        label: 'User Name'
+        type: text
+        searchable: true
+        sortable: true
+    user_id:
+        label: 'User Id'
+        type: text
+    program_name:
+        label: 'Program Name'
+        type: text
+    email:
+        label: 'Email'
+        type: text
+    page:
+        label: Page
+        type: text
+    unique_page_views:
+        label: 'Unique Page Views'
+        type: text

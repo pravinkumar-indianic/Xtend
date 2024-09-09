@@ -1,0 +1,14 @@
+{% if enabled %}
+    <div class="ui segment" id="spin-the-wheel-announcement-wrapper">
+        {% partial('@announcement') %}
+    </div>
+
+    <div class="ui segment" id="spin-the-wheel-wrapper">
+        {% partial('@wheel') %}
+    </div>
+
+    {% if json_data != '[]' %}
+    {% partial('@script') %}
+    {% endif %}
+
+{% endif %}

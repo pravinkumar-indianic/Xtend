@@ -1,0 +1,4 @@
+title: Programs
+modelClass: Codengine\Awardbank\Models\Program
+toolbar:
+    buttons: reorder_toolbar

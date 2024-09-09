@@ -1,0 +1,86 @@
+{% if manager == true %}
+<div class="ui container" id="spin-the-win-management-reports">
+    <div class="ui stackable grid">
+        <div class="ten wide tablet sixteen wide computer column">
+            <div class="ui segment">
+                <h3>Spin to win Reports</h3>
+
+                <form class="ui form" id="filters">
+                    <div class="ui grid two columns">
+                        <div class="column">
+                            <div class="field">
+                                <label>Created At Start Range</label>
+                                <div class="ui calendar">
+                                    <div class="ui input left icon">
+                                        <i class="calendar icon"></i>
+                                        <input type="date" name="created_at_start" value="{{ default_start_date }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="field">
+                                <label>Created At End Range</label>
+                                <div class="ui calendar">
+                                    <div class="ui input left icon">
+                                        <i class="calendar icon"></i>
+                                        <input type="date" name="created_at_end" value="{{ default_end_date }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="ui grid one columns">
+                    <div class="column">
+                        <button class="ui primary filter export button spin-the-win-reports" data-attach-loading="">Export</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% put scripts %}
+
+<script>
+  $('body').on('click','.filter.export.button.spin-the-win-reports', function(e) {
+    e.preventDefault();
+
+    var inputs = $('#filters :input');
+    var data = {};
+    inputs.each(function() {
+      data[this.name] = $(this).val();
+    });
+    target = $(this);
+    target.addClass('loading');
+    $.request('onExportResults', {
+      data: data,
+      success: function(response)
+      {
+        if (response.manualerror) {
+          alert(response.manualerror);
+          target.removeClass('loading');
+          return false;
+        }
+        // The actual download
+        // Note: Code has been copied from MyProgram231219.js
+        var blob = new Blob([response], { type: 'text/csv' });
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'SpinToWinResults.csv';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        target.removeClass('loading');
+      },
+      error: function(data){
+        throw data;
+      },
+    });
+  });
+</script>
+
+{% endput %}
+{% endif %}

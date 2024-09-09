@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{{ page.title }}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% partial 'ga' %}
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-P6CN26D');</script>
+        <!-- End Google Tag Manager -->
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="stylesheet" href="{{[
+            'assets/vendor/datepicker/css/bootstrap-datepicker3.css',
+            'assets/dist/semantic.min.css',
+            'assets/vendor/slick/slick.min.css',
+            'assets/less/magic.less',
+        ]|theme }}" />
+        {% styles %}
+    </head>
+    <body class="admin">
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6CN26D"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        <div class="site-container">
+            {% partial 'site/header-v2' %}
+            <!--Begin Container-->
+            <div class="ui bottom attached pushable">
+                <div class="ui left inline vertical sidebar menu sidebar-nav">
+                    {{ Sidebar.html1|raw }}
+                </div>
+                <div class="pusher header-margin">
+                    {% page %}
+                    {% partial 'site/footer-v2' %}
+                </div>
+            </div>
+        </div>
+        <!--Finish Container-->
+        <div class="ui modal long">
+            <div class="header"></div>
+            <div class="content"></div>
+            <div class="actions"></div>
+        </div>
+        <script src="{{[
+            'assets/js/vendor/jquery.min.js',
+            'assets/vendor/slick/slick.min.js',
+            'assets/vendor/datepicker/js/bootstrap-datepicker.js',
+            'assets/dist/semantic.min.js',
+            'assets/js/globals111219.js',
+        ]|theme }}"></script>
+        {% framework extras %}
+        {% scripts %}
+    </body>
+</html>

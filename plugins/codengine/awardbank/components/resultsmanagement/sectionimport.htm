@@ -1,0 +1,42 @@
+{% if manager == true %}
+<div class="ui segment">
+    <h3>Upload Results/Scorecards</h3>
+    <p>Upload your scorecard data here. (<a href="https://staging-upload-xtend.s3.ap-southeast-2.amazonaws.com/downloads/results_import_sample.csv" target="_blank">download example.csv</a>)</p>
+
+    <!-- AJAX enabled form -->
+    <form data-request="onImport"
+          data-request-files
+          data-request-update="'{{ __SELF__}}::importresults': '#importResults'"
+          class="ui form"
+    >
+        <div class="field">
+            <input type="file" name="file" accept=".csv">
+        </div>
+
+        <div class="field">
+            <label for="month">Select Month</label>
+            <select name="month" id="month">
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+            </select>
+        </div>
+
+        <div class="ui toggle checkbox">
+            <label>Skip invalid records</label>
+            <input type="checkbox" name="skip_errors">
+        </div>
+
+        <!-- Action button -->
+        <p>
+            <button type="submit" class="ui button primary">Submit</button>
+        </p>
+    </form>
+
+    <!-- Result container -->
+    <div id="importResults"></div>
+</div>
+{% endif %}

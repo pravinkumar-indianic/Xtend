@@ -1,0 +1,50 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+results:
+    label: Result Data
+    modelClass: Codengine\Awardbank\Models\Result    
+    view:
+        toolbarButtons: create|remove  
+        form: $/codengine/awardbank/models/result/fields_relation.yaml                
+        list: $/codengine/awardbank/models/result/columns_relation.yaml
+        showSearch: true
+    manage:
+        form: $/codengine/awardbank/models/result/fields_relation.yaml
+        list: $/codengine/awardbank/models/result/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true 
+owners:
+    label: codengine.awardbank::lang.awardbank.owners
+    modelClass: Codengine\Awardbank\Models\Permission    
+    view:
+        toolbarButtons: create|remove          
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isOwner
+        recordOnClick: false     
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_owner.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true            
+        scope: isOwner                   
+
+viewability:
+    label: codengine.awardbank::lang.awardbank.viewability
+    modelClass: Codengine\Awardbank\Models\Permission    
+    view:
+        toolbarButtons: create|remove          
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isViewable
+        recordOnClick: false            
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_viewability.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true            
+        scope: isViewable           
+
+

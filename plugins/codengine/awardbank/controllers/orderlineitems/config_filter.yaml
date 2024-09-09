@@ -1,0 +1,61 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    fully_processed:
+        label: Un-Shipped Only
+        type: checkbox
+        default: 1
+        conditions: shipped_date is null
+    created_range:
+        label: Created At
+        type: daterange
+        minDate: '2017-01-21'
+        maxDate: '2030-10-13'
+        yearRange: 10
+        conditions: created_at >= ':after' AND created_at <= ':before'
+    updated_range:
+        label: Updated At
+        type: daterange
+        minDate: '2017-01-21'
+        maxDate: '2030-10-13'
+        yearRange: 10
+        conditions: updated_at >= ':after' AND updated_at <= ':before'
+    shipped_date:
+        label: Shipped At
+        type: daterange
+        minDate: '2017-01-21'
+        maxDate: '2030-10-13'
+        yearRange: 10
+        conditions: shipped_date >= ':after' AND shipped_date <= ':before'
+    arrived_date:
+        label: Arrived At
+        type: daterange
+        minDate: '2017-01-21'
+        maxDate: '2030-10-13'
+        yearRange: 10
+        conditions: arrived_date >= ':after' AND arrived_date <= ':before'
+    product_status:
+        label: Current Status
+        type: group
+        conditions: product_status in (:filtered)
+        options:
+            0 : 'Processing'
+            1 : 'Order Placed With Supplier'
+            2 : 'On Backorder'
+            3 : 'In Warehouse'
+            4 : 'Item Ready For Dispatch'
+            5 : 'Item Dispatched'
+            6 : 'Product Delivered'
+            7 : 'Product Cancelled'
+    suppliers:
+        label: Suppliers
+        modelClass: Codengine\Awardbank\Models\Supplier
+        scope: filterSuppliers
+        nameFrom: name
+    customers:
+        label: Customers
+        modelClass: Rainlab\User\Models\User
+        scope: filterCustomers
+        nameFrom: email

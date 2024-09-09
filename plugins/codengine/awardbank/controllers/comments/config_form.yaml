@@ -1,0 +1,10 @@
+name: Awards
+form: $/codengine/awardbank/models/comment/fields.yaml
+modelClass: Codengine\Awardbank\Models\Comment
+defaultRedirect: codengine/awardbank/comments
+create:
+    redirect: 'codengine/awardbank/comments/update/:id'
+    redirectClose: codengine/awardbank/comments
+update:
+    redirect: codengine/awardbank/comments
+    redirectClose: codengine/awardbank/comments

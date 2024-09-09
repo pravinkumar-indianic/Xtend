@@ -1,0 +1,15 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+ 
+import:
+    title: Import entries
+    modelClass: Codengine\Awardbank\Models\TeamImport
+    list: $/codengine/awardbank/models/team/columns-import.yaml
+    redirect: codengine/awardbank/teams
+export:
+    title: Export entries
+    modelClass: Codengine\Awardbank\Models\TeamExport
+    list: $/codengine/awardbank/models/team/columns-export.yaml
+    form: $/codengine/awardbank/models/team/fields-export.yaml   
+    redirect: codengine/awardbank/teams

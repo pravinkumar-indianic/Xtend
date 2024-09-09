@@ -1,0 +1,72 @@
+<div data-control="toolbar">
+    <a href="<?= Backend::url('codengine/awardbank/products/create') ?>" class="btn btn-primary oc-icon-plus"><?= e(trans('backend::lang.form.create')) ?></a>
+    <button
+        class="btn btn-default oc-icon-trash-o"
+        disabled="disabled"
+        onclick="$(this).data('request-data', {
+            checked: $('.control-list').listWidget('getChecked')
+        })"
+        data-request="onDelete"
+        data-request-confirm="<?= e(trans('backend::lang.list.delete_selected_confirm')) ?>"
+        data-trigger-action="enable"
+        data-trigger=".control-list .active-row input[type=checkbox]"
+        data-trigger-condition="checked"
+        data-request-success="$(this).prop('disabled', true)"
+        data-stripe-load-indicator>
+        <?= e(trans('backend::lang.list.delete_selected')) ?>
+    </button>
+    <button
+        class="btn btn-default oc-icon-trash-o"
+        disabled="disabled"
+        onclick="$(this).data('request-data', {
+            checked: $('.control-list').listWidget('getChecked')
+        })"
+        data-request="onRestore"
+        data-request-confirm="Restore Deleted Records"
+        data-trigger-action="enable"
+        data-trigger=".control-list .deleted-row input[type=checkbox]"
+        data-trigger-condition="checked"
+        data-request-success="$(this).prop('disabled', true)"
+        data-stripe-load-indicator>
+        Restore Deleted
+    </button>    
+    <a
+        href="<?= Backend::url('codengine/awardbank/products/import') ?>"
+        class="btn btn-primary oc-icon-list">
+        Import entries
+    </a>
+    <a
+        href="<?= Backend::url('codengine/awardbank/products/export') ?>"
+        class="btn btn-primary oc-icon-download">
+        Export entries
+    </a>    
+    <button
+
+            data-control="popup"
+            data-handler="onPopupFullRefresh"
+            href="javascript:;"
+            data-size="huge"
+            data-request-loading=""
+            class="btn btn-warning oc-icon-refresh"
+        >
+        Reprocess Products
+    </button>  
+    <button
+            href="javascript:;" 
+            title="List setup" 
+            data-control="popup" 
+            data-handler="list::onLoadSetup"
+            class="btn btn-secondary oc-icon-list"
+        >
+        Update Columns
+    </button>      
+    <button
+            data-request="onClearFilters"
+            href="javascript:;"
+            data-size="huge"
+            data-request-loading=""
+            class="btn btn-warning oc-icon-refresh"
+        >
+        Clear Filters
+    </button>     
+</div>

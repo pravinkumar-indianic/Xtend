@@ -1,0 +1,16 @@
+<input type="hidden" name="Product {{ index }}" value="{{ product.id }}">
+<div class="item">
+    <div class="ui small image">
+      <img src="{{ product.imagepath }}">
+    </div>
+    <div class="content">
+        <div class="description">    
+            <p>{{ product.name|raw }}</p>
+            <p>{{ product.points_value }} {{ points_name }}</p>         
+        </div>
+        <div class="extra">
+            <div class="ui right floated secondary button small add-to-cart-on-product product-{{product.id}}" data-id="{{product.id}}" data-page="OrderCreate">To Cart</div>  
+            <div class="ui right floated secondary button small minus-product-in-wishlist" data-id="{{product.id}}" data-id="OrderCreate" data-page="OrderCreate">Remove from Wishlist</div> 
+        </div>
+    </div>
+</div>

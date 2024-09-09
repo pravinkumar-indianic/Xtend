@@ -1,0 +1,45 @@
+<div class="sixteen wide tablet eleven wide computer column" style="margin-bottom: 2rem; width: 100%;">
+
+  {% if posts|length > 0 %}
+    {% for post in posts %}
+            
+        {% partial '@sharedpostpreview' 
+
+              post = post
+        %} 
+
+    {% endfor %}
+
+    {% if hasmorepage %}
+      {% if listMode == 'loadmore' %}
+        <button id="loadmorebtn-{{page}}" class="center floated ui label">Load More</a>
+      {% elseif listMode == 'paginate' %}
+        <div class="right floated wide column paginate">
+          <div class="ui pagination menu right">
+            
+              <a class="item"><i class="angle left icon"></i></a>
+              <a class="item"><i class="angle double left icon"></i></a>
+              {% for i in 1..totalpage|round(0, 'ceil') %}
+                {% if i == page %}
+                  <a class="item active">{{i}}</a>
+                {% else %}
+                  <a class="item" data-item="{{i}}">{{i}}</a>
+                {% endif %}
+              {% endfor %}
+              <a class="item"><i class="angle double right icon"></i></a>
+              <a class="item"><i class="angle right icon"></i></a>
+          </div>
+      </div>
+      {% endif %}
+    {% endif %}
+
+    
+    
+  {% else %}
+
+      No Result
+
+  {% endif %}
+
+</div>
+

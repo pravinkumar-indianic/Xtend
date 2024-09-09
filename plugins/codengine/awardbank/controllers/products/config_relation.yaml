@@ -1,0 +1,138 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+categories:
+    label: Categories
+    view:
+        toolbarButtons: add|create|remove            
+        form: $/codengine/awardbank/models/category/fields-relation-product.yaml             
+        list: $/codengine/awardbank/models/category/columns-relation.yaml
+        showSearch: true
+    manage:
+        form: $/codengine/awardbank/models/category/fields-relation-product.yaml
+        list: $/codengine/awardbank/models/category/columns-relation.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true    
+   
+tags:
+    label: Tags
+    view:
+        toolbarButtons: add|create|remove            
+        form: $/codengine/awardbank/models/tag/fields.yaml             
+        list: $/codengine/awardbank/models/tag/columns.yaml
+        showSearch: true
+    manage:
+        form: $/codengine/awardbank/models/tag/fields.yaml
+        list: $/codengine/awardbank/models/tag/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true   
+
+supplier:
+    label: codengine.awardbank::lang.awardbank.suppliers
+    view:
+        toolbarButtons: add|create|update|unlink     
+        form: $/codengine/awardbank/models/supplier/fields_relation.yaml             
+        list: $/codengine/awardbank/models/supplier/columns_relation.yaml
+        showSearch: true
+        scope: hasThisProduct 
+    manage:
+        form: $/codengine/awardbank/models/supplier/fields_relation.yaml
+        list: $/codengine/awardbank/models/supplier/columns_relation.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true    
+   
+owners:
+    label: codengine.awardbank::lang.awardbank.owners
+    modelClass: Codengine\Awardbank\Models\Permission    
+    view:
+        toolbarButtons: create|remove          
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isOwner
+        recordOnClick: false            
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_owner.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true            
+        scope: isOwner                   
+
+viewability:
+    label: codengine.awardbank::lang.awardbank.viewability
+    modelClass: Codengine\Awardbank\Models\Permission    
+    view:
+        toolbarButtons: create|remove          
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isViewable
+        recordOnClick: false            
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_viewability.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true            
+        scope: isViewable           
+
+wishlist:
+    label: codengine.awardbank::lang.awardbank.wishlist
+    modelClass: Codengine\Awardbank\Models\Permission    
+    view:
+        toolbarButtons: create|remove          
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isWishlist
+        recordOnClick: false            
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_wishlist.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true            
+        scope: isWishlist   
+
+
+cart:
+    label: codengine.awardbank::lang.awardbank.cart
+    modelClass: Codengine\Awardbank\Models\Permission    
+    view:
+        toolbarButtons: create|remove          
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isCart
+        recordOnClick: false            
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_cart.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true            
+        scope: isCart   
+
+
+replaces:
+    label: codengine.awardbank::lang.awardbank.productreplaces
+    modelClass: Codengine\Awardbank\Models\Product    
+    view:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/product/fields_relation_replaces.yaml                
+        list: $/codengine/awardbank/models/product/columns.yaml
+        showSearch: true
+        scope: relatedSupplierOnly
+    manage:
+        form: $/codengine/awardbank/models/product/fields_relation.yaml
+        list: $/codengine/awardbank/models/product/columns.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true     
+
+replacements:
+    label: codengine.awardbank::lang.awardbank.productreplacement
+    modelClass: Codengine\Awardbank\Models\Product    
+    view:
+        toolbarButtons: add|remove          
+        list: $/codengine/awardbank/models/product/columns.yaml
+        showSearch: true
+        scope: relatedSupplierOnly
+    manage:
+        form: $/codengine/awardbank/models/product/fields_relation.yaml
+        list: $/codengine/awardbank/models/product/columns.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true     

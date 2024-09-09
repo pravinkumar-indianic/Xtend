@@ -1,0 +1,282 @@
+# ===================================
+#  Relation Behavior Config
+# =================================== 
+
+nominations:
+    label: Nominee
+    modelClass: Codengine\Awardbank\Models\Nomination    
+    view:
+        toolbarButtons: create|remove  
+        form: $/codengine/awardbank/models/nomination/fields.yaml                
+        list: $/codengine/awardbank/models/nomination/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/nomination/fields.yaml
+        list: $/codengine/awardbank/models/nomination/columns.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 10
+votes:
+    label: Votes
+    modelClass: Codengine\Awardbank\Models\Vote    
+    view:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/vote/fields.yaml                
+        list: $/codengine/awardbank/models/vote/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/vote/fields.yaml
+        list: $/codengine/awardbank/models/vote/columns.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 10
+paired_award:
+    label: 'Paired Award'
+    modelClass: Codengine\Awardbank\Models\Award    
+    view:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/award/fields-relation.yaml                
+        list: $/codengine/awardbank/models/award/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/award/fields-relation.yaml
+        list: $/codengine/awardbank/models/award/columns.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 10      
+prizes:
+    label: Prizes
+    modelClass: Codengine\Awardbank\Models\Prize    
+    view:
+        toolbarButtons: create|remove  
+        form: $/codengine/awardbank/models/prize/fields_relation.yaml                
+        list: $/codengine/awardbank/models/prize/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/prize/fields_relation.yaml
+        list: $/codengine/awardbank/models/prize/columns.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 10
+
+
+owners:
+    label: codengine.awardbank::lang.awardbank.owners
+    modelClass: Codengine\Awardbank\Models\Permission    
+    view:
+        toolbarButtons: create|remove          
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isOwner
+        recordOnClick: false            
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_owner.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true            
+        scope: isOwner                   
+alias:
+    label: codengine.awardbank::lang.awardbank.alias
+    modelClass: Codengine\Awardbank\Models\Permission    
+    view:
+        toolbarButtons: create|remove             
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isAlias
+        recordOnClick: false           
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_alias.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true            
+        scope: isAlias
+viewability:
+    label: codengine.awardbank::lang.awardbank.viewability
+    modelClass: Codengine\Awardbank\Models\Permission    
+    view:
+        toolbarButtons: create|remove          
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isViewable
+        recordOnClick: false            
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_viewability.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true            
+        scope: isViewable
+nomination_viewability:
+    label: 'Nomination Permission'
+    modelClass: Codengine\Awardbank\Models\Permission    
+    view:
+        toolbarButtons: create|remove          
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isNomination
+        recordOnClick: false            
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_nomination.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true            
+        scope: isNomination           
+vote_viewability:
+    label: 'Vote Permission'
+    modelClass: Codengine\Awardbank\Models\Permission    
+    view:
+        toolbarButtons: create|remove          
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isVoteViewable
+        recordOnClick: false            
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_vote.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true            
+        scope: isVoteViewable
+
+
+
+viewingteams:
+    label: Teams Who Can View Award If Not Whole Program
+    modelClass: Codengine\Awardbank\Models\Team   
+    view:
+        toolbarButtons: add|remove           
+        form: $/codengine/awardbank/models/team/fields-relation.yaml             
+        list: $/codengine/awardbank/models/team/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/team/fields-relation.yaml
+        list: $/codengine/awardbank/models/team/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+        
+managers:
+    label: Editing Managers
+    modelClass: RainLab\User\Models\User
+    view:
+        toolbarButtons: add|remove        
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        showSearch: true
+        recordsPerPage: 10 
+    manage:
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 10 
+nominationsmanagers:
+    label: Nominations Manager
+    modelClass: RainLab\User\Models\User 
+    view:
+        toolbarButtons: add|remove           
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+winnersmanagers:
+    label: Winnners Manager
+    modelClass: RainLab\User\Models\User
+    view:
+        toolbarButtons: add|remove           
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+nominatableusers:
+    label: Users You Can Nominate If Not Whole Program
+    modelClass: Codengine\Awardbank\Models\Team   
+    view:
+        toolbarButtons: add|remove           
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+nominatableteams:
+    label: Teams You Can Nominate If Not Whole Program
+    modelClass: Codengine\Awardbank\Models\Team   
+    view:
+        toolbarButtons: add|remove           
+        form: $/codengine/awardbank/models/team/fields-relation.yaml             
+        list: $/codengine/awardbank/models/team/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/team/fields-relation.yaml
+        list: $/codengine/awardbank/models/team/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+nominationteams:
+    label: Teams Who Can Nominate If Not Whole Program
+    modelClass: Codengine\Awardbank\Models\Team   
+    view:
+        toolbarButtons: add|remove           
+        form: $/codengine/awardbank/models/team/fields-relation.yaml             
+        list: $/codengine/awardbank/models/team/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/team/fields-relation.yaml
+        list: $/codengine/awardbank/models/team/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+votableteams:
+    label: Teams You Can Vote For If Not Whole Program
+    modelClass: Codengine\Awardbank\Models\Team   
+    view:
+        toolbarButtons: add|remove           
+        form: $/codengine/awardbank/models/team/fields-relation.yaml             
+        list: $/codengine/awardbank/models/team/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/team/fields-relation.yaml
+        list: $/codengine/awardbank/models/team/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10       
+votingteams:
+    label: Teams Who Can Vote If Not Whole Program
+    modelClass: Codengine\Awardbank\Models\Team   
+    view:
+        toolbarButtons: add|remove           
+        form: $/codengine/awardbank/models/team/fields-relation.yaml             
+        list: $/codengine/awardbank/models/team/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/team/fields-relation.yaml
+        list: $/codengine/awardbank/models/team/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10  
+ 
+

@@ -1,0 +1,62 @@
+<div class="ui one column grid">
+	{% if nominations|length >= 1 %}
+        <small>(Note: Displaying first 300 records only.)</small>
+	    {% for nomination in nominations %}
+		  	<div class="column">
+			  	<div class="ui raised card fluid">
+				    <div class="content">
+				      	<div class="header">
+				      	Nomination #{{ nomination.id }}</div>
+				      	<div>Created At - {{ nomination.created_at|date('d/m/Y') }}</div>
+				      	<div>Approved At - {% if nomination.approved_at != null %}{{ nomination.approved_at|date('d/m/Y') }}{% else %}Not Approved{% endif %}</div>
+				      	<div>Approved By - {{ nomination.approver.full_name }}</div>
+				      	<div>Award: {{ nomination.award.name }}</div>
+				      	<div>Nominator: {{ nomination.nominator.full_name }}</div>
+				      	<div>Nominee Person: {{ nomination.user.full_name }}</div>
+				      	<div>Nominee Team: {{ nomination.team.name }}</div>
+				      	<div>Votes: {{
+				      		nomination.votes_count
+				      	}}</div>
+				      	{% if nomination.questions_answers|length >= 1 and nomination.questions_answers is iterable %}
+				      		<div>
+						      	<h4>Question Answers:</h4>
+						      	<ul>
+						      		{% for key,value in  nomination.questions_answers %}
+						      			<li><b>{{ key|replace({'_': ' '}) }} -</b> {% if value is iterable %}{% else %}{{ value }}{% endif %}</li>
+						      		{% endfor %}
+					      		</ul>
+				      		</div>
+			      		{% endif %}
+				      	{% if nomination.nomination_image %}
+				      		<div>
+						      	<h4>Image:</h4>
+						      	<a href="{{ nomination.nomination_image.getPath }}">Link</a>
+				      		</div>
+			      		{% endif %}
+				      	{% if nomination.nomination_file %}
+				      		<div>
+						      	<h4>File:</h4>
+						      	<a href="{{ nomination.nomination_file.getPath }}">Link</a>
+				      		</div>
+			      		{% endif %}
+			        </div>
+			        {% if nomination.managed == true %}
+			        	{% if nomination.approved_at == NULL %}
+			        		<div class="ui bottom attached secondary button nomination-approval" data-id="{{ nomination.id }}">Not Approved</div>
+		        		{% else %}
+		        			<div class="ui bottom attached primary button nomination-approval" data-id="{{ nomination.id }}">Approved</div>
+	        			{% endif %}
+		        	{% endif %}
+		  		</div>
+	  		</div>
+	  	{% endfor %}
+  	{% else %}
+	  	<div class="column">
+		  	<div class="ui raised card fluid no-results">
+		  		<div class="content">
+			      	<div class="header">No Results Found.</div>
+		      	</div>
+	      	</div>
+      	</div>
+  	{% endif %}
+</div>

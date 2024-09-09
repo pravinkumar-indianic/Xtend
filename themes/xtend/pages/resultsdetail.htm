@@ -1,0 +1,51 @@
+title = "Results Detail"
+url = "/results-detail/:leaderboard"
+layout = "default-v2"
+is_hidden = 0
+
+[viewBag]
+metaarea = 3
+
+[session]
+security = "user"
+redirect = "login"
+
+[access]
+metaarea = 3
+
+[ResultsDetail]
+monthstring = "January 2021"
+showSprintModule = 0
+partHeader = "Elite Point Opportunity Q3"
+partTitleFirst = "January 2021 Radiators"
+partTitleSecond = "Plan Achieved"
+partTitleThird = "January 2021 Points Earned"
+partTitleFourth = "Fourth"
+partTitleFifth = "Data"
+serviceHeader = "Elite Point Opportunity Q3"
+serviceTitleFirst = "July TSA Volume Plan"
+serviceTitleSecond = "July TSA Volume Achieved"
+serviceTitleThird = "January 2021 Points Earned"
+serviceTitleFourth = "Data"
+serviceTitleFifth = "Data"
+
+[CustomStyles]
+
+[Sidebar]
+
+[Cart]
+
+[SwitchProgram]
+
+[RewardsNav]
+
+[FooterUsefullInfo]
+==
+{% component 'CustomStyles' %}
+{% if access.program.display_results_elite == true %}
+	<div class="ui container">
+	    <div class="ui grid">
+			{% component 'ResultsDetail' %}
+	    </div>
+	</div>
+{% endif %}

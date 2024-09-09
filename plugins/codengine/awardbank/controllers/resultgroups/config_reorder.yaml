@@ -1,0 +1,4 @@
+title: ResultTypes
+modelClass: Codengine\Awardbank\Models\ResultType
+toolbar:
+    buttons: reorder_toolbar

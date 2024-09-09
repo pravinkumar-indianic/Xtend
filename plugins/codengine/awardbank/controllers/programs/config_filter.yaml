@@ -1,0 +1,55 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    organization:
+        label: Organization
+        modelClass: Codengine\Awardbank\Models\Organization  
+        scope: filterHasOrganization
+        nameFrom: name        
+    teams:
+        label: Teams
+        modelClass: Codengine\Awardbank\Models\Team  
+        scope: filterHasTeams
+        nameFrom: name
+    billingcontact:
+        label: Billing Contact
+        modelClass: Codengine\Awardbank\Models\BillingContact  
+        scope: filterHasBillingContact
+        nameFrom: name
+    billinginvoices:
+        label: Billing Invoices
+        modelClass: Codengine\Awardbank\Models\BillingInvoice 
+        scope: filterHasBillingInvoices
+        nameFrom: id
+    users:
+        label: Users
+        modelClass: Rainlab\User\Models\User  
+        scope: filterHasUsers
+        nameFrom: full_name
+    managers:
+        label: Managers
+        modelClass: Rainlab\User\Models\User  
+        scope: filterHasManagers
+        nameFrom: full_name
+    address:
+        label: Address
+        modelClass: Codengine\Awardbank\Models\Address  
+        scope: filterHasAddress
+        nameFrom: full_address
+    product_exclusions:
+        label: Product Exclusions
+        modelClass: Codengine\Awardbank\Models\Product   
+        scope: filterHasProductExclusions
+        nameFrom: name
+    category_exclusions:
+        label: Category Exclusions
+        modelClass: Codengine\Awardbank\Models\Category 
+        scope: filterHasProductExclusions
+        nameFrom: name
+    resultgroups:
+        label: Result Groups
+        modelClass: Codengine\Awardbank\Models\ResultGroup 
+        scope: filterHasResultGroups
+        nameFrom: name

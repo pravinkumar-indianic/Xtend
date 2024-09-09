@@ -1,0 +1,33 @@
+#fullpage{
+
+	.page3{
+		background:url(../img/homepage/background3.png) center right / 200px 200px no-repeat;
+
+		img{
+			width:100%;
+			height:auto;
+			max-width:250px;
+		}
+
+		@media only screen and (min-width: 769px) and (max-width:991px) {
+			img{
+				max-width:350px;
+			}
+		}
+
+		@media only screen and (min-width: 992px) and (max-width:1200px) {
+			img{
+				max-width:500px;
+			}
+			background-size: 250px 250px;
+		}
+
+		@media only screen and (min-width: 1201px) {
+			img{
+				max-width:650px;
+			}
+			background-size: 300px 300px;
+		}
+	}
+
+}

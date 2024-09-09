@@ -1,0 +1,39 @@
+{% set post = __SELF__.post %}
+{% set steps = __SELF__.steps %}
+{% set moduleType = __SELF__.moduleType %}
+
+{% put styles %}
+    <link href="{{ 'assets/js/vendor/tinymce/skins/lightgray/skin.min.css'|theme }}" rel="stylesheet" />
+{% endput %}
+
+{% put scripts %}
+   	<script src="{{ 'assets/js/vendor/tinymce/tinymce.min.js'|theme }}"></script>
+    <script src="{{ 'assets/js/vendor/tinymce/themes/modern/theme.min.js'|theme }}"></script>
+    <script src="{{ 'assets/js/custom-editor.js'|theme }}"></script>
+
+{% endput %}
+
+<form class="ui form" id='postcreateform{{steps}}' data-request="onPostCreate" data-request-update="'{{__SELF__}}::partial/steps' : '#createpostdiv'" data-request-complete="formNext();">	
+
+	
+    <div class="ui form" style="padding-top: 20px; padding-bottom: 40px;">
+        <div class="field">
+          <label>Title</label>
+          <input placeholder="Post Title" type="text" name="title" value="{{post.title}}">
+        </div>
+        <div class="field">
+          <label>Content</label>
+          <textarea placeholder="Post Content" type="text" class="tinymceeditor" name="content" id="contenttxt">{{post.content}}</textarea>
+        </div>
+        
+        <div class="field">
+        	<input type="hidden" name="type" value="{{moduleType}}">
+			<input value="{{steps}}" name="step" type="hidden" id="steps">
+			<input value="{{post.id}}" name="post_id" type="hidden">
+            <div class="ui error message"></div>
+
+            <button class="ui primary submit button right floated" type="submit">Next</button>
+        </div>
+    </div>
+       
+</form>

@@ -1,0 +1,130 @@
+tabs:
+    defaultTab: Supplier Details
+    fields:
+        name:
+            label: 'codengine.awardbank::lang.awardbank.suppliername'
+            oc.commentPosition: ''
+            span: full
+            required: 1
+            type: text
+            tab: Supplier Details
+        description:
+            label: 'codengine.awardbank::lang.awardbank.supplierdescription'
+            size: huge
+            oc.commentPosition: ''
+            span: full
+            required: 1
+            type: richeditor
+            tab: Supplier Details
+        mark_up_type:
+            label: 'Mark Up Type'
+            oc.commentPosition: ''
+            span: auto
+            type: dropdown
+            options:
+                Percent: Percent
+                Dollars: Dollars
+                None: None
+            tab: Supplier Details
+        territory:
+            label: 'Territory'
+            oc.commentPosition: ''
+            span: full
+            type: dropdown
+            options:
+                'AU' : Australia
+                'NZ' : New Zealand
+                'IRL': Ireland
+                'UK' : UK
+                'PH' : Phillipines
+            tab: Supplier Details
+        orders_email:
+            label: 'Order E-mail'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: Supplier Details
+        mark_up_integer:
+            label: 'Mark Up #'
+            oc.commentPosition: ''
+            span: auto
+            type: number
+            tab: Supplier Details
+        primary_contact_name:
+            label: 'codengine.awardbank::lang.awardbank.primarycontactname'
+            oc.commentPosition: ''
+            span: full
+            type: text
+            tab: Supplier Details
+        primary_contact_email:
+            label: 'codengine.awardbank::lang.awardbank.primarycontactemail'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: Supplier Details
+        primary_contact_number:
+            label: 'codengine.awardbank::lang.awardbank.primarycontactnumber'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: Supplier Details
+        secondary_contact_name:
+            label: 'Secondary Contact Name'
+            oc.commentPosition: ''
+            span: full
+            type: text
+            tab: Supplier Details
+        secondary_contact_email:
+            label: 'codengine.awardbank::lang.awardbank.secondarycontactemail'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: Supplier Details
+        secondary_contact_number:
+            label: 'codengine.awardbank::lang.awardbank.secondarycontactnumber'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: Supplier Details
+
+        feature_image:
+            label: 'codengine.awardbank::lang.awardbank.supplierfeatureimage'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: 260
+            tab: Image Management
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto
+        images:
+            label: 'codengine.awardbank::lang.awardbank.supplierimages'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: 260
+            tab: Image Management
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto
+
+        address:
+            type: partial
+            path: field_address
+            tab: Address
+
+        products:
+            type: partial
+            path: field_products
+            tab: 'codengine.awardbank::lang.awardbank.products'
+

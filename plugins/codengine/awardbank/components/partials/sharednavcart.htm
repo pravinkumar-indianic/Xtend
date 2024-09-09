@@ -1,0 +1,54 @@
+{# <div class="top-cart-close"></div> #}
+{% for product in products %}
+    <div class="item top-cart-item">
+        <div class="top-cart-item-image" {% if product.external_image_url %}
+
+            style="background-image:url('{{ product.external_image_url }}')"
+
+        {% else %}
+
+            style="background-image:url('{{ product.feature_image.thumb(auto, auto) }}')"  
+
+        {% endif %}></div>
+
+        <div class="top-cart-item-desc">
+            <span class="top-cart-item-heading">{{ product.name }}</span>
+            <!-- <span class="top-cart-item-detail">Size or details</span> -->
+            <span class="top-cart-item-points">
+                {% if scale_points_by >= 1%}
+                      {{ product.points_value * scale_points_by }} 
+                  {% else %}
+                      {{ product.points_value }} 
+                  {% endif %}
+                  {{ points_name }}</span>
+
+                  {% if product.color != null %}
+                    <span class="top-cart-item-detail" style="font-size:8px;">Color: {{ product.color }}</span>
+                  {% endif %}
+                  {% if product.size != null %}
+                    <span class="top-cart-item-detail" style="font-size:8px;">Size: {{ product.size }}</span>
+                  {% endif %}
+                  {% if product.custom_option != null %}
+                    <span class="top-cart-item-detail" style="font-size:8px;">Custom Options: {{ product.custom_option }}</span>
+                  {% endif %}
+                  {% if product.order_customer_email != null %}
+                    <span class="top-cart-item-detail" style="font-size:8px;">Voucher E-mail: {{ product.order_customer_email }}</span>
+                  {% endif %}
+                  {% if product.shipped_date != null %}
+                    <span class="top-cart-item-detail" style="font-size:8px;">Preferred Date: {{ product.shipped_date }}</span>
+                  {% endif %}
+            <span class="top-cart-item-remove"><i class="remove icon in-cart product-{{product.id}}" data-id="{{product.id}}"></i></span>
+        </div>
+    </div>
+{% endfor %}
+<div class="item top-cart-item-description">
+    {% if count > 3 %}
+        <a href="/cart" class="top-cart-view">view all</a>
+    {% endif %}
+    <span class="top-cart-items">{{ count }} items</span>
+    <span class="top-cart-points">Total: {{ ordertotal * scale_points_by }} {{ points_name }}</span> 
+</div>
+<div class="item top-cart-item-buttons">
+    <a href="/cart" class="ui button secondary small">Checkout</a>
+    {# <a href="" class="ui button secondary small">View wishlist</a> #}
+</div>

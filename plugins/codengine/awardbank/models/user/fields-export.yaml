@@ -1,0 +1,12 @@
+fields:
+    program:
+        label: Program
+        type: dropdown
+    skip:
+        label: Skip users from position (default 0)
+        type: number
+        default: 0
+    take:
+        label: Take (How much users to export, default 5000)
+        type: number
+        default: 5000

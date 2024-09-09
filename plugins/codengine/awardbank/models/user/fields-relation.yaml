@@ -1,0 +1,23 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+    avatar:
+        label: rainlab.user::lang.user.avatar
+        type: fileupload
+        mode: image
+        imageHeight: 260
+        imageWidth: 260
+    full_name:
+        label: rainlab.user::lang.user.name
+        span: full
+    business_name:
+        label: Business Name
+        span: full    
+    company_position:
+        label: Company Position
+        span: full          
+    email:
+        label: rainlab.user::lang.user.email
+        span: full

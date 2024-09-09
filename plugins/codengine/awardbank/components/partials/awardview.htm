@@ -1,0 +1,179 @@
+<div class="ui one column grid grid-no-margin">
+	{% if award and award.viewallowed == true %}
+    	{% if award.managed == true %}
+            <div class="ui column wide">
+				<a href="/award/{{award.slug}}/edit" class="ui button secondary square right">Edit & Manage Award</a>
+            </div>
+        {% endif %}
+        {% if award.feature_image %}
+            <div class="ui column">
+                <div class="award-full-image">
+                    <img class="ui fluid image centered" src="{{ award.feature_image.path }}" >
+                </div>
+            </div>
+        {% endif %}
+        <div class="ui column">
+			<div class="award-promo" {% if award.primary_color != null and award.primary_color != '' %} style="background-color:{{ award.primary_color }}" {% endif %}>
+				<div class="award-promo-graphic" {% if award.trophy_image %} style="background-image:url('{{ award.trophy_image.getThumb(210,auto) }}')" {% endif %}>
+				</div>
+                <div class="award-promo-summary">
+                    <h3>{{ award.name }}</h3>
+                    <p>{{ award.description }}</p>
+					<p>Opens: <time class="date updated" datetime="">{{ award.award_open_at|date("F jS Y") }}</time>.</p>
+					<p>Closes: <time class="date updated" datetime="">{{award.award_close_at|date("F jS Y") }}</time></p>
+                </div>
+				{% if award.prizes.count >= 1 %}
+					<div class="award-promo-points"  {% if award.secondary_color != null and award.secondary_color != '' %} style="background-color:{{ award.secondary_color }}" {% endif %}>
+						<div class="award-promo-points-wrap">
+							<span class="award-promo-points-amount">{{award.prizes.count }}</span>
+							<span class="award-promo-points-title">{{ award.prize_display_string }}(s)</span>
+						</div>
+					</div>
+				{% endif %}
+            </div>
+    	</div>
+		{% if award.prizes|length >= 1 %}
+			<div class="ui column center aligned header">
+                <h2>{{ award.prize_display_string }}</h2>
+            </div>
+			<div class="ui column">
+                {% partial '@prizeslist' prizes = award.prizes %}
+			</div>
+		{% endif %}
+ 		{% if award.hide_nominations_tab == false %}
+	        <div class="ui column center aligned header">
+	            <h2>Award Details</h2>
+	        </div>
+			<div class="ui column">
+				<table class="ui table award-table">
+                    <thead>
+                        <th><h2 class="award-table-heading">{{ award.nomination_display_string }} open date</h2></th>
+                        <th><h2 class="award-table-heading">{{ award.nomination_display_string }} close date</h2></th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                        	<time class="date updated" datetime="">{{ award.nominations_open_at|date("d/m/Y",award.timezone)}}</time>
+                        </td>
+                        <td>
+                        	<time class="date updated" datetime="">{{ award.nominations_closed_at|date("d/m/Y",award.timezone)}}</time>
+                        </td>
+                      </tr>
+                    </tbody>
+        			{% if award.voteallowed == true %}
+                        <thead>
+                            <th><h2 class="award-table-heading">Voting open date</h2></th>
+                            <th><h2 class="award-table-heading">Voting close date</h2></th>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                            	<time class="date updated" datetime="">{{award.votes_open_at|date("F jS Y")}}</time>
+                            </td>
+                            <td>
+                            	<time class="date updated" datetime="">{{award.votes_close_at|date("F jS Y")}}</time>
+                            </td>
+                          </tr>
+                        </tbody>
+        			{% endif %}
+                </table>
+            </div>
+		{% endif %}
+		{% if award.nominations_public == true and award.nominateallowed == true %}
+            <div class="ui sixteen wide column center aligned header">
+                <h2>{{ award.nomination_display_string }}</h2>
+            </div>
+            <div class="ui column">
+                <div id="nomination-table">
+                    <div id="nomination-table-target">
+                        {% partial '@nomineelist'
+                        	nominees = nominations
+                        	nomineestring = award.nomination_display_string
+                        	votingenabled = award.voteallowed
+                        	votescountvisible = award.voteallowed
+                    	%}
+                    </div>
+                </div>
+            </div>
+		{% endif %}
+ 		{% if award.nominateallowed == true %}
+            <div class="ui sixteen wide column center aligned header">
+                <h2>{{award.nomination_display_string }}</h2>
+            </div>
+			<div class="ui column">
+				<div id="nomination-form">
+					<div class="ui inverted dimmer">
+						<div class="ui text loader">Loading</div>
+					</div>
+					{#
+					<div id="nomination_wrapper">
+						{% if award.paired_award|length >= 1 %}
+	                        <div class="nomination_search" id="paired_award" name="paired_award" style="margin-bottom:20px;">
+	                            <div class="filter-sortby nomination-search">
+	                                <div class="ui search dropdown" id="paired_award_selection">
+	                                    <input type="hidden" name="nominee">
+	                                    <div class="default text">{{award.nomination_display_string }} For</div>
+	                                    <div class="menu">
+	                                    	<div class="item" data-value="{{ award.id }}">{{ award.name }}</div>
+			                        		{% for awardpaired in award.paired_award %}
+			                        			<div class="item" data-value="{{ awardpaired.id }}">{{ awardpaired.name }}</div>
+			                        		{% endfor %}
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+						{% endif %}
+						#}
+						{% if award.nomination_type == 2 %}
+                            <!-- Please it empty -->
+                            {% if award.nomination_secondary_header %}
+                                <h2>{{ award.nomination_secondary_header }}</h2>
+                            {% endif %}
+	            		{% else %}
+	                        <div class="nomination_search" id="nominee" name="nominee" style="margin-bottom:20px;">
+	                            <div class="filter-sortby nomination-search">
+	                                <div class="ui search dropdown" id="nomineeselectiondropdown" name="Select A Nominee">
+	                                    <input type="hidden" name="nominee">
+	                                    <div class="default text">Select {{award.nomination_display_string }}</div>
+	                                    <div class="menu">
+	                                        {% for nominee in award.potentialnominees %}
+	                                        	<div class="item" data-value="{{ nominee.id }}">{{ nominee.safename }}</div>
+	                                        {% endfor %}
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div style="font-size:10px;color:red;margin=top:10px;" id="nominee_message_target">If the employee you are looking for is not on the list, please contact your HR team or Program Manager.</div>
+	                        </div>
+	                    {% endif %}
+	                    <form class="ui form" id="nomineecreateforms">
+	                        {% if award.nomination_image_upload == true %}
+			                	<div class="field" style="margin-bottom:20px;">
+			                        <label for="file1" style="margin-bottom:20px;">Add {{award.nomination_display_string }} Image:</label>
+			                        {% component 'fileUploader' %}
+			                    </div>
+		                    {% endif %}
+	                        {% if award.nomination_file_upload == true %}
+			                	<div class="field" style="margin-bottom:20px;">
+			                        <label for="file2" style="margin-bottom:20px;">Add {{award.nomination_display_string }} Files:</label>
+			                        {% component 'fileUploader2' %}
+			                    </div>
+		                    {% endif %}
+	                        {% if award.nomination_questions_json|length >= 1 %}
+			                    {% partial '@questionsview'
+			                    	questions = award.nomination_questions_json
+			                	%}
+	                    	{% endif %}
+						  	<div class="actions">
+							    <button class="ui primary square button right" id="modal-submit">Submit</button>
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		{% endif %}
+    {% else %}
+        <div class="ui column">
+            <h1 class="award-full-header">No Award Found Or Award Has Closed.</h1>
+        </div>
+    {% endif %}
+</div>

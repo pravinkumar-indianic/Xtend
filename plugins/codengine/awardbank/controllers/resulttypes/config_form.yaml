@@ -1,0 +1,10 @@
+name: ResultTypes
+form: $/codengine/awardbank/models/resulttype/fields.yaml
+modelClass: Codengine\Awardbank\Models\ResultType
+defaultRedirect: codengine/awardbank/resulttypes
+create:
+    redirect: 'codengine/awardbank/resulttypes/update/:id'
+    redirectClose: codengine/awardbank/resulttypes
+update:
+    redirect: codengine/awardbank/resulttypes
+    redirectClose: codengine/awardbank/resulttypes

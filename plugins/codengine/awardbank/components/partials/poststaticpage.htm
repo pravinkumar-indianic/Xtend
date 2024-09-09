@@ -1,0 +1,39 @@
+<div class="ui one column grid grid-no-margin">
+    {% if post %}
+        {% if post.managed == true %}
+        <div class="ui column wide">
+            <a href="/post/{{post.slug}}/edit" class="ui button secondary square right">Edit & Manage Post</a>
+        </div>
+        {% endif %}
+        {% if post.feature_image %}
+        <div class="ui column">
+            <div class="post-full-image">
+                <img class="ui image centered post-image" src="{{ post.feature_image.path }}">
+            </div>
+        </div>
+        {% endif %}
+        <div class="ui column">
+            <h1 class="post-full-header">{{post.title}}</h1>
+        </div>
+        <div class="ui column">
+            {{ post.content|raw }}
+        </div>
+        {% if post.post_type == "post" %}
+        <div class="ui column">
+            <div class="btnlike">
+                <small>
+                    <div id="likecount">
+                        <a class="text-muted">{{ post.comments|length }} Comment</a> &nbsp;
+                    </div>
+                </small>
+            </div>
+        </div>
+        <div class="ui column divider">
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="ui column">
+            <h1 class="post-full-header">No Post Found</h1>
+        </div>
+    {% endif %}
+</div>

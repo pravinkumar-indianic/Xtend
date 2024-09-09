@@ -1,0 +1,162 @@
+<div class="ui one column grid userlist">
+    {% if users|length > 0 %}
+    <div class="column" style="padding: 0;">
+        <div class="ui grid grid-no-margin post-summary">
+            <div class="sixteen wide tablet sixteen wide computer column content post-summary-content">
+                <table class="ui table breakdown">
+                    <thead>
+                        <th
+                            class="userlist-sortable-header-column {% if orderBy=='name' %}active{% endif %}"
+                            data-id="name">
+                            {% if orderBy=='name' %}
+                            {% if orderType=='ASC' %}<i class="icon chevron up"></i>{% endif %}
+                            {% if orderType=='DESC' %}<i class="icon chevron down"></i>{% endif %}
+                            <br/>
+                            {% endif %}
+                            First Name
+                        </th>
+                        <th
+                            class="userlist-sortable-header-column {% if orderBy=='surname' %}active{% endif %}"
+                            data-id="surname">
+                            {% if orderBy=='surname' %}
+                            {% if orderType=='ASC' %}<i class="icon chevron up"></i>{% endif %}
+                            {% if orderType=='DESC' %}<i class="icon chevron down"></i>{% endif %}
+                            <br/>
+                            {% endif %}
+                            Last Name
+                        </th>
+                        <th
+                            class="userlist-sortable-header-column {% if orderBy=='email' %}active{% endif %}"
+                            data-id="email">
+                            {% if orderBy=='email' %}
+                            {% if orderType=='ASC' %}<i class="icon chevron up"></i>{% endif %}
+                            {% if orderType=='DESC' %}<i class="icon chevron down"></i>{% endif %}
+                            <br/>
+                            {% endif %}
+                            Email
+                        </th>
+                        <th
+                            class="userlist-sortable-header-column {% if orderBy=='business_name' %}active{% endif %}"
+                            data-id="business_name">
+                            {% if orderBy=='business_name' %}
+                            {% if orderType=='ASC' %}<i class="icon chevron up"></i>{% endif %}
+                            {% if orderType=='DESC' %}<i class="icon chevron down"></i>{% endif %}
+                            <br/>
+                            {% endif %}
+                            Business (Store) Name
+                        </th>
+                        <th
+                            class="userlist-sortable-header-column {% if orderBy=='state' %}active{% endif %}"
+                            data-id="state">
+                            {% if orderBy=='state' %}
+                            {% if orderType=='ASC' %}<i class="icon chevron up"></i>{% endif %}
+                            {% if orderType=='DESC' %}<i class="icon chevron down"></i>{% endif %}
+                            <br/>
+                            {% endif %}
+                            State
+                        </th>
+                        <th
+                            class="userlist-sortable-header-column {% if orderBy=='kam' %}active{% endif %}"
+                            data-id="kam">
+                            {% if orderBy=='kam' %}
+                            {% if orderType=='ASC' %}<i class="icon chevron up"></i>{% endif %}
+                            {% if orderType=='DESC' %}<i class="icon chevron down"></i>{% endif %}
+                            <br/>
+                            {% endif %}
+                            KAM
+                        </th>
+                        <th
+                            class="userlist-sortable-header-column {% if orderBy=='last_login' %}active{% endif %}"
+                            data-id="last_login">
+                            {% if orderBy=='last_login' %}
+                            {% if orderType=='ASC' %}<i class="icon chevron up"></i>{% endif %}
+                            {% if orderType=='DESC' %}<i class="icon chevron down"></i>{% endif %}
+                            <br/>
+                            {% endif %}
+                            Last Activity
+                        </th>
+                        <th
+                            class="userlist-sortable-header-column {% if orderBy=='roll' %}active{% endif %}"
+                            data-id="roll">
+                            {% if orderBy=='roll' %}
+                            {% if orderType=='ASC' %}<i class="icon chevron up"></i>{% endif %}
+                            {% if orderType=='DESC' %}<i class="icon chevron down"></i>{% endif %}
+                            <br/>
+                            {% endif %}
+                            User Type
+                        </th>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr data-id="{{ user.id }}" class="user-record">
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.surname }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.business_name }}</td>
+                            <td>{{ user.state }}</td>
+                            <td>{{ user.kam }}</td>
+                            <td>{% if user.last_login %} {{ user.last_login|date('d/m/y h:i a') }}{% else %}-{% endif %}</td>
+                            <td>{{ user.roll }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="column">
+        <div class="ui raised card fluid no-results">
+            <div class="content">
+                <div class="header">No Results Found.</div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="pagination-wrapper">
+        {{ users.render|raw }}
+    </div>
+</div>
+
+{% put scripts %}
+<script>
+  $('#users').on('click', 'ul.pagination a', function (e) {
+    let page = $(this).attr('href').split('=').pop();
+    let searchterm = $('#users-search-term').val();
+
+    e.preventDefault();
+    if (page) {
+      var data = {
+        'page': page,
+        'searchterm' : searchterm,
+      };
+      requestFactory('UserManagement::onUsersPaginate', data, ['#users']);
+    }
+  });
+
+  $('body').on('click', '.userlist-sortable-header-column', function(e) {
+    let searchterm = $('#users-search-term').val();
+    let orderBy = $(this).attr('data-id');
+
+    e.preventDefault();
+    if (orderBy) {
+      var data = {
+        'page': 1,
+        'searchterm': searchterm,
+        'orderBy': orderBy
+      };
+      requestFactory('UserManagement::onUsersPaginate', data, ['#users']);
+    }
+  });
+
+  $('body').on('click', '.user-record', function (e) {
+    e.preventDefault();
+    let id = $(this).attr('data-id');
+    if (id) {
+      window.location = window.location.origin + '/user-management/{{userlinkprefix}}user?id=' + id;
+    }
+  });
+</script>
+{% endput %}
+

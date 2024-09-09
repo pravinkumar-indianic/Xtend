@@ -1,0 +1,72 @@
+// ContentBlock2 styles
+// Components: ContentBlock2.php
+
+.ui.container.container-content-block2 {
+    @media only screen and (max-width: @mobile-max) {
+        margin:0!important;
+    }
+    > .ui.grid {
+        @media only screen and (max-width: @mobile-max) {
+            margin:0!important;
+        }
+        >.column {
+            @media only screen and (max-width: @mobile-max) {
+                padding:0!important;
+            } 
+        }
+    }
+    @media only screen and (min-width: @tablet) {
+        //margin-top:2rem;
+    }
+}
+
+
+.ui.segment.content-block2 {
+    height: 100%;
+    //border:1px solid @brand-aqua;
+    color:@brand-aqua;
+    border-radius:0;
+    .content-block2-image {
+        background-size:cover;
+        background-position:center;
+        background-repeat:no-repeat;
+    }
+    &.content-block2-invert {
+        background:@brand-aqua;
+        color:@white;
+        border:none;
+        a {
+            color:@white;
+            &:hover {
+                color:@gray-light;
+            }
+        }
+    }
+    .content-block2-heading h2 {
+        font-size:11px;
+        text-transform:uppercase;
+        font-family:@font-light;
+        margin-bottom:15px;
+    }
+    &.content-block2-text,
+    .content-block2-text {
+        padding:30px;
+    }
+    p {
+        margin:0;
+    }
+    .line1 {
+        font-size:18px;
+        font-family:@font-light;  
+    }
+    .line2 {
+        font-size:16px;
+        font-family:@font-light;  
+    }
+    .line3 {
+        margin-top:5px;
+    }
+    a {
+        font-size:14px;
+    }
+}

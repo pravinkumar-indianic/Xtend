@@ -1,0 +1,26 @@
+<div class="ui grid dashboard-posts-grid">
+	<div class="columns">
+		<div class="ui header sixteen wide tablet eight wide computer column">
+			<h2 class="ui header">
+                {% if user.current_program_id == 2 %}
+                Program Information
+                {% elseif user.currentProgram.name == '5STEP Incentive' %}
+                5STEP Latest Posts
+                {% else %}
+                Latest Posts
+                {% endif %}
+            </h2>
+		</div>
+		{% if manager == true %}
+			<div class="ui sixteen wide tablet eight wide computer column">
+				<a href="/post/create/edit" class="ui button primary square right">Create post</a>
+			</div>
+		{% endif %}
+	</div>
+</div>
+
+<div id="posts" style="margin-top: 20px;">
+{% partial '@postslist' posts = posts mode = 'dashboard' %}
+</div>
+
+{% partial '@postslistscripts' %}

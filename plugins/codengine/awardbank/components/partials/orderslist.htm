@@ -1,0 +1,38 @@
+<div class="ui one column grid">
+	{% if orders|length >=1 %}
+	    {% for order in orders %}
+		  	<div class="column">
+			  	<div class="ui raised card fluid">
+				    <div class="content">
+				      	<div class="header">Order #{{ order.id }}</div>
+				      	<div>Created At - {{ order.created_at|date('d/m/Y') }}</div>
+				      	<div>Orderd By: {{ order.orderplacer.full_name }}</div>
+				      	<div>Total Order {{ order.points_name }} : {{ order.points_value }} {{ order.points_name }}</div>
+				      	{% if order.order_notes %}
+			          		<h5>Order Notes:</h5>
+			          		<p>{{ order.order_notes| raw }}</p>
+		          		{% endif %}
+			          	<h5>Products:</h5>
+			          	<ul>
+			          		{% if order.products|length >= 1 %}
+				            	{% for product in order.products %} 
+					              	<li>{{ product.name }}</li>
+				            	{% endfor %}
+			            	{% else %}
+			            		<li>All Products Have Been Removed From This Order. They must be discontinued or unavailable</li>
+			            	{% endif %}
+			          	</ul>
+			        </div>
+		        </div>
+		  	</div>
+	  	{% endfor %}
+  	{% else %}
+	  	<div class="column">
+		  	<div class="ui raised card fluid no-results">
+		  		<div class="content">
+			      	<div class="header">No Results Found.</div>
+		      	</div>
+	      	</div>
+      	</div>
+  	{% endif %}
+</div>

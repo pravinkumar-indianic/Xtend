@@ -1,0 +1,52 @@
+columns:
+    id:
+        label: codengine.awardbank::lang.general.id
+        type: number
+        searchable: false
+        sortable: true
+    created_at:
+        label: codengine.awardbank::lang.general.created_at
+        type: datetime
+        searchable: false
+        sortable: true
+    updated_at:
+        label: codengine.awardbank::lang.general.updated_at
+        type: datetime
+        searchable: false
+        sortable: true
+    deleted_at:
+        label: codengine.awardbank::lang.general.deleted_at
+        type: datetime
+        searchable: false
+        sortable: true
+    name:
+        label: codengine.awardbank::lang.Lead.name
+        type: text
+        searchable: true
+        sortable: true
+    surname:
+        label: codengine.awardbank::lang.Lead.surname
+        type: text
+        searchable: true
+        sortable: true
+    email:
+        label: codengine.awardbank::lang.Lead.email
+        type: text
+        searchable: true
+        sortable: true
+    phone:
+        label: codengine.awardbank::lang.Lead.phone
+        type: text
+        searchable: true
+        sortable: true
+    followed_up:
+        label: codengine.awardbank::lang.Lead.followed_up
+        type: text
+        searchable: true
+        sortable: true
+    follow_up_by:
+        label: codengine.awardbank::lang.Lead.follow_up_by
+        type: text
+        searchable: true
+        sortable: true
+

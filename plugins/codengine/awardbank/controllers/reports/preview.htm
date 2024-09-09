@@ -1,0 +1,14 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('codengine/awardbank/reports') ?>">Reports</a></li>
+        <li><?= e(trans($this->pageTitle)) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<div class="form-preview">
+    <?= $this->formRenderPreview() ?>
+</div>
+
+<a href="<?= Backend::url('codengine/awardbank/reports/download/' . $id) ?>" class="btn btn-success" target="_blank">
+    Download Report
+</a>

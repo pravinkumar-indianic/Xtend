@@ -1,0 +1,25 @@
+<div class="ui one column grid">
+	{% if thankyous|length >= 1 %}
+	    {% for thankyou in thankyous %}
+		  	<div class="column">
+			  	<div class="ui raised card fluid">
+				    <div class="content">
+				      	<div class="header">#{{ thankyou.id }} - {{ thankyou.sender_fullname }} sent {{ thankyou.receiver_fullname }} a Thank You</div>
+				      	<div class="meta">Created At - {{ thankyou.created_at|date('d/m/Y') }}</div>
+				      	<div>{{ thankyou.thankyou_text|striptags }}</div>
+				      	{% if readable == true and thankyou.read == false %}<div><button class="ui button primary small thankyou-read-button" data-id="{{ thankyou.id }}" style="margin-top:10px;">Mark Read</button>
+			      		{% endif %}
+				    </div>		  		
+			  	</div>
+		  	</div>
+	  	{% endfor %}
+  	{% else %}
+	  	<div class="column">
+		  	<div class="ui raised card fluid no-results">
+		  		<div class="content">
+			      	<div class="header">No Results Found.</div>
+		      	</div>
+	      	</div>
+      	</div>
+  	{% endif %}
+</div>

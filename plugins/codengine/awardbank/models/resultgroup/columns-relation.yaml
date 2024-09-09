@@ -1,0 +1,38 @@
+columns:
+    id:
+        label: id
+        type: number
+    name:
+        label: Name
+        type: text
+        sortable: true
+        searchable: true
+    created_at:
+        label: created_at
+        type: datetime
+        sortable: true
+        searchable: true
+    updated_at:
+        label: updated_at
+        type: datetime
+        sortable: true
+        searchable: true
+    type:
+        label: type
+        type: text
+        sortable: true
+        searchable: true
+    program:
+        label: Program
+        relation: program
+        select: name
+        sortable: false
+        searchable: false
+    label:
+        label: 'Label'
+        type: text   
+        sortable: true
+        searchable: true   
+    description:
+        type: text
+        invisible: true

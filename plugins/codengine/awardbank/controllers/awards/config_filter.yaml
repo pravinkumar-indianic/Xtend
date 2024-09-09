@@ -1,0 +1,42 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:  
+    programs:
+        label: Program
+        modelClass: Codengine\Awardbank\Models\Program
+        scope: filterPrograms
+        nameFrom: name     
+    created_at:
+        label: Created At
+        type: daterange
+        conditions: created_at >= ':after' AND created_at <= ':before'
+    updated_at:
+        label: Update At
+        type: daterange
+        conditions: updated_at >= ':after' AND updated_at <= ':before'
+    award_open_at:
+        label: Award Opens At
+        type: daterange
+        conditions: award_open_at >= ':after' AND award_open_at <= ':before'
+    award_close_at:
+        label: Award Closes At
+        type: daterange
+        conditions: award_close_at >= ':after' AND award_close_at <= ':before'
+    nominations_open_at:
+        label: 'Nominations Open At'
+        type: daterange
+        conditions: nominations_open_at >= ':after' AND nominations_open_at <= ':before'
+    nominations_closed_at:
+        label: 'Nominations Close At'
+        type: daterange
+        conditions: nominations_closed_at >= ':after' AND nominations_closed_at <= ':before'
+    votes_open_at:
+        label: 'Votes Open At'
+        type: daterange
+        conditions: votes_open_at >= ':after' AND votes_open_at <= ':before'
+    votes_close_at:
+        label: 'Votes Close At'
+        type: daterange
+        conditions: votes_close_at >= ':after' AND votes_close_at <= ':before'

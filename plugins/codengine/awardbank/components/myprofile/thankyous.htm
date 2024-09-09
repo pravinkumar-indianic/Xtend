@@ -1,0 +1,7 @@
+<div class="ui segment">
+    <h3>Received Thank You</h3>
+    <button class="ui button primary small thankyou-all-read-button" style="margin-bottom:20px;">Mark All Read</button>
+    {% partial '@thankyouslist' thankyous = user.receivedthankyous readable = true %}
+    <h3>Sent Thank You</h3>
+    {% partial '@thankyouslist' thankyous = user.sentthankyous %}
+</div>

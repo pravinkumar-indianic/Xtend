@@ -1,0 +1,43 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    type:
+        label: type
+        type: text
+        searchable: true
+    program:
+        label: Program
+        relation: program
+        select: name
+        sortable: false
+        searchable: false
+    date_from:
+        label: Date from
+        type: datetime
+        sortable: true
+    date_to:
+        label: Date to
+        type: datetime
+        sortable: true
+    user_id:
+        label: Created By
+        relation: user
+        select: email
+    filename:
+        label: Filename
+        type: text
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        sortable: true
+    updated_at:
+        label: updated_at
+        type: datetime
+        sortable: true
+    deleted_at:
+        label: deleted_at
+        type: datetime
+        invisible: true

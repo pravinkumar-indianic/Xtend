@@ -1,0 +1,84 @@
+// Cart styles
+// Component: Cart.php
+
+#cartnavhtmltarget{
+
+	display:inherit;
+	border-left: 1px solid #e9ebed;
+
+	.simple-account{
+		text-align: center;
+	    display: inline-block;
+	    padding-right: 20px;
+	    padding-left: 20px;
+	    padding-top: 12px;
+	    padding-bottom: 10px;
+	    vertical-align: middle;
+	    font-size: 16px;
+        text-align:center;
+        display:inline-block;
+        vertical-align: middle;
+        font-size:16px;
+        width:150px;
+	    .simple-account-number {
+	        font-size:14px;
+	        margin-top:5px;
+	    }
+	}
+
+    .simple-avatar {
+        position:relative;
+        display:inline-block;
+        vertical-align: middle;
+        img {
+            height:40px;
+            width:auto;
+        }
+    }
+
+    .mailbox-count {
+        display:block;
+        position:absolute;
+        top:-7px;
+        right:-7px;
+    }
+
+	.menu.transition{
+		box-shadow: rgba(34, 36, 38, 0.15) 0px 2px 3px 0px;
+	    min-width: 100%;
+	    right: unset;
+		&#profiledropdown{
+		    max-width: 200px;
+		    width: 200px;
+	    	left: -138px;
+	    	top: 62px;
+	    }
+	    &#cart-dropdown{
+		    max-width: 450px;
+		    width: 450px;
+		    left: -169px;
+		    top: 49px;   
+	    }
+		h4{
+			margin-top:0px;
+			margin-bottom:0px;
+		}
+		.ui.divided.items{
+			margin-bottom:0px;
+			.item{
+				padding:10px;
+				p{
+					font-size:14px;
+					font-weight:400;
+					margin-bottom:0px;
+				}
+				.description{
+					white-space:normal;
+				}
+				&:before{
+					display:none;
+				}
+			}
+		}
+	}
+}

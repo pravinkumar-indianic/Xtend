@@ -1,0 +1,52 @@
+{% if nominees|length >= 1 %}
+	<div class="ui stackable three column grid">
+		{% for nominee in nominees %}
+			<div class="column">
+                <div class="ui raised card fluid">
+                	{% if nominee.nomination_image %}
+                		<div class="image">
+				    		<img src="{{ nominee.nomination_image.nomination_image_path }}">
+			    		</div>
+		    		{% endif %}
+                    <div class="content">   
+                        {% if nominee.user.avatar %}
+                            <img class="right floated mini ui circular image" src="{{ nominee.user.avatar.thumb(50 , 50, 'crop') }}" class="ui small circular image avatar">
+                        {% else %}
+                            <img class="right floated mini ui circular image"src="{{ 'assets/img/avatar/people/Enid.png'|theme }}" class="ui small circular image avatar">
+                        {% endif %}
+      			        <div class="header">{{ nominee.nominee_full_name }}</div>
+          				<div class="meta">
+          					{{ nominee.count }} {{ nomineestring }}<br>
+                            {% if votingenabled == true %} 
+                                {{ nominee.total_votes }} Votes
+                            {% endif %}
+                            {% if nominee.files|length >= 1 %}
+                                <h3>Files:</h3>
+                                {% for file in nominee.files %}
+                                    <a href="{{file}}" target="_blank">Link</a>
+                                {% endfor %}
+                            {% endif %}
+                            {% if nominee.images|length >= 1 %}
+                                <h3>Images:</h3>
+                                {% for image in nominee.images %}
+                                    <a href="{{ image }}" target="_blank">Link</a>
+                                {% endfor %}
+                            {% endif %}
+                        </div>  
+                    </div> 
+                    {% if votingenabled == true %}
+                    	<div class="extra content">             
+                            <div class="ui bottom attached primary button submit-vote-button" data-id="{{ nominee.id }}">
+                                    Submit vote +
+                            </div>
+                    	</div>
+                    {% endif %}
+                </div>
+			</div>
+		{% endfor %}
+	</div>
+{% else %}	
+    <div class="ui column">
+        <h1 class="award-full-header">No Nominess Found</h1> 
+    </div>
+{% endif %}

@@ -1,0 +1,20 @@
+<div class="ui segment raised" style="border: 0px;">
+    <div class="row">
+        <div class="ui grid">
+            <div class="ten wide column">
+                <div class="header">
+                  <h3><i class="circular {{ __SELF__.moduleFAIcon }} icon link" style="background-color: {{ access.program.secondary_color }};color:white"></i> {{ __SELF__.moduleHeading }}</h3>
+                </div>
+            </div>
+            <div class="six wide column">
+                {% if hasmorepage %}
+                    <a data-request="{{ __SELF__}}::onLoadMorePost" data-request-data="page: {{page + 1}}"  class="right floated ui label" data-request-update="'{{__SELF__}}::postlist' : '#updatepostlist'">Next </a>
+                {% endif %}
+                {% if page > 1 %}
+                    <a data-request="{{ __SELF__}}::onLoadMorePost" data-request-data="page: {{page - 1}}"  class="right floated ui label" data-request-update="'{{__SELF__}}::postlist' : '#updatepostlist'">Prev </a>
+                {% endif %}
+                <a href="/{{moduleType}}/create" class="right floated ui primary label" style="margin-right: 10px;">Create Post</a>          
+            </div>
+        </div>
+    </div>
+</div>

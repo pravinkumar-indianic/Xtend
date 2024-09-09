@@ -1,0 +1,64 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    name:
+        label: 'codengine.awardbank::lang.awardbank.teamname'
+        type: text
+        searchable: true
+    description:
+        label: 'codengine.awardbank::lang.awardbank.teamdescription'
+        type: text
+        searchable: true
+    primary_color:
+        label: 'codengine.awardbank::lang.awardbank.teamprimarycolor'
+        type: text
+    secondary_color:
+        label: 'codengine.awardbank::lang.awardbank.teamsecondarycolor'
+        type: text
+    external_reference:
+        label: 'External Reference'
+        type: text
+        searchable: true
+        sortable: true
+    parent_id:
+        label: Parent
+        select: name
+        searchable: true
+        sortable: true
+    program_id:
+        label: Program
+        select: name
+        searchable: true
+        sortable: true
+    billingcontact_id:
+        label: Billing Contact
+        select: name
+        searchable: true
+        sortable: true        
+    users:
+        label: Users
+        select: name
+        searchable: true
+        sortable: true
+    managers:
+        label: Managers
+        select: name
+        searchable: true
+        sortable: true 
+    pointsledgers:
+        label: Points Ledgers
+        select: id
+        searchable: true
+        sortable: true
+    nominations:
+        label: Nominations
+        select: id
+        searchable: true
+        sortable: true
+    results:
+        label: Results
+        select: id
+        searchable: true
+        sortable: true

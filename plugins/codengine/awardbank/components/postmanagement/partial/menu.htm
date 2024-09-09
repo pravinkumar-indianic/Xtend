@@ -1,0 +1,10 @@
+<div class="ui vertical fluid menu no-border no-radius">
+	{#
+	    <a href="/message/new" class="ui fluid teal button no-radius">
+	        <i class="icon edit"></i> Compose
+	    </a>
+    #}
+    <a class="item {% if messagetype == 'inbox' %} active {% endif %}" href="/message/inbox"><i class="comments outline icon"></i> Inbox</a>
+    <a class="item {% if messagetype == 'sent' %} active {% endif %}" href="/message/sent"><i class="icon send"></i> Sent</a>
+    <!-- <a class="item"><i class="trash alternate icon"></i> Deleted</a> -->
+</div>

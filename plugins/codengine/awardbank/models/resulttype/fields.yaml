@@ -1,0 +1,42 @@
+fields:
+    product_details:
+        label: Preview
+        type: section
+    name:
+        label: 'Results Name'
+        oc.commentPosition: ''
+        span: full
+        type: text
+    label:
+        label: 'Label'
+        oc.commentPosition: ''
+        span: full
+        type: text
+    type:
+        label: Results Display Type
+        oc.commentPosition: ''
+        span: full
+        type: dropdown
+        options:
+            tablecell: 'Table Cell'
+            score: 'Score'
+            comment: 'Comment'
+            progress: 'Progress Bar'
+            leaderboardtextservice: 'Leaderboard Text Service'
+            leaderboardtextpart: 'Leaderboard Text Part'
+    benchmark:
+        label: 'Results Benchmark'
+        oc.commentPosition: ''
+        span: full
+        type: text
+    resultgroup:
+        label: Result Group
+        span: full
+        type: relation
+        relation: resultgroup
+        select: name
+        emptyOption: 'Not Set'
+    nominations:
+            type: partial
+            path: field_resultdata
+            tab: Results Data

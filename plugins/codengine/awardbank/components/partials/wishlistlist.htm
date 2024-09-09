@@ -1,0 +1,15 @@
+{% if products|length > 0 %}
+	<div class="ui divided items">
+	    {% for product in products %}
+	        {% partial '@wishlistproduct' product = product index = loop.index points_name = points_name %}
+	    {% endfor %}
+    </div>
+{% else %}
+    <div class="column">
+        <div class="ui raised card fluid no-results">
+            <div class="content">
+                <div class="header">No Results Found.</div>
+            </div>
+        </div>
+    </div>
+{% endif %}

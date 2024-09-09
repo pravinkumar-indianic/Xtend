@@ -1,0 +1,45 @@
+<div class="new-comment">
+    <div class="title">
+        <span>Comment</span>
+    </div>
+    <div class="ui grid grid-no-margin user-profile">
+        <div class="sixteen wide tablet sixteen wide computer column column-no-padding">
+            <div class="user-avatar">
+                {% if user.avatar %}
+                <img width="40" height="40"
+                     src="{{ user.avatar.thumb(40 , 40, 'crop') }}"
+                     class="circular avatar"
+                >
+                {% else %}
+                <img width="40" height="40"
+                     src="{{ 'assets/img/avatar/people/Enid.png'|theme }}"
+                     class="circular avatar"
+                >
+                {% endif %}
+            </div>
+            <div class="user-name">
+                <label>{{user.fullbusinessname|raw}}</label>
+            </div>
+        </div>
+    </div>
+    <form
+        data-request="onComment"
+        data-request-files
+        id="new-comment-form-{{ post.id }}"
+    >
+        <input type="hidden" name="social_post_id" value="{{ post.id }}">
+        <div class="text-input">
+            <textarea id="social-post-control-comment-input-{{ post.id }}" name="comment" placeholder="Your comment here..."></textarea>
+        </div>
+        <div class="file-input">
+            <div class="custom-input-wrapper">
+                <label for="attachment-{{ post.id }}" class="program-default-background-color">Attach image or file</label>
+                <input id="attachment-{{ post.id }}" data-id="{{ post.id }}" name="attachment" type="file" onchange="updateFileList(this)">
+                <div class="file-list" id="file-list-{{ post.id }}"></div>
+            </div>
+        </div>
+        <div class="submit-button">
+            <button type="submit" class="social-post-control-comment-submit-button ui button primary" data-id="{{ post.id }}">Share</button>
+        </div>
+    </form>
+</div>

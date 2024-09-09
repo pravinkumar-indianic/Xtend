@@ -1,0 +1,10 @@
+name: Thankyous
+form: $/codengine/awardbank/models/thankyou/fields.yaml
+modelClass: Codengine\Awardbank\Models\Thankyou
+defaultRedirect: codengine/awardbank/thankyous
+create:
+    redirect: 'codengine/awardbank/thankyous/update/:id'
+    redirectClose: codengine/awardbank/thankyous
+update:
+    redirect: codengine/awardbank/thankyous
+    redirectClose: codengine/awardbank/thankyous

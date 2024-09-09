@@ -1,0 +1,19 @@
+<div class="ui container posts-list-container">
+    <div class="ui segment grid segment-header">
+        <h2 class="ui header center aligned sixteen wide column">
+            Program Content
+        </h2>
+    </div>
+    {% if __SELF__.header %}
+        {% if manager %}
+        <div class="ui segment" style="text-align: center;">
+            <a href="/post/create/edit?posttype=program-tool" class="ui button primary">Create new program content</a>
+        </div>
+        {% endif %}
+    {% endif %}
+    <div class="ui segment posts-list" id="html1target">
+        {{ __SELF__.html1|raw }}
+    </div>
+</div>
+
+{% partial '@programtoolsscripts' %}

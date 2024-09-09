@@ -1,0 +1,37 @@
+<div class="ui segment">
+    <h3>Spin to win - Upload User Details</h3>
+    <p>Upload your user details here. (<a href="https://staging-upload-xtend.s3.ap-southeast-2.amazonaws.com/downloads/user_details_import_sample.csv" target="_blank">download example.csv</a>)</p>
+
+    <!-- AJAX enabled form -->
+    <form data-request="onUserDetailsImport"
+          data-request-files
+          data-request-update="'{{ __SELF__}}::importusersdetails': '#importUsersDetails'"
+          class="ui form"
+    >
+        <div class="field">
+            <input type="file" name="file" accept=".csv">
+        </div>
+
+        <div class="field">
+            <label>User identifier</label>
+            <select class="ui dropdown" name="user_identifier">
+                <option value="UserId">User system ID</option>
+                <option value="CRM">CRM</option>
+            </select>
+            <p><small>Note: If you choose CRM as the user identifier keep the column name `UserId`.</small></p>
+        </div>
+
+        <div class="ui toggle checkbox">
+            <label>Skip invalid records</label>
+            <input type="checkbox" name="skip_errors">
+        </div>
+
+        <!-- Action button -->
+        <p>
+            <button type="submit" class="ui button primary">Submit</button>
+        </p>
+    </form>
+
+    <!-- Result container -->
+    <div id="importUsersDetails"></div>
+</div>

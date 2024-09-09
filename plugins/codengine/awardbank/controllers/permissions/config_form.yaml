@@ -1,0 +1,10 @@
+name: Permissions
+form: $/codengine/awardbank/models/permission/fields.yaml
+modelClass: Codengine\Awardbank\Models\Permission
+defaultRedirect: codengine/awardbank/permissions
+create:
+    redirect: 'codengine/awardbank/permissions/update/:id'
+    redirectClose: codengine/awardbank/permissions
+update:
+    redirect: codengine/awardbank/permissions
+    redirectClose: codengine/awardbank/permissions

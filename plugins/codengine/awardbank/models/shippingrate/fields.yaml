@@ -1,0 +1,20 @@
+fields:
+    shipping_base:
+        label: Dropdown
+        span: auto
+        type: dropdown
+        options:
+            organizations: Organization
+            programs: Program
+            regions: Region
+            teams: team
+            country: Country
+            state: State
+            program: Program
+            sizeweight: Size & Weight
+            other: Other
+    detail:
+        label: Text
+        oc.commentPosition: ''
+        span: auto
+        type: text

@@ -1,0 +1,48 @@
+columns:
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    award:
+        label: 'codengine.awardbank::lang.plugin.name'
+        select: name
+        relation: award
+        sortable: false
+    program:
+        label: Program
+        span: full
+        relation: program
+        select: name
+        sortable: false
+    user:
+        label: Nominee (User)
+        span: full
+        relation: user
+        select: full_name
+        sortable: false
+    team:
+        label: Nominee (Team)
+        span: full
+        relation: team
+        select: name
+        sortable: false
+    nominator:
+        label: Nominator
+        span: full
+        relation: nominator
+        select: full_name
+        sortable: false
+    is_winner:
+        label: Winner
+        span: auto
+        type: text
+        sortable: true
+        searchable: false
+    questions_answers:
+        label: 'Question Answers'
+        span: auto
+        type: text
+        searchable: true
+        sortable: true

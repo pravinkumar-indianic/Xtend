@@ -1,0 +1,162 @@
+{% if manager == true %}
+<div class="ui segment">
+    <div id="user-detail-edit">
+        {% if user %}
+
+        <p>
+            <a href="/user-management/list">Back to User List</a>
+        </p>
+
+        <h1>Edit User {{ user.full_name }}</h1>
+        {% if user.email %}<p>User Email address: {{ user.email }}</p>{% endif %}
+        <p>
+            <small><b style="color:red;">*</b> Required</small>
+            <br/>
+            <small><b style="color:darkgray;">**</b> Required for User Types "Member Store" & "Staff Member" only.</small>
+            <br/>
+            <small><b style="color:darkgray;">***</b> Required for User Type "Member Store" only.</small>
+        </p>
+
+        <form class="ui form"
+              id="edit-user-form"
+              data-request="onUserUpdate"
+              data-request-validate
+              data-request-flash
+        >
+            <div class="two fields">
+                <div class="field">
+                    <label for="crm">CRM<b style="color:darkgray;">***</b></label>
+                    <input type="text" id="crm" name="crm" value="{{ user.crm }}">
+                </div>
+
+                <div class="field">
+                    <label for="roll">User Type (Role)</label>
+                    <select id="roll" name="roll" class="ui selection dropdown">
+                        <option {% if user.roll=='Admin' %}selected{% endif %} value="Admin">Admin</option>
+                        <option {% if user.roll=='Symbion Staff' %}selected{% endif %} value="Symbion Staff">Symbion Staff</option>
+                        <option {% if user.roll=='Sponsor' %}selected{% endif %} value="Sponsor">Sponsor</option>
+                        <option {% if user.roll=='KAM' %}selected{% endif %} value="KAM">KAM</option>
+                        <option {% if user.roll=='Member Store' %}selected{% endif %} value="Member Store">Member Store</option>
+                        <option {% if user.roll=='Staff Member' %}selected{% endif %} value="Staff Member">Staff Member</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="phone">Phone<b style="color:darkgray;">**</b></label>
+                <input type="text" id="phone" name="phone" value="{{ user.phone_number }}">
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="business_name">Business (Store) Name</label>
+                    <input type="text" id="business_name" name="business_name" value="{{ user.business_name }}">
+                </div>
+
+                <div class="field">
+                    <label for="full_name">Full Name</label>
+                    <input type="text" id="full_name" name="full_name" value="{{ user.full_name }}">
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="name">First Name<b style="color:darkgray;">**</b></label>
+                    <input type="text" id="name" name="name" value="{{ user.name }}">
+                </div>
+
+                <div class="field">
+                    <label for="surname">Last Name</label>
+                    <input type="text" id="surname" name="surname" value="{{ user.surname }}">
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="kam">KAM<b style="color:darkgray;">***</b></label>
+                    <input type="text" id="kam" name="kam" value="{{ user.kam }}">
+                </div>
+
+                <div class="field">
+                    <label for="retail_program">Retail Program<b style="color:darkgray;">**</b></label>
+                    <input type="text" id="retail_program" name="retail_program" value="{{ user.retail_program }}">
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="membership_level">Membership Level<b style="color:darkgray;">**</b></label>
+                    <input type="text" id="membership_level" name="membership_level" value="{{ user.membership_level }}">
+                </div>
+
+                <div class="field">
+                    <label for="ranking_2021">Ranking 2021<b style="color:darkgray;">**</b></label>
+                    <input type="text" id="ranking_2021" name="ranking_2021" value="{{ user.ranking_2021 }}">
+                </div>
+
+
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="address_1">Address 1<b style="color:darkgray;">**</b></label>
+                    <input type="text" id="address_1" name="address_1" value="{{ user.address_1 }}">
+                </div>
+
+                <div class="field">
+                    <label for="address_2">Address 2</label>
+                    <input type="text" id="address_2" name="address_2" value="{{ user.address_2 }}">
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="suburb">Suburb<b style="color:darkgray;">**</b></label>
+                    <input type="text" id="suburb" name="suburb" value="{{ user.suburb }}">
+                </div>
+
+                <div class="field">
+                    <label for="postcode">Postcode<b style="color:darkgray;">**</b></label>
+                    <input type="text" id="postcode" name="postcode" value="{{ user.postcode }}">
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="state">State<b style="color:darkgray;">**</b></label>
+                    <input type="text" id="state" name="state" value="{{ user.state }}">
+                </div>
+            </div>
+
+            <p>
+                <button type="submit" class="ui primary submit  button" data-attach-loading="">Update user</button>
+            </p>
+        </form>
+
+        {% else %}
+        <p>User not found</p>
+        {% endif %}
+    </div>
+</div>
+
+{% put scripts %}
+<script>
+    function successMessage() {
+      $.oc.flashMsg({
+        'text': 'User has been successfully updated.',
+        'class': 'success',
+        'interval': 3
+      })
+    }
+
+    function errorMessage() {
+      $.oc.flashMsg({
+        'text': 'Error while updating user record.',
+        'class': 'error',
+        'interval': 3
+      })
+    }
+
+</script>
+{% endput %}
+{% endif %}

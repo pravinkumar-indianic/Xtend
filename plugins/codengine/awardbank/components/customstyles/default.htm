@@ -1,0 +1,484 @@
+{% put styles %}
+
+	<style>
+
+	{% if __SELF__.user.today_birth_date == true %}
+
+		.pushable {
+
+   			background-image: url("{{ "/assets/img/birthday.gif"|theme }}");
+
+		}
+
+	{% endif %}
+
+	{% if __SELF__.user.currentProgram.primary_color != null or __SELF__.user.currentProgram.primary_color != '' %}
+        .program-default-background-color {
+            background-color:{{ __SELF__.user.currentProgram.primary_color }} !important;
+        }
+
+        .program-default-color {
+            color:{{ __SELF__.user.currentProgram.primary_color }} !important;
+        }
+
+		.profile-summary-image img{
+			background-color:{{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+		.award-promo-points{
+			background-color:{{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.award-promo{
+			background-color:{{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.ui.results.progress.success .bar{
+
+			background-color:{{ __SELF__.user.currentProgram.primary_color }} !important;
+
+		}
+
+		.ui.dropdown.top-__SELF__ .top-__SELF__-item-points{
+			color:{{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		.ui.bulleted.list li:before{
+			color:{{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		.ui.vertical.menu.profile-menu .item.active{
+			background-color:{{ __SELF__.user.currentProgram.primary_color }};
+			border-color: {{ __SELF__.user.currentProgram.primary_color }};
+			color:white;
+		}
+
+		.ui.pagination.menu a.item.active, .ui.pagination.menu a.item:hover{
+			background-color:{{ __SELF__.user.currentProgram.primary_color }};
+			border-color: {{ __SELF__.user.currentProgram.primary_color }};
+			color:white;
+		}
+
+		.ui.pagination.menu .item:hover {
+			background-color:{{ __SELF__.user.currentProgram.primary_color }};
+			border-color: {{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+
+		.ui.pagination.menu .item {
+			border: 1px solid {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.ui.pagination.menu a.item{
+			color:  {{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		.ui.pagination.menu .item:last-child{
+			border-right:1px solid {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.results-column .ui.table thead tr > th:first-child{
+			border-left:{{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		.results-column .ui.table tr th{
+			background-color:{{ __SELF__.user.currentProgram.primary_color }};
+			border-color:{{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		.results-column .ui.table tr td{
+			border-color:{{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		.results-column .ui.statistic.even .value{
+			background-color:{{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		.results-column .ui.statistic.odd .value{
+			border-color:{{ __SELF__.user.currentProgram.primary_color }};
+			color:{{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		.ui.label.side-bar-label{
+			background-color:{{ __SELF__.user.currentProgram.primary_color }};
+			color:white;
+		}
+
+		.ui.results.progress .bar{
+			background-color:{{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		.ui.container.alerts .ui.negative.message{
+		    box-shadow: 0 0 0 1px {{ __SELF__.user.currentProgram.primary_color }} inset, 0 0 0 0 transparent;
+		    color:white;
+		    background-color:{{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		.ui.container.alerts .ui.negative.message .header{
+	    	color:white;
+		}
+
+		.ui.container.alerts .ui.negative.message a{
+	    	color:white;
+	    	text-decoration: underline;
+		}
+
+
+		.ui.toggle.checkbox .label:before {
+
+            background:{{ __SELF__.user.currentProgram.primary_color }};
+
+        }
+
+		.ui.toggle.checkbox .label:after {
+		            background:{{ __SELF__.user.currentProgram.primary_color }}
+
+        }
+
+	    input:focus:checked~.box:before,
+	    input:focus:checked~label:before,
+	    input:checked~.box:before,
+	    input:checked~label:before {
+	        background-color:{{ __SELF__.user.currentProgram.primary_color }} !important;
+	    }
+
+		.search input.search:focus {
+		    border-color: {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.ui.container.product-list-container .filter-category .ui.selection.dropdown.visible.active, .ui.container.product-list-container .filter-sortby .ui.selection.dropdown.visible.active, .ui.container.product-list-container .filter-subcategory .ui.selection.dropdown.visible.active, .ui.container.product-list-container .filter-price-range .ui.selection.dropdown.visible.active, .ui.container.product-list-container .filter-category .ui.dropdown.active, .ui.container.product-list-container .filter-sortby .ui.dropdown.active, .ui.container.product-list-container .filter-subcategory .ui.dropdown.active, .ui.container.product-list-container .filter-price-range .ui.dropdown.active{
+
+		    background:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+		    color:white !important;
+		}
+
+		.ui.container.product-list-container .filter-category .ui.dropdown .menu, .ui.container.product-list-container .filter-sortby .ui.dropdown .menu, .ui.container.product-list-container .filter-subcategory .ui.dropdown .menu, .ui.container.product-list-container .filter-price-range .ui.dropdown .menu
+		{
+			border-top: 1px solid {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.ui.container.product-list-container .filter-category .ui.selection.dropdown .text, .ui.container.product-list-container .filter-sortby .ui.selection.dropdown .text, .ui.container.product-list-container .filter-subcategory .ui.selection.dropdown .text, .ui.container.product-list-container .filter-price-range .ui.selection.dropdown .text, .ui.container.product-list-container .filter-category .ui.dropdown .text, .ui.container.product-list-container .filter-sortby .ui.dropdown .text, .ui.container.product-list-container .filter-subcategory .ui.dropdown .text, .ui.container.product-list-container .filter-price-range .ui.dropdown .text{
+
+				    color: {{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		.filter-category .ui.selection.dropdown.visible, .filter-sortby .ui.selection.dropdown.visible, .filter-subcategory .ui.selection.dropdown.visible, .filter-price-range .ui.selection.dropdown.visible, .filter-category .ui.dropdown, .filter-sortby .ui.dropdown, .filter-subcategory .ui.dropdown, .filter-price-range .ui.dropdown{
+
+			border: 1px solid {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.filter-category .ui.selection.dropdown .icon.dropdown, .filter-sortby .ui.selection.dropdown .icon.dropdown, .filter-subcategory .ui.selection.dropdown .icon.dropdown, .filter-price-range .ui.selection.dropdown .icon.dropdown, .filter-category .ui.dropdown .icon.dropdown, .filter-sortby .ui.dropdown .icon.dropdown, .filter-subcategory .ui.dropdown .icon.dropdown, .filter-price-range .ui.dropdown .icon.dropdown{
+
+				    background:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+
+				}
+
+		.filter-category .ui.selection.dropdown .text, .filter-sortby .ui.selection.dropdown .text, .filter-subcategory .ui.selection.dropdown .text, .filter-price-range .ui.selection.dropdown .text, .filter-category .ui.dropdown .text, .filter-sortby .ui.dropdown .text, .filter-subcategory .ui.dropdown .text, .filter-price-range .ui.dropdown .text{
+
+				    color: {{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		.filter-category .ui.selection.dropdown.visible.active, .filter-sortby .ui.selection.dropdown.visible.active, .filter-subcategory .ui.selection.dropdown.visible.active, .filter-price-range .ui.selection.dropdown.visible.active, .filter-category .ui.dropdown.active, .filter-sortby .ui.dropdown.active, .filter-subcategory .ui.dropdown.active, .filter-price-range .ui.dropdown.active{
+
+				    background:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+
+		}
+
+		.filter-category .ui.selection.active.dropdown, .filter-sortby .ui.selection.active.dropdown, .filter-subcategory .ui.selection.active.dropdown, .filter-price-range .ui.selection.active.dropdown, .filter-category .ui.selection.active.dropdown .menu, .filter-sortby .ui.selection.active.dropdown .menu, .filter-subcategory .ui.selection.active.dropdown .menu, .filter-price-range .ui.selection.active.dropdown .menu{
+				    border-color:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+
+		}
+		.ui.button.primary{
+
+    			border-color: {{ __SELF__.user.currentProgram.primary_color }} !important;
+    			background: white !important;
+    			color:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+
+		}
+
+		.ui.indicating.progress[data-percent^="100"] .bar {
+		    background:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.ui.segment.product-segment:not(.product-segment-detail) .product-points .label{
+		    color:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.ui.segment.product-segment:not(.product-segment-detail) .product-image-box{
+			border-bottom: 5px solid {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.ui.segment.content-block2.content-block2-invert{
+
+            {% if __SELF__.user.currentProgram.content_block.background_color_first %}
+            background: {{ __SELF__.user.currentProgram.content_block.background_color_first }} !important;
+            {% else %}
+            background: {{ __SELF__.user.currentProgram.primary_color }} !important;
+            {% endif %}
+		}
+
+		.ui.segment.product-segment:not(.product-segment-detail) .product-buttons .loading, .ui.segment.product-segment:not(.product-segment-detail) .product-buttons .in-wishlist, .ui.segment.product-segment:not(.product-segment-detail) .product-buttons .in-__SELF__ {
+		    background: {{ __SELF__.user.currentProgram.primary_color }} !important;
+		    border-color: {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.ui.button{
+		    color:  {{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		.simple-account-number{
+
+		    color:  {{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		a{
+
+		    color:  {{ __SELF__.user.currentProgram.primary_color }};
+		}
+
+		.ui.menu .item > .label.primary, .ui.label.primary{
+		    background:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+		    color: white !important;
+		}
+
+		a.primary:not(.button):hover{
+		    background:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+		    color: white !important;
+		}
+
+		.slick-slider .slick-dots li.slick-active button:before {
+		    background:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.slick-slider .slick-dots li button:before {
+		    border:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.slick-slider .slick-dots li.slick-active button:before{
+		    background:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.slick-slider .slick-dots li button:before{
+		    background:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.ui.menu.header-top .item.menu-trigger .icon{
+
+		    color:  {{ __SELF__.user.currentProgram.primary_color }};
+
+		}
+
+		.ui.vertical.menu.sidebar-nav-menu .item.active span{
+
+		    color:  {{ __SELF__.user.currentProgram.primary_color }};
+
+		}
+
+		.ui.vertical.menu.sidebar-nav-menu .item.active span .icon{
+
+		    color:  {{ __SELF__.user.currentProgram.primary_color }};
+
+		}
+
+		.ui.vertical.menu.sidebar-nav-menu .item.active span:before {
+    		width: 5px;
+		    background:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.category-filter-offer{
+		    background:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.ui.attached.tabular.menu.category-filter-top-menu .category-filter-top-menu-item a:hover, .ui.attached.tabular.menu.category-filter-top-menu .category-filter-top-menu-item a:focus, .ui.attached.tabular.menu.category-filter-top-menu .category-filter-top-menu-item a:active{
+
+		    color:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+
+		}
+
+		.ui.breadcrumb a{
+
+		    color:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+
+		}
+
+		.ui.attached.tabular.menu.category-filter-top-menu .category-filter-top-menu-item a.active{
+
+		    color:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+		    border-bottom:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.category-filter .category-filter-tab-content .category-filter-sub-cats-item .icon{
+
+		    color:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+
+		}
+
+		.ui.container.product-list-container .ui-widget-header{
+
+		    background:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+
+		}
+
+		.ui.container.product-list-container .ui-state-default, .ui.container.product-list-container .ui-widget-content .ui-state-default, .ui.container.product-list-container .ui-widget-header .ui-state-default, .ui.container.product-list-container .ui-button, .ui.container.product-list-container .ui-button.ui-state-disabled:hover, .ui.container.product-list-container .ui-button.ui-state-disabled:active{
+
+		    background:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+
+		}
+
+		.ui.container.product-list-container .filter-price-range-title{
+
+			color: {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.ui.container.product-list-container .filter-category .ui.selection.dropdown .icon.dropdown, .ui.container.product-list-container .filter-sortby .ui.selection.dropdown .icon.dropdown, .ui.container.product-list-container .filter-subcategory .ui.selection.dropdown .icon.dropdown, .ui.container.product-list-container .filter-price-range .ui.selection.dropdown .icon.dropdown, .ui.container.product-list-container .filter-category .ui.dropdown .icon.dropdown, .ui.container.product-list-container .filter-sortby .ui.dropdown .icon.dropdown, .ui.container.product-list-container .filter-subcategory .ui.dropdown .icon.dropdown, .ui.container.product-list-container .filter-price-range .ui.dropdown .icon.dropdown{
+
+		    background:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+
+		}
+
+		.ui.container.product-list-container .filter-category .ui.selection.dropdown.visible, .ui.container.product-list-container .filter-sortby .ui.selection.dropdown.visible, .ui.container.product-list-container .filter-subcategory .ui.selection.dropdown.visible, .ui.container.product-list-container .filter-price-range .ui.selection.dropdown.visible, .ui.container.product-list-container .filter-category .ui.dropdown, .ui.container.product-list-container .filter-sortby .ui.dropdown, .ui.container.product-list-container .filter-subcategory .ui.dropdown, .ui.container.product-list-container .filter-price-range .ui.dropdown{
+
+					border: 1px solid {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+		.cta-link:active, .cta-link:focus, .cta-link:hover{
+
+		    color:  {{ __SELF__.user.currentProgram.primary_color }} !important;
+
+		}
+
+		.ui.button:active,
+		.ui.button:hover,
+		.ui.button:focus,
+		.ui.button.loading{
+			border-color: {{ __SELF__.user.currentProgram.primary_color }} !important;
+			background: {{ __SELF__.user.currentProgram.primary_color }} !important;
+			color:white !important;
+		}
+
+		.ui.button.primary:active,
+		.ui.button.primary:hover,
+		.ui.button.primary:focus,
+		.ui.button.primary.loading{
+			border-color: {{ __SELF__.user.currentProgram.primary_color }} !important;
+			background: {{ __SELF__.user.currentProgram.primary_color }} !important;
+			color:white !important;
+		}
+
+
+		.category.meta.labels a{
+		   border-color: {{ __SELF__.user.currentProgram.primary_color }} !important;
+			background: {{ __SELF__.user.currentProgram.primary_color }} !important;
+			color:white !important;
+		}
+
+		.ui.segment.category-card:hover:before {
+		    background: {{ __SELF__.user.currentProgram.primary_color }} !important;
+		}
+
+
+	{% endif %}
+
+	{% if __SELF__.user.currentProgram.secondary_color != null or __SELF__.user.currentProgram.secondary_color != '' %}
+
+		.award-promo .award-promo-points{
+			background-color:{{ __SELF__.user.currentProgram.secondary_color }} !important;
+		}
+
+		.ui.button.secondary{
+
+    			border-color: {{ __SELF__.user.currentProgram.secondary_color }} !important;
+    			color: {{ __SELF__.user.currentProgram.secondary_color }} !important;
+
+		}
+
+		.ui.button.secondary.loading,
+		.ui.button.secondary:active,
+		.ui.button.secondary:hover,
+		.ui.button.secondary:focus {
+    		color: white !important;
+				background:{{ __SELF__.user.currentProgram.secondary_color }} !important;
+			}
+
+		.ui.segment.content-block2{
+    			color: {{ __SELF__.user.currentProgram.secondary_color }};
+
+        }
+
+        .ui.segment.content-block2.content-block2-left * {
+            {% if __SELF__.user.currentProgram.content_block.text_color_first %}
+            color: {{ __SELF__.user.currentProgram.content_block.text_color_first }} !important;
+            {% else %}
+            color: {{ __SELF__.user.currentProgram.secondary_color }} !important;
+            {% endif %}
+        }
+
+		.ui.segment.content-block2.content-block2-right .line1{
+
+            {% if __SELF__.user.currentProgram.content_block.text_color_second %}
+            color: {{ __SELF__.user.currentProgram.content_block.text_color_second }};
+            {% else %}
+            color: {{ __SELF__.user.currentProgram.secondary_color }};
+            {% endif %}
+
+            padding:5px;
+
+
+            {% if __SELF__.user.currentProgram.content_block.background_color_second %}
+            background-color: {{ __SELF__.user.currentProgram.content_block.background_color_second }};
+            {% else %}
+            background-color: {{ __SELF__.user.currentProgram.primary_color }};
+            {% endif %}
+		}
+
+		.ui.segment.content-block2.content-block2-right .line3 *{
+
+
+            {% if __SELF__.user.currentProgram.content_block.text_color_second %}
+            color: {{ __SELF__.user.currentProgram.content_block.text_color_second }};
+            {% else %}
+            color: {{ __SELF__.user.currentProgram.secondary_color }};
+            {% endif %}
+
+            padding:5px;
+
+
+            {% if __SELF__.user.currentProgram.content_block.background_color_second %}
+            background-color: {{ __SELF__.user.currentProgram.content_block.background_color_second }};
+            {% else %}
+            background-color: {{ __SELF__.user.currentProgram.primary_color }};
+            {% endif %}
+
+			/* color: {{ __SELF__.user.currentProgram.primary_color }};
+			padding:5px;
+			background-color: {{ __SELF__.user.currentProgram.secondary_color }}; */
+
+		}
+
+		.ui.indicating.progress:not([data-percent^="100"]) .bar {
+
+		    background:  {{ __SELF__.user.currentProgram.secondary_color }} !important;
+		}
+
+		a:hover{
+
+			color:  {{ __SELF__.user.currentProgram.secondary_color }} !important;
+
+		}
+
+	{% endif %}
+
+	{% if (__SELF__.user.currentProgram.secondary_color != null or __SELF__.user.currentProgram.secondary_color != '') and (__SELF__.user.currentProgram.primary_color != null or __SELF__.user.currentProgram.primary_color != '') %}
+
+		.profile-summary-teams .ui.toggle.checkbox.checkbox--brand1 {
+	    	background: linear-gradient(90deg, {{ __SELF__.user.currentProgram.primary_color }} 0%, {{ __SELF__.user.currentProgram.primary_color }} 100%);
+		}
+
+	{% endif %}
+
+		.category-card-heading .category-card-name,.category-card-heading .icon {
+			color:#ffffff !important;
+		}
+
+	</style>
+
+{% endput %}

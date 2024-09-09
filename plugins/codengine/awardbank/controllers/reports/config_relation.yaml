@@ -1,0 +1,18 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+resulttypes:
+    label: Report Data
+    modelClass: Codengine\Awardbank\Models\Report
+    view:
+        toolbarButtons: create|remove
+        form: $/codengine/awardbank/models/report/fields.yaml
+        list: $/codengine/awardbank/models/report/columns.yaml
+        showSearch: true
+    manage:
+        form: $/codengine/awardbank/models/report/fields.yaml
+        list: $/codengine/awardbank/models/report/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+

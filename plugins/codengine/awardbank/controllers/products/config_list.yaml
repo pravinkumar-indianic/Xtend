@@ -1,0 +1,16 @@
+list: $/codengine/awardbank/models/product/columns.yaml
+modelClass: Codengine\Awardbank\Models\Product
+title: Product
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'codengine/awardbank/products/update/:id'
+filter: config_filter.yaml
+recordsPerPage: 20
+defaultSort:
+    column: id
+    direction: desc

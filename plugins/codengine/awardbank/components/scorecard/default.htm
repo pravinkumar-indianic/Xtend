@@ -1,0 +1,50 @@
+{% if user.roll != 'Sponsor' %}
+<div class="ui container" id="scorecard-wrapper">
+    <div class="ui stackable grid header">
+        <div class="ui sixteen wide column dash-hero">
+            <div class="full-screen-feature-image">
+                {% if access.program.social_feed_top_banner %}
+                <img width="1127" height="300" src="https://xtend23-production.s3.ap-southeast-2.amazonaws.com/media/5step_scoreboard_2024.jpg"
+                     class="circular avatar"
+                >
+                {% endif %}
+            </div>
+        </div>
+        <div class="sixteen wide tablet sixteen wide computer column" style="text-align: center;">
+            <h2>{{ pharmacy.business_name }}</h2>
+            <h2>Your 5STEP Incentive Scorecard</h2>
+        </div>
+
+        <div id="stats">
+            {% partial('@stats') %}
+        </div>
+
+        <div class="sixteen wide tablet sixteen wide computer column steps" id="scorecard-steps">
+            {% partial('@steps') %}
+        </div>
+    </div>
+
+    <div class="ui stackable grid scorecard-tables" id="scorecard-tables">
+        {% partial('@tables') %}
+    </div>
+</div>
+
+{% put scripts %}
+<script>
+  $('body').on('click', 'div.circle-step', function (e) {
+    e.preventDefault();
+    let id = $(this).attr('data-id');
+    if (id) {
+      var data = {
+        'id': id,
+        'pharmacy' : '{{ pharmacy.crm }}'
+      };
+      requestFactory('onStepChange', data, ['#scorecard-tables']);
+    }
+  });
+
+</script>
+{% endput %}
+{% else %}
+<h1>Page not available.</h1>
+{% endif %}

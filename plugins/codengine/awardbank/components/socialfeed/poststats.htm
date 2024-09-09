@@ -1,0 +1,18 @@
+{% if post.responses.count() %}
+{{ post.likeUsers }}
+<div class="stats">
+    {% if post.likes.count() %}
+    <div class="likes-count">
+        <span class="like-posters">{{ post.likePostersList|raw }}</span>
+        <i class="icon outline thumbs up"></i> {{ post.likes.count() }}
+    </div>
+    {% endif %}
+    {% if post.comments.count() %}
+    <div class="comments-count">
+        <span class="social-post-comment-anchor" data-id="{{ post.id }}">
+            <i class="icon outline comment"></i> {{ post.comments.count() }} Comments
+        </span>
+    </div>
+    {% endif %}
+</div>
+{% endif %}

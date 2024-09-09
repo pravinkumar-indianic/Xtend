@@ -1,0 +1,54 @@
+<div class="two fields">
+	<div class="field">
+	    <label>Business Name:</label>
+	    <input class="business_name not-required" type="text" value="{{ address.business_name }}" name="Business Name">
+	</div>
+	<div class="field">
+	    <label>Attn To:</label>
+	    <input class="attn_name not-required" type="text" value="{{ address.attn_name }}" name="Attn. Name">
+	</div>
+</div>
+<div class="two fields">
+	<div class="field">
+	    <label>Suite / Unit Number:</label>
+	    <input class="unit_number not-required" type="text"{% if address.unit_number %} value="{{ address.unit_number }}"{% endif %} name="Unit Number">
+	</div>
+	<div class="field">
+	    <label>Floor Number:</label>
+	    <input class="floor not-required" type="text"{% if address.floor %} value="{{ address.floor }}"{% endif %} name="Floor">
+	</div>
+</div>
+<div class="two fields">
+	<div class="field">
+	    <label>Street Number:<b style="color:red;">*</b></label>
+	    <input class="street_number" type="text" value="{{ address.street_number }}" name="Street Number">
+	</div>
+	<div class="field">
+	    <label>Street Name:<b style="color:red;">*</b></label>
+	    <input class="street_name" type="text" value="{{ address.street_name }}" name="Street Name">
+	</div>
+</div>
+<div class="two fields">
+	<div class="field">
+	    <label>City:<b style="color:red;">*</b></label>
+	    <input class="city" type="text" value="{{ address.city }}" name="City">
+	</div>
+	<div class="field">
+	    <label>Postcode:<b style="color:red;">*</b></label>
+	    <input class="postcode" type="text" value="{{ address.postcode }}" name="Postcode">
+	</div>
+</div>
+<div class="two fields">
+    <div class='field'>
+        <label>State/Province:</label>
+        <input class="not-required ui fluid dropdown" value="{{ address.state }}" name="State">
+    </div>
+    <div class='field'>
+	    <label>Phone Number:<b style="color:red;">*</b></label>
+	    <input class="phone_number" type="text" value="{{ phone_number }}" name="PhoneNumber">
+    </div>
+</div>
+<div class="field">
+    <label>Country</label>
+	<input class="country" type="text" value="{{ address.country }}" name="Country">
+</div>

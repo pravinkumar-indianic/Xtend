@@ -1,0 +1,17 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+votes:
+    label: Vote
+    modelClass: Codengine\Awardbank\Models\Vote    
+    view:
+        toolbarButtons: create|remove  
+        form: $/codengine/awardbank/models/vote/fields.yaml                
+        list: $/codengine/awardbank/models/vote/columns.yaml
+        showSearch: true
+    manage:
+        form: $/codengine/awardbank/models/vote/fields.yaml
+        list: $/codengine/awardbank/models/vote/columns.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true

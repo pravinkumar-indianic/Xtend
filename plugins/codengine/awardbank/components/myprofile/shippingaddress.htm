@@ -1,0 +1,9 @@
+<div class="ui segment">
+    <h3>Shipping Address</h3>
+    <form class="ui form" id="shippingaddressform">
+        {% partial '@addressform' address = user.shippingAddress %}
+        <div class="field">
+            <button class="ui button secondary small">Update Address</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,167 @@
+// RewardCategoryTiles
+// Components: RewardCategoryTiles.php
+
+.ui.container.container-categories {
+    //padding:3rem 0;
+    .ui.grid .ui.categories {
+        @media screen and (max-width: @mobile-max) {
+            padding:0!important;
+        }
+        .categories-slider {
+            @media screen and (min-width: @tablet) {
+                font-size:0;
+            }
+        }
+        .column { 
+            @media screen and (min-width: @tablet) {
+                width:50%;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                position: relative;
+                display: inline-block;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                vertical-align: top;
+                font-size:0;
+            }
+            @media screen and (min-width: @small-monitor) {
+                width:33.33%;
+            }
+        }
+    }
+    @media screen and (max-width: @mobile-max) {
+        .slick-list {
+            padding:2rem 0!important;
+        }
+        .slick-slide {
+            &.slick-active {
+                .ui.segment.category-card {
+                    transition:@fast all;
+                    margin: 0 -5rem 0;
+                    position:relative;
+                }
+            }
+            &.slick-current.slick-active.slick-center {
+                .ui.segment.category-card {
+                    z-index:10;
+                    height: 220px;
+                    margin: -10px -5rem 0;
+                    .category-card-heading {
+                        padding: 40px 30px 0;
+                    }
+                }
+            }
+        }
+
+        // Slider fallback
+        .categories-slider:not(.slick-initialized) {
+            overflow-x: scroll;
+            overflow-y: hidden;
+            clear: both;
+            padding: 18px 0 0;
+            line-height: 1;
+            white-space: nowrap;
+            .column {
+                display:inline-block;
+                width:100%;
+            }
+        }
+    }
+}
+
+.ui.segment.category-card {
+    display:block;
+    text-align:center;
+    height:200px;
+    position:relative;
+    background-position:center;
+    background-size:cover;
+    color:@white;
+    &:before {
+        .overlay;
+        z-index:1;
+        opacity:0.6;
+        background:@overlay-grey;
+        border-radius: @border-radius;
+    }
+    &:hover:before {
+        background:@orange;
+    }
+    /* category themes */
+    &.category-card-oranges {
+        &:hover:before {
+            background:@orange;
+        }
+        &:before {
+            background:@overlay-oranges;
+        }
+    }
+    &.category-card-aqua-pink {
+        &:hover:before {
+            background:@aqua;
+        }
+        &:before {
+            background:@overlay-aqua-pink;
+
+        }
+    }
+    &.category-card-blue-purple {
+        &:hover:before {
+            background:@purple;
+        }
+        &:before {
+            background:@overlay-blue-purple;
+        }
+    }
+    &.category-card-blue {
+        &:hover:before {
+            background:@blue;
+        }
+        &:before {
+            background:@overlay-blues;
+        }
+    }
+    &.category-card-greens {
+        &:hover:before {
+            background:@green;
+        }
+        &:before {
+            background:@overlay-greens;
+        }
+    }
+    &.category-card-yellows {
+        &:hover:before {
+            background:@yellow;
+        }
+        &:before {
+            background:@overlay-yellows;
+        }
+    }  
+}
+
+.category-card-heading {
+    position:absolute;
+    z-index: 2;
+    left:0;
+    width:100%;
+    top:0;
+    padding:40px 30px;
+    .icon {
+        font-size:40px;
+        line-height:1em;
+    }
+    .category-card-name {
+        margin:10px 0 0;
+        font-size:24px;
+        line-height:@line-height;
+        font-family:@font-semibold;
+        text-transform:uppercase;
+    }
+}
+
+
+.category-buttons {
+    margin-bottom:1em;
+}
+
+

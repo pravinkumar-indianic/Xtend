@@ -1,0 +1,4 @@
+title: TargetingTags
+modelClass: Codengine\Awardbank\Models\TargetingTag
+toolbar:
+    buttons: reorder_toolbar

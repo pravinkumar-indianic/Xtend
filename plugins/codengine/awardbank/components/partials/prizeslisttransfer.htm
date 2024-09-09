@@ -1,0 +1,40 @@
+<div class="ui stackable three column grid">
+	{% if prizes|length >= 1 %}
+		{% for prize in prizes %}
+			<div class="column">
+				{% if prize.iswon %}
+					<div class="ui top attached button won-prize" tabindex="0" data-id="{{ prize.id }}">Prize Won!</div>
+				{% endif %}
+				<div class="award-promo-points attached segment award-promo-points-solo" {% if prize.color != null and prize.color !='' %} style="background-color:{{ prize.color }}" {% endif %}>
+					{% if prize.prize_value >= 1 %}
+						<div class="award-promo-points-wrap">
+							<span class="award-promo-points-amount">{{ prize.prize_value }}<br> {{ prize.points_name }}</span>
+							<span class="award-promo-points-sub-title">
+								 {{ prize.name }}
+							</span>
+						</div>
+					{% else %}
+						<div class="award-promo-points-wrap">
+							<span class="award-promo-points-amount">{{ prize.name }}</span>
+						</div>
+					{% endif %}
+				</div>
+				{% if prize.iswon %}
+					{% if prize.istransferred == false %}
+						<div class="ui bottom attached button transfer-prize" tabindex="0" data-id="{{ prize.id }}">Transfer Prize</div>
+					{% else %}
+						<div class="ui bottom attached button disabled success" tabindex="0" data-id="{{ prize.id }}">Points Transferred</div>
+					{% endif %}
+				{% endif %}
+			</div>
+		{% endfor %}
+    {% else %}
+        <div class="column">
+            <div class="ui raised card fluid no-results">
+                <div class="content">
+                    <div class="header">No Results Found.</div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,14 @@
+fields:
+    name:
+        label: Name
+        type: text
+tabs:    
+    fields:
+        users:
+            type: partial
+            path: field_users
+            tab: Users
+        posts:
+            type: partial
+            path: field_posts
+            tab: Posts

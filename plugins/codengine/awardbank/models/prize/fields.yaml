@@ -1,0 +1,33 @@
+fields:
+    iswon:
+        label: 'Mark This Prize As Won'
+        span: full
+        type: switch
+    name:
+        label: Title
+        span: full
+        type: text
+    award:
+        label: Award
+        span: full
+        type: relation
+    description:
+        label: Description
+        span: full
+        type: text        
+    order:
+        label: Order
+        span: full
+        type: text
+    prize_value:
+        label: 'Prize Value'
+        type: number
+        span: full
+    userwinners:
+        label: 'Users Who Have Won'
+        type: partial
+        path: ~/plugins/codengine/awardbank/controllers/fields/_field_userwinners.htm
+    teamwinners:
+        label: 'Teams Who Have Won'
+        type: partial
+        path: ~/plugins/codengine/awardbank/controllers/fields/_field_teamwinners.htm

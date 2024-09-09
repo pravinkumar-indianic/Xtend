@@ -1,0 +1,17 @@
+{% set bigloop = 1 %}
+<div id="question-set" class="column">
+	{% if questions|length >= 1 %}
+		{% for question in questions %}
+			{% partial '@questionform' 
+				question = question 
+				bigloop = bigloop 
+			%}		
+			{% set bigloop = bigloop+1 %}
+		{% endfor %}
+	{% else %}
+		<h4 id="noquestions">No Questions Found</h4>
+	{% endif %}
+</div>
+<div class="column">
+	<a class="ui secondary button add-question" data-nextloop="{{ bigloop+1 }}">Add Question</a>
+</div>

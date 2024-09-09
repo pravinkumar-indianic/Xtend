@@ -1,0 +1,19 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:        
+    created_range:
+        label: Created At
+        type: daterange
+        scope: filterTimeRange          
+    updated_range:
+        label: Updated At
+        type: daterange
+        scope: filterTimeRange                            
+    programs:
+        label: codengine.awardbank::lang.awardbank.programs
+        modelClass: Codengine\Awardbank\Models\Program
+        scope: filterProcess
+        nameFrom: name
+

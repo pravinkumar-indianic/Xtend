@@ -1,0 +1,63 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+    avatar:
+        label: rainlab.user::lang.user.avatar
+        type: fileupload
+        mode: image
+        imageHeight: 260
+        imageWidth: 260
+    full_name:
+        label: rainlab.user::lang.user.name
+        span: full
+    business_name:
+        label: Business Name
+        span: full    
+    company_position:
+        label: Company Position
+        span: full          
+    email:
+        label: rainlab.user::lang.user.email
+        span: full
+    birth_date:
+        label: Birthday
+        type: datepicker
+        span: full        
+    commencement_date:
+        label: Tenure Date
+        type: datepicker
+        span: full   
+    password@create:
+        label: rainlab.user::lang.user.create_password
+        comment: rainlab.user::lang.user.create_password_comment
+        type: password
+        span: left
+    password@update:
+        label: rainlab.user::lang.user.reset_password
+        comment: rainlab.user::lang.user.reset_password_comment
+        type: password
+        span: left
+    password_confirmation:
+        label: rainlab.user::lang.user.confirm_password
+        comment: rainlab.user::lang.user.confirm_password_comment
+        type: password
+        span: right
+        context: [create, update]
+    points_limit:
+        label: Maximum Points A User Can Acrue (Dollar Value)
+        type: number
+        span: full
+    external_reference:
+        label: External System Reference ID
+        type: text
+        span: full
+    t_and_c_accept:
+        label: T & Cs Accepted
+        type: switch
+        span: auto
+    can_buy_points:
+        label: User Is Allowed To Buy Points
+        type: switch
+        span: auto

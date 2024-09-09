@@ -1,0 +1,73 @@
+{% if data['sections'] and data['criteria'] %}
+{% for section in data['sections'] %}
+<div class="scorecard-table">
+    <table class="ui striped table">
+        <thead>
+        <tr class="header">
+            <th class="border-{{ section.type }} header" width="20%">
+                {% if section.type == 'ethical' %}Ethical<br/><br/>{% endif %}
+                {% if section.name != 'Default' %}{{ section.name }}{% endif %}
+                <br/><br/> {% if section.logo %}<img src="{{ section.logo.thumb(190, 120, 'fit') }}">{% endif %}
+            </th>
+            {% for month in data['months'] %}
+            <th class="border-{{ section.type }}" width="10%">{{ month|date('F') }}</th>
+            {% endfor %}
+            <th class="border-{{ section.type }}"  width="10%">Max Available</th>
+            <th class="border-{{ section.type }}"  width="10%">Total Pts Earned to date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for criteriumkey, criterium in data['criteria'] %}
+        {% if criterium.section_id == section.id %}
+        <tr>
+            <td class="white criterium">
+                <div class="tooltip">
+                    <span>{{ criterium.label }}</span>
+                    <div class="right">{{ criterium.tooltip|raw }}</div>
+                </div>
+            </td>
+            {% if criterium.targets %}
+                {% set sum = 0 %}
+                {% set monthIndex = 2 %}
+                {% for targetkey, target in criterium.targets %}
+                    {% if (monthIndex + 1) < target.start|date('n') %}
+                        <td class="white" colspan="{{ target.start|date('n') - (monthIndex + 1) }}"></td>
+                    {% endif %}
+                    {% set sum = sum + target.points %}
+                    <td colspan="{{ target.monthsCount }}"
+                        class="{% if target.points == 0 %}white{% else %}{% if target.points < target.target %}grey{% else %}green{% endif %}{% endif %} {% if loop.last and monthIndex == 7 %}no-right-border{% endif %}"
+                    >
+                        <div class="tooltip centered">
+                            {% if target.points is same as(false) %}
+                                <span>{{ target.target }}</span>
+                                <div class="right">No Results Available</div>
+                            {% else %}
+                                <span>{{ target.points }}</span>
+                                <div class="right">Target points: {{ target.target }} <br/> Result: {{ target.data | join(' | ') }}</div>
+                            {% endif %}
+                        </div>
+                    </td>
+                {% set monthIndex = target.end|date('n') %}
+                {% if loop.last and monthIndex < 8 %}
+                    <td class="white no-right-border" colspan="{{ 8 - monthIndex }}"></td>
+                {% endif %}
+                {% endfor %}
+                <td class="darkgrey">{{ criterium.total_target }}</td>
+                <td class="white">{{ sum }}</td>
+            {% else %}
+                <td colspan="8">Results unavailable - no targets have been set.</td>
+            {% endif %}
+        </tr>
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endfor %}
+{% else %}
+<div class="sixteen wide tablet sixteen wide computer column steps">
+    <div class="ui segment">
+        <p>No Data Available</p>
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,10 @@
+{% if sections %}
+<form class="ui form">
+    <h4>Select Section:</h4>
+    <select class="ui" id="step-1-dropdown">
+        {% for key, section in sections %}
+        <option value="{{ section.id }}" {% if current_section.id==section.id %}selected{% endif %}>{{ section.name }} ({{ section.type }} sponsor)</option>
+        {% endfor %}
+    </select>
+</form>
+{% endif %}

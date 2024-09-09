@@ -1,0 +1,65 @@
+columns:
+    id:
+        label: id
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    value:
+        label: value
+        type: number
+        searchable: true
+        sortable: true
+    is_current:
+        span: full
+        type: text
+        searchable: false
+        sortable: true
+    string:
+        label: String
+        oc.commentPosition: ''
+        span: auto
+        type: text
+        searchable: true
+        sortable: true
+    resulttype:
+        label: Result Type
+        span: full
+        relation: resulttype
+        select: name
+        emptyOption: 'Not Set'
+        sortable: false
+        searchable: false
+    month_index:
+        label: Month Index
+        type: number
+    year_index:
+        label: Year Index
+        type: number
+    region:
+        label: Region
+        span: full
+        relation: region
+        select: name
+        emptyOption: 'Not Set'
+        sortable: false
+        searchable: false
+    team:
+        label: Team
+        span: full
+        relation: team
+        select: name
+        emptyOption: 'Not Set'
+        sortable: false
+        searchable: false
+    user:
+        label: User
+        span: full
+        relation: user
+        select: name
+        emptyOption: 'Not Set'
+        sortable: false
+        searchable: false

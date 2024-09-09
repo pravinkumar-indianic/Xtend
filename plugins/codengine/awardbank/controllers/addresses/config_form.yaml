@@ -1,0 +1,10 @@
+name: Addresses
+form: $/codengine/awardbank/models/address/fields.yaml
+modelClass: Codengine\Awardbank\Models\Address
+defaultRedirect: codengine/awardbank/addresses
+create:
+    redirect: 'codengine/awardbank/addresses/update/:id'
+    redirectClose: codengine/awardbank/addresses
+update:
+    redirect: codengine/awardbank/addresses
+    redirectClose: codengine/awardbank/addresses

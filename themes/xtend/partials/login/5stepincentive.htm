@@ -1,0 +1,194 @@
+</div>
+</div>
+
+<div class="symbion-login-page">
+
+    {% if login_page.paragraph1 %}
+    <div class="container-fluid">
+        <div class="paragraph1">
+            <div class="ui row text-center" style="margin: 40px 0;">
+                <div class="ui stackable one column center aligned grid">
+                    <div class="content">
+                        {{ login_page.paragraph1|raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if login_page.video_id %}
+        {% if login_page.video_source == 'youtube' %}
+        <div class="ui container">
+            <div class="video-wrapper">
+                <div class="ui row text-center">
+                    <div class="ui stackable one column center aligned grid">
+                        <div class="column sixteen wide form-holder" style="width:100% !important">
+                            <iframe
+                                width="850"
+                                height="478"
+                                src="https://www.youtube.com/embed/{{ login_page.video_id }}"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if login_page.video_source == 'vimeo' %}
+        <div class="container-fluid">
+            <div class="video-wrapper">
+                <div class="ui row text-center">
+                    <div class="ui stackable one column center aligned grid">
+                        <div class="column sixteen wide form-holder content iframe-wrapper">
+                            <iframe
+                                src="https://player.vimeo.com/video/{{ login_page.video_id }}"
+                                width="100%"
+                                frameborder="0"
+                                allow="autoplay; fullscreen; picture-in-picture"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+
+    {% if login_page.paragraph2 %}
+    <div class="container-fluid">
+        <div class="paragraph2">
+            <div class="ui row text-center" style="margin: 0;">
+                <div class="ui stackable one column center aligned grid">
+                    <div class="content">
+                        {{ login_page.paragraph2|raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if login_page.infographic %}
+    <div class="ui container">
+        <div class="ui row text-center">
+            <div class="ui stackable one column center aligned grid">
+                <div class="infographic">
+                    <img src="{{ login_page.infographic.thumb(850,400) }}" style="width: 100%">
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if login_page.ethical_sponsors.count %}
+    <div class="ui container">
+        <div class="ui row text-center">
+            <div class="ui stackable one column center aligned grid">
+                <div class="column sixteen wide form-holder">
+                    <h2 style="padding: 40px; font-size: 32px; font-weight: 400;">
+                        Ethical Sponsors
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="ui row text-center sponsor-images">
+            <div class="image-wrapper">
+                {% for key, img in login_page.ethical_sponsors %}
+                <div class="image">
+                    <img src="{{ img.thumb(150 , 150, 'crop') }}" width="140">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="seperator"></div>
+    </div>
+    {% endif %}
+
+    {% if login_page.gold_sponsors.count %}
+    <div class="ui container">
+        <div class="ui row text-center">
+            <div class="ui stackable one column center aligned grid">
+                <div class="column sixteen wide form-holder">
+                    <h2 style="padding: 40px; font-size: 32px; font-weight: 400;">
+                        Gold Sponsors
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="ui row text-center sponsor-images">
+            <div class="image-wrapper">
+                {% for key, img in login_page.gold_sponsors %}
+                <div class="image">
+                    <img src="{{ img.thumb(150 , 150, 'crop') }}" width="140">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="seperator"></div>
+    </div>
+    {% endif %}
+
+    {% if login_page.silver_sponsors.count %}
+    <div class="ui container">
+        <div class="ui row text-center">
+            <div class="ui stackable one column center aligned grid">
+                <div class="column sixteen wide form-holder">
+                    <h2 style="padding: 40px; font-size: 32px; font-weight: 400;">
+                        Silver Sponsors
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="ui row text-center sponsor-images">
+            <div class="image-wrapper">
+                {% for key, img in login_page.silver_sponsors %}
+                <div class="image">
+                    <img src="{{ img.thumb(150 , 150, 'crop') }}" width="140">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="seperator"></div>
+    </div>
+    {% endif %}
+
+    {% if login_page.bronze_sponsors.count %}
+    <div class="ui container">
+        <div class="ui row text-center">
+            <div class="ui stackable one column center aligned grid">
+                <div class="column sixteen wide form-holder">
+                    <h2 style="padding: 40px; font-size: 32px; font-weight: 400;">
+                        Bronze Sponsors
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="ui row text-center sponsor-images">
+            <div class="image-wrapper">
+                {% for key, img in login_page.bronze_sponsors %}
+                <div class="image">
+                    <img src="{{ img.thumb(150 , 150, 'crop') }}" width="140">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="seperator"></div>
+    </div>
+    {% endif %}
+
+</div>

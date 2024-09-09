@@ -1,0 +1,103 @@
+{% if type=='home' %}
+	<div class="form4" id='homeform'>
+        <div class="field">
+            <label>Suite / Unit Number:</label>
+            <input id="pac-input-suite" type="text" value="{{ addr.unit_number }}">
+        </div>
+        <div class="field">
+            <label>Floor Number:</label>
+            <input id="pac-input-floor" type="text" value="Search address">
+        </div>
+        <div class="field">
+            <label>Street Address:</label>
+            <input id="pac-input-home" type="text" value="{{ addr.full_address }}">
+        </div>
+        <div class="field">
+            <div id="maphome" class="map"></div>
+        </div>
+
+{% else %}
+	<div class="form4" id="shippingform">
+        <div class="field">
+            <label style="color:red;">Please note deliveries can not be made to PO Boxes, we require a physical office or home address.</label>
+        </div>
+        <div class="field">
+            <label>Business Name:</label>
+            <input id="pac-input-suite" type="text" value="{{ addr.business_name }}" name="{{ type }}business_name">
+        </div>
+        <div class="field">
+            <label>Attn To:</label>
+            <input id="pac-input-suite" type="text" value="{{ addr.attn_name }}" name="{{ type }}attn_name">
+        </div>
+        <div class="field">
+            <label>Suite / Unit Number:</label>
+            <input id="pac-input-suite" type="text" value="{{ addr.unit_number }}" name="{{ type }}unit_number">
+        </div>
+        <div class="field">
+            <label>Floor Number:</label>
+            <input id="pac-input-floor" type="text" value="{{ addr.floor }}" name="{{ type }}floor">
+        </div>
+        <div class="field">
+            <label>Street Address:</label>
+            <input id="pac-input-shipping" type="text" value="{{addr.street_number}} {{addr.street_name}} {{addr.city}} {{addr.state}}">
+        </div>
+        <div class="field">
+            <div id="mapshipping" class="map"></div>
+        </div>
+{% endif %}
+
+{% if form == false %}
+<div style="display: none;">
+{% endif %}
+    <div class="field" >
+        <input type="hidden" id="fulladdress-{{type}}" value="{{addr.street_number}} {{addr.street_name}} {{addr.street_type}} {{addr.city}}  {{addr.suburb_name}} {{addr.postcode}} {{addr.state}}">
+        <input type="hidden" id="fulladdress-updated" name="fulladdress-updated" value="0">
+        <label>Address</label>
+        {% if addr %}
+            {% if addr.unit_number %}
+            	<input placeholder="Address" name="{{ type }}address" type="text" value="{{addr.unit_number}} / {{addr.street_number}} {{addr.street_name}}" id="{{ type }}address">
+            {% else %}
+            	<input placeholder="Address" name="{{ type }}address" type="text" value="{{addr.street_number}} {{addr.street_name}}" id="{{ type }}address">
+            {% endif %}
+        {% else %}
+            <input placeholder="Address" name="{{ type }}address" type="text" id="{{ type }}address">
+        {% endif %}
+			<input type="hidden" name="{{ type }}addressid" value="{{addr.id}}">
+
+    </div>
+    <div class="field">
+        <label>Suburb/Town</label>
+        <input placeholder="Suburb" name="{{ type }}suburb" type="text" value="{{addr.suburb_name}}" id="{{ type }}suburb">
+    </div>
+    <div class="field">
+        <label>City</label>
+        <input placeholder="City" name="{{ type }}city" type="text" value="{{addr.city}}" id="{{ type }}city">
+    </div>
+    <div class="field">
+        <label>State</label>
+        <input placeholder="State" name="{{ type }}state" type="text" value="{{addr.state}}" id="{{ type }}state">
+    </div>
+    <div class="field">
+        <label>Country</label>
+        <Select placeholder="Country" name="{{ type }}country" id="{{ type }}country_id">
+            <option value="1" {% if addr.country_id == '1' %}selected{% endif %}>Australia</option>
+            <option value="2" {% if addr.country_id == '2' %}selected{% endif %}>New Zealand</option>
+        </Select>
+    </div>
+    <div class="field">
+        <label>Post Code</label>
+        <input placeholder="Post Code" name="{{ type }}postcode" type="text" value="{{addr.postcode}}" id="{{ type }}postcode">
+    </div>
+    <div class="field" hidden>
+        <label>Street Type</label>
+        <Select placeholder="Street Type" name="{{ type }}street_type" id="{{ type }}street_type">
+            <option value="Street" {% if addr.street_type == 'Street' %}selected{% endif %}>Street</option>
+            <option value="Road" {% if addr.street_type == 'Road' %}selected{% endif %}>Road</option>
+            <option value="Lane" {% if addr.street_type == 'Lane' %}selected{% endif %}>Lane</option>
+            <option value="Avenue" {% if addr.street_type == 'Avenue' %}selected{% endif %}>Avenue</option>
+        </Select>
+    </div>
+{% if form == false %}
+</div>
+{% endif %}
+</div>

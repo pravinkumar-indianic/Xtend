@@ -1,0 +1,45 @@
+title = "Profile Page"
+url = "/profile/:profile_id"
+layout = "default-v2"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "login"
+
+[access]
+metaarea = 5
+
+[MyProfile]
+moduleHeading = "Profile"
+showHeading = 1
+moduleFAIcon = "fa-font-awesome"
+moduleFramework = 16
+permissions[] = "cascade"
+access[] = "user"
+moduleGridCols = "sixteen"
+productsPerRow = 4
+maxProducts = 12
+
+/** GLOBAL COMPONENTS **/
+
+[viewBag]
+metaarea = 1
+
+[CustomStyles]
+
+[Sidebar]
+
+[Cart]
+
+[SwitchProgram]
+
+[RewardsNav]
+
+[FooterUsefullInfo]
+
+==
+{% component 'CustomStyles' %}  
+
+{% component 'MyProfile' %}
+

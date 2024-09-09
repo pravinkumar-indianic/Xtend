@@ -1,0 +1,114 @@
+title = "Dashboard"
+url = "/dashboard"
+layout = "default-v2"
+is_hidden = 0
+
+[viewBag]
+metaarea = 0
+
+[session]
+security = "user"
+redirect = "login"
+
+[access]
+metaarea = 0
+
+[ContentBlock2]
+lhsImageNamesArray = "media/contentblocks/Valentine.jpg"
+lhsHeadingIcon = "announcement"
+lhsHeadingText = "Make your moment unforgettable"
+lhsLine1 = "Browse our catalogue of amazing rewards"
+lhsLine2 = "All of your favourite brands online"
+lhsLink = "/rewards"
+rhsImageNamesArray = "media/contentblocks/SamsungQ900RLifestyle-920x629.jpg"
+rhsLine1 = "Experience all Technology has to offer"
+rhsline2 = "Brand new TVs and Audio"
+rhsLink = "/rewards/category/technology"
+
+[AwardsDashboard]
+
+[PostsList]
+
+[PostsListDashboard]
+
+[ProgramToolsDashboard]
+
+[ResultsDashboard]
+
+[ActivityFeedDashboard]
+
+[SocialFeed]
+
+[ProfilesDashboard]
+
+[Gauge]
+
+[RewardsCoverFlow]
+
+[ResultsDetail]
+dashboardView = 1
+monthstring = "April 2021"
+showSprintModule = 0
+partHeader = "Elite Point Opportunity Q3"
+partTitleFirst = "January 2021 Radiators"
+partTitleSecond = "Plan Achieved"
+partTitleThird = "January 2021 Points Earned"
+partTitleFourth = "Fourth"
+partTitleFifth = "five"
+serviceHeader = "Elite Point Opportunity Q3"
+serviceTitleFirst = "July TSA Volume Plan"
+serviceTitleSecond = "July TSA Volume Achieved"
+serviceTitleThird = "January 2021 Points Earned"
+serviceTitleFourth = 4
+serviceTitleFifth = "five"
+
+[SpinTheWin]
+
+[ResultsWidget]
+
+[WishlistDashboard]
+
+[CustomStyles]
+
+[Sidebar]
+
+[Cart]
+
+[SwitchProgram]
+
+[RewardsNav]
+
+[Popup]
+
+[FooterUsefullInfo]
+==
+<?php
+function onStart()
+{
+    use Codengine\Awardbank\Traits\OembedRenderer;
+
+    $user = Auth::getUser();
+    if ($user && $user->currentProgram) {
+        $program = $user->currentProgram;
+        $this['dashboardSettings'] = \Codengine\Awardbank\Models\DashboardSettings::where('program_id', '=', $program['id'])
+        ->first();
+
+        if ($this['dashboardSettings']) {
+            $this['dashboardSettings']['announcement_content'] = OembedRenderer::renderOembedMulti($this['dashboardSettings']['announcement_content']);
+            $this['customDashboard'] = $this['dashboardSettings']['template'];
+        }
+    }
+}
+?>
+==
+{% component 'CustomStyles' %}
+
+{% component 'Popup' %}
+
+{% if customDashboard == '5stepincentive' %}
+{% partial 'dashboard/5stepincentive' %}
+{% elseif customDashboard == 'aftersaleselite' %}
+{% partial 'dashboard/aftersaleselite' %}
+{% else %}
+{% partial 'dashboard/default' %}
+{% endif %}

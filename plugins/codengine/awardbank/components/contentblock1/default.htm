@@ -1,0 +1,34 @@
+<div class="ui container container-content-block1">
+	<div class="ui grid grid-no-margin">
+		<div class="ui sixteen wide column column-no-padding">
+			<div class="content-block1 {{ __SELF__ }}">
+				<div class="content-block1-image">
+					<img src="{{__SELF__.background }}">
+				</div>
+				<div class="content-block1-heading">
+                <h1 style="color: {{__SELF__.titleColor}}">{{ __SELF__.headingText}}</h1>
+
+                {% if __SELF__.overrideHoverButton %}
+                <style>
+                    #content-block-button:hover {
+                        background-color: {{ __SELF__.overrideHoverButton }}!important;
+                    }
+                </style>
+                {% endif %}
+
+                <a
+                id="content-block-button"
+                href="{{__SELF__.buttonLink}}"
+                style="
+                color: {{__SELF__.btn_text_color}}!important;
+                border-color: {{__SELF__.btnBorderColor}}!important;
+                background-color: {{__SELF__.btnBackgroundColor}};
+                "
+                    class="secondary ui button" type="submit">{{__SELF__.buttonText}}
+                </a>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

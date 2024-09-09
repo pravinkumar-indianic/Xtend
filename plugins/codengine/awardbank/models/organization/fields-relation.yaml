@@ -1,0 +1,88 @@
+tabs:    
+    defaultTab: Organization Details
+    fields:
+        billingcontact:
+            label: Billing Contact
+            type: relation
+            emptyOption: 'Not Set'  
+            tab: Organization Details
+        name:
+            label: 'codengine.awardbank::lang.awardbank.organizationname'
+            oc.commentPosition: ''
+            span: full
+            type: text
+            tab: Organization Details
+        description:
+            label: 'codengine.awardbank::lang.awardbank.organizationdescription'
+            size: large
+            oc.commentPosition: ''
+            span: full
+            type: richeditor
+            tab: Organization Details
+        primary_color:
+            label: 'codengine.awardbank::lang.awardbank.organizationprimarycolor'
+            oc.commentPosition: ''
+            span: auto
+            type: colorpicker
+            tab: Organization Details
+        secondary_color:
+            label: 'codengine.awardbank::lang.awardbank.organizationsecondarycolor'
+            oc.commentPosition: ''
+            span: auto
+            type: colorpicker
+            tab: Organization Details
+        programs:
+            label: Program
+            type: relation
+            nameFrom: name
+            span: full
+            emptyOption: None
+            tab: Organization Details
+
+
+        feature_image:
+            label: 'codengine.awardbank::lang.awardbank.supplierfeatureimage'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: 260
+            tab: Image Management
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto
+        images:
+            label: 'codengine.awardbank::lang.awardbank.supplierimages'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: 260
+            tab: Image Management
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto       
+
+        accessmanager:
+            label: Access Managers
+            type: relation
+            nameFrom: name
+            span: full
+            emptyOption: None
+            tab: Access Management                
+
+        permissions:
+            label: Permissions Managers
+            type: relation
+            nameFrom: name
+            span: full
+            emptyOption: None
+            tab: Permissions Management            

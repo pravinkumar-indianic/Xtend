@@ -1,0 +1,12 @@
+fields:
+    user:
+        label: User
+        span: full
+        type: relation
+        select: full_name    
+    comment:
+        label: Comment
+        oc.commentPosition: ''
+        span: full
+        type: ShahiemSeymor\Ckeditor\FormWidgets\Wysiwyg
+        size: giant        

@@ -1,0 +1,32 @@
+<div class="question-set {{ bigloop }}">
+	<div class="field right aligned">
+		<i class="close icon delete-question" data-bigloop="{{ bigloop }}"></i>
+	</div>
+	<div class="field">
+	    <label>Question :</label>
+	    <input type="text" value="{{ question.questiondescription }}" name="Question[{{ bigloop }}][questiondescription]">
+	</div>
+	<div class="two fields">
+		<div class="field">
+		    <label>Question Required <b style="color:red;">*</b></label>
+		    <select class="ui selection dropdown" name="Question[{{ bigloop }}][questionrequired]">
+		        <option value="1"{% if question.questionrequired == 1 %} selected{% endif %}>Yes</option>
+		        <option value="0"{% if question.questionrequired == 0 %} selected{% endif %}>No</option>
+		    </select>
+		</div>
+		<div class="field">
+		    <label>Question Type <b style="color:red;">*</b></label>
+		    <select class="ui selection dropdown" name="Question[{{ bigloop }}][questiontype]">
+		        <option value="0"{% if question.questiontype == 0 %} selected{% endif %}>Short Text</option>
+		        <option value="1"{% if question.questiontype == 1 %} selected{% endif %}>Long Text</option>
+		        <option value="2"{% if question.questiontype == 2 %} selected{% endif %}>Dropdown</option>
+		        <option value="3"{% if question.questiontype == 3 %} selected{% endif %}>Multichoice</option>
+		    </select>
+		</div>
+	</div>
+	{% partial '@optionslist' 
+		options = question.questionoptions 
+		bigloop = bigloop 
+	%}
+	<hr>
+</div>

@@ -1,0 +1,17 @@
+<div class="x ui two column stackable grid">
+    <div class="column floating left like-control">
+        <span
+            class="social-post-comment-like {% if comment.likedByCurrentUser %}active{% endif %}"
+            data-id="{{ comment.id }}"
+        >
+            <i class="icon outline thumbs up"></i>
+            Like
+        </span>
+    </div>
+    {% if comment.likesCount %}
+    <div class="column floating right likes-count">
+        <i class="icon outline thumbs up"></i>
+        <span>{{ comment.likesCount }}</span>
+    </div>
+    {% endif %}
+</div>

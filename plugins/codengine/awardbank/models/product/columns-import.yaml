@@ -1,0 +1,246 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: false
+        sortable: true
+        invisible: true    
+    active:
+        label: Active
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: false    
+    featured:
+        label: Featured
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: false                      
+    name:
+        label: 'codengine.awardbank::lang.awardbank.product_name'
+        type: text
+        searchable: true
+        sortable: true     
+    model_number:
+        label: 'Model Number'
+        type: text
+        searchable: true
+        sortable: true 
+    options1:
+        label: 'Colours'
+        nameFrom: my_options_one
+        searchable: false
+        sortable: false  
+    options2:
+        label: 'Sizes'
+        nameFrom: my_options_two
+        searchable: false
+        sortable: false    
+    options3:
+        label: 'Custom Options'
+        nameFrom: my_options_three
+        searchable: false
+        sortable: false     
+    supplier:
+        label: 'codengine.awardbank::lang.awardbank.suppliername'
+        relation: supplier
+        select: name    
+        searchable: false
+        sortable: true               
+    feature_image:
+        label: Feature Image
+        relation: feature_image
+        type: partial
+        path: ~/plugins/codengine/awardbank/models/_feature_image_partial.htm  
+        searchable: false
+        sortable: false
+    external_image_url:   
+        label: 'External Img. Url'
+        type: text
+        searchable: false
+        sortable: false
+        invisible: true         
+    deleted_at:
+        label: Deleted At
+        type: datetime
+        searchable: false
+        sortable: true        
+        invisible: true
+    deactivated_at:
+        label: 'codengine.awardbank::lang.awardbank.deactivated_at'
+        type: datetime
+        searchable: false
+        sortable: true
+        invisible: true               
+    brand:
+        label: 'Brand'
+        type: text
+        searchable: false
+        sortable: false  
+    primary_color:
+        label: 'Primary Color'
+        type: partial
+        path: ~/plugins/codengine/awardbank/models/_color_partial.htm      
+        searchable: false
+        sortable: false            
+    category-string:
+        label: 'Category (string)'
+        type: text
+        searchable: false
+        sortable: false 
+        invisible: true     
+    category-string-check:
+        label: 'Check Category String For Match On Update'
+        type: switch   
+        searchable: false
+        sortable: true
+        invisible: true         
+    cost_currency:
+        label: 'codengine.awardbank::lang.awardbank.currency'
+        type: text
+        searchable: false
+        sortable: true
+        invisible: true                         
+    cost_ex:
+        label: 'codengine.awardbank::lang.awardbank.cost_ex'
+        type: number
+        searchable: false
+        sortable: true
+        invisible: true  
+    cost_tax_percent:
+        label: 'codengine.awardbank::lang.awardbank.cost_tax_percent'
+        type: number
+        searchable: false
+        sortable: true
+        invisible: true   
+    cost_freight:
+        label: 'codengine.awardbank::lang.awardbank.cost_freight'
+        type: number
+        searchable: false
+        sortable: true
+        invisible: true        
+    cost_rrp:
+        label: 'codengine.awardbank::lang.awardbank.cost_rrp'
+        type: number
+        searchable: false
+        sortable: true  
+    points_source:
+        label: 'codengine.awardbank::lang.awardbank.points_source'
+        type: number
+        searchable: false
+        sortable: true                     
+    mark_up_override:
+        label: 'codengine.awardbank::lang.awardbank.mark_up_override'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true      
+    mark_up_integer:
+        label: 'codengine.awardbank::lang.awardbank.mark_up_integer'
+        type: number
+        searchable: false
+        sortable: true
+        invisible: true    
+    mark_up_type:
+        label: 'codengine.awardbank::lang.awardbank.mark_up_type'
+        type: number
+        searchable: false
+        sortable: true
+        invisible: true  
+    deliver_base:
+        label: Deliver to EVT 
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: false  
+    width:
+        label: 'codengine.awardbank::lang.awardbank.width'
+        type: number
+        searchable: false
+        sortable: true
+        invisible: false  
+    length:
+        label: 'codengine.awardbank::lang.awardbank.length'
+        type: number
+        searchable: false
+        sortable: true
+        invisible: false
+    height:
+        label: 'codengine.awardbank::lang.awardbank.height'
+        type: number
+        searchable: false
+        sortable: true
+        invisible: false      
+    weight:
+        label: 'codengine.awardbank::lang.awardbank.weight'
+        type: number
+        searchable: false
+        sortable: true
+        invisible: false                                                                           
+    description:
+        label: 'codengine.awardbank::lang.awardbank.productdescription'
+        type: text
+        searchable: false
+        sortable: true            
+        invisible: true    
+    small_font_description:
+        label: 'Small Font Description'
+        type: text
+        searchable: false
+        sortable: true            
+        invisible: true   
+    replaces:
+        label: 'codengine.awardbank::lang.awardbank.productreplaces'
+        relation: replaces
+        select: name    
+        searchable: false
+        sortable: true   
+        invisible: true           
+    replacements:
+        label: 'codengine.awardbank::lang.awardbank.productreplacement'
+        relation: replacements
+        select: name    
+        searchable: false
+        sortable: true        
+        invisible: true                 
+    my_owner:
+        label: 'codengine.awardbank::lang.awardbank.owners'
+        nameFrom: my_owner
+        emptyOption: 'No Permissions Of The Type Exist'  
+        searchable: false
+        sortable: false   
+        invisible: true                 
+    my_view:
+        label: 'codengine.awardbank::lang.awardbank.viewability'
+        nameFrom: my_view
+        emptyOption: 'No Permissions Of The Type Exist'    
+        searchable: false
+        sortable: false     
+        invisible: true         
+    my_wishlist:
+        label: 'codengine.awardbank::lang.awardbank.wishlist'
+        nameFrom: my_wishlist
+        emptyOption: 'No Permissions Of The Type Exist'    
+        searchable: false
+        sortable: false     
+        invisible: false    
+    my_cart:
+        label: 'codengine.awardbank::lang.awardbank.cart'
+        nameFrom: my_cart
+        emptyOption: 'No Permissions Of The Type Exist'    
+        searchable: false
+        sortable: false     
+        invisible: false                                   
+    my_categories:
+        label: 'codengine.awardbank::lang.awardbank.categories'
+        nameFrom: my_categories
+        emptyOption: 'No Permissions Of The Type Exist'    
+        searchable: false
+        sortable: false         
+    my_tags:
+        label: 'codengine.awardbank::lang.awardbank.tags'
+        nameFrom: my_categories
+        emptyOption: 'No Permissions Of The Type Exist'    
+        searchable: false
+        sortable: false                

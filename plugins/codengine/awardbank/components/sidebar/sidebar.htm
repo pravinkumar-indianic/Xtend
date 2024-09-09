@@ -1,0 +1,62 @@
+<div class="ui segment sidebar-nav-inner">
+    <div class="sidebar-avatar align-text-center">
+        <a href="/myprofile/default">
+            {% if user.avatar %}
+                <img src="{{ user.avatar.thumb(150 , 150, 'crop') }}" class="ui small circular image avatar">
+            {% else %}
+                <img src="{{ 'assets/img/avatar/people/Enid.png'|theme }}" class="ui small circular image avatar">
+            {% endif %}
+        </a>
+    </div>
+    <div class="ui vertical text menu sidebar-nav-menu">
+        <a class="item" href="/dashboard">
+            <span><i class="icon-dashboard icon"></i> Dashboard</span>
+        </a>
+        {% if user.currentProgram.module_allow_rewards == true %}
+            <a class="item" href="/rewards">
+                <span><i class="icon-rewards icon"></i> Rewards</span>
+            </a>
+        {% endif %}
+        {% if user.currentProgram.module_allow_posts == true %}
+            <a class="item" href="/posts">
+                <span><i class="icon-posts icon"></i> Posts</span>
+            </a>
+        {% endif %}
+        {% if user.currentProgram.module_allow_awards == true %}
+            <a class="item" href="/awards">
+                <span><i class="icon-awards icon"></i> Awards</span>
+            </a>
+        {% endif %}
+        {% if user.currentProgram.module_allow_users == true %}
+            <a class="item" href="/profiles/default/default/">
+                <span><i class="icon-users icon"></i> Users</span>
+            </a>
+        {% endif %}
+        {% if user.currentProgram.module_allow_admin_reports == true and manager == true %}
+            <a class="item" href="/myprogram/default">
+                <span><i class="heartbeat icon" style="font-size:20px;margin-left: 6px; margin-bottom: 10px;"></i> Admin & Reports</span>
+            </a>
+        {% endif %}
+        {% if user.currentProgram.module_allow_user_profile == true %}
+            <a class="item" href="/myprofile/default">
+                <span><i class="suitcase icon" style="font-size:20px;margin-left: 6px; margin-bottom: 10px;"></i>My Account</span>
+            </a>
+        {% endif %}
+        {% if user.currentProgram.module_allow_program_settings == true and manager == true and user.roll != 'Symbion Staff' %}
+        <a class="item" href="/program-settings/default">
+            <span><i class="settings icon" style="font-size:20px;margin-left: 6px; margin-bottom: 10px;"></i>Program Settings</span>
+        </a>
+        {% endif %}
+        {% if user.currentProgram.module_allow_social_feed == true %}
+        <a class="item" href="/social-feed">
+            <span><i class="talk icon" style="font-size:20px;margin-left: 6px; margin-bottom: 10px;"></i>Social Feed</span>
+        </a>
+        {% endif %}
+        <a class="item" href="/ordercheckout">
+            <span><i class="in cart icon" style="font-size:20px;margin-left: 6px; margin-bottom: 10px;"></i>My Cart</span>
+        </a>
+        <a class="item" data-request="onLogout" data-request-data="redirect: '/login/{{ user.currentProgram.slug }}'">
+            <span><i class="warning sign icon" style="font-size:20px;margin-left: 6px; margin-bottom: 10px;"></i>Sign out</span>
+        </a>
+    </div>
+</div>

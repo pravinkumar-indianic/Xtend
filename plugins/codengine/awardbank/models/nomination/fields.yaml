@@ -1,0 +1,46 @@
+fields:
+    award_details:
+        label: Award Details
+        type: section
+    award:
+        label: Award
+        span: full
+        type: relation
+        relation: award
+        select: name
+        emptyOption: 'Not Set'
+    nominee_details:
+        label: Nominee
+        type: section
+    program:
+        label: Program
+        span: full
+        type: relation
+        relation: program
+        select: name
+        emptyOption: 'Not Set'
+    user:
+        label: Nominee (User)
+        span: full
+        type: relation
+        relation: user
+        select: full_name
+        emptyOption: 'Not Set'
+    team:
+        label: Nominee (Team)
+        span: full
+        type: relation
+        relation: team
+        select: name
+        emptyOption: 'Not Set'
+    nominator:
+        label: Nominator
+        span: full
+        type: relation
+        select: full_name
+        relation: team
+        emptyOption: 'Not Set'
+    is_winner:
+        label: Winner
+        span: auto
+        type: switch

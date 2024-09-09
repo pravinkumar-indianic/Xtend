@@ -1,0 +1,4 @@
+fields:
+    program:
+        label: Program
+        type: dropdown   

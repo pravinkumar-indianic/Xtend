@@ -1,0 +1,46 @@
+<h5>Add New Prize Item</h5>
+<form class="criteria-form ui form" id="new-price-form">
+    <div class="ui stackable grid">
+        <div class="sixteen wide tablet eight wide computer column">
+            <label>Label (on wheel)</label>
+            <input type="text" name="label" maxlength="15" placeholder="label">
+            <br/>
+            <small>Max. 15 characters</small>
+        </div>
+        <div class="sixteen wide tablet eight wide computer column">
+            <label>Name</label>
+            <input type="text" name="name" maxlength="255" placeholder="Name">
+            <br/>
+            <small>Max. 255 characters</small>
+        </div>
+        <div class="sixteen wide tablet sixteen wide computer column">
+            <label>Message (when the wheel end up on this prize)</label>
+            <input type="text" name="message" maxlength="255" placeholder="Message">
+            <br/>
+            <small>Max. 255 characters</small>
+        </div>
+        <div class="sixteen wide tablet four wide computer column">
+            <label>Quantity</label>
+            <input type="text" name="quantity" placeholder="1">
+        </div>
+        <div class="sixteen wide tablet four wide computer column">
+            <label>Priority</label>
+            <input type="text" name="priority" placeholder="1">
+        </div>
+        <div class="sixteen wide tablet four wide computer column">
+            <label>% Prob. of Win</label>
+            <input type="text" name="probability" placeholder="10">
+        </div>
+        <div class="sixteen wide tablet four wide computer column">
+            <label>Is prize?</label>
+            <select class="ui dropdown" name="is_price">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+        <div class="five wide tablet five wide computer column">
+            <button class="ui button primary new-price save">Add</button>
+        </div>
+    </div>
+</form>

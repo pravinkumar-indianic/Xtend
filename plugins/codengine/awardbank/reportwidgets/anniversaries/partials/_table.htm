@@ -1,0 +1,22 @@
+<table class="table data" data-provides="rowlink">
+    <thead>
+        <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span><?= $typename ?></span></th>
+            <th><span><?= $typename ?> Flag</span></th>
+            <th><span><?= $typename ?> Flag Updated</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($results as $result){ ?>
+            <tr>
+                <td><?= $result['id'] ?></td>
+                <td><?= $result['full_name'] ?></td>
+                <td><?= $result[$type] ?></td>
+                <td><?= $result['today_'.$type] ?></td>
+                <td><?= $result['updated_'.$type] ?></td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>

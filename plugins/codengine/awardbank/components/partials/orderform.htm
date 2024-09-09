@@ -1,0 +1,26 @@
+{% if products.count >= 1 %}
+	<h1>Confirm Details</h1>
+	<form class="ui form" id="orderform">
+		<div class="ui divided items">
+		    {% for product in products %}
+		        {% partial '@orderproduct' product = product index = loop.index points_name = points_name %}
+		    {% endfor %}
+		    <h4>Order Total: {{ ordertotal }} {{ points_name }}</h4>
+	    </div>
+		<div class="field">
+		    <label style="color:red;">Please note deliveries can not be made to PO Boxes, we require a physical office or home address.</label>
+		</div>
+		{% partial '@addressform' address = shippingAddress phone_number = phone_number%}
+		<div class="field">
+		  	<div class="ui toggle checkbox">
+		    	<input type="checkbox" name="Store Address" tabindex="0" class="hidden">
+		    	<label>Save order address as default shipping address for user</label>
+		  	</div>
+		</div>
+		<div class="field">
+			<button class="ui button secondary small">Place Order</button>
+		</div>
+	</form>
+{% else %}
+	<h1>There is nothing in your cart to checkout.</h1>
+{% endif %}

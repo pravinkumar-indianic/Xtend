@@ -1,0 +1,126 @@
+<div class="form-wrapper">
+    <form id="loginpageform" class="ui form">
+        <div class="form-group switch-field span-full not-required">
+            <div class="field">
+                <label>Template</label>
+                <select id="template" name="template">
+                    <option value="default" {% if login_page.template == 'default' %}selected{% endif %}>Default</option>
+                    <option value="5stepincentive" {% if login_page.template == '5stepincentive' %}selected{% endif %}>5 Step Incentive</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group switch-field span-full not-required">
+            <div class="field">
+                <label><strong>Video Source:</strong></label>
+                <select name="video_source" id="video_source">
+                    <option value="youtube" {% if login_page.video_source=='youtube' %}selected{% endif %}>Youtube</option>
+                    <option value="vimeo" {% if login_page.video_source=='vimeo' %}selected{% endif %}>Vimeo</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group switch-field span-full not-required">
+            <div class="field">
+                <label><strong>Video ID:</strong></label>
+                <input name="video_id"
+                       type="text" {% if login_page.video_id %}
+                       value="{{ login_page.video_id|raw }}" {%
+                       endif %}
+                       style="width: 100%"
+                />
+                <p>
+                    <span>Video ID is the ID included in the video portal url - please see the images below.</span>
+                    <br/>
+                    <small>Note: Please make sure you are copying the video ID only. Do not copy other url parameters (e.g. if the url is https://www.youtube.com/watch?v=QA0WMIryzZs&ab_channel=PitSpielmann you should only copy QA0WMIryzZs)</small>
+                </p>
+                <p>
+                    <img src="https://production-upload-xtend.s3.ap-southeast-2.amazonaws.com/static-assets/login-page-vimeo-example.png">
+                </p>
+                <p>
+                    <img src="https://production-upload-xtend.s3.ap-southeast-2.amazonaws.com/static-assets/login-page-youtube-example.png">
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group switch-field span-full not-required">
+            <div class="field">
+                <label><strong>Paragraph #1</strong></label>
+                <textarea name="paragraph1" id="paragraph1" style="width: 100%" rows="5">
+                {% if login_page.paragraph1 %}{{ login_page.paragraph1|raw }}{% endif %}
+            </textarea>
+            </div>
+        </div>
+
+        <div class="form-group switch-field span-full not-required">
+            <div class="field">
+                <label><strong>Paragraph #2</strong></label>
+                <textarea name="paragraph2" id="paragraph2" style="width: 100%" rows="5">{% if login_page.paragraph2 %}{{ login_page.paragraph2|raw }}{% endif %}</textarea>
+            </div>
+        </div>
+
+        <p>
+            <br/>
+            <label><strong>Infographic image:</strong></label>
+        </p>
+        <div class="field">
+            <div class="user-summary-image">
+                {% component 'infographic' %}
+            </div>
+        </div>
+
+        <p>
+            <br/>
+            <label><strong>Ethical Sponsors</strong></label>
+            <br/>
+            <small>Recommended image dimensions: 150 x 150 px. Maximum image size: 8 MB.</small>
+        </p>
+        <div class="field">
+            <div class="user-summary-image">
+                {% component 'ethicalSponsorsLogos' %}
+            </div>
+        </div>
+
+        <p>
+            <br/>
+            <label><strong>Gold Sponsors</strong></label>
+            <br/>
+            <small>Recommended image dimensions: 150 x 150 px. Maximum image size: 8 MB.</small>
+        </p>
+        <div class="field">
+            <div class="user-summary-image">
+                {% component 'goldSponsorsLogos' %}
+            </div>
+        </div>
+
+        <p>
+            <br/>
+            <label><strong>Silver Sponsors</strong></label>
+            <br/>
+            <small>Recommended image dimensions: 150 x 150 px. Maximum image size: 8 MB.</small>
+        </p>
+        <div class="field">
+            <div class="user-summary-image">
+                {% component 'silverSponsorsLogos' %}
+            </div>
+        </div>
+
+        <p>
+            <br/>
+            <label><strong>Bronze Sponsors</strong></label>
+            <br/>
+            <small>Recommended image dimensions: 150 x 150 px. Maximum image size: 8 MB.</small>
+        </p>
+        <div class="field">
+            <div class="user-summary-image">
+                {% component 'bronzeSponsorsLogos' %}
+            </div>
+        </div>
+
+        <p>
+            <button class="ui button  primary fluid square">
+                Save
+            </button>
+        </p>
+    </form>
+</div>

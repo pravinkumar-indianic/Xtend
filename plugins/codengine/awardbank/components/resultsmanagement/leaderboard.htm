@@ -1,0 +1,98 @@
+<h1>Leaderboard Settings</h1>
+
+<div class="ui segment">
+    <h3>Upload Leaderboard Data</h3>
+    <p>Upload your leaderboard results here. (<a href="https://staging-upload-xtend.s3.ap-southeast-2.amazonaws.com/downloads/leaderboard_import_sample.csv" target="_blank">download example.csv</a>)</p>
+
+    <!-- AJAX enabled form -->
+    <form data-request="onLeaderboardImport"
+          data-request-files
+          data-request-update="'{{ __SELF__}}::importresults': '#importResults'"
+          class="ui form"
+    >
+        <div class="field">
+            <input type="file" name="file" accept=".csv">
+        </div>
+
+        <div class="field">
+            <label for="section">Select Section</label>
+            <select name="section" id="section">
+                <option value="newcomers">Best Newcomer</option>
+                <option value="improved">Most Improved</option>
+                <option value="engaged">Most Engaged</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label for="month">Select Month</label>
+            <select name="month" id="month">
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+            </select>
+        </div>
+
+        <div class="ui toggle checkbox">
+            <label>Skip invalid records</label>
+            <input type="checkbox" name="skip_errors">
+        </div>
+
+        <!-- Action button -->
+        <p>
+            <button type="submit" class="ui button primary">Submit</button>
+        </p>
+    </form>
+
+    <!-- Result container -->
+    <div id="importResults"></div>
+</div>
+
+<div class="ui segment">
+    <h3>Settings</h3>
+    <form data-request="onLeaderboardSettingsUpdate"
+          data-request-flash
+          class="ui form">
+        <div class="field">
+            <label for="display_year">Select which year & month would you like to display on Leaderboard</label>
+            <select name="display_year" id="display_year">
+                {% for i in 2023..'now'|date('Y') %}
+                <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="field">
+            <select name="display_month" id="display_month">
+                <option value="3" {% if leaderboard_settings['display_month'] == '3' %}selected{% endif %}>March</option>
+                <option value="4" {% if leaderboard_settings['display_month'] == '4' %}selected{% endif %}>April</option>
+                <option value="5" {% if leaderboard_settings['display_month'] == '5' %}selected{% endif %}>May</option>
+                <option value="6" {% if leaderboard_settings['display_month'] == '6' %}selected{% endif %}>June</option>
+                <option value="7" {% if leaderboard_settings['display_month'] == '7' %}selected{% endif %}>July</option>
+                <option value="8" {% if leaderboard_settings['display_month'] == '8' %}selected{% endif %}>August</option>
+            </select>
+        </div>
+
+        <div class="ui toggle checkbox">
+            <label>Display points column</label>
+            <input type="checkbox" name="display_points" {% if leaderboard_settings['display_points'] == 'on' %}checked{% endif  %}>
+        </div>
+
+        <p>
+            <button type="save" class="ui button primary">Save</button>
+        </p>
+    </form>
+</div>
+
+<div class="ui segment">
+    <h3>Report - Leaderboard</h3>
+
+    <div class="ui grid one columns">
+        <div class="column">
+            <button class="ui primary filter export button leaderboard" data-attach-loading="">Export</button>
+        </div>
+    </div>
+</div>
+
+

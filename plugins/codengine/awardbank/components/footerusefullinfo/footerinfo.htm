@@ -1,0 +1,12 @@
+{% if options|length >= 1 %}
+    <ul>
+		<li>
+            <a href="#">Useful Information</a>
+			<ul>
+				{% for option in options %}
+					<li><a href="/post/{{option.slug}}">{{ option.title }}</a></li>
+				{% endfor %}
+			</ul>
+		</li>
+    </ul>
+{% endif %}

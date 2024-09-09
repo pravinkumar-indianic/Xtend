@@ -1,0 +1,69 @@
+{% if lines | length >= 1 %}
+  <div class="auto" style="padding-bottom: 15px;">
+    <table class="ui celled table" class="auto">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Color</th>
+        <th>Size</th>
+        <th>Custom Option</th>
+        <th>Gift Voucher E-mail</th>
+        <th>Gift Voucher Preferred Date</th>
+        <th>{{ points_name }}'s</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for line in lines %}
+
+        <tr>
+          <td>
+              <a href="/rewards/{{ line.product_id }}">{{ line.product_name }}</a>
+          </td>
+          <td>{% if line.option1_selection != null %}{{ line.option1_selection }}{% else %}N/A{% endif %}</td>
+          <td>{% if line.option2_selection != null %}{{ line.option2_selection }}{% else %}N/A{% endif %}</td>
+          <td>{% if line.option3_selection != null %}{{ line.option3_selection }}{% else %}N/A{% endif %}</td>
+          <td>{% if line.order_customer_email != null %}{{ line.order_customer_email }}{% else %}N/A{% endif %}</td>
+          <td>{% if line.shipped_date != null %}{{ line.shipped_date }}{% else %}N/A{% endif %}</td>
+          <td>  
+
+                  {% if scale_points_by >= 1%}
+                      {{ line.product_dollar_value * scale_points_by }} 
+                  {% else %}
+                      {{ line.points_value }} 
+                  {% endif %} {{ points_name }}
+
+          </td>
+          <td>
+            {% if line.product_status == 1 %}
+              Order Placed With Supplier
+            {% elseif line.product_status == 2 %}
+              On Backorder
+            {% elseif line.product_status == 3 %}
+              In Warehouse
+            {% elseif line.product_status == 4 %}
+              Item Ready For Dispatch
+            {% elseif line.product_status == 5 %}
+              Item Dispatched
+            {% elseif line.product_status == 6 %}
+              Product Delivered
+            {% elseif line.product_status == 7 %} 
+              Product Cancelled
+            {% else %}
+              Processing
+            {% endif %} 
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+  </div>
+{% else %}
+  <div class="column">
+    <div class="ui segment raised">
+      <div class="product-header">
+          <h4>No Results</h4>
+      </div>                
+    </div>
+  </div>
+{% endif %}

@@ -1,0 +1,10 @@
+<div class="ui segment">
+    <h3>Renewal Info</h3>
+    <p>Program Created: {{ program.created_at|date("d/m/Y",program.timezone)}}.</p>
+    <p>Program Will Renew On: Day {{ program.xero_renewal_day_of_month }} of each month.</p>
+    {% if program.manual_pricing == false %}
+	    <p>Program Price Plan Is Set To: ${{ program.xero_renewal_price_plan }} AUD per user.</p>
+	    <p>Program Current User Count: {{ program.xero_renewal_member_count }} users.</p>
+	    <p>Upcoming Renewal Amounts: ${{ program.xero_renewal_price_plan * program.xero_renewal_member_count|number_format(0, '.', ',') }} AUD.</p>
+    {% endif %}
+</div>

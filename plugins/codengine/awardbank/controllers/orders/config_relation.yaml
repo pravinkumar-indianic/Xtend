@@ -1,0 +1,96 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+products:
+    label: codengine.awardbank::lang.Product.Products
+    modelClass: Codengine\Awardbank\Models\Product    
+    view:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/product/fields-relation.yaml                
+        list: $/codengine/awardbank/models/product/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/product/fields-relation.yaml
+        list: $/codengine/awardbank/models/product/columns.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 10     
+orderplacer:
+    label: codengine.awardbank::lang.Order.orderplacer
+    modelClass: RainLab\User\Models\User
+    view:
+        toolbarButtons: add|remove          
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        showSearch: true
+        recordsPerPage: 10  
+    manage:
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 10            
+shippingaddress:
+    label: codengine.awardbank::lang.Order.shippingaddress
+    modelClass: Codengine\Awardbank\Models\Address  
+    view:
+        toolbarButtons: add|remove          
+        form: $/codengine/awardbank/models/address/fields.yaml
+        list: $/codengine/awardbank/models/address/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/address/fields.yaml
+        list: $/codengine/awardbank/models/address/columns.yaml
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 10  
+program:
+    label: codengine.awardbank::lang.Program.Program
+    modelClass: Codengine\Awardbank\Models\OrderLineitem    
+    view:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/program/fields-relation.yaml                
+        list: $/codengine/awardbank/models/program/columns-relation.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/program/fields-relation.yaml
+        list: $/codengine/awardbank/models/program/columns-relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 10
+orderlineitems:
+    label: codengine.awardbank::lang.OrderLineitem.OrderLineitems
+    modelClass: Codengine\Awardbank\Models\OrderLineitem    
+    view:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/orderlineitem/fields-relation.yaml                
+        list: $/codengine/awardbank/models/orderlineitem/columns-relation.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/orderlineitem/fields-relation.yaml
+        list: $/codengine/awardbank/models/orderlineitem/columns-relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 10
+pointsledgers:
+    label: codengine.awardbank::lang.PointsLedger.PointsLedgers
+    modelClass: Codengine\Awardbank\Models\PointsLedger  
+    view:
+        toolbarButtons: create|add|remove  
+        form: $/codengine/awardbank/models/pointsledger/fields-relation-order.yaml                
+        list: $/codengine/awardbank/models/pointsledger/columns-relation.yaml  
+        emptyMessage: backend::lang.list.no_records   
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/pointsledger/fields-relation-order.yaml                
+        list: $/codengine/awardbank/models/pointsledger/columns-relation.yaml   
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 10

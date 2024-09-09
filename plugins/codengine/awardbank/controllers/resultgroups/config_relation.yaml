@@ -1,0 +1,31 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+resulttypes:
+    label: Result Data
+    modelClass: Codengine\Awardbank\Models\ResultType  
+    view:
+        toolbarButtons: create|remove  
+        form: $/codengine/awardbank/models/resulttype/fields.yaml                
+        list: $/codengine/awardbank/models/resulttype/columns.yaml
+        showSearch: true
+    manage:
+        form: $/codengine/awardbank/models/resulttype/fields.yaml
+        list: $/codengine/awardbank/models/resulttype/columns.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true          
+targetingtags:
+    label: Targeting Tags
+    modelClass: Codengine\Awardbank\Models\TargetingTag   
+    view:
+        toolbarButtons: add|create|remove           
+        form: $/codengine/awardbank/models/targetingtag/fields_relation.yaml             
+        list: $/codengine/awardbank/models/targetingtag/columns.yaml
+        showSearch: true
+    manage:
+        form: $/codengine/awardbank/models/targetingtag/fields_relation.yaml
+        list: $/codengine/awardbank/models/targetingtag/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true    
+

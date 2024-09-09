@@ -1,0 +1,35 @@
+{% set messagetype = __SELF__.messagetype %}
+{% set messages = __SELF__.messages %}
+{% set hasmorepage =  __SELF__.hasmorepage %}
+{% set page = __SELF__.page %}
+
+{% for message in messages %}
+<div class="item inbox" data-id="{{message.id}}">
+    <!-- <a class="ui tiny circular image">
+        <img src="img/avatar/people/carol.png" alt="label-image">
+    </a> -->
+    <div class="content">
+        <a class="header">
+            <span class="message-from">
+                {{ message.type }} - {{ message.sender_fullname }}
+            </span>
+        </a>
+        <div class="description">
+            <p><strong>{{message.created_at|date("d/m/Y", "Australia/Sydney")}}</strong></p>
+            <p>
+                {{message.message_text }}               
+            </p>
+        </div>
+    </div>
+</div>
+<div class="ui divider"></div>
+{% endfor %}
+<div class="ui right floated buttons">
+    
+    {% if page > 1 %}
+        <a data-request="{{ __SELF__}}::onLoadMoreMessage" data-request-data="page: {{page - 1}}"  class="right floated ui button" data-request-update="'{{__SELF__}}::inboxlist' : '#inboxdiv'"><i class="chevron left icon"></i> </a>
+    {% endif %}
+    {% if hasmorepage %}
+        <a data-request="{{ __SELF__}}::onLoadMoreMessage" data-request-data="page: {{page + 1}}"  class="right floated ui button" data-request-update="'{{__SELF__}}::inboxlist' : '#inboxdiv'"><i class="chevron right icon"></i> </a>
+    {% endif %}
+</div>

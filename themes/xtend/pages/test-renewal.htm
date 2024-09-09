@@ -1,0 +1,42 @@
+title = "test-renewal"
+url = "/test-renewal"
+layout = "default-v2"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "login"
+
+[access]
+metaarea = 3
+
+[Renewal]
+
+/** GLOBAL COMPONENTS **/
+
+[viewBag]
+metaarea = 2
+
+[CustomStyles]
+
+[Sidebar]
+
+[Cart]
+
+[SwitchProgram]
+
+[RewardsNav]
+
+[FooterUsefullInfo]
+
+==
+
+{% component 'CustomStyles' %}
+   
+<div class="ui container">
+    <div class="ui grid">
+        <div class="ui sixteen wide column">
+            {% component 'Renewal' %}   
+        </div>
+    </div>
+</div>

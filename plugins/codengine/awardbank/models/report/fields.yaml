@@ -1,0 +1,27 @@
+tabs:
+    defaultTab: Report Details
+    fields:
+        type:
+            label: Type
+            span: full
+            type: dropdown
+            default: financial
+            options:
+                financial: Financial
+                pointsledger: PointsLedger
+        program:
+            label: Program
+            span: full
+            type: relation
+            relation: program
+            select: name
+        date_from:
+            label: Start date
+            type: datepicker
+            mode: date
+            span: auto
+        date_to:
+            label: End date
+            type: datepicker
+            mode: date
+            span: auto

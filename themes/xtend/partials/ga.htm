@@ -1,0 +1,61 @@
+<script>
+
+      {% if access.user %}
+        {% set gaid = access.user.id %}
+        {% set ganame = access.user.full_name %}
+        {% set gaemail = access.user.email %}
+      {% else %}
+        {% set gaid = 'empty' %}
+        {% set ganame = 'empty' %}
+        {% set gaemail = 'empty' %}
+      {% endif %}
+
+      {% if access.program %}
+        {% set gaprogramid = access.program.id %}
+        {% set gaprogramname = access.program.name %}
+      {% else %}
+        {% set gaprogramid = 'empty' %}
+        {% set gaprogramname = 'empty' %}
+      {% endif %}
+
+      {% if access.region %}
+        {% set garegionid = access.region.id %}
+        {% set garegionname = access.region.name %}
+      {% else %}
+        {% set garegionid = 'empty' %}
+        {% set garegionname = 'empty' %}
+      {% endif %}
+
+      {% if access.team %}
+        {% set gateamid = access.team.id %}
+        {% set gateamname = access.team.name %}
+      {% else %}
+        {% set gateamid = 'empty' %}
+        {% set gateamname = 'empty' %}
+      {% endif %}
+
+      {% if access.user.t_and_c_accept == false %}
+
+        {% set conversion = 1 %}
+
+      {% else %}
+
+        {% set conversion = 0 %}
+
+      {% endif %}
+
+      dataLayer = [{
+        'used_id': '{{ gaid }}', 
+        'user_name': '{{ ganame }}',
+        'user_email': '{{ gaemail }}',
+        'program_id': '{{ gaprogramid }}',
+        'program_name': '{{ gaprogramname }}',
+        'region_id': '{{ garegionid }}',
+        'region_name': '{{ garegionname }}',
+        'team_id': '{{ gateamid }}',
+        'team_name': '{{ gateamname }}',
+        'environment': 'Production',
+        'conversion' : '{{ conversion }}',
+      }];
+
+</script>

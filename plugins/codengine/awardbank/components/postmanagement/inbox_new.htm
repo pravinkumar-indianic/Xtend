@@ -1,0 +1,95 @@
+<div class="ui container container-inbox">
+
+    <div class="ui grid">
+
+        <div class="ui sixteen wide column">
+            <div class="ui grid">
+                <div class="row">
+                    <div class="sixteen wide tablet three wide computer column">
+                        <div class="ui segments">
+                            <div class="ui segment">
+                                <h5 class="ui header">
+                                    Menu
+                                </h5>
+                            </div>
+                            <div class="ui  segment">
+                                {% partial __SELF__ ~ '::partial/menu' %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sixteen wide tablet thirteen wide computer column">
+                        <div class="ui segments">
+                            <div class="ui segment">
+                                <h5 class="ui header">
+                                    Inbox
+                                </h5>
+                            </div>
+                            <div class="ui segment" id="inboxdiv">
+                                <div class="ui inverted dimmer">
+                                    <div class="ui text loader">Loading</div>
+                                </div>
+                                <div class="ui items link">
+                                    
+                                    {% partial __SELF__ ~ '::inboxlist' %}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+        <!-- 
+{% put script %}
+<script type="text/javascript">
+
+var page = {{__SELF__.messages.currentPage}};
+var totalPages = {{__SELF__.messages.lastPage}};
+console.log(page);
+
+function ajaxList(p){
+
+    $('#inboxdiv').dimmer('show');
+
+    $.request('onLoadMoreMessage', {
+
+        data: {
+          'page': p
+        },
+
+        beforeSend: function(){
+
+        },
+        success: function(data) {
+
+            $('#inboxdiv').dimmer('hide');
+            $('#inboxdiv .items').append(data['html']);
+            if (g==0){
+                totalPages = data['totalPage'];
+                page = 1; 
+            }
+            
+
+        },
+        error: function(data){
+          throw data;
+        },
+    });
+}
+$('#inboxdiv').visibility({
+    once: false,
+    observeChanges: true,
+    onBottomVisible: function() {
+        console.log('onBottomVisible: ' + page);
+        if (page < totalPages)
+            ajaxList(++page);
+    }
+});
+    
+</script>
+{% endput %} -->

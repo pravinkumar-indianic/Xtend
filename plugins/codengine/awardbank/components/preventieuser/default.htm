@@ -1,0 +1,51 @@
+
+
+<style>
+    #prevent-user {
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    }
+
+    .prevent-user__content {
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        text-align: center;
+         background-color: #fefefe;
+    }
+</style>
+<div id="prevent-user" style="display: none;">
+    <div class="prevent-user__content">
+        <p>
+            Thank you for visiting Xtend.
+            <br />
+            Internet Explorer is no longer a supported web browser and Xtend is
+            best experienced in other browsers such as
+            <a
+                href="https://www.google.com.au/chrome/?brand=CHBD&gclid=Cj0KCQiAy579BRCPARIsAB6QoIZN4xpYtKsjFv8HcomxbC8E5bzFr8lD3WGPhdRX-EqWhN3_f5QGgI8aAqqDEALw_wcB&gclsrc=aw.ds"
+                >Google Chrome</a
+            >,
+            <a href="https://support.apple.com/en_AU/downloads/safari">
+                Safari
+            </a>
+            or <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a>.
+            <br />
+            Thank you
+        </p>
+    </div>
+</div>
+
+<script>
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+        document.querySelector('#prevent-user').style.display = 'block';
+    }
+</script>

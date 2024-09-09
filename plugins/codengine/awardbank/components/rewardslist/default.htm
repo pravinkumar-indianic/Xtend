@@ -1,0 +1,26 @@
+<div class="ui container product-list-container">
+	<div class="ui stackable grid">
+		<div class="right floated ten wide column search">
+			<div class="ui search">
+				<div class="ui left icon input">
+					<i class="search icon"></i>
+					<input class="search" type="text" placeholder="Search Products">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="ui segment grid segment-header">
+		<h2 class="ui header center aligned sixteen wide column">
+		  	{{ __SELF__.title }}
+		</h2>
+	</div>
+	<div class="ui segment products-list">
+		<div class="ui column stackable grid" id="filters">
+			{{ __SELF__.filters|raw }}	
+		</div>
+		<div class="ui column stackable grid" id="listhtml">
+			{{ __SELF__.list|raw }}	
+		</div>
+	</div>
+</div>
+

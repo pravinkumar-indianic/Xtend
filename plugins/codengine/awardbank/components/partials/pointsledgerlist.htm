@@ -1,0 +1,31 @@
+<div class="ui one column grid">
+	{% if pointsledgers|length >= 1 %}
+	    {% for pointsledger in pointsledgers %}
+		  	<div class="column">
+			  	<div class="ui raised card fluid">
+				    <div class="content">
+				      	<div class="header">#{{ pointsledger.id }} - {{ pointsledger.points_value }} {{ pointsledger.points_name }}</div>
+				      	<div class="meta">Created At - {{ pointsledger.created_at|date('d/m/Y') }}</div>
+				      	<div class="meta">Type - {% if pointsledger.type == '' %}Starting / Reset Value {% else %}{{ pointsledger.type }}{% endif %}</div>
+				      	{% if pointsledger.type == 'Program Points Addition' or pointsledger.type == 'Program Points Return' or pointsledger.type == 'Program Points Subtraction' %}
+				      		<div class="meta">Allocated To - {{ pointsledger.program.name }}</div>
+				      	{% else %}
+				      		<div class="meta">Allocated To - {{ pointsledger.user.full_name }}</div>
+				      	{% endif %}
+				    </div>		
+				    {% if pointsledger.type == 'Program Points Transfer' %}  
+		        		<div class="ui bottom attached primary button reverse-transfer" data-id="{{ pointsledger.id }}" data-id="{{ pointsledger.id }}">Reverse Transfer</div>
+				    {% endif %}		
+			  	</div>
+		  	</div>
+	  	{% endfor %}
+  	{% else %}
+	  	<div class="column">
+		  	<div class="ui raised card fluid no-results">
+		  		<div class="content">
+			      	<div class="header">No Results Found.</div>
+		      	</div>
+	      	</div>
+      	</div>
+  	{% endif %}
+</div>

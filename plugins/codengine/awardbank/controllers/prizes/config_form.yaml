@@ -1,0 +1,10 @@
+name: Prizes
+form: $/codengine/awardbank/models/prize/fields.yaml
+modelClass: Codengine\Awardbank\Models\Prize
+defaultRedirect: codengine/awardbank/prizes
+create:
+    redirect: 'codengine/awardbank/prizes/update/:id'
+    redirectClose: codengine/awardbank/prizes
+update:
+    redirect: codengine/awardbank/prizes
+    redirectClose: codengine/awardbank/prizes

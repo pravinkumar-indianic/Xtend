@@ -1,0 +1,9 @@
+{% for post in posts %}
+<div id="social-post-wrapper-{{ post.id }}">
+    {% partial '@post' post=post %}
+</div>
+{% endfor %}
+
+<div class="pagination-wrapper">
+{{ posts.render|raw }}
+</div>

@@ -1,0 +1,10 @@
+name: Organizations
+form: $/codengine/awardbank/models/organization/fields.yaml
+modelClass: Codengine\Awardbank\Models\Organization
+defaultRedirect: codengine/awardbank/organizations
+create:
+    redirect: 'codengine/awardbank/organizations/update/:id'
+    redirectClose: codengine/awardbank/organizations
+update:
+    redirect: codengine/awardbank/organizations
+    redirectClose: codengine/awardbank/organizations

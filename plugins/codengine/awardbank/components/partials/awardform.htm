@@ -1,0 +1,284 @@
+<h4>Award Details</h4>
+<input type="hidden" name="id" value="{{ award.id }}">
+<div class="field">
+	<label>Name <b style="color:red;">*</b></label>
+	<input placeholder="Name" name="Name" type="text" value="{{ award.name }} ">
+</div>
+<div class="field">
+    <label>Description <b style="color:red;">*</b></label>
+    <textarea class="not-required" name="Description">{{ award.description|striptags }}</textarea>
+</div>
+<div class="two fields">
+	<div class="field">
+		<label>Award Opens At <b style="color:red;">*</b></label>
+		<div class="ui calendar" id="Award Start Dat">
+			<div class="ui input left icon">
+				<i class="calendar icon"></i>
+				<input type="date" name="Award Start Date" {% if award.award_open_at %}value="{{award.award_open_at|date('Y-m-d') }}"{% endif %}>
+			</div>
+		</div>
+	</div>	
+	<div class="field">
+		<label>Award Closes At <b style="color:red;">*</b></label>
+		<div class="ui calendar" id="Award Close Date">
+			<div class="ui input left icon">
+				<i class="calendar icon"></i>
+				<input type="date" name="Award Close Date" {% if award.award_close_at %}value="{{award.award_close_at|date('Y-m-d') }}"{% endif %}>
+			</div>
+		</div>
+	</div>	
+</div>
+<div class="two fields">
+	<div class="field">
+	    <label>Whole Program Can View <b style="color:red;">*</b></label>
+	    <select class="ui selection dropdown" name="Program Can View">
+	        <option value="1"{% if award.awardallprogramview == 1 %} selected{% endif %}>Yes</option>
+	        <option value="0"{% if award.awardallprogramview == 0 %} selected{% endif %}>No</option>
+	    </select>
+	</div>
+	<div class="field">
+	    <label>Whole Program Can Nominate <b style="color:red;">*</b></label>
+	    <select class="ui selection dropdown" name="Program Can Nominate">
+	        <option value="1"{% if award.awardallprogramnominate == 1 %} selected{% endif %}>Yes</option>
+	        <option value="0"{% if award.awardallprogramnominate == 0 %} selected{% endif %}>No</option>
+	    </select>
+	</div>
+</div>
+<div class="two fields">
+	<div class="field">
+	    <label>Whole Program Can Be Nominated <b style="color:red;">*</b></label>
+	    <select class="ui selection dropdown" name="Program Can Be Nominated">
+	        <option value="1"{% if award.awardallprogramnominateable == 1 %} selected{% endif %}>Yes</option>
+	        <option value="0"{% if award.awardallprogramnominateable == 0 %} selected{% endif %}>No</option>
+	    </select>
+	</div>
+	<div class="field">
+	    <label>Whole Program Can Vote <b style="color:red;">*</b></label>
+	    <select class="ui selection dropdown" name="Program Can Vote">
+	        <option value="1"{% if award.awardallprogramvote == 1 %} selected{% endif %}>Yes</option>
+	        <option value="0"{% if award.awardallprogramvote == 0 %} selected{% endif %}>No</option>
+	    </select>
+	</div>
+</div>
+{% if new == false %}
+	<div class="field">
+		<label>Editing Managers</label>	
+		<div class="ui multiple selection searchable dropdown" id="Managers" name="Managers" data-selected='{% for manager in award.managers %}{{ manager.id }}{% if not loop.last %},{% endif %}{% endfor %}'>
+			<div class="default text">Select</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				{% for user in award.program.users %}
+					<div class="item" data-value='{{ user.id }}'>{{ user.full_name|capitalize }}</div>
+				{% endfor %}
+			</div>
+		</div>		
+	</div>	
+	<div class="field">
+		<label>Nomination View Managers</label>	
+		<div class="ui multiple selection searchable dropdown" id="NominationManagers" name="Nomination Managers" data-selected='{% for manager in award.nominationsmanagers %}{{ manager.id }}{% if not loop.last %},{% endif %}{% endfor %}'>
+			<div class="default text">Select</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				{% for user in award.program.users %}
+					<div class="item" data-value='{{ user.id }}'>{{ user.full_name|capitalize }}</div>
+				{% endfor %}
+			</div>
+		</div>		
+	</div>	
+	<div class="field">
+		<label>Winner View Managers</label>	
+		<div class="ui multiple selection searchable dropdown" id="WinnerManagers" name="Winner Managers" data-selected='{% for manager in award.winnersmanagers %}{{ manager.id }}{% if not loop.last %},{% endif %}{% endfor %}'>
+			<div class="default text">Select</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				{% for user in award.program.users %}
+					<div class="item" data-value='{{ user.id }}'>{{ user.full_name|capitalize }}</div>
+				{% endfor %}
+			</div>
+		</div>		
+	</div>	
+{% endif %}
+<h4>Nomination Details</h4>
+<div class="field">
+	<label>Nomination Name <b style="color:red;">*</b></label>
+	<input placeholder="Nomination Name" name="Nomination Name" type="text" value="{% if award.nomination_display_string %}{{ award.nomination_display_string }}{% else %}Nominations{% endif %}" placeholder="Nominations">
+</div>
+<div class="two fields">
+	<div class="field">
+	    <label>Nominations Are Turned On <b style="color:red;">*</b></label>
+	    <select class="ui selection dropdown" name="Nominations On">
+	        <option value="1"{% if award.hide_nominations_tab == 1 %} selected{% endif %}>Yes</option>
+	        <option value="0"{% if award.hide_nominations_tab == 0 %} selected{% endif %}>No</option>
+	    </select>
+	</div>
+	<div class="field">
+	    <label>Nominations Require Approval Before Displaying <b style="color:red;">*</b></label>
+	    <select class="ui selection dropdown" name="Nominations Approval">
+	        <option value="1"{% if award.nominations_approval_required == 1 %} selected{% endif %}>Yes</option>
+	        <option value="0"{% if award.nominations_approval_required == 0 %} selected{% endif %}>No</option>
+	    </select>
+	</div>
+</div>
+<div class="two fields">
+	<div class="field">
+	    <label>Nominations Can Be Seen By Other Users <b style="color:red;">*</b></label>
+	    <select class="ui selection dropdown" name="Nominations Seen">
+	        <option value="1"{% if award.nominations_public == 1 %} selected{% endif %}>Yes</option>
+	        <option value="0"{% if award.nominations_public == 0 %} selected{% endif %}>No</option>
+	    </select>
+	</div>
+	<div class="field">
+	    <label>Nominations Can Include An Image <b style="color:red;">*</b></label>
+	    <select class="ui selection dropdown" name="Nominations Image">
+	        <option value="1"{% if award.nomination_image_upload == 1 %} selected{% endif %}>Yes</option>
+	        <option value="0"{% if award.nomination_image_upload == 0 %} selected{% endif %}>No</option>
+	    </select>
+	</div>
+</div>
+<div class="two fields">
+	<div class="field">
+	    <label>Nomination Can Include A File Upload <b style="color:red;">*</b></label>
+	    <select class="ui selection dropdown" name="Nominations Upload">
+	        <option value="1"{% if award.nomination_file_upload == 1 %} selected{% endif %}>Yes</option>
+	        <option value="0"{% if award.nomination_file_upload == 0 %} selected{% endif %}>No</option>
+	    </select>
+	</div>
+</div>
+<div class="two fields">
+	<div class="field">
+		<label>Nominations Opens At</label>
+		<div class="ui calendar" id="Nominations Open">
+			<div class="ui input left icon">
+				<i class="calendar icon"></i>
+				<input type="date" name="Nominations Open" {% if award.nominations_open_at %}value="{{award.nominations_open_at|date('Y-m-d') }}"{% endif %} class="not-required">
+			</div>
+		</div>
+	</div>	
+	<div class="field">
+		<label>Nominations Closes At</label>
+		<div class="ui calendar" id="Nominations Close">
+			<div class="ui input left icon">
+				<i class="calendar icon"></i>
+				<input type="date" name="Nominations Close" {% if award.nominations_closed_at %}value="{{award.nominations_closed_at|date('Y-m-d') }}"{% endif %} class="not-required">
+			</div>
+		</div>
+	</div>	
+</div>
+<div class="field">
+	<label>Nominations Target <b style="color:red;">*</b></label>
+    <select class="ui selection dropdown" name="Nominations Target">
+        <option value="0"{% if award.nomination_type == 0 %} selected{% endif %}>Users</option>
+        <option value="1"{% if award.nomination_type == 1 %} selected{% endif %}>Teams</option>
+        <option value="2"{% if award.nomination_type == 2 %} selected{% endif %}>Auto-Self Nomination (User Submit)</option>
+    </select>
+</div>
+{% if new == false %}	
+	<div class="field">
+		<label>Users You Can Nominate If Not Whole Program</label>	
+		<div class="ui multiple selection searchable dropdown" id="NominatableUsers" name="NominatableUsers" data-selected='{% for nominees in award.nominatableusers %}{{ nominees.id }}{% if not loop.last %},{% endif %}{% endfor %}'>
+			<div class="default text">Select</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				{% for user in award.program.users %}
+					<div class="item" data-value='{{ user.id }}'>{{ user.full_name|capitalize }}</div>
+				{% endfor %}
+			</div>
+		</div>		
+	</div>	
+	<div class="field">
+		<label>Teams You Can Nominate If Not Whole Program</label>	
+		<div class="ui multiple selection searchable dropdown" id="NominatableTeams" name="NominatableTeams" data-selected='{% for team in award.nominatableteams %}{{ team.id }}{% if not loop.last %},{% endif %}{% endfor %}'>
+			<div class="default text">Select</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				{% for team in award.program.teams %}
+					<div class="item" data-value='{{ team.id }}'>{{ team.name|capitalize }}</div>
+				{% endfor %}
+			</div>
+		</div>		
+	</div>	
+	<div class="field">
+		<label>Teams Who Can Nominate If Not Whole Program</label>	
+		<div class="ui multiple selection searchable dropdown" id="NominationTeams" name="NominationTeams" data-selected='{% for team in award.nominationteams %}{{ team.id }}{% if not loop.last %},{% endif %}{% endfor %}'>
+			<div class="default text">Select</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				{% for team in award.program.teams %}
+					<div class="item" data-value='{{ team.id }}'>{{ team.name|capitalize }}</div>
+				{% endfor %}
+			</div>
+		</div>		
+	</div>
+{% endif %}
+<h4>Voting Details</h4>
+<div class="two fields">
+	<div class="field">
+	    <label>Votes Are Turned On <b style="color:red;">*</b></label>
+	    <select class="ui selection dropdown" name="Voting On">
+	        <option value="1"{% if award.hide_voting_tab == 1 %} selected{% endif %}>Yes</option>
+	        <option value="0"{% if award.hide_voting_tab == 0 %} selected{% endif %}>No</option>
+	    </select>
+	</div>
+	<div class="field">
+	    <label>Votes Require Approval Before Displaying <b style="color:red;">*</b></label>
+	    <select class="ui selection dropdown" name="Voting Approval">
+	        <option value="1"{% if award.votes_approval_required == 1 %} selected{% endif %}>Yes</option>
+	        <option value="0"{% if award.votes_approval_required == 0 %} selected{% endif %}>No</option>
+	    </select>
+	</div>
+</div>
+<div class="two fields">
+	<div class="field">
+	    <label>Votes Can Be Seen By Other Users <b style="color:red;">*</b></label>
+	    <select class="ui selection dropdown" name="Voting Seen">
+	        <option value="1"{% if award.votes_public == 1 %} selected{% endif %}>Yes</option>
+	        <option value="0"{% if award.votes_public == 0 %} selected{% endif %}>No</option>
+	    </select>
+	</div>
+</div>
+<div class="two fields">
+	<div class="field">
+		<label>Votes Opens At</label>
+		<div class="ui calendar" id="Votes Open">
+			<div class="ui input left icon">
+				<i class="calendar icon"></i>
+				<input type="date" name="Votes Open" {% if award.votes_open_at %}value="{{award.votes_open_at|date('Y-m-d') }}"{% endif %} class="not-required">
+			</div>
+		</div>
+	</div>	
+	<div class="field">
+		<label>Votes Closes At</label>
+		<div class="ui calendar" id="Votes Close">
+			<div class="ui input left icon">
+				<i class="calendar icon"></i>
+				<input type="date" name="Votes Close" {% if award.votes_open_at %}value="{{award.votes_close_at|date('Y-m-d') }}"{% endif %} class="not-required">
+			</div>
+		</div>
+	</div>	
+</div>
+{% if new == false %}
+	<div class="field">
+		<label>Teams You Can Vote For If Not Whole Program</label>	
+		<div class="ui multiple selection searchable dropdown" id="VoteableTeams" name="VoteableTeams" data-selected='{% for team in award.votableteams %}{{ team.id }}{% if not loop.last %},{% endif %}{% endfor %}'>
+			<div class="default text">Select</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				{% for team in award.program.teams %}
+					<div class="item" data-value='{{ team.id }}'>{{ team.name|capitalize }}</div>
+				{% endfor %}
+			</div>
+		</div>		
+	</div>	
+	<div class="field">
+		<label>Teams Who Can Vote If Not Whole Program</label>	
+		<div class="ui multiple selection searchable dropdown" id="VotingTeams" name="VotingTeams" data-selected='{% for team in award.votingteams %}{{ team.id }}{% if not loop.last %},{% endif %}{% endfor %}'>
+			<div class="default text">Select</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				{% for team in award.program.teams %}
+					<div class="item" data-value='{{ team.id }}'>{{ team.name|capitalize }}</div>
+				{% endfor %}
+			</div>
+		</div>		
+	</div>
+{% endif %}

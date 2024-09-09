@@ -1,0 +1,76 @@
+<div class="ui segment profile-summary">
+	<div class="userlogin">
+        {% if program %}
+            <div class="profile-summary-description">
+                <h2 class="profile-summary-name">{{ program.name }} Program Settings</h2>
+            </div>
+        {% endif %}
+	</div>
+	<div class="ui vertical secondary menu profile-menu">
+            <a href="/program-settings/dashboard" class="item {% if 'dashboard' == navoption %}active{% endif %}" data-id="dashboard">Dashboard</a>
+            <a href="/program-settings/loginpage" class="item {% if 'loginpage' == navoption %}active{% endif %}" data-id="loginpage">Login Page</a>
+            <a href="/program-settings/socialfeed" class="item {% if 'socialfeed' == navoption %}active{% endif %}" data-id="socialfeed">Social Feed</a>
+            <a href="/program-settings/cms-posts" class="item {% if 'cms' == navoption %}active{% endif %}" data-id="cms">Content Management</a>
+            {% if is_cms_page %}
+            <a href="/program-settings/cms-posts" class="item subitem {% if 'cms-posts' == navoption %}active{% endif %}">• Posts</a>
+            <a href="/program-settings/cms-create-post" class="item subitem-2 {% if 'cms-create-post' == navoption %}active{% endif %}">• Create Post</a>
+            <a href="/program-settings/cms-content" class="item subitem {% if 'cms-content' == navoption %}active{% endif %}">• Content</a>
+            <a href="/program-settings/cms-create-content" class="item subitem-2 {% if 'cms-create-content' == navoption %}active{% endif %}">• Create Content</a>
+            <a href="/program-settings/cms-faqs" class="item subitem {% if 'cms-faqs' == navoption %}active{% endif %}">• FAQs</a>
+            <a href="/program-settings/cms-rewards" class="item subitem {% if 'cms-rewards' == navoption %}active{% endif %}">• Rewards</a>
+            <a href="/post/5step-criteria/edit" class="item subitem {% if 'cms-criteria' == navoption %}active{% endif %}">• Criteria</a>
+            <a href="/post/5step-sponsors/edit" class="item subitem {% if 'cms-sponsors' == navoption %}active{% endif %}">• Sponsors</a>
+            <a href="/post/5step-contact-us/edit" class="item subitem {% if 'cms-contactus' == navoption %}active{% endif %}">• Contact us</a>
+            {% endif %}
+            <a href="/spin-the-win-management/default" class="item {% if 'spin-the-win-management' == navoption %}active{% endif %}" data-id="spin-the-win-management">Spin to Win</a>
+            {% if is_spin_the_win_management_page %}
+            <a href="/spin-the-win-management/settings" class="item subitem {% if 'spin-the-win-management-settings' == navoption %}active{% endif %}">• Settings</a>
+            <a href="/spin-the-win-management/userdetails" class="item subitem {% if 'spin-the-win-management-userdetails' == navoption %}active{% endif %}">• Users</a>
+            <a href="/spin-the-win-management/reports" class="item subitem {% if 'spin-the-win-management-reports' == navoption %}active{% endif %}">• Reports</a>
+            {% endif %}
+            <a href="/results-management/default" class="item {% if 'results-management' == navoption %}active{% endif %}" data-id="results-management">Results</a>
+            {% if is_results_management_page %}
+            <a href="/results-management/dashboard-snapshot" class="item subitem {% if 'results-management-dashboard-snapshot' == navoption %}active{% endif %}">• Dashboard Snapshot</a>
+            <a href="/results-management/leaderboard" class="item subitem {% if 'results-management-leaderboard' == navoption %}active{% endif %}">• Leaderboard</a>
+            <a href="/results-management/scoreboard" class="item subitem {% if 'results-management-scoreboard' == navoption %}active{% endif %}">• Scorecard</a>
+            {% endif %}
+            <a href="/myprogram/default" class="item my-program-tab" data-id="general-details">General Details</a>
+            <a href="/myprogram/default" class="item my-program-tab" data-id="organization">Organisation</a>
+            <a href="/myprogram/default" class="item my-program-tab" data-id="buypoints">Buy Points</a>
+            <a href="/myprogram/default" class="item my-program-tab" data-id="transfers">Transfer & Program Points</a>
+            <a href="/user-management/default" class="item {% if 'user-management-list' == navoption %}active{% endif %}">Users</a>
+            {% if is_user_management_page %}
+                    <a href="/user-management/usernew" class="item subitem {% if 'user-management-usernew' == navoption %}active{% endif %}">• Create</a>
+                    <a href="/user-management/import" class="item subitem {% if 'user-management-import' == navoption %}active{% endif %}">• Import</a>
+                    <a href="/user-management/export" class="item subitem {% if 'user-management-export' == navoption %}active{% endif %}">• Export</a>
+                    <a href="/myprogram/users" class="item subitem my-program-tab" data-id="users">• Report</a>
+            {% endif %}
+            <a href="/myprogram/default" class="item my-program-tab" data-id="orders">Orders</a>
+	</div>
+</div>
+
+{% put scripts %}
+
+<script>
+  $('body').on('click','.my-program-tab',function(e) {
+    e.preventDefault();
+    navoption = $(this).attr('data-id');
+
+    if (navoption) {
+      var data = {
+        'navoption' : navoption
+      };
+
+      $('div.profile-menu').find('a').each(function() {
+        $(this).removeClass('active');
+      });
+      $(this).addClass('active');
+
+      if (["general-details", "organization", "buypoints", "transfers", "orders", "users"].includes(navoption)) {
+        requestFactory('MyProgram::onUpdateTab', data, ['#html2target']);
+      }
+    }
+  });
+</script>
+
+{% endput %}

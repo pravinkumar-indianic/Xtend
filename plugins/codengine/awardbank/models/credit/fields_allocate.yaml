@@ -1,0 +1,19 @@
+fields:
+    allocate_value:
+        label: Value To Allocate (Dollars $)
+        span: full
+        type: number
+    allocate_type:
+        label: Type Of Entity To Allocate To
+        span: full
+        type: dropdown
+        default: 1
+        options:
+            1: Program
+            2: Region
+            3: Team
+            4: User
+    allocate_record:
+        label: Allocate To
+        type: dropdown
+        dependsOn: [allocate_type]

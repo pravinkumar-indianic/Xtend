@@ -1,0 +1,115 @@
+columns:
+    id:
+        label: Supplier ID
+        type: number
+        searchable: true
+        sortable: true   
+    created_at:
+        label: Created At
+        type: datetime
+        sortable: true
+    updated_at:
+        label: Updated At
+        type: datetime
+        sortable: true
+    deleted_at:
+        label: Deleted At
+        type: datetime
+        invisible: true
+    feature_image:
+        label: Feature Image
+        relation: feature_image
+        type: partial
+        path: ~/plugins/codengine/awardbank/models/_feature_image_partial.htm  
+        searchable: false
+        sortable: false      
+        invisible: true 
+    primary_color:
+        label: 'Primary Color'
+        type: partial
+        path: ~/plugins/codengine/awardbank/models/_color_partial.htm      
+        searchable: false
+        sortable: false    
+    territory:
+        label: 'Territory'
+        type: text
+        searchable: true
+        sortable: true                   
+    mark_up_integer:
+        label: Mark Up Integer
+        type: number
+        invisible: true     
+        searchable: false
+        sortable: true  
+    mark_up_type:
+        label: Mark Up Type
+        type: number
+        invisible: true     
+        searchable: false
+        sortable: true                  
+    courier_id:
+        label: Courier ID
+        type: number
+        invisible: true  
+        searchable: false
+        sortable: true               
+    name:
+        label: 'codengine.awardbank::lang.awardbank.suppliername'
+        type: text
+        searchable: true
+        sortable: true
+    description:
+        label: 'codengine.awardbank::lang.awardbank.supplierdescription'
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true
+    orders_email:
+        label: 'Order E-mail'
+        type: text
+        searchable: true
+        sortable: true    
+    cc_primary:
+        label: 'CC Primary Email Orders'
+        type: switch
+        searchable: true
+        sortable: true    
+    primary_contact_name:
+        label: 'codengine.awardbank::lang.awardbank.primarycontactname'
+        type: text
+        searchable: true
+        sortable: true           
+    primary_contact_number:
+        label: 'codengine.awardbank::lang.awardbank.primarycontactnumber'
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true       
+    primary_contact_email:
+        label: 'codengine.awardbank::lang.awardbank.primarycontactemail'
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true    
+    cc_secondary:
+        label: 'CC Secondary Email Orders'
+        type: switch
+        searchable: true
+        sortable: true    
+    secondary_contact_name:
+        label: 'codengine.awardbank::lang.awardbank.secondarycontactname'
+        type: text
+        searchable: true
+        sortable: true            
+    secondary_contact_number:
+        label: 'codengine.awardbank::lang.awardbank.secondarycontactnumber'
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true        
+    secondary_contact_email:
+        label: 'codengine.awardbank::lang.awardbank.secondarycontactemail'
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true        

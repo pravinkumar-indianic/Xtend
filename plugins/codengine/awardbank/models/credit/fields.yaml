@@ -1,0 +1,13 @@
+fields:
+    value:
+        label: Value (Dollars $)
+        span: full
+        type: number
+    name:
+        label: Name
+        span: full
+        type: text
+    external_reference:
+        label: 'External / Xero Reference'
+        span: full
+        type: text

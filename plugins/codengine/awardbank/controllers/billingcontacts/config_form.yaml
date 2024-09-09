@@ -1,0 +1,10 @@
+name: BillingContacts
+form: $/codengine/awardbank/models/billingcontact/fields.yaml
+modelClass: Codengine\Awardbank\Models\BillingContact
+defaultRedirect: codengine/awardbank/billingcontacts
+create:
+    redirect: 'codengine/awardbank/billingcontacts/update/:id'
+    redirectClose: codengine/awardbank/billingcontacts
+update:
+    redirect: codengine/awardbank/billingcontacts
+    redirectClose: codengine/awardbank/billingcontacts

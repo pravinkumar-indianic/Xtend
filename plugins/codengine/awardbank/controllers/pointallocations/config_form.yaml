@@ -1,0 +1,10 @@
+name: PointAllocations
+form: $/codengine/awardbank/models/pointallocation/fields.yaml
+modelClass: Codengine\Awardbank\Models\PointAllocation
+defaultRedirect: codengine/awardbank/pointallocations
+create:
+    redirect: 'codengine/awardbank/pointallocations/update/:id'
+    redirectClose: codengine/awardbank/pointallocations
+update:
+    redirect: codengine/awardbank/pointallocations
+    redirectClose: codengine/awardbank/pointallocations

@@ -1,0 +1,39 @@
+fields:
+    name:
+        label: 'codengine.awardbank::lang.awardbank.regionname'
+        oc.commentPosition: ''
+        span: full
+        type: text
+    description:
+        label: 'codengine.awardbank::lang.awardbank.regiondescription'
+        size: large
+        oc.commentPosition: ''
+        span: full
+        type: richeditor
+        tab: Region Details
+    primary_color:
+        label: 'codengine.awardbank::lang.awardbank.regionprimarycolor'
+        oc.commentPosition: ''
+        span: auto
+        type: colorpicker
+        tab: Region Details
+    secondary_color:
+        label: 'codengine.awardbank::lang.awardbank.regionsecondarycolor'
+        oc.commentPosition: ''
+        span: auto
+        type: colorpicker
+        tab: Region Details
+    can_buy_points:
+        label: Region Manager Is Allowed To Buy Points
+        type: switch
+        span: full
+    points_limit:
+        label: Maximum Points A Region Can Acrue (Dollar Value)
+        type: number
+        span: full
+        placeholder: 'No Limit'
+    external_reference:
+        label: External System Reference ID
+        type: text
+        span: full
+        placeholder: 'XXXX-XXXX'

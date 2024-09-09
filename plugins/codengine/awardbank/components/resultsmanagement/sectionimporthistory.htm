@@ -1,0 +1,41 @@
+{% if imports %}
+<div class="ui segment" style="margin-top: 40px;">
+    <h1>Import History (Last 10 attempts)</h1>
+
+    <table style="width: 100%; text-align: left" cellpadding="5">
+        <thead>
+            <th>Status</th>
+            <th>Records</th>
+            <th>Processed</th>
+            <th>Skipped</th>
+            <th>Date</th>
+        </thead>
+        <tbody>
+            {% for import in imports %}
+                <tr>
+                    <td>{{ import.status }}</td>
+                    <td>{{ import.total }}</td>
+                    <td>{{ import.processed }}</td>
+                    <td>{{ import.skipped }}</td>
+                    <td>{{ import.created_at|date('d/m/Y H:i:s') }}</td>
+                </tr>
+                {% if import.errors %}
+                    <tr>
+                        <td colspan="3">{{ import.errors['file_errors']|length }} File Errors | {{ import.errors['data_errors']|length }} Data Errors</td>
+                        <td colspan="2">
+                            <a
+                                class="section-import-download-errors"
+                                style="cursor: pointer;"
+                                data-id="{{ import.id }}"
+                            >
+                                Download Error Report
+                            </a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endif %}

@@ -1,0 +1,10 @@
+name: Tags
+form: $/codengine/awardbank/models/tag/fields.yaml
+modelClass: Codengine\Awardbank\Models\Tag
+defaultRedirect: codengine/awardbank/tags
+create:
+    redirect: 'codengine/awardbank/tags/update/:id'
+    redirectClose: codengine/awardbank/tags
+update:
+    redirect: codengine/awardbank/tags
+    redirectClose: codengine/awardbank/tags

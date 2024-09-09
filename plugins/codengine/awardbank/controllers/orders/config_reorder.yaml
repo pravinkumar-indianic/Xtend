@@ -1,0 +1,4 @@
+title: Orders
+modelClass: Codengine\Awardbank\Models\Order
+toolbar:
+    buttons: reorder_toolbar

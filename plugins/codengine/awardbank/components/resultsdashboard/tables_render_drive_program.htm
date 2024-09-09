@@ -1,0 +1,115 @@
+{% for result in results %}
+	{% set mainlooplast = loop.last %}
+	{% set mainloopindex = loop.index %}
+    {% if result.meta.type != 'comments' %}
+	<div class="ui wide tablet {% if result.meta.name == 'DRIVE Rewards Program - Results - Table' or  result.meta.name == 'DRIVE Rewards Program - Scores' %}eight{% else %}sixteen{% endif %} wide computer column results-column">
+		<div class="ui segment" {% if result.meta.type == 'table' %}style="padding-right:0px;"{% endif %}>
+			{% if result.meta.type == 'toyota-parts-leaderboard-month' or result.meta.type == 'toyota-service-leaderboard-month' %}
+				<h2>{{ result.meta.label }}</h2>
+				<div>{{ result.meta.description|raw }}</div>
+			{% else %}
+				<h2>{{ result.meta.targetname }} - {{ result.meta.label }}</h2>
+				<div>{{ result.meta.description|raw }}</div>
+			{% endif %}
+
+			<!-- 'table' -->
+			{% if result.meta.type == 'table' %}
+				<table class="ui table">
+					<thead>
+						<th>Criteria</th>
+						<th>Value</th>
+					</thead>
+					<tbody>
+						{% for key, row in result %}
+							{% if key != 'meta' %}
+								<tr>
+									<td>{{ row.meta.label }}</td>
+                                    {% if (userrole == 'national' or userrole == 'regional') and (row.meta.label != 'Policies Sold' and row.meta.label != 'Monthly DRIVE Points Earned') %}
+                                        <td>N/A</td>
+                                    {% else %}
+                                        <td>{% if row.result != null %}{{ row.result.string }}{% if row.result.value != 100000000000000 %}{% if row.result.value != null %}{{ row.result.value|number_format(0, '.', ',')  }}{% else %}{% if row.result.string == null %}0{% endif %}{% endif %}{% endif %}{% endif %}</td>
+                                    {% endif %}
+								</tr>
+							{% endif %}
+						{% endfor %}
+					<tbody>
+				</table>
+			{% endif %}
+
+			<!-- 'scoreboard' -->
+			{% if result.meta.type == 'scoreboard' %}
+            {% if result.meta.label == 'Quarterly Tracker' %}
+                <div class="ui grid two columns row" style="margin-top:20px;">
+            {% endif %}
+				{% for key, row in result %}
+                    {% if key != 'meta' and result.meta.label == 'Quarterly Tracker' %}
+                        <div class="ui column">
+                    {% endif %}
+					{% if row.meta.type == 'score' %}
+						{% if key != 'meta' %}
+							<div class="ui statistic {% if loop.index is even %}even{% else %}odd{% endif %}">
+                                {% if row.meta.label == 'Quarterly Quote Rate' or row.meta.label == 'Quarterly MVI Share' %}
+                                    {% if userrole == 'regional' or userrole == 'national' %}
+                                        <div class="value">N/A</div>
+                                    {% else %}
+                                        <div class="value">{% if row.result != null %}{{ row.result.string }}{% endif %}</div>
+                                    {% endif %}
+                                {% else %}
+                                <div class="value">{% if row.result != null %}{{ row.result.string }}{% if row.result.value != 100000000000000 %}{% if row.result.value != null %}{{ row.result.value|number_format(0, '.', ',')  }}{% else %}0{% endif %}{% endif %}{% endif %}</div>
+                                {% endif %}
+							  	<div class="label">
+							    	{{ row.meta.label }}
+							  	</div>
+							</div>
+						{% endif %}
+					{% endif %}
+					{% if row.meta.type == 'progress' %}
+						{% if key != 'meta' %}
+							<div class="progress-div">
+								<h4>{{ row.meta.label }}</h4>
+								<div class="ui results progress" data-total="{{ row.result.benchmark }}" data-value="{{ row.result.value }}" id="progress-{{ row.meta.id }}">
+								  	<div class="bar"></div>
+								  	<div class="label">{{ row.result.value|number_format(0, '.', ',')  }} to {{ row.result.benchmark|number_format(0, '.', ',') }}</div>
+								</div>
+							</div>
+						{% endif %}
+						{% put scripts %}
+							<script>
+								$( document ).ready(function() {
+    								$('.ui.results.progress').progress();
+								});
+							</script>
+						{% endput %}
+					{% endif %}
+                    {% if key != 'meta' and result.meta.label == 'Quarterly Tracker' %}
+                        </div>
+                    {% endif %}
+				{% endfor %}
+            {% if result.meta.label == 'Quarterly Tracker' %}
+                </div>
+            {% endif %}
+			{% endif %}
+            {% if userrole == 'user' %}
+                {% if result.meta.label == 'Total Program Performance' and results['comments']['Points Comment'] %}
+                <div class="row">
+                    {% for key, comment in results['comments']['Points Comment'] %}
+                    <div class="align-text-center">
+                        <p>{{ comment }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% if result.meta.label == 'Quarterly Tracker' and results['comments']['Qtrly Comment'] %}
+                <div class="row">
+                    {% for key, comment in results['comments']['Qtrly Comment'] %}
+                    <div class="align-text-center">
+                        <p>{{ comment }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endif %}
+		</div>
+	</div>
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,10 @@
+name: Kittys
+form: $/codengine/awardbank/models/kitty/fields.yaml
+modelClass: Codengine\Awardbank\Models\Kitty
+defaultRedirect: codengine/awardbank/kittys
+create:
+    redirect: 'codengine/awardbank/kittys/update/:id'
+    redirectClose: codengine/awardbank/kittys
+update:
+    redirect: codengine/awardbank/kittys
+    redirectClose: codengine/awardbank/kittys

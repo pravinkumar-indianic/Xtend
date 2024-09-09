@@ -1,0 +1,176 @@
+// Product List styles
+// Components: Productlist.htm
+
+
+.ui.segment.product-segment:not(.product-segment-detail) {
+	position: relative;
+	border:none;
+    .segment-clear;
+	// 
+    .product-segment-inner {
+        padding: 25px;
+        .ui.segment;
+        background:@white;
+    }
+	.product-buttons {
+		position: absolute;
+		right: 25px;
+		top: 248px;
+		transform: translateY(-50%);
+        @media screen and (min-width:@tablet) {
+            top: 248px;
+        }
+        .button {
+            margin:0 5px 0 0;
+            border-color:@white;
+            &:hover {
+                border-color:@gray;
+                color:@gray;
+                background:@white;  
+            }     
+            .in-cart{
+                &:focus {
+                    background:@brand-aqua;   
+                    color:@white;
+                    border-color:@brand-aqua; 
+                }
+            }             
+        }
+        .loading,
+        .in-wishlist, 
+        .in-cart {
+            background:@brand-aqua;   
+            color:@white;
+            border-color:@brand-aqua; 
+            &:hover {
+                border-color:@gray;
+                color:@white;
+                background:@gray;  
+            }
+        }
+        .out-cart{
+            &:focus:not(.loading) {
+                background:@white;   
+                color:@brand-aqua;
+            }
+        }  
+        // use filled in heart icon
+        .in-wishlist,  {
+            i.icon.heart:before {
+                content:"\f004";
+            } 
+        }
+	}
+	// Product image
+	.product-image-box {
+		margin: -25px -25px 20px;
+		display: block;
+        height: 232px;
+        max-height: 232px;
+        background-color: white; 
+        border-bottom: 5px solid @brand-aqua; 	
+        border-top-left-radius: @border-radius;
+        border-top-right-radius: @border-radius;
+        padding:10px 30px;
+	}
+    .product-image-internal-box{
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-position: center;
+        background-size: contain;
+    }
+    .product-image-box-slider {
+        height:auto;
+        padding:15px;
+        width:100%;
+        border:1px solid @gray-lighter;
+        box-sizing: border-box;
+        margin-bottom:15px;
+        background-color:white;        
+    }
+
+    // Product points
+    .product-points {
+        margin: 20px 0 1px;
+        .label {
+            border: none;
+            padding: 0;
+            font-size: 16px;
+            color: @brand-aqua;
+            font-family: @font-default;
+        }
+    }
+    // Product heading
+    .product-header {
+        height: 60px;
+        margin-bottom:10px;
+        a {
+            font-size: 14px;
+            color: @black;
+            font-family: @font-default;       
+        }
+    }
+
+	// Product progress bar title
+	.product-points-to-go {
+	    font-size: 14px;
+	    line-height: 1.1;
+	    color: @black;
+	    margin-top: 6px;
+	    margin-bottom: 30px;
+	} 
+
+    .product-sale-button {
+        .button {
+            margin-bottom:0;
+            padding-left:5px;
+            padding-right:5px;
+        }
+    }
+
+    .product-sale-button{
+        .ui.button.primary:focus{
+        
+            border-color:@brand-aqua;
+            background-color:@brand-aqua;
+        }
+    }
+
+}
+
+.product-segment.featured {
+    
+    background-color:#FCFCD3;
+}
+
+.menu{ 
+
+    .avatar{
+
+        margin-bottom:20px;
+
+    }
+
+}
+
+
+
+/**MATT CUSTOM**/
+.ui.basic.segment.products-list-segment {
+    padding-left:0px;
+    padding-right:0px;
+    padding-top:0px;
+    margin-bottom:14px;
+}
+
+.product-loader{
+    height:400px;
+}
+
+
+.program-feature-image{
+    width:100%;
+    height:auto;
+}

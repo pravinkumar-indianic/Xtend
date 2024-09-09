@@ -1,0 +1,7 @@
+<div class="ui segment">
+    <h3>{% if prize.new == false %}{{ prize.name }}{% else %}New Prize{% endif %}</h3>
+    <form class="ui form" {% if prize.winnermanaged and prize.new == false %}id="prize-form-winner-update"{% elseif prize.new == false %}id="prize-form-update"{% else %}id="prize-form-create"{% endif %}>
+    	{% partial '@prizeform' prize = prize %}
+    	<button type="submit" class="ui primary submit button">Save Prize</button>
+	</form>
+</div>

@@ -1,0 +1,18 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+viewability:
+    label: codengine.awardbank::lang.awardbank.viewability
+    modelClass: Codengine\Awardbank\Models\Permission    
+    view:
+        toolbarButtons: create|remove          
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: IsViewable
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_viewability.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml 
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true            
+        scope: IsViewable

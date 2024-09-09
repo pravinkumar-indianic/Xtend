@@ -1,0 +1,58 @@
+{% put scripts %}
+<script>
+  $('#posts').on('click', 'ul.pagination a', function (e) {
+    var page = $(this).attr('href').split('=').pop();
+    e.preventDefault();
+    if (page) {
+      var data = {
+        'page': page
+      };
+      requestFactory('PostsListDashboard::onPostsPaginate', data, ['#posts']);
+    }
+  });
+
+  $('body').on('click', 'a.post-delete-button', function (e) {
+    e.preventDefault();
+
+    if (confirm("Are you sure you want to delete this post?")){
+      var postId = $(this).attr('data-id');
+      if (postId) {
+        $('#post-wrapper-' + postId).dimmer('show');
+        $.request('PostsList::onPostDelete', {
+          data: {
+            postId: postId,
+          },
+          success: function(data) {
+            if (data.success === true) {
+              $('#post-wrapper-' + postId).dimmer('hide');
+              $('#post-wrapper-' + postId).remove();
+              $.oc.flashMsg({
+                'text': 'Post has been successfully deleted.',
+                'class': 'success',
+                'interval': 3
+              });
+            } else {
+              $('#post-wrapper-' + postId).dimmer('hide');
+              $.oc.flashMsg({
+                'text': 'Invalid server response. The post might have not been deleted. Please refresh the page.',
+                'class': 'error',
+                'interval': 3
+              });
+            }
+          },
+          error: function(data){
+            $('#post-wrapper-' + postId).dimmer('hide');
+            $.oc.flashMsg({
+              'text': 'Error while deleting post. Please refresh the page and try again.',
+              'class': 'error',
+              'interval': 3
+            });
+            throw data;
+          },
+
+        });
+      }
+    }
+  });
+</script>
+{% endput %}

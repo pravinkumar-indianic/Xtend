@@ -1,0 +1,113 @@
+<div class="two fields">
+    <div class="field">
+        <label>Primary Color <b style="color:red;">*</b></label>
+        <input type="color" class="color-picker" name="Primary Color" class="auto" value="{{ program.primary_color }}">
+    </div>
+    <div class="field">
+        <label>Secondary Color <b style="color:red;">*</b></label>
+        <input type="color" class="color-picker" name="Secondary Color" class="auto" value="{{ program.secondary_color }}">
+    </div>
+</div>
+<div class="field">
+    <label for="signup-program-name">Name <b style="color:red;">*</b></label>
+    <input type="text" name="Name" placeholder="Create a program name" value="{{ program.name }}">
+</div>
+<div class="field">
+    <label for="signup-program-name">SubDomain <b style="color:red;">*</b></label>
+    <input type="text" name="Subdomain" placeholder="Subdomain" value="{{ program.slug }}">
+</div>	
+<div class="field">
+    <label>Team Label (Name To Refer To Teams By) <b style="color:red;">*</b></label>
+    <input name="Team Label" type="text" value="{{ program.team_label }}">
+</div>
+<div class="field">
+    <label>Point Name <b style="color:red;">*</b></label>
+    <input name="Points Name" type="text" value="{{ program.points_name }}">
+</div>
+{#
+<div class="field">
+    <label>Scale Dollars To Points By <b style="color:red;">*</b></label>
+    <input name="Scale Points By" type="text" value="{{ program.scale_points_by }}">
+</div>
+#}
+<div class="two fields">
+    <div class="field">
+        <label>Maximum Product {{ program.points_name }} Value (0 / Empty Represents No Limit)</label>
+        <input name="Maximum Products" type="text" value="{{ program.maximum_product_value }}" class="not-required">
+    </div>
+    <div class="field">
+        <label>Maximum Purchasable {{ program.points_name }} Value (In a single transaction - 0  Empty Represents No Limit)</label>
+        <input name="Maximum Points" type="text" value="{{ program.points_limit }}" class="not-required">
+    </div>
+</div>
+<div class="field">
+    <label>Allow Points To Be Purchased <b style="color:red;">*</b></label>
+    <select class="ui selection dropdown" name="Can Buy Points">
+        <option value="1"{% if program.can_buy_points == 1 %} selected{% endif %}>Yes</option>
+        <option value="0"{% if program.can_buy_points == 0 %} selected{% endif %}>No</option>
+    </select>
+</div>
+<div class="field">
+    <label>Timezone<b style="color:red;">*</b></label>
+    <select class="ui selection dropdown" name="Timezone">
+        {% for timezone in program.getTimezoneOptions %}
+            <option value="{{ timezone }}"{% if program.timezone == timezone %} selected{% endif %}>{{ timezone }}</option>
+        {% endfor %}
+    </select>
+</div>
+<div class="field">
+    <label>Celebrate Birthdays <i class="exclamation circle icon link inline" data-content="By clicking yes, if your users have their birthday's in their profile, it will share it's their birthday (not year) in the Activity Feed, send an email to them to say happy birthday from Xtend and also when they login, celebrate with on screen confetti! A nice little touch to drive engagement of your program."></i> <b style="color:red;">*</b></label>
+    <select class="ui selection dropdown" name="Celebrate Birthdays">
+        <option value="1"{% if program.celebrate_birthdays == 1 %} selected{% endif %}>Yes</option>
+        <option value="0"{% if program.celebrate_birthdays == 0 %} selected{% endif %}>No</option>
+    </select>
+</div>
+<h3>Module Controls</h3>
+<div class="two fields">
+    <div class="field">
+        <label>Allow Posts Module <b style="color:red;">*</b></label>                                            
+        <select class="ui selection dropdown" name="Posts Module">
+            <option value="1"{% if program.module_allow_posts == 1 %} selected{% endif %}>Yes</option>
+            <option value="0"{% if program.module_allow_posts == 0 %} selected{% endif %}>No</option>
+        </select>
+    </div>
+    <div class="field">
+        <label>Allow Awards Module <b style="color:red;">*</b></label>                                               
+        <select class="ui selection dropdown" name="Awards Module">
+            <option value="1"{% if program.module_allow_awards == 1 %} selected{% endif %}>Yes</option>
+            <option value="0"{% if program.module_allow_awards == 0 %} selected{% endif %}>No</option>
+        </select>
+    </div>
+</div>
+<div class="two fields">
+    <div class="field">    
+        <label>Allow Profiles Module <b style="color:red;">*</b></label>                                      
+        <select class="ui selection dropdown" name="Profiles Module">
+            <option value="1"{% if program.module_allow_users == 1 %} selected{% endif %}>Yes</option>
+            <option value="0"{% if program.module_allow_users == 0 %} selected{% endif %}>No</option>
+        </select>  
+    </div>
+    <div class="field">     
+        <label>Allow Activity Feed Module <b style="color:red;">*</b></label>                                   
+        <select class="ui selection dropdown" name="Activity Module">
+            <option value="1"{% if program.module_allow_activity_feed == 1 %} selected{% endif %}>Yes</option>
+            <option value="0"{% if program.module_allow_activity_feed == 0 %} selected{% endif %}>No</option>
+        </select>  
+    </div>
+</div>
+<div class="two fields">
+    <div class="field">     
+        <label>Allow Program Tools Module <b style="color:red;">*</b></label>                                
+        <select class="ui selection dropdown" name="Program Tools Module">
+            <option value="1"{% if program.module_allow_program_tools == 1 %} selected{% endif %}>Yes</option>
+            <option value="0"{% if program.module_allow_program_tools == 0 %} selected{% endif %}>No</option>
+        </select>  
+    </div>
+    <div class="field">     
+        <label>Allow Results Module <b style="color:red;">*</b></label>                                
+        <select class="ui selection dropdown" name="Results Module">
+            <option value="1"{% if program.module_allow_results == 1 %} selected{% endif %}>Yes</option>
+            <option value="0"{% if program.module_allow_results == 0 %} selected{% endif %}>No</option>
+        </select>  
+    </div>
+</div>

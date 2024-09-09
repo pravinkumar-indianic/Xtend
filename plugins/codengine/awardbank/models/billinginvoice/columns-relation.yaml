@@ -1,0 +1,135 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+    xero_id:
+        label: 'Xero ID'
+        type: text
+        searchable: true
+    xero_type:
+        label: 'Xero Type'
+        type: text
+        searchable: true
+    xero_contact:
+        label: 'Xero Contact'
+        type: number
+        searchable: true
+    xero_date:
+        label: 'Xero Date'
+        type: datetime
+        searchable: true
+    xero_duedate:
+        label: 'Xero Due Date'
+        type: datetime
+        searchable: true
+    xero_status:
+        label: 'Xero Status'
+        type: text
+        searchable: true
+    xero_lineamounttypes:
+        label: 'Xero Line Amount Types'
+        type: text
+        searchable: true
+    xero_subtotal:
+        label: 'Xero Subtotal'
+        type: text
+        searchable: true
+    xero_totaltax:
+        label: 'Xero Total Tax'
+        type: text
+        searchable: true
+    xero_total:
+        label: 'Xero Total Amount'
+        type: text
+        searchable: true
+    xero_totaldiscount:
+        label: 'Xero Total Discount'
+        type: text
+        searchable: true
+    xero_updateddateutc:
+        label: 'Xero Updated Date'
+        type: datetime
+        searchable: true
+    xero_currencycode:
+        label: 'Xero Currency Code'
+        type: text
+        searchable: true
+    xero_invoiceid:
+        label: 'Xero Invoice ID'
+        type: text
+        searchable: true
+    xero_currencyrate:
+        label: 'Xero Currency Rate'
+        type: text
+        searchable: true
+    xero_invoicenumber:
+        label: 'Xero Invoice Number'
+        type: text
+        searchable: true
+    xero_reference:
+        label: 'Xero Reference'
+        type: text
+        searchable: true
+    xero_brandingthemeid:
+        label: 'Xero Branding Theme ID'
+        type: text
+        searchable: true
+    xero_url:
+        label: 'Xero URL'
+        type: text
+        searchable: true
+    xero_sendtocontact:
+        label: 'Xero Sent To Contact'
+        type: text
+        searchable: true
+    xero_expectedpaymentdate:
+        label: 'Xero Expected payment Date'
+        type: text
+        searchable: true
+    xero_plannedpaymentdate:
+        label: 'Xero Planned Payment Date'
+        type: text
+        searchable: true
+    xero_hasattachments:
+        label: 'Xero Has Attachments'
+        type: text
+        searchable: true
+    xero_payments:
+        label: 'Xero Payments'
+        type: text
+        searchable: true
+    xero_overpayments:
+        label: 'Xero Overpayments'
+        type: text
+        searchable: true
+    xero_amountdue:
+        label: 'Xero Amount Due'
+        type: text
+        searchable: true
+    xero_amountpaid:
+        label: 'Xero Amount Paid'
+        type: text
+        searchable: true
+    xero_fullypaidondate:
+        label: 'Xero Fully Paid On Date'
+        type: datetime
+        searchable: true
+    xero_amountcredited:
+        label: 'Xero Amount Credited'
+        type: text
+        searchable: true
+    created_at:
+        label: 'Created At'
+        type: datetime
+        searchable: true
+    updated_at:
+        label: 'Updated Date'
+        type: datetime
+        searchable: true
+        sortable: true
+    deleted_at:
+        label: 'Deleted At'
+        type: datetime
+        searchable: true
+        sortable: true

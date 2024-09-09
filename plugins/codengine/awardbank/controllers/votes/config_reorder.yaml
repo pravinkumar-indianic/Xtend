@@ -1,0 +1,4 @@
+title: Votes
+modelClass: Codengine\Awardbank\Models\Vote
+toolbar:
+    buttons: reorder_toolbar

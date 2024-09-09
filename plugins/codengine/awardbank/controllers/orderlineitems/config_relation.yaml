@@ -1,0 +1,85 @@
+order:
+    label: codengine.awardbank::lang.Order.Orders
+    modelClass: Codengine\Awardbank\Models\Order    
+    view:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/order/fields-relation.yaml                
+        list: $/codengine/awardbank/models/order/columns-relation.yaml  
+        emptyMessage: backend::lang.list.no_records   
+        showSearch: true
+        recordsPerPage: 20
+    manage:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/order/fields-relation.yaml                
+        list: $/codengine/awardbank/models/order/columns-relation.yaml   
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 20
+order_placer:
+    label: codengine.awardbank::lang.OrderLineitem.order_placer
+    modelClass: RainLab\User\Models\User   
+    view:
+        toolbarButtons: add|remove
+        form: $/codengine/awardbank/models/user/fields-relation.yaml                
+        list: $/codengine/awardbank/models/user/columns-relation.yaml  
+        emptyMessage: backend::lang.list.no_records   
+        showSearch: true
+        recordsPerPage: 20
+    manage:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/user/fields-relation.yaml                
+        list: $/codengine/awardbank/models/user/columns-relation.yaml   
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 20
+product:
+    label: codengine.awardbank::lang.Product.Product
+    modelClass: Codengine\Awardbank\Models\Product  
+    view:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/product/fields-relation.yaml                
+        list: $/codengine/awardbank/models/product/columns-relation.yaml  
+        emptyMessage: backend::lang.list.no_records   
+        showSearch: true
+        recordsPerPage: 20
+    manage:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/product/fields-relation.yaml                
+        list: $/codengine/awardbank/models/product/columns-relation.yaml   
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 20
+supplier:
+    label: codengine.awardbank::lang.Supplier.Supplier
+    modelClass: Codengine\Awardbank\Models\Supplier  
+    view:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/supplier/fields-relation.yaml                
+        list: $/codengine/awardbank/models/supplier/columns-relation.yaml  
+        emptyMessage: backend::lang.list.no_records   
+        showSearch: true
+        recordsPerPage: 20
+    manage:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/supplier/fields-relation.yaml                
+        list: $/codengine/awardbank/models/supplier/columns-relation.yaml   
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 20
+program:
+    label: codengine.awardbank::lang.Program.Program
+    modelClass: Codengine\Awardbank\Models\Program  
+    view:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/program/fields-relation.yaml                
+        list: $/codengine/awardbank/models/program/columns-relation.yaml  
+        emptyMessage: backend::lang.list.no_records   
+        showSearch: true
+        recordsPerPage: 20
+    manage:
+        toolbarButtons: add|remove  
+        form: $/codengine/awardbank/models/program/fields-relation.yaml                
+        list: $/codengine/awardbank/models/program/columns-relation.yaml   
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 20

@@ -1,0 +1,134 @@
+<div class="ui segment">
+	<h3>{{ results.may.teamname }} - {{ results.may.partsservice}} - Breakdown</h3>
+	{% if results.may.data|length >= 1  %}
+		<table class="ui table breakdown">
+			<thead>
+				{% if results.may.partsservice == 'Parts'%}
+					<tr class="headingrow1">
+						<th>Period</th>
+						<th colspan="2">
+							Criteria 1
+						</th>
+						<th colspan="4">
+							Criteria 2
+						</th>
+						<th colspan="2">
+							Criteria 3
+						</th>
+						<th>
+							Overall
+						</th>
+					</tr>
+					<tr class="headingrow2">
+						<th>Month</th>
+						<th>YTD Parts W/S Result</th>
+						<th>Parts W/S Rank</th>
+						<th>2023 P&A W/S Result</th>
+						<th>YTD P&A W/S Result</th>
+						<th>2023 vs 2024 YTD P&A W/S Growth</th>
+						<th>P&A W/S Growth Rank</th>
+						<th>YTD PNVR</th>
+						<th>YTD PNVR Rank</th>
+						<th>Total Ranking Score</th>
+					</tr>
+				{% else %}
+					<tr class="headingrow1">
+						<th>Period</th>
+						<th colspan="2">
+							Criteria 1
+						</th>
+						<th colspan="2">
+							Criteria 2
+						</th>
+						<th colspan="2">
+							Criteria 3
+						</th>
+						<th>
+							Overall
+						</th>
+					</tr>
+					<tr class="headingrow2">
+						<th>Month</th>
+						<th>YTD Service Market Share</th>
+						<th>YTD Service Market Share Rank</th>
+						<th>YTD TSA Retention</th>
+						<th>YTD TSA Retention % Rank</th>
+						<th>YTD Non/Post TSA Volume Growth</th>
+						<th>YTD Non/Post TSA Volume Growth Rank</th>
+						<th>Total Ranking Score</th>
+					</tr>
+				{% endif %}
+			</thead>
+			<tbody>
+				<tr>
+					<td>January</td>
+					{% for key, row in results.jan.data %}
+						<td>{% if row.string != null %}{% if '$' in row.string or '%' in row.string or '.' in row.string or row.string matches '/^[-+]?[0-9]*\\.?[0-9]+$/' %}{{ row.string }}{% endif %}{% endif %}{% if row.value != null %}{{ row.value|number_format(0, '.', ',')  }}{% else %}{% if row.string == null %}0{% endif %}{% endif %}</td>
+					{% endfor %}
+				</tr>
+				<tr>
+					<td>February</td>
+					{% for key, row in results.feb.data %}
+						<td>{% if row.string != null %}{% if '$' in row.string or '%' in row.string or '.' in row.string or row.string matches '/^[-+]?[0-9]*\\.?[0-9]+$/' %}{{ row.string }}{% endif %}{% endif %}{% if row.value != null %}{{ row.value|number_format(0, '.', ',')  }}{% else %}{% if row.string == null %}0{% endif %}{% endif %}</td>
+					{% endfor %}
+				</tr>
+				<tr>
+					<td>March</td>
+					{% for key, row in results.mar.data %}
+						<td>{% if row.string != null %}{% if '$' in row.string or '%' in row.string or '.' in row.string or row.string matches '/^[-+]?[0-9]*\\.?[0-9]+$/' %}{{ row.string }}{% endif %}{% endif %}{% if row.value != null %}{{ row.value|number_format(0, '.', ',')  }}{% else %}{% if row.string == null %}0{% endif %}{% endif %}</td>
+					{% endfor %}
+				</tr>
+				<tr>
+					<td>April</td>
+					{% for key, row in results.apr.data %}
+						<td>{% if row.string != null %}{% if '$' in row.string or '%' in row.string or '.' in row.string or row.string matches '/^[-+]?[0-9]*\\.?[0-9]+$/' %}{{ row.string }}{% endif %}{% endif %}{% if row.value != null %}{{ row.value|number_format(0, '.', ',')  }}{% else %}{% if row.string == null %}0{% endif %}{% endif %}</td>
+					{% endfor %}
+				</tr>
+				<tr>
+					<td>May</td>
+					{% for key, row in results.may.data %}
+						<td>{% if row.string != null %}{% if '$' in row.string or '%' in row.string or '.' in row.string or row.string matches '/^[-+]?[0-9]*\\.?[0-9]+$/' %}{{ row.string }}{% endif %}{% endif %}{% if row.value != null %}{{ row.value|number_format(0, '.', ',')  }}{% else %}{% if row.string == null %}0{% endif %}{% endif %}</td>
+					{% endfor %}
+				</tr>
+				<tr>
+					<td>June</td>
+					{% for key, row in results.jun.data %}
+						<td>{% if row.string != null %}{% if '$' in row.string or '%' in row.string or '.' in row.string or row.string matches '/^[-+]?[0-9]*\\.?[0-9]+$/' %}{{ row.string }}{% endif %}{% endif %}{% if row.value != null %}{{ row.value|number_format(0, '.', ',')  }}{% else %}{% if row.string == null %}0{% endif %}{% endif %}</td>
+					{% endfor %}
+				</tr>
+				<tr>
+					<td>July</td>
+					{% for key, row in results.jul.data %}
+						<td>{% if row.string != null %}{% if '$' in row.string or '%' in row.string or '.' in row.string or row.string matches '/^[-+]?[0-9]*\\.?[0-9]+$/' %}{{ row.string }}{% endif %}{% endif %}{% if row.value != null %}{{ row.value|number_format(0, '.', ',')  }}{% else %}{% if row.string == null %}0{% endif %}{% endif %}</td>
+					{% endfor %}
+				</tr>
+				<tr>
+					<td>August</td>
+					{% for key, row in results.aug.data %}
+						<td>{% if row.string != null %}{% if '$' in row.string or '%' in row.string or '.' in row.string or row.string matches '/^[-+]?[0-9]*\\.?[0-9]+$/' %}{{ row.string }}{% endif %}{% endif %}{% if row.value != null %}{{ row.value|number_format(0, '.', ',')  }}{% else %}{% if row.string == null %}0{% endif %}{% endif %}</td>
+					{% endfor %}
+				</tr>
+				<tr>
+					<td>September</td>
+					{% for key, row in results.sep.data %}
+						<td>{% if row.string != null %}{% if '$' in row.string or '%' in row.string or '.' in row.string or row.string matches '/^[-+]?[0-9]*\\.?[0-9]+$/' %}{{ row.string }}{% endif %}{% endif %}{% if row.value != null %}{{ row.value|number_format(0, '.', ',')  }}{% else %}{% if row.string == null %}0{% endif %}{% endif %}</td>
+					{% endfor %}
+				</tr>
+				<tr>
+					<td>October</td>
+					{% for key, row in results.oct.data %}
+						<td>{% if row.string != null %}{% if '$' in row.string or '%' in row.string or '.' in row.string or row.string matches '/^[-+]?[0-9]*\\.?[0-9]+$/' %}{{ row.string }}{% endif %}{% endif %}{% if row.value != null %}{{ row.value|number_format(0, '.', ',')  }}{% else %}{% if row.string == null %}0{% endif %}{% endif %}</td>
+					{% endfor %}
+				</tr>
+				<tr>
+					<td>November</td>
+					{% for key, row in results.nov.data %}
+						<td>{% if row.string != null %}{% if '$' in row.string or '%' in row.string or '.' in row.string or row.string matches '/^[-+]?[0-9]*\\.?[0-9]+$/' %}{{ row.string }}{% endif %}{% endif %}{% if row.value != null %}{{ row.value|number_format(0, '.', ',')  }}{% else %}{% if row.string == null %}0{% endif %}{% endif %}</td>
+					{% endfor %}
+				</tr>
+			</tbody>
+		</table>
+	{% else %}
+		<h4>No data available for this Dealer under {{ results.partsservice}}. Please try another dealer or category.</h4>
+	{% endif %}
+</div>

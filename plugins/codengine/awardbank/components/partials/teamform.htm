@@ -1,0 +1,47 @@
+<input class="hidden" type="hidden" value="{{ team.id }}" name="id">
+{% if team.managed == true %}
+	<div class="field">
+		<label>Parent</label>	
+	    <select class="ui selection dropdown not-required" name="Parent">
+	    	<option value="empty">No Parent</option>
+	    	{% for otherteam in otherteams %}
+	        	<option value="{{ otherteam.id }}"{% if team.parent.id == otherteam.id %} selected{% endif %}>{{ otherteam.name|capitalize }}</option>
+	        {% endfor %}
+	    </select>
+	</div>	
+	<div class="field">
+		<label>Children</label>
+		<div class="ui multiple selection searchable dropdown" id="Children" name="Children" data-selected='{% for team in team.children %}{{ team.id }}{% if not loop.last %},{% endif %}{% endfor %}'>
+			<div class="default text">Select</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				{% for otherteam in otherteams %}
+					<div class="item" data-value='{{ otherteam.id }}'>{{ otherteam.name|capitalize }}</div>
+				{% endfor %}
+			</div>
+		</div>		
+	</div>	
+{% endif %}
+<div class="field">
+    <label>Name:</label>
+    <input class="team_name" type="text" value="{{ team.name }}" name="Name">
+</div>
+<div class="field">
+    <label>External Reference:</label>
+    <input class="team_external_reference not-required" type="text" value="{{ team.external_reference }}" name="External Reference">
+</div>
+<div class="two fields">
+	<div class="field">
+		<label>Primary Color</label>
+		<input type="color" id="team_primary_color" class="color-picker" name="Primary Color" class="auto" value="{{ team.primary_color }}">
+	</div>
+	<div class="field">
+		<label>Secondary Color</label>
+		<input type="color" id="team_secondary_color" class="color-picker" name="Secondary Color" class="auto" value="{{ team.secondary_color }}">
+	</div>
+</div>
+<div class="field">
+    <label>Description:</label>
+    <textarea class="team_description not-required" name="Description">{{ team.description|striptags }}</textarea>
+</div>
+	

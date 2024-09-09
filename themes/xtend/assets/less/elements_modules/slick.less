@@ -1,0 +1,46 @@
+/* Slick */
+.slick-slider {
+    .slick-arrow {
+        height:35px;
+        width:35px;
+        line-height:35px;
+        &:before {
+            color: @brand-aqua;
+            font-size: 35px;
+            transition: color @fast;
+        }
+        &:hover:before {
+            color:@gray;
+        }
+    }
+    .slick-dots {
+        bottom:-12px;
+        li {
+            margin:0 4px;
+            height:12px;
+            width:12px;
+            button {
+                padding:0;
+                height:auto;
+                width:auto;
+                &:before {
+                    content:"";
+                    border-radius:100%;
+                    height:12px;
+                    width:12px;
+                    border:1px solid @brand-aqua;
+                    background:transparent;
+                    transition: border @fast, background @fast;
+                    opacity:1;
+                }
+            }
+            &.slick-active {
+                button {
+                    &:before {
+                        background:@brand-aqua;
+                    }
+                }  
+            }
+        }
+    }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+
+            {% if access.user %}
+                {% set gaid = access.user.id %}
+                {% set ganame = access.user.full_name %}
+                {% set gaemail = access.user.email %}
+            {% else %}
+                {% set gaid = 'empty' %}
+                {% set ganame = 'empty' %}
+                {% set gaemail = 'empty' %}
+            {% endif %}
+
+            {% if access.program %}
+                {% set gaprogramid = access.program.id %}
+                {% set gaprogramname = access.program.name %}
+            {% else %}
+                {% set gaprogramid = 'empty' %}
+                {% set gaprogramname = 'empty' %}
+            {% endif %}
+
+            {% if access.region %}
+                {% set garegionid = access.region.id %}
+                {% set garegionname = access.region.name %}
+            {% else %}
+                {% set garegionid = 'empty' %}
+                {% set garegionname = 'empty' %}
+            {% endif %}
+
+            {% if access.team %}
+                {% set gateamid = access.team.id %}
+                {% set gateamname = access.team.name %}
+            {% else %}
+                {% set gateamid = 'empty' %}
+                {% set gateamname = 'empty' %}
+            {% endif %}
+
+            {% set conversion = 1 %}
+
+            dataLayer = [{
+                'used_id': '{{ gaid }}', 
+                'user_name': '{{ ganame }}',
+                'user_email': '{{ gaemail }}',
+                'program_id': '{{ gaprogramid }}',
+                'program_name': '{{ gaprogramname }}',
+                'region_id': '{{ garegionid }}',
+                'region_name': '{{ garegionname }}',
+                'team_id': '{{ gateamid }}',
+                'team_name': '{{ gateamname }}',
+                'environment': 'Testing',
+                'conversion' : '{{ conversion }}',
+            }];
+
+        </script>   
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-P6CN26D');</script>
+        <!-- End Google Tag Manager -->
+
+    </head>
+    <body class="admin">
+        <h1>Conversion Test</h1>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6CN26D"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    </body>
+</html>

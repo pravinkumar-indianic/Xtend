@@ -1,0 +1,25 @@
+fields:
+    name:
+        label: Title
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    award:
+        label: Award
+        oc.commentPosition: ''
+        span: auto
+        type: relation
+    description:
+        label: Description
+        oc.commentPosition: ''
+        span: auto
+        type: text        
+    order:
+        label: Order
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    prize_value:
+        label: 'Prize Value'
+        type: number
+        span: auto

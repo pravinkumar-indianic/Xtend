@@ -1,0 +1,35 @@
+<div class="ui segment">
+	<div class="ui one column stackable grid">
+	    <div class="column">
+    		<h3>Transfer</h3>
+		</div>
+	</div>
+    <div class="ui four columns stackable center aligned grid">
+    	<div class="column">
+			{% partial '@statistic' value = pointsaddition label = 'Total Program '~ program.points_name~ ' Purchased' %}
+		</div>
+    	<div class="column">
+			{% partial '@statistic' value = availablepoints label = 'Current '~ program.points_name~ ' Available' %}
+		</div>
+    	<div class="column">
+			{% partial '@statistic' value = pointssubtraction label = 'Total '~ program.points_name~ ' Transfered To Users' %}
+		</div>
+    	<div class="column">
+			{% partial '@statistic' value = pointsreturned label = 'Total '~ program.points_name~ ' Reversed From Users' %}
+		</div>
+	</div>
+	<div class="ui one column stackable grid">
+	    <div class="column">
+			<form class="ui form" id="my-program-transfer-points">
+		    	{% partial '@transferpointsform' users = users availablepoints = availablepoints %}
+		    	<button type="submit" class="ui primary submit button" data-attach-loading>Transfer points</button>
+			</form>
+		</div>
+		<div class="column">
+			<h3>{{ program.points_name }} Ledger</h3>
+		</div>
+		<div class="column">
+    		{% partial '@pointsledgerlist' pointsledgers = pointsledgers %}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,33 @@
+<form
+    class="ui form"
+    id="faq-form-{% if index %}{{index}}{% else %}0{% endif %}"
+    style="margin: 20px 0;"
+>
+    <div class="field">
+        <label for="question">Question</label>
+        <input type="text" id="question-{{index}}" name="question" value="{% if faq %}{{faq.question}}{% endif %}">
+    </div>
+
+    <div class="field">
+        <label for="answer">Answer</label>
+        <textarea id="answer-{{index}}" name="answer" rows="2">{% if faq %}{{faq.answer}}{% endif %}</textarea>
+    </div>
+</form>
+
+<div class="field" style="text-align: right;">
+    {% if action == 'edit' %}
+    <button class="ui button red right faq cancel" data-id="{% if index %}{{index}}{% else %}0{% endif %}">
+        Cancel
+    </button>
+    {% endif %}
+
+    <button class="ui button primary right faq save" data-id="{% if index %}{{index}}{% else %}0{% endif %}">
+        {% if action == 'add' %}Add{% endif %}{% if action == 'edit' %}Save{% endif %}
+    </button>
+</div>
+
+{% put scripts %}
+<script>
+  convertToCKEditor('answer-{{index}}');
+</script>
+{% endput %}

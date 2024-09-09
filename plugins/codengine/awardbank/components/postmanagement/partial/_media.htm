@@ -1,0 +1,30 @@
+{% set post = __SELF__.post %}
+{% set steps = __SELF__.steps %}
+
+{{ form_open({ request: 'onPostCreate', class:'ui form', id: 'postcreateform'}) }}
+	
+    <div class="ui form" style="padding-top: 20px; padding-bottom: 40px;">
+    	<div class="field">
+          	<label for="file1">Add Featured Image:</label>
+	        {% component 'fileUploader' %}
+        </div>
+        <div class="field tags">
+          	<label for="file2">Add post images:</label>
+            {% component 'multifileUploader' %}
+        </div>
+        <!-- <div class="field">
+          <label>Video Url</label>
+          <input placeholder="Video Url" type="text" name="video" value="{{post.video}}">
+        </div> -->
+        
+        <div class="field">
+			     <input value="{{post.id}}" name="post_id" type="hidden">
+           <input value="{{steps}}" name="step" type="hidden" id="steps">
+	        <div class="ui error message"></div>
+
+	        <button class="ui primary submit button right floated" type="submit" name="submit" value="finish">Finish</button>
+	    </div>
+    </div>
+       
+
+{{ form_close() }}

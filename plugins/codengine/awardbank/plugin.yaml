@@ -1,0 +1,190 @@
+plugin:
+    name: 'codengine.awardbank::lang.plugin.name'
+    description: 'codengine.awardbank::lang.plugin.description'
+    author: Codengine
+    icon: oc-icon-trophy
+    homepage: ''
+navigation:
+    suppleriersproducts:
+        label: 'codengine.awardbank::lang.awardbank.suppliersandproducts'
+        url: codengine/awardbank/products
+        icon: icon-plug
+        permissions:
+            - codengine.awardbank.supplier_manager
+        order: '300'
+        sideMenu:
+            products:
+                label: 'codengine.awardbank::lang.awardbank.products'
+                url: codengine/awardbank/products
+                icon: icon-key
+                permissions:
+                    - codengine.awardbank.supplier_manager
+            suppliers:
+                label: 'codengine.awardbank::lang.awardbank.suppliers'
+                url: codengine/awardbank/suppliers
+                icon: icon-ship
+                permissions:
+                    - codengine.awardbank.supplier_manager
+            product_categories:
+                label: 'codengine.awardbank::lang.awardbank.categories'
+                url: codengine/awardbank/categorys/productlist
+                icon: icon-slack
+                permissions:
+                    - codengine.awardbank.supplier_manager
+    posts:
+        label: Content
+        url: codengine/awardbank/posts
+        icon: icon-pencil
+        permissions:
+            - codengine.awardbank.content_manager
+        order: '400'
+        sideMenu:
+            content:
+                label: 'codengine.awardbank::lang.awardbank.content'
+                url: codengine/awardbank/posts
+                icon: icon-pencil
+            post_categories:
+                label: 'codengine.awardbank::lang.awardbank.categories'
+                url: codengine/awardbank/categorys/postlist
+                icon: icon-slack
+            activity_feed:
+                label: 'Activity Feed'
+                url: codengine/awardbank/activityfeeds
+                icon: icon-coffee
+            messages:
+                label: Messages
+                url: codengine/awardbank/messages
+                icon: icon-pencil
+            targetingtags:
+                label: 'Targeting Tags'
+                url: codengine/awardbank/targetingtags
+                icon: icon-tag
+    programstructure:
+        label: Programs
+        url: codengine/awardbank/programs
+        icon: icon-tree
+        permissions:
+            - codengine.awardbank.user_manager
+            - codengine.awardbank.supplier_manager
+            - codengine.awardbank.content_manager
+        order: '500'
+        sideMenu:
+            organizations:
+                label: 'codengine.awardbank::lang.awardbank.organizations'
+                url: codengine/awardbank/organizations
+                icon: icon-th-list
+            programs:
+                label: 'codengine.awardbank::lang.awardbank.programs'
+                url: codengine/awardbank/programs
+                icon: icon-street-view
+            teams:
+                label: 'codengine.awardbank::lang.awardbank.teams'
+                url: codengine/awardbank/teams
+                icon: icon-space-shuttle
+    reports:
+        label: Reports
+        url: codengine/awardbank/reports
+        icon: icon-table
+        order: '550'
+    results:
+        label: Results
+        url: codengine/awardbank/resultgroups
+        icon: icon-bullseye
+        permissions:
+            - codengine.awardbank.content_manager
+        order: '600'
+        sideMenu:
+            resultgroups:
+                label: 'Result Groups'
+                url: codengine/awardbank/resultgroups
+                icon: icon-bullseye
+            resulttypes:
+                label: 'Result Types'
+                url: codengine/awardbank/resulttypes
+                icon: icon-bullseye
+            results:
+                label: Results
+                url: codengine/awardbank/results
+                icon: icon-bullseye
+    googleanalyticss:
+        label: 'Google Analytics'
+        url: codengine/awardbank/googleanalyticss
+        icon: icon-signal
+    awardnominations:
+        label: 'Awards & Nominations'
+        url: codengine/awardbank/awards
+        icon: icon-paw
+        permissions:
+            - codengine.awardbank.user_manager
+        order: '700'
+        sideMenu:
+            awards:
+                label: Awards
+                url: codengine/awardbank/awards
+                icon: icon-paw
+                permissions:
+                    - codengine.awardbank.user_manager
+            nominations:
+                label: Nominations
+                url: codengine/awardbank/nominations
+                icon: icon-outdent
+                permissions:
+                    - codengine.awardbank.user_manager
+            prizes:
+                label: Prizes
+                url: codengine/awardbank/prizes
+                icon: icon-star
+                permissions:
+                    - codengine.awardbank.user_manager
+    thankyous:
+        label: Thankyous
+        url: codengine/awardbank/thankyous
+        icon: icon-star
+        order: '800'
+    financial:
+        label: Financial
+        url: codengine/awardbank/billingcontacts
+        icon: icon-money
+        order: '900'
+        sideMenu:
+            billingcontacts:
+                label: 'Billing Contacts'
+                url: codengine/awardbank/billingcontacts
+                icon: icon-soccer-ball-o
+            BillingInvoice:
+                label: 'Billing Invoices'
+                url: codengine/awardbank/billinginvoices
+                icon: icon-table
+            PointsLedger:
+                label: 'codengine.awardbank::lang.PointsLedger.PointsLedger'
+                url: codengine/awardbank/pointsledgers
+                icon: icon-table
+    OrdersMain:
+        label: 'codengine.awardbank::lang.Order.Orders'
+        url: codengine/awardbank/orders
+        icon: icon-life-ring
+        order: '1000'
+        sideMenu:
+            Orders:
+                label: 'codengine.awardbank::lang.Order.Orders'
+                url: codengine/awardbank/orders
+                icon: icon-ticket
+            OrderLineItems:
+                label: 'codengine.awardbank::lang.OrderLineitem.OrderLineitems'
+                url: codengine/awardbank/orderlineitems
+                icon: icon-pagelines
+    CronCheckers:
+        label: CronCheckers
+        url: codengine/awardbank/croncheckers
+        icon: icon-clock-o
+        order: '1100'
+    Leads:
+        label: Leads
+        url: codengine/awardbank/leads
+        icon: icon-bomb
+        order: '1200'
+    pdf:
+        label: PDF
+        url: renatio/dynamicpdf/templates
+        icon: icon-file-pdf-o
+        order: '400'

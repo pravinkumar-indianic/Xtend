@@ -1,0 +1,52 @@
+fields:
+    name:
+        label: 'Results Name'
+        oc.commentPosition: ''
+        span: full
+        type: text
+    display_dashboard:
+        label: Display On Dashboard
+        span: full
+        type: switch
+    label:
+        label: 'Label'
+        oc.commentPosition: ''
+        span: full
+        type: text
+    description:
+        label: 'Label'
+        oc.commentPosition: ''
+        span: full
+        type: richeditor
+    type:
+        label: Results Group Type
+        span: full
+        type: dropdown
+        options:
+            table: 'Table'
+            scoreboard: 'Scoreboard'
+            comments: 'Comments'
+            ranking-toyota: 'Ranking Toyota'
+            eligibility-toyota: 'Eligibility Toyota'
+            toyota-parts-leaderboard-month: 'Toyota Parts Leaderboard Total'
+            toyota-service-leaderboard-month: 'Toyota Service Leaderboard Total'
+            leaderboard-text-service: 'Leaderboard Text Service'
+            leaderboard-text-part: 'Leaderboard Text Part'
+    program:
+        label: Program
+        span: full
+        type: relation
+        relation: program
+        select: name
+        emptyOption: 'Not Set'
+    resulttypes:
+        label: Result Types
+        span: full
+        type: relation
+        relation: resulttypes
+        select: name
+        emptyOption: 'Not Set'
+    targetingtags:
+        type: partial
+        path: field_targetingtags
+        tab: 'Targeting Tags'

@@ -1,0 +1,16 @@
+<div class="ui segment">
+	<div class="ui one column stackable grid">
+	    <div class="column">
+	    	<h3>Vote Questions</h3>
+		</div>
+	</div>
+	<form class="ui form one column stackable grid" id="vote-questions">
+    	{% partial '@questionslist' 
+    		questions = award.votes_question_json 
+    		nomvote = 'vote'
+		%}
+		<div class="column">
+			<button type="submit" class="ui primary submit button" data-attach-loading>Save Questions</button>
+		</div>
+	</form>
+</div>

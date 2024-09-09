@@ -1,0 +1,32 @@
+/* Toggle */
+
+.ui.toggle.checkbox {
+    margin-bottom:15px;
+    label {
+        font-size:14px;
+        font-family:@font-light;
+        color:@black; 
+        padding-top: 0;
+        line-height: 1em;
+        &:before {
+            //background:#c4edeb;
+            height: 13px;
+        }
+        &:after {
+            box-shadow:none;
+            //background:@brand-aqua;
+            height: 13px;
+            width: 13px;
+        }
+    }
+    input:focus:checked~.box:before, 
+    input:focus:checked~label:before,
+    input:checked~.box:before, 
+    input:checked~label:before {
+        //background-color:#c4edeb!important;
+    }
+    input:checked~.box:after, 
+    input:checked~label:after {
+        left: 2.6rem;
+    }
+}

@@ -1,0 +1,40 @@
+<div class="ui fixed top menu header-top">
+    <div class="header-top-inner">
+        <span class="ui menu mobile-trigger">
+             <a class="item menu-trigger"><i class="sidebar icon"></i></a>
+        </span>
+        <div class="ui top menu header-top-inner-wrap">
+            <a class="item" href="/dashboard"><i class="home icon"></i></a>
+            {% if viewBag.metaarea == 0 %}
+                <a class="item menu-trigger"><i class="caret down icon"></i><i class="icon-dashboard icon"></i>Dashboard</a>
+            {% elseif viewBag.metaarea == 1 %}
+                <a class="item menu-trigger"><i class="caret down icon"></i><i class="icon-rewards icon"></i>Rewards</a>
+            {% elseif viewBag.metaarea == 2 %}
+                <a class="item menu-trigger"><i class="caret down icon"></i><i class="icon-posts icon"></i>Posts</a>
+            {% elseif viewBag.metaarea == 3 %}
+                <a class="item menu-trigger"><i class="caret down icon"></i><i class="icon-awards icon"></i>Awards</a>
+            {% elseif viewBag.metaarea == 4 %}
+                <a class="item menu-trigger"><i class="caret down icon"></i><i class="icon-results icon"></i>Results</a>
+            {% elseif viewBag.metaarea == 5 %}
+                <a class="item menu-trigger"><i class="caret down icon"></i><i class="icon-users icon"></i>Users</a>
+            {% elseif viewBag.metaarea == 6 and access.program.id != 2 %}
+                <a class="item menu-trigger"><i class="caret down icon"></i><i class="heartbeat icon" style="font-size:20px;"></i>Admin</a>
+            {% elseif viewBag.metaarea == 7 %}
+                <a class="item menu-trigger"><i class="caret down icon"></i><i class="settings icon"></i>Program Settings</a>
+            {% elseif viewBag.metaarea == 8 %}
+            <a class="item menu-trigger"><i class="caret down icon"></i><i class="talk icon"></i>Social Feed</a>
+            {% endif %}
+            {{ SwitchProgram.html|raw }}
+            <div class="right menu">
+                <div id="cartnavhtmltarget">
+                    {{ Cart.cartnavhtml|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-search">
+        <div class="mobile-search-heading" id="cartnavmobilehtmltarget">
+            {{ Cart.cartnavmobilehtml|raw }}
+        </div>
+    </div>
+</div>

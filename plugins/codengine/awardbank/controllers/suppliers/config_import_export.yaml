@@ -1,0 +1,13 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+ 
+import:
+    title: Import entries
+    modelClass: Codengine\Awardbank\Models\SupplierImport
+    list: $/codengine/awardbank/models/supplier/columns.yaml
+    form: $/codengine/awardbank/models/supplier/columns_import_fields.yaml    
+    redirect: 'codengine/awardbank/suppliers/'
+export:
+    useList: suppliers
+    fileName: suppliers.csv

@@ -1,0 +1,128 @@
+tabs:
+    defaultTab: Content Management:
+    fields:
+        status:
+            label: 'Status'
+            type: dropdown
+            span: full
+            options:
+                publish: 'Publish'
+                unpublish: 'Unpublish'
+            tab: 'Content Management'
+        post_live_date:
+            label: Post Live Time
+            type: datepicker
+            span: full
+            tab: 'Content Management'
+        title:
+            label: title
+            type: text
+            span: full
+            tab: 'Content Management'
+        post_type:
+            label: 'Post Type'
+            type: dropdown
+            span: full
+            options:
+                post: Post
+                program-tool: 'Program Tool'
+                useful-information: 'Useful Information'
+                static-page: 'Static Page'
+            tab: 'Content Management'
+        pinned:
+            label: 'Pinned'
+            type: checkbox
+            tab: 'Content Management'
+        video_url:
+            label: 'Video URL'
+            oc.commentPosition: ''
+            span: full
+            type: text
+            tab: 'Content Management'
+        content:
+            label: Content
+            oc.commentPosition: ''
+            span: full
+            type: richeditor
+            toolbarButtons: fullscreen|bold|italic|underline|strikeThrough|subscript|superscript|fontFamily|fontSize|color|emoticons|inlineStyle|paragraphStyle|paragraphFormat|align|formatOL|formatUL|outdent|indent|quote|insertHR|insertLink|insertImage|insertVideo|insertAudio|insertFile|insertTable|undo|redo|clearFormatting|selectAll|html
+            size: giant
+            tab: 'Content Management'
+        slug:
+            label: slug
+            type: text
+            span: full
+            tab: 'Slug'
+        feature_image:
+            label: 'Post Feature Image'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: auto
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto
+            tab: Image Management
+        images:
+            label: 'Post Images'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: auto
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto
+            tab: Image Management
+        poster:
+            label: 'Poster'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_poster.htm
+            tab: 'Poster'
+        managers:
+            label: 'Managers'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_managers.htm
+            tab: 'Managers'
+        teams:
+            label: 'Teams'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_teams.htm
+            tab: 'Teams'
+        programs:
+            label: 'Programs'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_programs.htm
+            tab: 'Programs'
+        targetingtags:
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_targetingtags.htm
+            tab: 'Targeting Tags'
+        categories:
+            label: 'Categories'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_categories.htm
+            tab: 'Categories'
+        tags:
+            label: 'Tags'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_tags.htm
+            tab: 'Tags'
+        comments:
+            label: 'Comments'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_comments.htm
+            tab: 'Comments'
+        likes:
+            label: 'Likes'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_likes.htm
+            tab: 'Likes'

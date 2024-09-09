@@ -1,0 +1,28 @@
+title = "Confirm E-mail"
+url = "/confirm-email/:slug/:random"
+layout = "login"
+is_hidden = 0
+
+==
+
+function onStart()
+{
+
+    use RainLab\User\Models\User as User;
+    $slug = $this->param('slug');
+    $random = $this->param('random');
+    $user = User::where('slug','=', $slug)->where('email_random_string','=',$random)->first();
+
+    if($user != null){
+
+      $user->email_confirmed = true;
+      $user->save();
+      Auth::login($user);
+      return Redirect::to('/dashboard');
+
+    } 
+}
+
+==
+
+No User Found

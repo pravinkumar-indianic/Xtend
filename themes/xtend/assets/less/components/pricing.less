@@ -1,0 +1,477 @@
+
+// Layout based styles
+
+body{
+    
+    background-color:#e1e1e1;
+
+}
+
+.signup-wrapper {
+    //position:relative;
+    padding-top: 120px;
+    padding-bottom: 60px;
+    //min-height:100%;
+    height:auto;
+    @media screen and (min-width:@tablet) {
+        //height: 100%;
+    }
+}
+
+.signup-background {
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    position: absolute; 
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;  
+    z-index:-1;
+    background-color:@white;
+}
+
+.signup-logo {
+    width: 164px;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    max-height: none;
+    min-height: auto;
+    margin:10px auto;
+    display:block;
+    @media screen and (min-width:@tablet) {
+        top: 30px;
+        left: 30px;
+        position: absolute;
+        margin:0;
+    }
+}
+
+.heading h2  {
+    color:@brand-aqua;
+    //margin-bottom:40px;
+    text-align:center;
+}
+
+.signup-container {
+    width:100%;
+    @media screen and (min-width:@tablet) {
+        height: 100%;
+        max-width:~"calc(2em + 572px)"!important; 
+        display:flex;
+        margin:0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.price-item {
+    &:extend(.ui.segment.xtend-segment);
+    height:250px;
+    width:250px;
+    border-radius:125px;
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+        height:200px;
+        width:200px;
+        border-radius:100px;
+    }
+    background-color: @brand-aqua;
+    color:white;
+    border:1px solid @brand-aqua;
+    padding:1em;
+    font-size:14px;
+    line-height:1.1em;
+    color: $white;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    p {
+        line-height:1.1em;   
+    }
+}
+
+.price-item-title {
+    font-family:@font-default;
+    font-weight:100;
+    margin-bottom:5px;
+    font-size:45px;
+    margin-top:45px !important;
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+        font-size:35px;
+        margin-top:35px !important;
+    }
+}
+
+.price-item-desc {
+   
+}
+
+.price-item-price {
+    font-family:@font-semibold;
+
+    line-height:1.2em;
+    display:block;
+    margin:15px 0 0;
+    font-size:18px;
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+        font-size:14px;
+    }
+}
+
+.price-item-feature {
+    font-family:@font-semibold;
+    display:block;
+    margin:15px 0 0;
+}
+
+.price-fees {
+    margin-top:10px;
+    color: @brand-aqua;
+    font-size:11px;
+    line-height:1.3em;
+    display:block;
+    text-align:center;
+    strong {
+        display:block;
+    }
+}
+.ui.button.button-price {
+  
+}
+
+.price-item-ribbon {
+    &:extend(.ui.segment.xtend-segment);
+    border-color:@brand-purple;
+    background:@brand-purple;
+    color:@white;
+    padding:20px;
+    margin-left:~"calc(-1em - 1px)";
+    margin-right:~"calc(-1em - 1px)"; 
+
+}
+
+.price-item.price-item--colour-flip {
+    color: @white;  
+    background: @brand-aqua;
+}
+
+.price-terms {
+    color:@gray; 
+    font-size:12px;
+    a {
+        font-family:@font-semibold;   
+        color:@gray;  
+    }
+}
+
+.signup-form {
+    max-width:~"calc(2em + 504px)"!important; 
+    background:@white;
+    box-shadow: @box-shadow;
+    padding:1em;
+    padding:2em 2em;
+    margin:20px 1em 0;
+    @media screen and (min-width:@tablet) {
+        padding:2em 4em;
+        margin:20px 0 0;
+    }
+    .ui.form .field {
+        margin: 0 0 1.5em;
+    }
+    .ui.form .field>label {
+        color: @brand-aqua;
+        font-family: @font-light;
+        margin-bottom:0.75em;
+    }
+    .placeholder {
+        color: @brand-aqua;
+    }
+    input:not([type=submit]):not([type=checkbox]):not([type=radio]):not([type=file]) {
+        border-color:@brand-aqua;
+        box-shadow: @box-shadow;
+        font-size:15px;
+        padding:7px 20px;
+        &::-webkit-input-placeholder { 
+          color: @brand-aqua;
+        }
+        &::-moz-placeholder { 
+          color: @brand-aqua;
+        }
+        &:-ms-input-placeholder { 
+          color: @brand-aqua;
+        }
+        &::placeholder {
+          color: @brand-aqua;
+        }
+    }
+    .header {
+        text-align:center;
+        font-size:16px;
+        color: @brand-aqua;
+        margin-bottom:2em;
+        strong {
+            font-family:@font-semibold; 
+        }
+    }
+    .ui.popup {
+        width:200px;
+    }
+    i.link.icon {
+        position: absolute;
+        bottom: 10px;
+        right: -30px;
+        @media screen and (min-width:@tablet) {
+            right: -40px;
+        }
+        font-size: 1.5em;
+        color: @brand-aqua;
+    }
+    .middle-label {
+        @media screen and (min-width:@tablet) {
+            line-height: 39px;
+        }
+    }
+    .image-preview[style^="background"] {
+        width: 30px;
+        height: 30px;
+        border:1px solid @gray;
+        display:inline-block;
+    }
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    color:@white!important;
+    cursor: pointer;
+    min-width:auto!important;
+    width:90px!important;
+    padding-left:10px!important;
+    padding-right:10px!important;
+    display:inline-block!important;
+    margin-right:20px!important;
+    vertical-align: bottom!important;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}
+
+.inputfile:focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.signup-scale-example {
+    width:50%;
+    float:left;
+    text-align:left;
+    line-height: 39px;
+}
+.signup-scale-input {
+    width:20%!important;
+    float:left;
+}
+.signup-scale-define {
+    width:30%;
+    float:right;
+    text-align:center;
+    line-height: 39px;
+}
+
+.signup-set-rewards {
+    @media screen and (min-width:@tablet) {
+        width:80%;
+        float:left; 
+        line-height: 39px;
+    }
+}
+
+.signup-set-rewards-input {
+    @media screen and (min-width:@tablet) {
+        width:20%!important;
+        float:left;
+    }
+}
+
+.form-footer {
+    padding-top:20px;
+    .ui.button.primary {
+        width:100%;
+        @media screen and (min-width:@tablet) {
+            width:auto;
+            margin-right:0;
+        }
+    }
+}
+
+.signup-create-menu{
+
+    padding:0 5px 25px;
+    margin:-1rem;
+    border-bottom:1px solid @gray-light;
+    @media screen and (min-width:@tablet) {
+        margin:-1rem -1rem 0;
+        padding:20px 4rem 25px;
+    }
+    .ui.menu.tabular.menu-slide {
+        display:block;
+        border:none;
+        max-width:700px;
+        margin:0 auto;
+        .item {
+            float:left;
+            display:block;
+            width:20%;
+            border:none;
+            padding: .92857143em 0 7px;
+            text-align:center;
+            font-size:16px;
+            font-family:@font-light;
+            &:nth-child(1).active ~ .line .slider-line {
+                margin-left:0;
+            }
+            &:nth-child(2).active  ~ .line .slider-line {
+                margin-left:20%;
+            }
+            &:nth-child(3).active  ~ .line .slider-line {
+                margin-left:40%;
+            }
+            &:nth-child(4).active  ~ .line .slider-line {
+                margin-left:60%;
+            }
+            &:nth-child(5).active  ~ .line .slider-line {
+                margin-left:80%;
+            }
+        }
+        .line {
+            margin-top:1rem;
+            clear:both;
+            width:100%;
+            background:@gray-light;
+            height:5px;
+            .slider-line {
+                width:20%;
+                height:5px;
+                background:@brand-aqua;
+                transition: margin-left @fast;
+            }
+        }
+    }    
+}
+
+.signup-create-tabs{
+    
+    margin-top:30px;
+}
+
+.ui.grid.signup-footer-buttons{
+    
+    border-top: 1px solid #d7d7d7;
+
+}
+
+.signup-fields{
+    margin-bottom: 30px;
+
+    .heading{
+        text-align:center;
+        margin-bottom:30px;
+    }
+}
+
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+ol.example li.placeholder {
+  position: relative;
+  /** More li styles **/
+}
+ol.example li.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
+}
+
+ol#program-tree{
+    
+    list-style-type: none;
+}
+
+#program-tree-setup .empty-target{
+    
+    //border: 2px dashed grey;
+    height:3px;
+    width:70px;
+    //margin-bottom:5px;
+}
+
+#program-tree-setup .icon{
+    
+    margin-right:0px;
+
+}
+
+#program-tree-setup {
+
+    padding-top: 10px;
+    border: 1px dashed grey;
+    margin-bottom: 30px;
+
+}
+
+.ui.form.signup-fields{
+
+    .two.fields>.field:nth-child(1) {
+        width: 25%;
+    }
+
+    .two.fields>.field:nth-child(2) {
+        width: 75%;
+    }
+}
+
+.sign-up-terms-box{
+    
+    .ui.message{
+        text-align:center;
+    }
+    margin-top:2rem;
+
+}
+
+
+#password_reset_box{
+    
+    width:40%;
+    
+    img{
+        width:100px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
+
+.signup-create-menu .ui.menu.tabular.menu-slide .item.disabled{
+    color:#dadada;
+}
+
+.signup-create-menu .ui.menu.tabular.menu-slide .line{
+    background:#dadada;
+}

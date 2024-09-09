@@ -1,0 +1,11 @@
+list: $/codengine/awardbank/models/credit/columns.yaml
+modelClass: Codengine\Awardbank\Models\Credit
+title: Credits
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'codengine/awardbank/credits/update/:id'

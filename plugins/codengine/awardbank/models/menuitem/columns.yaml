@@ -1,0 +1,31 @@
+columns:
+    id:
+        label: id
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    deleted_at:
+        label: deleted_at
+        type: datetime
+    name:
+        label: name
+        type: text
+    hovertext:
+        label: hovertext
+        type: text
+    parent_id:
+        label: parent_id
+        type: number
+    nest_left:
+        label: nest_left
+        type: number
+    nest_right:
+        label: nest_right
+        type: number
+    nest_depth:
+        label: nest_depth
+        type: number

@@ -1,0 +1,4 @@
+title: PointAllocations
+modelClass: Codengine\Awardbank\Models\PointAllocation
+toolbar:
+    buttons: reorder_toolbar

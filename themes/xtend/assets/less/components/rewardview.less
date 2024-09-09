@@ -1,0 +1,97 @@
+// RewardView styles
+// Components: RewardView.php
+
+
+.container-product {
+    padding-top:1rem;
+}
+
+.ui.segment.product-segment-detail {
+    .segment-base;
+    margin-bottom:20px;
+    .ui.breadcrumb {
+        @media only screen and (min-width: @tablet) {
+            margin-bottom:60px;
+        } 
+    }
+    .product-image-box {
+        width: 100%;
+        height: 325px;
+        border:1px solid @gray-light;
+        padding:20px;
+        position:relative;
+        .product-image-internal-box {
+            height:100%;
+            width:100%;
+            background-position:center;
+            background-size:contain;
+            background-repeat:no-repeat;
+            display:block;
+        }
+        .search.icon {
+            position:absolute;
+            bottom:10px;
+            right:10px;
+            font-size:2em;
+            color:@gray-dark;
+        }
+    }
+    .product-header {
+        color:@black;
+        font-size:24px;
+        font-family:@font-semibold;
+        margin-bottom:10px;
+    }
+    .product-points {
+        color:@black;
+        font-size:20px;
+        font-family:@font-default;
+        margin-bottom:20px;  
+    }
+
+    .ul .li{
+
+        font-size:16px;
+
+    }
+
+    .small-words{
+        font-size:10px;
+        line-height:@line-height;
+        margin-bottom:30px;
+    }
+    .product-description {
+        font-size:15px;
+        line-height:@line-height;
+        margin-bottom:30px;
+    }
+    .product-description-heading {
+        color:@black;
+        font-size:11px;
+        font-family:@font-semibold;
+        margin-bottom:10px;  
+    }
+
+    .percent-bar, .product-buttons {
+        padding-bottom: 20px;
+    }
+    
+    .product-additional-images {
+        margin-top:20px;
+    }
+    .product-additional-image {
+        display:block;
+        width:100%;
+        height:88px;
+        background-size:contain;
+        background-position:center;
+        background-repeat:no-repeat;
+    }
+    
+}
+
+.ui.grid>.row.product-segment-detail-row {
+    @media only screen and (min-width: @tablet) {
+        padding:60px;
+    }
+}

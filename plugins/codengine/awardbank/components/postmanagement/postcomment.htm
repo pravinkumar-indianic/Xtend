@@ -1,0 +1,41 @@
+{% put scripts %}
+    <script type="text/javascript">
+        function emptycomment(){
+            $("#comment").val("");
+        }
+    </script>
+{% endput %}
+
+<div class="ui sixteen wide tablet sixteen wide computer column column">
+  <form class="ui reply form" style="padding-top: 10px;" data-request="onAddComment" data-request-success="emptycomment();" data-request-update="'{{__SELF__}}::commentlist' : '#commentlist', '{{__SELF__}}::postlike': '#likeresult{{ __SELF__ }}_{{ post.id }}'">
+      <input type="hidden" name="post_id" value="{{post.id}}">
+
+      <div class="field">
+        <label for="comment">Add a comment...</label>
+        <textarea name="comment" id="comment" rows="3"></textarea>
+      </div>
+      <div class="field comment-button">
+       <button type="submit" class="ui button square secondary" id="addcomment" data-attach-loading>Save</button>
+      </div>
+  </form>
+</div>
+
+<div class="ui sixteen wide tablet sixteen wide computer column comments" id="commentlist">
+    {% partial __SELF__ ~ '::commentlist' %}
+    <a href="#">View all</a>
+</div>
+
+
+
+<div class="ui divider"></div>
+
+<div class="ui sixteen wide column">
+  <h3>Similar posts...</h3>
+</div>
+
+<!-- <div class="center">
+    <a href="#" class="sbutton" data-request="onLoadMoreComment" 
+     data-request-data="post_id:'{{post.id}}',last_comment:'{{post.comment.last.id}}',active:'0'"
+     data-reuqest-success="updateactive(this);">
+    <i class="material-icons pink-text listfavorite">Load More</i>  
+</div> -->

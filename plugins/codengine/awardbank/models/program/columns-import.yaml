@@ -1,0 +1,453 @@
+columns:
+    id:
+        label: id
+        type: number
+    name:
+        label: 'codengine.awardbank::lang.awardbank.programname'
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+        searchable: true
+        sortable: true
+        invisible: true           
+    updated_at:
+        label: updated_at
+        type: datetime
+        searchable: true
+        sortable: true
+    deleted_at:
+        label: deleted_at
+        type: datetime
+        searchable: true
+        sortable: true
+        invisible: true  
+    description:
+        label: 'codengine.awardbank::lang.awardbank.programdescription'
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true  
+    primary_color:
+        label: 'codengine.awardbank::lang.awardbank.teamprimarycolor'
+        type: colorpicker
+        searchable: true
+        sortable: true
+        invisible: true  
+    secondary_color:
+        label: 'codengine.awardbank::lang.awardbank.teamsecondarycolor'
+        type: colorpicker
+        searchable: true
+        sortable: true
+        invisible: true  
+    start_date:
+        label: 'codengine.awardbank::lang.awardbank.programstartdate'
+        type: date
+        searchable: true
+        sortable: true
+        invisible: true           
+    end_date:
+        label: 'codengine.awardbank::lang.awardbank.programenddate'
+        type: date
+        searchable: true
+        sortable: true
+        invisible: true   
+    points_name:
+        label: 'codengine.awardbank::lang.awardbank.points_name'
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true   
+    scale_points_by:
+        label: 'codengine.awardbank::lang.awardbank.scalepointsby'
+        type: number
+        searchable: true
+        sortable: true
+        invisible: true  
+    program_markup_type:
+        label: 'codengine.awardbank::lang.awardbank.program_markup_type'
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true            
+    program_markup_integer:
+        label: 'codengine.awardbank::lang.awardbank.program_markup_type'
+        type: number
+        searchable: true
+        sortable: true
+        invisible: true   
+    slug:
+        label: Slug
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true
+    can_buy_points:
+        label: 'Program Users Can Buy Points'
+        type: text
+        searchable: false
+        sortable: true
+        invisible: true  
+    points_limit:
+        label: Points Limit
+        type: number
+        searchable: true
+        sortable: true
+        invisible: true  
+    external_reference:
+        label: 'External Reference'
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true         
+    new_account_send:
+        label: 'Send New Account Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    unsubscribe_send:
+        label: 'Send Unsubscribe Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    order_placed_send:
+        label: 'Send Order Placed Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    order_shipped_send:
+        label: 'Send Order Shipped Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    product_backorder_send:
+        label: 'Send Product Backorder Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    award_result_send:
+        label: 'Send Award Result Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    award_nomination_send:
+        label: 'Send Award Nomination Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    award_vote_send:
+        label: 'Send Award Vote Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    award_winner_send:
+        label: 'Send Award Winner Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    new_post_send:
+        label: 'Send New Post Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    new_comment_send:
+        label: 'Send New Comment Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    new_thankyou_send:
+        label: 'Send New Thankyou Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    new_created_send:
+        label: 'Send New User Created Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    new_transfer_send:
+        label: 'Send New Points Transfer Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    new_tenure_send:
+        label: 'Send New Tenure Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    new_birthday_send:
+        label: 'Send New Birthday Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    new_spend_send:
+        label: 'Send New Points Spent Emails'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true      
+    territory:
+        label: 'Territory'
+        type: text
+        searchable: true
+        sortable: true
+        invisible: false  
+    birthday_prize_value:
+        label: 'Birthday Prize Value'
+        span: auto
+        type: number
+        searchable: false
+        sortable: true
+        invisible: true   
+    anniversary_prize_value:
+        label: 'Anniversary Prize Value'
+        span: auto
+        type: number
+        searchable: false
+        sortable: true
+        invisible: true   
+    xero_job_code_suffix:
+        label: 'Xero Job Code Suffix'
+        span: auto
+        type: text
+        searchable: true
+        sortable: true
+        invisible: false  
+    xero_billing_start_date:
+        label: 'Xero Billing Start Date'
+        span: auto
+        type: date
+        searchable: false
+        sortable: true
+        invisible: true  
+    xero_billing_next_date:
+        label: 'Xero Billing Next Date'
+        span: auto
+        type: date
+        searchable: false
+        sortable: true
+        invisible: true  
+    xero_renewal_billing_frequency:
+        label: 'Xero Billing Frequency'
+        span: auto
+        type: number
+        searchable: false
+        sortable: true
+        invisible: true    
+    xero_renewal_day_of_month:
+        label: 'Xero Renewal Day Of Month'
+        span: auto
+        type: number
+        searchable: false
+        sortable: true
+        invisible: false      
+    xero_renewal_price_plan:
+        label: 'Xero Renewal Price PLan'
+        span: auto
+        type: number
+        searchable: false
+        sortable: true
+        invisible: false 
+    xero_renewal_member_count:
+        label: 'Xero Renewal Member Count'
+        span: auto
+        type: number
+        searchable: false
+        sortable: true
+        invisible: false   
+    module_allow_rewards:
+        label: 'Module Allow Rewards'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    module_allow_posts:
+        label: 'Module Allow Posts'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    module_allow_awards:
+        label: 'Module Allow Awards'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    module_allow_users:
+        label: 'Module Allow Users'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    module_allow_results:
+        label: 'Module Allow Results'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    module_allow_admin_reports:
+        label: 'Module Allow Reports'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    module_allow_activity_feed:
+        label: 'Module Allow Activity Feed'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    module_allow_program_tools:
+        label: 'Module Allow Program Tools'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    module_allow_user_profile:
+        label: 'Module Allow User Profile'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    program_t_and_c:
+        label: 'Custom Terms & Conditions'
+        type: text
+        searchable: false
+        sortable: true
+        invisible: true  
+    registration_open:
+        label: 'Registration Open'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true    
+    team_label:
+        label: 'Team Label'
+        type: text
+        searchable: false
+        sortable: true
+        invisible: true       
+    celebrate_birthdays:
+        label: 'Celebrate Birthdays'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    celebrate_tenure:
+        label: 'Celebrate Tenure'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true  
+    is_activated:
+        label: 'Celebrate Tenure'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: true    
+    manual_pricing:
+        label: 'Manual Billing'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: false  
+    first_billing_sent:
+        label: 'First Billing Sent'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: false  
+    payment_made:    
+        label: 'Last Payment Made'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: false    
+    maximum_product_value:
+        label: 'Last Payment Made'
+        type: number
+        searchable: false
+        sortable: true
+        invisible: true      
+    cancellation_active:
+        label: 'Cancellation Model Active'
+        span: auto
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: false  
+    use_business_names:
+        label: 'Use Business Names'
+        span: auto
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: false  
+    use_targeting_tags:
+        label: 'Use Targeting Tags'
+        span: auto
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: false  
+    organization_id:
+        label: Organization
+        relation: organization
+        valueFrom: name
+        searchable: true
+        sortable: true
+        default: 'Not Set'
+    teams:
+        label: Teams
+        relation: teams
+        valueFrom: name
+        searchable: true
+        sortable: true
+        invisible: true   
+        default: 'Not Set'
+    billingcontact_id:
+        label: Billing Contact
+        relation: billingcontact
+        valueFrom: name
+        searchable: true
+        sortable: true 
+        default: 'Not Set'   
+    users:
+        label: Users
+        relation: users
+        valueFrom: full_name
+        searchable: true
+        sortable: true
+        invisible: true   
+        default: 'Not Set'
+    managers:
+        label: Managers
+        relation: managers
+        valueFrom: full_name
+        searchable: true
+        sortable: true 
+        invisible: true 
+        default: 'Not Set'
+    address_id:
+        label: Address
+        relation: address
+        valueFrom: full_address
+        searchable: true
+        sortable: true
+        default: 'Not Set'       

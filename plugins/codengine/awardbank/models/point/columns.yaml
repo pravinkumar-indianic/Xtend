@@ -1,0 +1,26 @@
+columns:
+    created_at:
+        label: created_at
+        type: datetime
+        searchable: false
+        sortable: true
+    updated_at:
+        label: updated_at
+        type: datetime
+    deleted_at:
+        label: deleted_at
+        type: datetime
+    transaction_id:
+        label: transaction_id
+        type: number
+        searchable: true
+        sortable: true
+    credit_id:
+        label: credit_id
+        type: number
+        searchable: true
+        sortable: true
+    spent:
+        label: spent
+        type: text
+        sortable: true

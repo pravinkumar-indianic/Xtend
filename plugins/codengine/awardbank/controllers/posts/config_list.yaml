@@ -1,0 +1,13 @@
+list: $/codengine/awardbank/models/post/columns.yaml
+modelClass: Codengine\Awardbank\Models\Post
+title: Posts
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'codengine/awardbank/posts/update/:id'
+filter: config_filter.yaml
+recordsPerPage: 20

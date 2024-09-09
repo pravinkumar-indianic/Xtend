@@ -1,0 +1,7 @@
+<div class="ui segment">
+    <h3>Received Messages</h3>
+    <button class="ui button primary small message-all-read-button" style="margin-bottom:20px;">Mark All Read</button>
+    {% partial '@messagelist' messages = user.receivedmessages readable = true %}
+    <h3>Sent Messages</h3>
+    {% partial '@messagelist' messages = user.sentmessages %}
+</div>

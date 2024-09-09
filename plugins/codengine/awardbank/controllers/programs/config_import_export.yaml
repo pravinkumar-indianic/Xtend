@@ -1,0 +1,16 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+ 
+import:
+    title: Import entries
+    modelClass: Codengine\Awardbank\Models\ProgramImport
+    list: $/codengine/awardbank/models/program/columns-import.yaml
+    redirect: 'codengine/awardbank/programs/'
+ 
+export:
+    title: Export entries
+    modelClass: Codengine\Awardbank\Models\ProgramExport
+    list: $/codengine/awardbank/models/program/columns-export.yaml
+    redirect: 'codengine/awardbank/programs/'
+    fileName: programs.csv

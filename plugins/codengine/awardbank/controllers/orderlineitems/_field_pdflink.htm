@@ -1,0 +1,22 @@
+<?php 
+	
+	if(isset($model)){
+		$result = $model;
+	}
+	if(isset($record)){
+		$result = $record;
+	}
+	if(isset($result)){
+		if(isset($model)){ ?>
+			<div class="relation-widget">
+		<?php }
+		if($result->purchase_order_url != null){ ?>
+			<a href="<?= $result->purchase_order_url ?>" class="btn btn-default">View Purchase Order</a>
+		<?php } else { ?>
+			<div class="btn btn-default disabled">Not Set</div>
+		<?php } 
+		if(isset($model)){ ?>
+			</div>
+		<?php }
+	}
+?>

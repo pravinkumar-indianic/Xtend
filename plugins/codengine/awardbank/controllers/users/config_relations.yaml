@@ -1,0 +1,135 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+homeaddress:
+    label: Address
+    modelClass: Codengine\Awardbank\Models\Address        
+    view:
+        toolbarButtons: add|create|update|remove          
+        form: $/codengine/awardbank/models/address/fields_relation.yaml  
+        list: $/codengine/awardbank/models/address/columns_relation.yaml    
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/address/fields_relation.yaml
+        list: $/codengine/awardbank/models/address/columns_relation.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+shippingaddress:
+    label: Address
+    modelClass: Codengine\Awardbank\Models\Address        
+    view:
+        toolbarButtons: add|create|update|remove          
+        form: $/codengine/awardbank/models/address/fields_relation.yaml  
+        list: $/codengine/awardbank/models/address/columns_relation.yaml    
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/address/fields_relation.yaml
+        list: $/codengine/awardbank/models/address/columns_relation.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+targetingtags:
+    label: Targeting Tags
+    modelClass: Codengine\Awardbank\Models\TargetingTags    
+    view:
+        toolbarButtons: add|create|remove          
+        list: $/codengine/awardbank/models/targetingtag/columns.yaml
+        showSearch: true
+        recordsPerPage: 10  
+    manage:
+        form: $/codengine/awardbank/models/targetingtag/fields_relation.yaml
+        list: $/codengine/awardbank/models/targetingtag/columns.yaml 
+        emptyMessage: backend::lang.list.no_records    
+        showSearch: true
+        recordsPerPage: 10
+pointsledgers:
+    label: codengine.awardbank::lang.PointsLedger.PointsLedgers
+    modelClass: Codengine\Awardbank\Models\PointsLedger  
+    view:
+        toolbarButtons: create|add|remove  
+        form: $/codengine/awardbank/models/pointsledger/fields-relation-user.yaml                
+        list: $/codengine/awardbank/models/pointsledger/columns-relation.yaml  
+        emptyMessage: backend::lang.list.no_records   
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        toolbarButtons: create|add|remove  
+        form: $/codengine/awardbank/models/pointsledger/fields-relation-user.yaml                
+        list: $/codengine/awardbank/models/pointsledger/columns-relation.yaml   
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true
+        recordsPerPage: 10
+teams:
+    label: Teams
+    modelClass: Codengine\Awardbank\Models\Team    
+    view:
+        toolbarButtons: add|remove       
+        form: $/codengine/awardbank/models/team/fields-relation.yaml
+        list: $/codengine/awardbank/models/team/columns.yaml
+        showSearch: true     
+    manage:
+        form: $/codengine/awardbank/models/team/fields-relation.yaml
+        list: $/codengine/awardbank/models/team/columns.yaml 
+        emptyMessage: backend::lang.list.no_records         
+        showSearch: true
+        recordsPerPage: 10
+teams_manager:
+    label: Teams Managed
+    modelClass: Codengine\Awardbank\Models\Team    
+    view:
+        toolbarButtons: add|remove   
+        form: $/codengine/awardbank/models/team/fields-relation.yaml   
+        list: $/codengine/awardbank/models/team/columns.yaml
+        showSearch: true     
+    manage:
+        form: $/codengine/awardbank/models/team/fields-relation.yaml
+        list: $/codengine/awardbank/models/team/columns.yaml 
+        emptyMessage: backend::lang.list.no_records         
+        showSearch: true
+        recordsPerPage: 10
+programs:
+    label: Programs
+    modelClass: Codengine\Awardbank\Models\Program    
+    view:
+        toolbarButtons: add|remove      
+        form: $/codengine/awardbank/models/program/fields-relation.yaml
+        list: $/codengine/awardbank/models/program/columns-relation.yaml
+        showSearch: true     
+    manage:
+        form: $/codengine/awardbank/models/program/fields-relation.yaml
+        list: $/codengine/awardbank/models/program/columns-relation.yaml 
+        emptyMessage: backend::lang.list.no_records         
+        showSearch: true
+        recordsPerPage: 10
+programs_manager:
+    label: Programs Managed
+    modelClass: Codengine\Awardbank\Models\Program    
+    view:
+        toolbarButtons: add|remove      
+        form: $/codengine/awardbank/models/program/fields-relation.yaml
+        list: $/codengine/awardbank/models/program/columns-relation.yaml
+        showSearch: true     
+    manage:
+        form: $/codengine/awardbank/models/program/fields-relation.yaml
+        list: $/codengine/awardbank/models/program/columns-relation.yaml 
+        emptyMessage: backend::lang.list.no_records         
+        showSearch: true
+        recordsPerPage: 10
+orders:
+    label: Orders
+    modelClass: Codengine\Awardbank\Models\Order    
+    view:
+        toolbarButtons: add|remove      
+        form: $/codengine/awardbank/models/order/fields-relation.yaml
+        list: $/codengine/awardbank/models/order/columns-relation.yaml
+        showSearch: true     
+    manage:
+        form: $/codengine/awardbank/models/order/fields-relation.yaml
+        list: $/codengine/awardbank/models/order/columns-relation.yaml 
+        emptyMessage: backend::lang.list.no_records         
+        showSearch: true
+        recordsPerPage: 10

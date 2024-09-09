@@ -1,0 +1,37 @@
+fields:
+    type:
+        label: codengine.awardbank::lang.PointsLedger.type
+        span: auto
+        type: dropdown
+    dollar_value:
+        label: codengine.awardbank::lang.PointsLedger.dollar_value
+        type: number
+        span: auto
+        readOnly: true
+    points_value:
+        label: codengine.awardbank::lang.PointsLedger.points_value
+        type: number
+        span: auto
+    xero_id:
+        label: codengine.awardbank::lang.PointsLedger.xero_id
+        type: text
+        span: auto
+    program:
+        label: codengine.awardbank::lang.Program.Program
+        type: relation
+        emptyOption: None
+    user:
+        label: codengine.awardbank::lang.User.User
+        type: relation
+        select: full_name
+        emptyOption: None
+    order:
+        label: codengine.awardbank::lang.Order.Order
+        type: relation
+        select: CONCAT("Order ",id)
+        emptyOption: None
+        readOnly: true
+    product:
+        label: codengine.awardbank::lang.Product.Product
+        type: relation
+        emptyOption: None

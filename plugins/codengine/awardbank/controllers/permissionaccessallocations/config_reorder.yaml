@@ -1,0 +1,4 @@
+title: PermissionAccessAllocations
+modelClass: Codengine\Awardbank\Models\PermissionAccessAllocation
+toolbar:
+    buttons: reorder_toolbar

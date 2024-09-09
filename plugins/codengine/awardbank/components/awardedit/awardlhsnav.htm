@@ -1,0 +1,17 @@
+<div class="ui segment profile-summary">
+	<div class="userlogin">
+		<div class="profile-summary-image">
+			{% if award.trophy_image %}
+				<a href="/award/{{ award.slug }}"><img src="{{ award.trophy_image.getThumb(210,auto) }}" class="ui small circular image avatar"></a>
+			{% endif %}
+		</div>
+		<div class="profile-summary-description">
+			<h2 class="profile-summary-name">{{ award.name }}</h2>
+		</div>
+	</div>
+	<div class="ui vertical secondary menu profile-menu">
+		{% for key,value in navoptions %}
+			<a class="item change-tab {% if key == navoption %}active{% endif %}" data-id="{{ key }}">{{ value }}</a>
+		{% endfor %}
+	</div>
+</div>

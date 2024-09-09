@@ -1,0 +1,190 @@
+{% for result in results %}
+	{% set mainlooplast = loop.last %}
+	{% set mainloopindex = loop.index %}
+	<div class="ui sixteen wide tablet {% if result.meta.type == 'eligibility-toyota' or result.meta.type == 'toyota-parts-leaderboard-month' or result.meta.type == 'toyota-service-leaderboard-month' %}eight{% elseif mainlooplast and mainloopindex is not even or result.meta.type == 'ranking-toyota' %}sixteen{% else %}eight{% endif %} wide computer column results-column">
+		<div class="ui segment" {% if result.meta.type == 'table' %}style="padding-right:0px;"{% endif %}>
+			{% if result.meta.type == 'toyota-parts-leaderboard-month' or result.meta.type == 'toyota-service-leaderboard-month' %}
+				<h2>{{ result.meta.label }}</h2>
+				<div>{{ result.meta.description|raw }}</div>
+			{% else %}
+				<h2>{{ result.meta.targetname }} - {{ result.meta.label }}</h2>
+				<div>{{ result.meta.description|raw }}</div>
+			{% endif %}
+
+			<!-- 'table' -->
+			{% if result.meta.type == 'table' %}
+				<table class="ui table">
+					<thead>
+						<th>Criteria</th>
+						<th>Value</th>
+					</thead>
+					<tbody>
+						{% for key, row in result %}
+							{% if key != 'meta' %}
+								<tr>
+									<td>{{ row.meta.label }}</td>
+									<td>{% if row.result != null %}{{ row.result.string }}{% if row.result.value != 100000000000000 %}{% if row.result.value != null %}{{ row.result.value|number_format(0, '.', ',')  }}{% else %}{% if row.result.string == null %}0{% endif %}{% endif %}{% endif %}{% endif %}</td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+					<tbody>
+				</table>
+			{% endif %}
+
+			{% if result.meta.type == 'eligibility-toyota' %}
+				<table class="ui table">
+					<thead>
+						<th>Criteria</th>
+						<th>Status</th>
+					</thead>
+					<tbody>
+						{% for key, row in result %}
+							{% if key != 'meta' %}
+								<tr>
+									<td>{{ row.meta.label }}</td>
+									<td>{% if row.result.value >= 1 %}<div style="background-color:green;width:30px;height:30px;border-radius:15px;margin-left:auto;margin-right:auto;"></div>{% else %}		<div style="background-color:red;width:30px;height:30px;border-radius:15px;margin-left:auto;margin-right:auto;"></div>{% endif %}
+									</td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+					<tbody>
+				</table>
+				<div class="ui grid">
+					<div class="ui sixteen width column">
+						<div style="margin-left:auto;margin-right:auto;width:250px;">
+							<a href="/results-detail" class="primary ui button" style="background-color: #eb0a1e !important;color: white !important;border:0px;width:250px;">View Details</a>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+
+			{% if result.meta.type == 'toyota-parts-leaderboard-month' or result.meta.type == 'toyota-service-leaderboard-month' %}
+				<table class="ui table">
+					<thead>
+						<th>Rank</th>
+						<th>Dealership</th>
+						<th>Score</th>
+					</thead>
+					<tbody>
+						{% for key, row in result %}
+							{% if key != 'meta' %}
+								{% for key2, row2 in row %}
+									<tr>
+										<td>{{ row2.rank }}</td>
+										<td>{{ row2.dealer }}</td>
+										<td>{{ row2.score }}</td>
+									</tr>
+								{% endfor %}
+							{% endif %}
+						{% endfor %}
+					<tbody>
+				</table>
+				<div class="ui grid">
+					<div class="ui sixteen width column">
+						<div style="margin-left:auto;margin-right:auto;width:250px;">
+							<a href="/results-detail" class="primary ui button" style="background-color: #eb0a1e !important;color: white !important;border:0px;width:250px;">View Details</a>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+
+			<!-- 'scoreboard' -->
+			{% if result.meta.type == 'scoreboard' %}
+				{% for key, row in result %}
+					{% if mainlooplast and mainloopindex is not even %}
+						{% if loop.first %}
+							<div class="ui grid two columns row" style="margin-top:20px;">
+						{% endif %}
+					{% endif %}
+					{% if row.meta.type == 'score' %}
+						{% if key != 'meta' %}
+							{% if mainlooplast and mainloopindex is not even %}
+								<div class="ui column">
+							{% endif %}
+							<div class="ui statistic {% if loop.index is even %}even{% else %}odd{% endif %}">
+                                {% if access.program.scoreboardValuePattern == 'string-only' %}
+                                <div class="value">{% if row.result != null %}{{ row.result.string }}{% endif %}</div>
+                                {% else %}
+                                <div class="value">{% if row.result != null %}{{ row.result.string }}{% if row.result.value != 100000000000000 %}{% if row.result.value != null %}{{ row.result.value|number_format(0, '.', ',')  }}{% else %}{% if row.meta.id != 124 and row.meta.id != 132 and row.meta.id != 136 %}0{% endif %}{% endif %}{% endif %}{% endif %}</div>
+                                {% endif %}
+							  	<div class="label">
+							    	{{ row.meta.label }}
+							  	</div>
+							</div>
+							{% if mainlooplast and mainloopindex is not even %}
+								</div>
+							{% endif %}
+						{% endif %}
+					{% endif %}
+					{% if row.meta.type == 'progress' %}
+						{% if key != 'meta' %}
+							{% if mainlooplast and mainloopindex is not even %}
+								<div class="ui column">
+							{% endif %}
+							<div class="progress-div">
+								<h4>{{ row.meta.label }}</h4>
+								<div class="ui results progress" data-total="{{ row.result.benchmark }}" data-value="{{ row.result.value }}" id="progress-{{ row.meta.id }}">
+								  	<div class="bar"></div>
+								  	<div class="label">{{ row.result.value|number_format(0, '.', ',')  }} to {{ row.result.benchmark|number_format(0, '.', ',') }}</div>
+								</div>
+							</div>
+							{% if mainlooplast and mainloopindex is not even %}
+								</div>
+							{% endif %}
+						{% endif %}
+						{% put scripts %}
+							<script>
+								$( document ).ready(function() {
+    								$('.ui.results.progress').progress();
+								});
+							</script>
+						{% endput %}
+					{% endif %}
+					{% if mainlooplast and mainloopindex is not even %}
+						{% if loop.last %}
+							</div>
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			{% if result.meta.type == 'ranking-toyota' %}
+				{% for key, row in result %}
+					{% if loop.first %}
+						<div class="ui grid four columns row" style="margin-top:20px;">
+					{% endif %}
+					{% if row.meta.type == 'score' %}
+						{% if key != 'meta' %}
+							<div class="ui column">
+								<div class="ui statistic {% if loop.index is even %}even{% else %}odd{% endif %}">
+							  		<div class="value">{% if row.result.value != 100000000000000 %}{% if row.result.value != null %}{{ row.result.value|number_format(0, '.', ',')  }}{% else %}0{% endif %}{% endif %}
+						  			</div>
+								  	<div class="label">
+								    	{{ row.meta.label }}
+								  	</div>
+								</div>
+							</div>
+						{% endif %}
+					{% endif %}
+					{% if loop.last %}
+						</div>
+						<div class="ui grid">
+							<div class="ui sixteen width column">
+								<div style="margin-left:auto;margin-right:auto;width:250px;">
+									<a href="/results-detail" class="primary ui button" style="background-color: #eb0a1e !important;color: white !important;border:0px;width:250px;">View Details</a>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+
+            {% if result.meta.type == 'comments' %}
+            <div>
+                {% for comment in result["Points Comment"] %}
+                <p>{{ comment }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+		</div>
+	</div>
+{% endfor %}

@@ -1,0 +1,34 @@
+fields:
+    name:
+        label: 'codengine.awardbank::lang.awardbank.teamname'
+        oc.commentPosition: ''
+        span: full
+        type: text
+    description:
+        label: 'codengine.awardbank::lang.awardbank.teamdescription'
+        size: large
+        oc.commentPosition: ''
+        span: full
+        type: richeditor
+    primary_color:
+        label: 'codengine.awardbank::lang.awardbank.teamprimarycolor'
+        oc.commentPosition: ''
+        span: auto
+        type: colorpicker
+    secondary_color:
+        label: 'codengine.awardbank::lang.awardbank.teamsecondarycolor'
+        oc.commentPosition: ''
+        span: auto
+        type: colorpicker
+    can_buy_points:
+        label: Team Manager Is Allowed To Buy Points
+        type: switch
+        span: full
+    points_limit:
+        label: Maximum Points A Team Can Acrue (Dollar Value)
+        type: number
+        span: full
+    external_reference:
+        label: External System Reference ID
+        type: text
+        span: full

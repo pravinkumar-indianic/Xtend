@@ -1,0 +1,19 @@
+{% if billingcontact != null %} 
+  	<div class="field">
+      	<label>{{ access.program.points_name }} Value:</label>
+      	<div class="ui input fluid" style="margin-bottom:20px;">
+        	<input name="pointsvalue" id="pointsvalue" value="{{ value }}" type="number" data-scale="{{ program.scale_points_by }}" data-limit="{{ limit }}">
+      	</div>
+  	</div>
+  	<div class="field" style="margin-bottom:20px;">
+      	<label>Dollar Value:</label>
+      	<div class="ui input fluid disabled">
+        	<input name="dollarvalue" id="dollarvalue" value="{{ dollarvalue }}" type="text" readonly="true" class="disabled">
+      	</div>
+  	</div>	
+    <div class="cc-fees-message" style="margin-bottom:30px;">
+		<p>Your {{ billingcontact.payment_terms|capitalize }} Card {{ billingcontact.defaultcurrent }} will be charged for this account. In addition to the above dollar value, transaction include the following transaction Fee.</p>
+		<p>Mastercard & VISA: 1.04%</p>
+		<p>AMEX: 2.04%</p>
+	</div>
+{% endif %}

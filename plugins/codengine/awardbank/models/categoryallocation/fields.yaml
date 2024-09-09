@@ -1,0 +1,22 @@
+fields:
+    p_type:
+        label: 'codengine.awardbank::lang.awardbank.ptype'
+        oc.commentPosition: ''
+        options:
+            Codengine\Awardbank\Models\Post: Post
+            Codengine\Awardbank\Models\Product: Product
+            Codengine\Awardbank\Models\Program: Program
+        span: full
+        type: dropdown
+    p_id:
+        label: 'codengine.awardbank::lang.awardbank.pid'
+        oc.commentPosition: ''
+        span: full
+        type: number
+    category:
+        label: 'codengine.awardbank::lang.awardbank.category'
+        oc.commentPosition: ''
+        select: CONCAT(CONCAT(id,' ', name), " | ", type)
+        descriptionFrom: description
+        span: full
+        type: relation

@@ -1,0 +1,134 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    include_inactive:
+        label: Show Inactive
+        type: checkbox
+        default: false
+        scope: filterWithInactive
+    include_featured:
+        label: Show Featured
+        default: false
+        type: checkbox
+        scope: filterWithFeatured
+    include_deleted:
+        label: Show Deleted
+        type: checkbox
+        default: false
+        scope: filterWithDeleted
+    filter_deliver_base:
+        label: Delivering To Evt
+        type: checkbox
+        default: false
+        scope: filterDeliverEVT
+    filter_no_supplier:
+        label: Filter No Supplier
+        type: checkbox
+        default: false
+        scope: filterWithoutSupplier
+    filter_no_image:
+        label: Filter No Image
+        type: checkbox
+        default: false
+        scope: filterWithoutImage
+    completeness_range:
+        label: Incompleteness Range
+        scope: filterProcess
+        type: numberrange
+    id_range:
+        label: ID Range
+        scope: filterIDRange
+        type: numberrange
+    points_range:
+        label: Points Range
+        scope: filterPointsRange
+        type: numberrange
+    margin_range:
+        label: Margin Range
+        scope: filterMarginRange
+        type: numberrange
+    created_range:
+        label: Created At
+        type: daterange
+        scope: filterTimeRange
+    updated_range:
+        label: Updated At
+        type: daterange
+        scope: filterTimeRange
+    suppliers:
+        label: Suppliers
+        modelClass: Codengine\Awardbank\Models\Supplier
+        scope: filterProcess
+        nameFrom: name
+    cost_currency:
+        label: Currency
+        scope: filterProcess
+        options:
+            aud: AUD
+            nzd: NZ
+            eur: EUR
+            gbp: 'Great Britain Pound'
+    brand_filtration1:
+        label: 'Brands 1'
+        modelClass: Codengine\Awardbank\Models\Product
+        scope: filterProcess
+        options: getBrandOptions1
+    brand_filtration2:
+        label: 'Brands 2'
+        modelClass: Codengine\Awardbank\Models\Product
+        scope: filterProcess
+        options: getBrandOptions2
+    categories:
+        label: In Category
+        modelClass: Codengine\Awardbank\Models\Category
+        scope: filterProcess
+        nameFrom: name
+    tags:
+        label: Has Tags
+        modelClass: Codengine\Awardbank\Models\Tag
+        scope: filterProcess
+        nameFrom: name
+    permissions:
+        label: Permissions Type
+        modelClass: Codengine\Awardbank\Models\Permission
+        scope: filterProcess
+        options:
+          owners: Owners
+          viewability: Viewability
+          wishlist: Wishlist
+          cart: Cart
+    territory:
+        label: Territory
+        scope: filterProcess
+        options:
+            IRL: IRL
+            AU: AU
+            UK: UK
+            NZ: NZ
+    organizations:
+        label: codengine.awardbank::lang.awardbank.organizations
+        modelClass: Codengine\Awardbank\Models\Organization
+        scope: filterProcess
+        nameFrom: name
+    programs:
+        label: codengine.awardbank::lang.awardbank.programs
+        modelClass: Codengine\Awardbank\Models\Program
+        scope: filterProcess
+        nameFrom: name
+    regions:
+        label: codengine.awardbank::lang.awardbank.regions
+        modelClass: Codengine\Awardbank\Models\Region
+        scope: filterProcess
+        nameFrom: name
+    teams:
+        label: codengine.awardbank::lang.awardbank.teams
+        modelClass: Codengine\Awardbank\Models\Team
+        scope: filterProcess
+        nameFrom: name
+    users:
+        label: codengine.awardbank::lang.awardbank.users
+        modelClass: Rainlab\User\Models\User
+        scope: filterProcess
+        nameFrom: full_name

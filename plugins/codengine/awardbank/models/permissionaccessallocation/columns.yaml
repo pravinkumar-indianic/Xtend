@@ -1,0 +1,13 @@
+columns:
+    id:
+        label: id
+        type: number
+    permission_id:
+        label: permission_id
+        type: number
+    permissionaccessallocatable_type:
+        label: permissionaccessallocatable_type
+        type: text
+    permissionaccessallocatable_id:
+        label: permissionaccessallocatable_id
+        type: number

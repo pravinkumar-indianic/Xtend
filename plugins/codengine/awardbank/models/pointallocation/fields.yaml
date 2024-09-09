@@ -1,0 +1,11 @@
+fields:
+    point_id:
+        label: 'Point Id'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    pointallocatable_type:
+        label: 'Point Allocateble Type'
+        oc.commentPosition: ''
+        span: auto
+        type: text

@@ -1,0 +1,10 @@
+<?= Form::open(['id' => 'disableForm']) ?>
+
+    <?php if ($this->fatalError): ?>
+    <p class="flash-message static error"><?= $fatalError ?></p>
+    <?php endif ?>
+
+    <div class="form">
+        <?= $this->reorderRender() ?>
+    </div>
+<?= Form::close() ?>

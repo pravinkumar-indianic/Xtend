@@ -1,0 +1,11 @@
+list: $/codengine/awardbank/models/resulttype/columns.yaml
+modelClass: Codengine\Awardbank\Models\ResultType
+title: ResultTypes
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'codengine/awardbank/resulttypes/update/:id'

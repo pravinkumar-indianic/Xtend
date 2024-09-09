@@ -1,0 +1,23 @@
+<input class="hidden" type="hidden" value="{{ organization.id }}" name="id">
+<div class="field">
+    <label>Name:</label>
+    <input class="team_name" type="text" value="{{ organization.name }}" name="Name">
+</div>
+<div class="field">
+    <label>External Reference:</label>
+    <input class="team_external_reference" type="text" value="{{ organization.external_reference }}" name="External Reference">
+</div>
+<div class="two fields">
+	<div class="field">
+		<label>Primary Color</label>
+		<input type="color" id="team_primary_color" class="color-picker" name="Primary Color" class="auto" value="{{ organization.primary_color }}">
+	</div>
+	<div class="field">
+		<label>Secondary Color</label>
+		<input type="color" id="team_secondary_color" class="color-picker" name="Secondary Color" class="auto" value="{{ organization.secondary_color }}">
+	</div>
+</div>
+<div class="field">
+    <label>Description:</label>
+    <textarea class="team_description not-required" name="Description">{{ organization.description|striptags }}</textarea>
+</div>

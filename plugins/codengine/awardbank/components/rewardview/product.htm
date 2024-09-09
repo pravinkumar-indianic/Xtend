@@ -1,0 +1,127 @@
+<div class="ui stackable two column grid">
+    <div class="row product-segment-detail-row">
+        <div class="sixteen wide column">
+            <div class="ui small breadcrumb">
+                <a class="section" href="/rewards/category/default">Rewards</a>
+                {% for cat in product.categories %}
+                    <i class="right chevron icon divider"></i> <a href="/rewards/category/{{cat.slug}}" class="section">{{ cat.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="eight wide column">
+            <div class="product-image-box">
+                <div class="product-image-internal-box" style="background-image:url('{{ product.imagepath }}')">
+                </div>
+            </div>
+            {% if product.images %}
+                <div class="ui grid product-additional-images">
+                    <div class="three column row">
+                        {% for img in product.images %}
+                            <div class="column">
+                                <a href="#product-image-id-1" class="product-additional-image product-gallery-trigger" style="background-image:url('{{ img.path }}')"></a>
+                                <div id="product-image-id-1" class="ui modal basic product-gallery-modal">
+                                    <div class="image content">
+                                        <img src="{{ img.path }}" class="ui image" />
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <div class="eight wide column">
+            <h1 class="product-header">{{ product.name|raw }}</h1>
+            <div class="product-points">
+                <h3>{{ product.points_value }} {{ product.points_name }}</h3>
+            </div>
+            <div class="product-description">
+                <ul class="ui bulleted list">
+                    <li>Brand: <b>{{product.brand|raw}}</b></li>
+                    <li>Model number: <b>{{product.model_number|raw}}</b></li>
+                    {% if product.options1 %}
+                        <li>Colors:
+                            {% for option in product.options1 %}
+                                <b>{{ option.option_name }}{% if loop.last == false %}, {% endif %}</b>
+                            {% endfor %}
+                        </li>
+                    {% endif %}
+                    {% if product.options2 %}
+                        <li>Sizes:
+                            {% for option in product.options2 %}
+                                <b>{{ option.option_name }}{% if loop.last %}{% else %}, {% endif %}</b>
+                            {% endfor %}
+                        </li>
+                    {% endif %}
+                    {% if product.options3 %}
+                        <li>Other Options:
+                            {% for option in product.options3 %}
+                                <b>{{ option.option_name }}{% if loop.last %}{% else %}, {% endif %}</b>
+                            {% endfor %}
+                        </li>
+                    {% endif %}
+                </ul>
+                <h2 class="product-description-heading">Description</h2>
+                {{ product.description|raw }}
+                {% if product.small_font_description != null %}
+                    <span class="small-words">
+                        {{ product.small_font_description|raw }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="percent-bar">
+                <div class="progress-bar">
+                    <div class="ui indicating progress active" data-percent="{{ product.percent }}">
+                        <div class="bar" style="width: {{ product.percent }}%;"></div>
+                    </div>
+                </div>
+                {% if product.redeemable == false %}
+                      <div class="product-points-to-go">{{ product.pointsdif }} {{ product.points_name }} to go</div>
+                {% else %}
+                      <div class="product-points-to-go">Ready To redeem</div>
+                {% endif %}
+            </div>
+            <div class="product-buttons">
+                {% if product.redeemable == false and product.can_buy_points == true %}
+                    <div class="product-sale-button">
+                        <a class="secondary ui button fluid" href="/transaction/{{ product.pointsdif }}/{{ product.id }}">Buy {{ product.points_name }}</a>
+                    </div>
+                {% elseif product.redeemable == false %}
+                     <div class="product-sale-button">
+                          <button class="primary ui button fluid in-cart product-{{product.id}} disabled" data-id="{{product.id}}">Earn More To Redeem</button>
+                    </div>
+                {% else %}
+                    <div class="product-sale-button">
+                          <button class="primary ui button fluid add-to-cart-on-product product-{{product.id}}" data-id="{{product.id}}" data-view='list' data-content="Add Product To Your Cart">Redeem</button>
+                    </div>
+                {% endif %}
+            </div>
+
+            {% if shipping_message_status == true %}
+            {% if shipping_message %}
+            <div class="ui styled fluid accordion">
+                <div class="title active">
+                    <i class="right plus icon"></i>
+                    Shipping and Delivery
+                </div>
+                <div class="content">
+                    {{shipping_message|raw}}
+                </div>
+            </div>
+            {% else %}
+            <div class="ui styled fluid accordion">
+                <div class="title active">
+                    <i class="right plus icon"></i>
+                    Shipping and Delivery
+                </div>
+                <div class="content">
+                    <p>Most orders are delivered within 3 weeks of placing the order; however, some can take a little longer.
+                        Any order enquires should be directed to <a href="mailto:hq@evtmarketing.com.au">hq@evtmarketing.com.au</a>. We will always endeavour to let you know ASAP should there be any delay with your order.</p>
+                    <p>Rewards will be delivered to your preferred address to ensure safe arrival with the exception of major items that require installation.</p>
+                </div>
+            </div>
+            {% endif %}
+             {% endif %}
+        </div>
+    </div>
+</div>

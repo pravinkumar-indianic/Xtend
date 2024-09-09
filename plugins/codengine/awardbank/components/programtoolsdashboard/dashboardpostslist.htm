@@ -1,0 +1,24 @@
+<div class="ui grid dashboard-posts-grid">
+	<div class="columns">
+		<div class="ui header sixteen wide tablet eight wide computer column">
+			<h2 class="ui header">
+                {% if user.currentProgram.name == '5STEP Incentive' %}
+                5STEP Program content
+                {% else %}
+                Program Content
+                {% endif %}
+            </h2>
+		</div>
+        {% if manager == true %}
+        <div class="ui sixteen wide tablet eight wide computer column">
+            <a href="/post/create/edit?posttype=program-tool" class="ui button primary square right">Create Content</a>
+        </div>
+        {% endif %}
+	</div>
+</div>
+
+<div id="program-tools" style="margin-top: 20px;">
+{% partial '@programtoolslist' posts = posts %}
+</div>
+
+{% partial '@programtoolsscripts' %}

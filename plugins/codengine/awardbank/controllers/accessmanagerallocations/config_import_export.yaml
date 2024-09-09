@@ -1,0 +1,14 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+ 
+import:
+    title: Import entries
+    modelClass: Codengine\Awardbank\Models\AccessManagerAllocationImport
+    list: $/codengine/awardbank/models/accessmanagerallocation/columns.yaml
+ 
+export:
+    title: Export entries
+    modelClass: Codengine\Awardbank\Models\AccessManagerAllocationExport
+    list: $/codengine/awardbank/models/accessmanagerallocation/columns.yaml
+    # useList: true

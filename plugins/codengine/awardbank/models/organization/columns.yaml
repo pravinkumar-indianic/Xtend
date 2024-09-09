@@ -1,0 +1,25 @@
+columns:
+    id:
+        label: id
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    deleted_at:
+        label: deleted_at
+        type: datetime
+    name:
+        label: codengine.awardbank::lang.awardbank.organizationname
+        type: text
+    description:
+        label: codengine.awardbank::lang.awardbank.organizationdescription
+        type: text
+    primary_color:
+        label: codengine.awardbank::lang.awardbank.organizationprimarycolor
+        type: text
+    secondary_color:
+        label: codengine.awardbank::lang.awardbank.organizationsecondarycolor
+        type: text

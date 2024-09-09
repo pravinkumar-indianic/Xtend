@@ -1,0 +1,12 @@
+list: $/codengine/awardbank/models/report/columns.yaml
+modelClass: Codengine\Awardbank\Models\Report
+title: Reports
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'codengine/awardbank/reports/preview/:id'
+recordsPerPage: 50

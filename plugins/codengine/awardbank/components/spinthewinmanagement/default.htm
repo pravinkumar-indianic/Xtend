@@ -1,0 +1,79 @@
+<div class="ui container" id="spinthewinmanagement" data-navoption = "{{ __SELF__.navoption }}">
+    <div class="ui stackable grid">
+        {% if manager == true and __SELF__.html1 %}
+        <div class="six wide tablet four wide computer column" id="html1target">
+            {{ __SELF__.html1|raw }}
+        </div>
+        {% endif %}
+        <div class="ten wide tablet twelve wide computer column" id="html2target">
+            {{ __SELF__.html2|raw }}
+        </div>
+    </div>
+</div>
+
+{% put scripts %}
+<script>
+  $('body').on('click', 'button.new-price.save', function (e) {
+    e.preventDefault();
+
+    var inputs = $('#new-price-form :input');
+    if (inputs) {
+      let data = [];
+      inputs.each(function () {
+        if (this.name) {
+          data[this.name] = $(this).val();
+        }
+      });
+
+      if (data) {
+        requestFactory('onNewPrice', data, ['#price-list-wrapper']);
+      }
+    }
+  });
+
+  $('body').on('click', 'button.price.edit', function (e) {
+    e.preventDefault();
+    let id = $(this).attr('data-id');
+    if (id) {
+      var data = {
+        'id': id,
+      };
+      requestFactory('onEditPrice', data, ['#price-list-wrapper'], () => {
+        $('[data-control="fileupload"]').fileUploader();
+      });
+    }
+  });
+
+  $('body').on('click', 'button.price.delete', function (e) {
+    e.preventDefault();
+    if (confirm('Are you sure you want to delete this prize?') == true) {
+      let id = $(this).attr('data-id');
+      if (id) {
+        var data = {
+          'id': id,
+        };
+        requestFactory('onDeletePrice', data, ['#price-list-wrapper']);
+      }
+    }
+  });
+
+  $('body').on('click', 'button.price.update', function (e) {
+    e.preventDefault();
+
+    var inputs = $('#price-form :input');
+    if (inputs) {
+      let data = [];
+      inputs.each(function () {
+        if (this.name) {
+          data[this.name] = $(this).val();
+        }
+      });
+
+      if (data) {
+        requestFactory('onUpdatePrice', data, ['#price-list-wrapper']);
+      }
+    }
+  });
+
+</script>
+{% endput %}

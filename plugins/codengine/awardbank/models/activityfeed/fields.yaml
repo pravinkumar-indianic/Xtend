@@ -1,0 +1,28 @@
+fields:
+    created_at:
+        label: created_at
+        type: datepicker
+    updated_at:
+        label: updated_at
+        type: datepicker
+    program_id:
+        label: program_id
+        type: number
+    region_id:
+        label: region_id
+        type: number
+    team_id:
+        label: team_id
+        type: number
+    user_id:
+        label: user_id
+        type: number
+    icon_image:
+        label: icon_image
+        type: text
+    icon_link:
+        label: icon_link
+        type: text
+    html:
+        label: html
+        type: textarea

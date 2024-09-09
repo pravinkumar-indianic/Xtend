@@ -1,0 +1,4 @@
+title: AccessManagerAllocations
+modelClass: Codengine\Awardbank\Models\AccessManagerAllocation
+toolbar:
+    buttons: reorder_toolbar

@@ -1,0 +1,38 @@
+<div class="breadcrumbs left floated sixteen wide tablet six wide computer column">
+	<a href="/rewards/category/default">Rewards ></a>  
+	{% for parent in breadcrumbs %} 
+		<a href="/rewards/category/{{ parent.slug}}">{{ parent.name }} ></a>
+	{% endfor %} 
+	{{ title }}
+</div>
+<div class="breadcrumbs right floated sixteen wide tablet ten wide computer column product-filter-options">
+	<div class="filter-sortby">
+		<select class="ui dropdown sortby" name="sortby">
+		  	<option value="">Sort By</option>
+		  	<option value="asc">A to Z</option>
+		  	<option value="desc">Z to A</option>
+		  	<option value="new">Newest</option>
+		  	<option value="old">Oldest</option>
+		  	<option value="price-high">{{ points_name }}: High to Low</option>
+		  	<option value="price-low">{{ points_name }}: Low to High</option>
+		</select>
+	</div>
+	<div class="filter-price-range">
+	  	<span class="filter-price-range-title">Value:</span>
+	   	<div class="filter-price-range-slider">
+	    	<div class="range-wrapper">
+				<div class="ui range" id="price-range" data-minprice="{{minprice}}" data-maxprice="{{maxprice}}"></div>
+			</div>
+			<div class="input wrapper range-slider-labels">
+				<span class="low-price">--</span>
+				<span class="high-price">--</span>
+			</div>
+	    </div>
+	</div>	
+	<div class="onlyafford column">	
+		<div class="ui toggle checkbox">
+		  	<label>Only Show Rewards I Can Redeem</label>
+		  	<input type="checkbox" name="redeem-slider" class="redeem-slider">
+		</div>
+	</div>		
+</div>

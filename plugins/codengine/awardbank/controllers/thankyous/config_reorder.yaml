@@ -1,0 +1,5 @@
+title: Thankyous
+nameFrom: id
+modelClass: Codengine\Awardbank\Models\Thankyou
+toolbar:
+    buttons: reorder_toolbar

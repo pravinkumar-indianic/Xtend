@@ -1,0 +1,4 @@
+title: Points
+modelClass: Codengine\Awardbank\Models\Point
+toolbar:
+    buttons: reorder_toolbar

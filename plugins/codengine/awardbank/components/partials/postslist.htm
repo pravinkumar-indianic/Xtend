@@ -1,0 +1,90 @@
+<div class="ui one column grid">
+    {% if posts|length > 0 %}
+        {% for post in posts %}
+            {% if post.status == 'publish' or manager %}
+            <div class="column" id="post-wrapper-{{ post.id }}">
+                <div class="ui grid grid-no-margin post-summary">
+                    <div class="sixteen wide tablet four wide computer column column-no-padding post-summary-image">
+                        <a
+                            href="/post/{{ post.slug }}"
+                            class="post-summary-image-link" {% if post.feature_image %}
+                            style="background-image:url({{ post.feature_image.thumb(400, 400) }})" {% endif %}>
+                        </a>
+                    </div>
+                    <div class="sixteen wide tablet twelve wide computer column content post-summary-content">
+                        {% if post.categories|length > 0 %}
+                            <div class="post-summary-categories">
+                                <div class="ui tiny horizontal left floated category meta labels">
+                                    {% for category in post.categories %}
+                                        <a class="ui basic label small" href="/posts/category/{{category.slug}}" style="background-color: {{category.main_color}};">
+                                            <i class="small folder icon"></i>
+                                            {{ category.name }}
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                        <a class="post-summary-header" href="/post/{{ post.slug }}">
+                            <h2>{{post.title}}</h2>
+                        </a>
+                        {% if manager and mode == 'page' %}
+                        <div class="admin-controls" style="padding: 0 10px 0 0;">
+                            <span>{% if post.status == 'publish' %}Published{% else %}Unpublished{% endif %}</span>
+                            <span>|</span>
+                            <a href="/post/{{ post.slug }}/edit">Edit</a>
+                            <span>|</span>
+                            <a href="/post/create/edit"
+                               class="post-delete-button"
+                               data-id="{{ post.id }}"
+                               style="color: red"
+                            >Delete</a>
+                        </div>
+                        {% endif %}
+                        <div class="post-summary-meta">
+                            <time class="date" datetime="">{{post.updated_at|date("F jS Y")}}</time>
+                            {% if post.poster %}
+                                <span class="compact item">by
+                                    <a class="fn nickname item" href="/{{poster.type}}/{{poster.id}}" rel="author">{{poster.name}}</a>
+                                </span>
+                            {% endif %}
+                        </div>
+                        {% if user.currentProgram.name != '5STEP Incentive' %}
+                        <div class="">
+                            <p>
+                              {{ html_limit(html_strip(post.content), 60, '... ') }}
+                              <a href="/post/{{post.slug}}" class="pull right">Read more!</a>
+                            </p>
+                        </div>
+                        {% endif %}
+                        {% if post.tags is not empty %}
+                        <div class="extra" style="margin-top: 15px;">
+                                <div class="ui tiny horizontal right floated tags meta labels">
+                                    <i class="small tags icon"></i>
+                                    {% for tag in post.tags %}
+                                        <a class="ui label">
+                                            {{ tag.name }}
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <div class="column">
+            <div class="ui raised card fluid no-results">
+                <div class="content">
+                    <div class="header">No Results Found.</div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="pagination-wrapper">
+        {{ posts.render|raw }}
+    </div>
+</div>
+

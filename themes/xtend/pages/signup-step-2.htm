@@ -1,0 +1,95 @@
+title = "Sign Up"
+url = "/sign-up/signup-step-2"
+layout = "signup"
+description = "Sign-up Step 2"
+is_hidden = 0
+
+[account]
+redirect = "home"
+paramCode = "code"
+forceSecure = 0
+
+==
+
+function onStart()
+{
+
+    use Codengine\Awardbank\Models\Program as Program;
+    $this['slug'] = $this->param('slug');
+    $program = Program::where('slug','=', $this['slug'])->first();
+
+    if($program != null){
+
+      $this['backgroundImage'] = $program->login_image->getThumb(420,420);
+      $this['backgroundColor'] = $program->primary_color;
+      $this['registration'] = $program->registration_open;
+
+    } else {
+
+      $this['backgroundImage'] = 'https://s3-ap-southeast-2.amazonaws.com/production-upload-xtend/media/loginbackup.jpg';
+      $this['registration'] = false;
+
+    }
+}
+
+==  
+
+  <!-- Form step 2 -->
+  <div class="ui row">
+
+    <div class="ui column sixteen wide">
+
+      <div class="heading">
+        <h2>Set up your program</h2>
+      </div>
+
+
+        <div class="signup-form">
+
+        <form class="ui form">
+          <h4 class="ui header">Step 1 of 2: <strong>Name and branding</strong></h4>
+
+          <div class="field">
+
+            <label for="signup-program-name">Name your program</label>
+            <input type="text" name="address[line-1]" placeholder="Create a program name" id="signup-program-name">
+            <i class="exclamation circle icon link inline" data-content="REPLACE"></i>
+ 
+          </div>
+
+          <div class="field">
+            <div class="two fields">
+              <div class="field">
+                <label for="signup-logo" class="middle-label">Upload a program image</label>     
+              </div>
+              <div class="field">
+                  <input type="file" name="image" id="image-upload" class="inputfile" />
+                  <label id="image-label" for="image-upload" class="ui button primary">Browse</label>
+                  <div id="image-preview" class="image-preview"></div>
+              </div>
+            </div>
+          </div> 
+
+          <div class="field">
+            <div class="two fields">
+              <div class="field">
+                <label class="color-label middle-label">Choose your colour palette</label>
+              </div>
+              <div class="field">
+                <input type="text" class="color-input" value="#3ed0c7">
+              </div>
+            </div>
+          </div>  
+
+
+          <div class="form-footer align-text-right">
+            <input class="ui button primary button-price" type="submit" value="Next">
+          </div>
+
+
+          </form>
+
+        </div>
+    </div>
+  </div>
+    <!-- /Form step 2 -->

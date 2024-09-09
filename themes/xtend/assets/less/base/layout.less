@@ -1,0 +1,89 @@
+// Wrappers
+#wrapper {
+    width: 100%;
+}
+
+#page-wrapper {
+    padding: 0 15px;
+    min-height: 568px;
+}
+
+
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit;
+        margin: 0 0 0 250px;
+        padding: 0 30px;
+        border-left: 1px solid darken(@gray-lightest, 6.5%);
+    }
+}
+
+.sidebar-nav-inner,
+.header-margin {
+    padding-top:41px;
+    @media only screen and (min-width: @tablet) {
+        padding-top:73px;
+    }
+    > .container {
+        margin-top:4rem;
+        margin-bottom:4rem;
+    }
+}
+
+.nicescroll-rails {
+    width:15px!important;
+    > div {
+        width:15px!important;    
+    }
+}
+
+
+#layout-content{
+    padding-top:14px;
+}
+
+
+.ui.container.container-no-margin {
+    margin:0!important;
+}
+
+.ui.grid.grid-no-margin {
+    margin:0!important;
+}
+.ui.grid.grid-no-padding {
+    padding:0!important;
+}
+.ui.grid.grid-no-margin-top {
+    margin-top:0!important;
+}
+
+.ui.grid.grid-no-bottom-top {
+    bottom-top:0!important;
+}
+
+.column.column-no-padding { 
+    padding:0!important;
+ }
+
+
+.product-nav-container {
+
+}
+
+/* Layout : Dash */
+.dash-profile {
+    > .column, 
+    > .column > .profile-summary {
+        height:100%;
+    }
+}
+.ui.grid>[class*="five wide computer"].column.dash-points {
+    @media screen and (min-width: 992px) {
+        width: 33.3%!important;
+    }
+}
+.dash-programs {
+    > .segment {
+        height:100%;
+    }
+}

@@ -1,0 +1,51 @@
+{% set isTheGoannasGroup = results.groupstring == 'The Goannas' %}
+{% set isTheBoomerangs = results.groupstring == 'The Boomerangs' %}
+{% set isTheIronwoods = results.groupstring == 'The Ironwoods' %}
+{% set isVegemiteGroup = results.groupstring == 'Vegemite' %}
+{% set isLamingtonGroup = results.groupstring == 'Lamington' %}
+{% set isMeatPie = results.groupstring == 'Meat Pie' %}
+{% set isLand = results.groupstring == 'Land' %}
+{% set isSky = results.groupstring == 'Sky' %}
+{% set isOceanGroup = results.groupstring == 'Ocean' %}
+{% set isOverallLeaderboard = results.title == 'Overall Leaderboard' %}
+
+<div class="ui segment">
+	<h3 class="leaderboardheader">{{ results.title }} - {{ results.partsservice }} - {{ results.groupstring }} - {% if results.partsservice=='Service' and results.servicedate %}{{ results.servicedate }}{% elseif results.partsservice=='Parts' and results.partdate %}{{ results.partdate }}{% else %}{{ results.monthstring }}{% endif %}</h3>
+    {%if (isMeatPie or isVegemiteGroup or isLamingtonGroup or isOceanGroup or isSky or isLand) and (isOverallLeaderboard) %}
+    {% set displayX = (isMeatPie or isLand ? 4 : 3) %}
+    <p>The {{ displayX }} top ranking {{ results.groupstring }} Dealerships at the end of the year will be awarded an AfterSales Elite Trip Place.  Focus on the three criteria and propel your Dealership into the top {{ displayX }}.</p>
+    {% endif %}
+
+    {%if (results.leaderboardtextpart and isOverallLeaderboard and results.partsservice == 'Parts') %}<h1>{{ results.leaderboardtextpart }}</h1>{% endif %}
+    {%if (results.leaderboardtextservice and isOverallLeaderboard and results.partsservice == 'Service') %}<h1>{{ results.leaderboardtextservice }}</h1>{% endif %}
+
+	{% if results.data|length >= 1  %}
+		<table class="ui table leaderboardtable {{ results.title }}">
+			<thead>
+				<th>Rank</th>
+				<th>Dealership</th>
+				<th>{{ results.column }}</th>
+			</thead>
+			<tbody>
+				{% for key, row in results.data %}
+					<tr>
+						<td {% if loop.index <= 4 and (isTheGoannasGroup or isMeatPie or isLand) and (isOverallLeaderboard) %}class="grey-cell"{% endif %}{% if loop.index <= 3 and (isTheBoomerangs or isTheIronwoods or isVegemiteGroup or isLamingtonGroup or isOceanGroup or isSky) and (isOverallLeaderboard) %}class="grey-cell"{% endif %}>{{ row.rank }}</td>
+						<td {% if loop.index <= 4 and (isTheGoannasGroup or isMeatPie or isLand) and (isOverallLeaderboard) %}class="grey-cell"{% endif %}{% if loop.index <= 3 and (isTheBoomerangs or isTheIronwoods or isVegemiteGroup or isLamingtonGroup or isOceanGroup or isSky) and (isOverallLeaderboard) %}class="grey-cell"{% endif %}>{{ row.team }}</td>
+						<td {% if loop.index <= 4 and (isTheGoannasGroup or isMeatPie or isLand) and (isOverallLeaderboard) %}class="grey-cell"{% endif %}{% if loop.index <= 3 and (isTheBoomerangs or isTheIronwoods or isVegemiteGroup or isLamingtonGroup or isOceanGroup or isSky) and (isOverallLeaderboard) %}class="grey-cell"{% endif %}>{% if row.score.string != null %}{{ row.score.string }}{% endif %}{% if row.score.value != null %}{{ row.score.value|number_format(0, '.', ',')  }}{% else %}{% if row.score.string == null %}0{% endif %}{% endif %}</td>
+					</tr>
+				{% endfor %}
+			<tbody>
+		</table>
+		{% if results.dashboardview == true %}
+			<div class="ui grid">
+				<div class="ui sixteen width column">
+					<div style="margin-left:auto;margin-right:auto;width:250px;">
+						<a href="/results-detail/leaderboard" class="primary ui button" style="background-color: #eb0a1e !important;color: white !important;border:0px;width:250px;">View Details</a>
+					</div>
+				</div>
+			</div>
+		{% endif %}
+	{% else %}
+		<h4>No data available for this Dealer under {{ results.partsservice}}. Please try another dealer or category.</h4>
+	{% endif %}
+</div>

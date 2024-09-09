@@ -1,0 +1,156 @@
+#resultsmanagement {
+    .scorecard-wrapper {
+        .tabs {
+            a.tab {
+                display: inline-block;
+                padding: 10px 20px;
+                background: #efe5e5;
+                font-size: 1.4rem;
+                font-weight: bold;
+                color: #000;
+                text-transform: uppercase;
+                cursor: pointer;
+
+                &.active, &:hover {
+                    background-color: #c4c4c4;
+                }
+            }
+        }
+
+        #section-logo-uploader {
+            margin:20px 0;
+        }
+
+        .section-criteria-wrapper {
+            margin-top: 20px;
+
+            .section-criteria-list {
+                margin: 30px 10px;
+
+                .table-header {
+                    .column {
+                        font-weight: bold;
+                        background-color: #ccc;
+                    }
+                    .mobile-hide {
+                        @media only screen and (max-width: @mobile-max) {
+                            display: none;
+                        }
+                    }
+                }
+
+                .section-criteria-row {
+                    border-bottom: 1px solid #ccc;
+                    &:last-child {
+                        border-bottom: none;
+                    }
+
+                    span {
+                        line-height: 34px;
+                    }
+
+                    .column {
+                        .tooltip {
+                            display:inline-block;
+                            position:relative;
+                            border-bottom:1px dotted #ccc;
+                            text-align:left;
+                        }
+
+                        .tooltip .right {
+                            min-width:200px;
+                            top:50%;
+                            left:100%;
+                            margin-left:20px;
+                            transform:translate(0, -50%);
+                            padding:10px 20px;
+                            color:#444444;
+                            background-color:#FFFFFF;
+                            font-weight:normal;
+                            font-size:13px;
+                            border-radius:8px;
+                            position:absolute;
+                            z-index:99999999;
+                            box-sizing:border-box;
+                            box-shadow:0 1px 8px rgba(0,0,0,0.5);
+                            display:none;
+                        }
+
+                        .tooltip:hover .right {
+                            display:block;
+                        }
+
+                        .tooltip .right i {
+                            position:absolute;
+                            top:50%;
+                            right:100%;
+                            margin-top:-12px;
+                            width:12px;
+                            height:24px;
+                            overflow:hidden;
+                        }
+
+                        .tooltip .right i::after {
+                            content:'';
+                            position:absolute;
+                            width:12px;
+                            height:12px;
+                            left:0;
+                            top:50%;
+                            transform:translate(50%,-50%) rotate(-45deg);
+                            background-color:#FFFFFF;
+                            box-shadow:0 1px 8px rgba(0,0,0,0.5);
+                        }
+                    }
+
+                    button {
+                        font-size: 16px;
+                        line-height: 1.1;
+                        border-radius: 17.5px;
+                        padding: 7px 20px;
+                        border: 2px solid #ffffff;
+                        background: #ffffff;
+                        color: #fff;
+                        font-family: 'torus-semibold', Arial, Helvetica, sans-serif;
+                        transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, background 0.1s ease, border-color 0.1s ease;
+
+                        &.red {
+                            background-color: red;
+                            &:hover {
+                                border-color: #b0b0b0;
+                                background: #b0b0b0;
+                            }
+                        }
+                        &.primary {
+                            background-color: #3ed0c7;
+                            &:hover {
+                                border-color: #b0b0b0;
+                                background: #b0b0b0;
+                            }
+                        }
+
+                        i {
+                            margin:0;
+                        }
+                    }
+                }
+            }
+            .criteria-targets-wrapper {
+                margin-top: 40px;
+                button {
+                    @media only screen and (min-width: @small-monitor) {
+                        margin-top: 25px;
+                    }
+                }
+            }
+        }
+    }
+
+    .section-import-wrapper {
+        margin-top: 40px;
+    }
+
+    select {
+        appearance: auto;
+    }
+}

@@ -1,0 +1,77 @@
+==
+<!DOCTYPE html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+        
+        {% partial 'ga' %}         
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-P6CN26D');</script>
+
+        <link rel="stylesheet" href="{{[
+            'assets/vendor/chartist/chartist.css',
+            'assets/vendor/datepicker/css/bootstrap-datepicker3.css',
+            'assets/dist/semantic.min.css',
+            'assets/css/main.css',
+            'assets/vendor/slick/slick.min.css',
+            'assets/less/magic.less',
+            'assets/vendor/pacejs/pace.css'
+        ]|theme }}" />
+        {% styles %}
+    </head>
+    <body class="admin">
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6CN26D"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <div class="site-container">
+
+        
+            {% page %}
+
+        </div>
+
+        <!--Finish Container-->
+         
+
+        <div class="ui modal">
+            <div class="header"></div>
+            <div class="content"></div>
+            <div class="actions"></div>
+        </div>
+        
+        <script src="{{[
+            'assets/js/vendor/jquery.min.js',
+            'assets/vendor/slick/slick.min.js',
+            'assets/vendor/nicescrool/jquery.nicescroll.min.js',
+            'assets/vendor/datepicker/js/bootstrap-datepicker.js',
+            'assets/vendor/sparkline/jquery.sparkline.min.js',
+            'assets/dist/semantic.min.js',
+            'assets/vendor/pacejs/pace.js',
+            'assets/js/app.js',
+            'assets/js/magic.js'
+        ]|theme }}"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $("#menu-toggle").click(function(e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+                $("#wrapper.toggled").find("#sidebar-wrapper").find(".collapse").collapse("hide");
+            });
+        });
+        </script>
+        {% framework extras %}
+        {% scripts %}
+        {% partial 'ga' %}   
+    </body>
+</html>

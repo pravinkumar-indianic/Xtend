@@ -1,0 +1,104 @@
+// Header styles
+// Components: header.htm
+
+.ui.menu.header-top {
+    box-shadow:none;
+    border:1px solid @gray-light;
+    border-radius:0;
+    height:auto;
+
+    .item {
+        color:@black;
+        font-size:18px;
+    }
+    .hamburger {
+        width: 130px;
+        .icon {
+            margin:0 auto;
+            font-size: 17px;
+            line-height: 1em;
+            &:focus,
+            &:active,
+            &:hover {
+               color:@gray-dark; 
+            }
+        }
+    }
+    .dropdown {
+        .menu {
+            line-height:@line-height;
+            font-size:11px;
+            font-family:@font-semibold;
+            color:@gray;  
+        }
+        &:focus,
+        &:active,
+        &:hover {
+           color:@gray-dark; 
+        }
+    }
+
+    .item.menu-trigger {
+        background:none;
+        .icon {
+            color:@brand-pink
+        }
+    }
+
+    .utlity-nav {
+        > a, > div {
+            display:inline-block;
+            vertical-align:middle;
+            color:@black;
+            font-size:18px;
+        }
+        > a {
+            padding:10px;
+            &:focus,
+            &:active,
+            &:hover {
+               color:@gray-dark; 
+            }
+            .icon {
+                color:@brand-aqua; 
+                font-size: 17px;
+                line-height: 1em;
+            }
+        }
+    }
+
+    .mobile-search {
+        display:none;
+        @media only screen and (max-width: @mobile-max) {
+            display:block;
+            float:right;
+            padding:0 1rem;
+            .menu {
+                margin: 0;
+                position: absolute;
+                left: 0;
+                right: 0;
+                z-index:40;
+                background:@white;
+                border:1px solid @gray-light;
+                input {
+                    width:100%;
+                }
+                .ui.search {
+                    width:100%;
+                }
+            }
+            .mobile-search-heading {
+                line-height:40px;
+            }
+            .dropdown.search.icon {
+                font-size: 24px;
+                line-height: 40px;
+                &:before {
+                    content:"\f002";
+                    color:@gray;
+                }
+            }
+        }
+    }
+}

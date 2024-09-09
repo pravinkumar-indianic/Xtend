@@ -1,0 +1,10 @@
+name: Leads
+form: $/codengine/awardbank/models/lead/fields.yaml
+modelClass: Codengine\Awardbank\Models\Lead
+defaultRedirect: codengine/awardbank/leads
+create:
+    redirect: 'codengine/awardbank/leads/update/:id'
+    redirectClose: codengine/awardbank/leads
+update:
+    redirect: codengine/awardbank/leads
+    redirectClose: codengine/awardbank/leads

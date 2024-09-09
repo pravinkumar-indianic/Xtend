@@ -1,0 +1,25 @@
+<div class="ui one column grid">
+	{% if transactions|length >= 1 %}
+	    {% for transaction in transactions.sortByDesc('id') %}
+		  	<div class="column">
+			  	<div class="ui raised card fluid">
+				    <div class="content">
+				      	<div class="header">#{{ transaction.id }} - ${{ transaction.value }} AUD</div>
+				      	<div class="created-at">Created At - {{ transaction.created_at|date('d/m/Y') }}</div>
+				      	<div class="type">Type - {{ transaction.type|replace({'_': ' '})|capitalize }}</div>
+				      	<div class="placed-by">Placed By - {{ transaction.user.full_name }} </div>
+				      	<div class="billing-cointact">Billing Contact - {{ transaction.billingcontact.firstname }} {{ transaction.billingcontact.lastname }}</div>
+				    </div>		  		
+			  	</div>
+		  	</div>
+	  	{% endfor %}
+  	{% else %}
+	  	<div class="column">
+		  	<div class="ui raised card fluid no-results">
+		  		<div class="content">
+			      	<div class="header">No Results Found.</div>
+		      	</div>
+	      	</div>
+      	</div>
+  	{% endif %}
+</div>

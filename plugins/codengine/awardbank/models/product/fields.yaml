@@ -1,0 +1,248 @@
+tabs:    
+    defaultTab: Product Details:
+    fields:
+        name:
+            label: 'codengine.awardbank::lang.awardbank.product_name'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: Product Details     
+        deactivated_at:
+            label: 'codengine.awardbank::lang.awardbank.deactivated_at'
+            oc.commentPosition: ''
+            mode: datetime
+            span: auto
+            type: datepicker
+            tab: Product Details
+        model_number:
+            label: 'Model Number'
+            type: text
+            span: auto
+            type: text
+            tab: Product Details     
+        brand:
+            label: 'Brand'
+            type: text
+            span: auto
+            type: text
+            tab: Product Details 
+        active:
+            label: 'codengine.awardbank::lang.awardbank.active'
+            oc.commentPosition: ''
+            span: auto
+            type: number
+            tab: Product Details
+        primary_color:
+            label: 'codengine.awardbank::lang.awardbank.programprimarycolor'
+            oc.commentPosition: ''
+            span: auto
+            type: colorpicker 
+             tab: Product Details 
+                    
+        cost_currency:
+            label: 'codengine.awardbank::lang.awardbank.currency'
+            span: auto
+            type: dropdown
+            options:
+                aud: AUD
+                nz: NZ
+                eur: EUR
+            tab: Financial
+        cost_ex:
+            label: 'codengine.awardbank::lang.awardbank.cost_ex'
+            oc.commentPosition: ''
+            span: auto
+            type: number
+            tab: Financial
+        cost_tax_percent:
+            label: 'codengine.awardbank::lang.awardbank.cost_tax_percent'
+            oc.commentPosition: ''
+            span: auto
+            type: number
+            tab: Financial 
+        cost_freight:
+            label: 'codengine.awardbank::lang.awardbank.cost_freight'
+            oc.commentPosition: ''
+            span: auto
+            type: number
+            tab: Financial
+        cost_gross:
+            label: 'codengine.awardbank::lang.awardbank.cost_gross'
+            oc.commentPosition: ''
+            span: full
+            type: number
+            tab: Financial  
+            disabled: true     
+
+        my_supplier_markup_type:
+            label: 'Supplier Mark Up Type'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            nameFrom: my_supplier_markup_type
+            tab: Financial  
+            disabled: true  
+        my_supplier_markup_integer:
+            label: 'Supplier Mark Up Integer'
+            oc.commentPosition: ''
+            span: auto
+            type: number
+            nameFrom: my_supplier_markup_integer
+            tab: Financial  
+            disabled: true   
+
+        mark_up_override:
+            label: 'Supplier Mark Up Override'
+            oc.commentPosition: ''
+            span: full
+            type: switch
+            tab: Financial  
+        mark_up_type:
+            label: 'Product Mark Up Type'
+            oc.commentPosition: ''
+            span: auto
+            type: dropdown
+            options:
+                percent: Percent
+                dollar: Dollars
+                none: None
+            tab: Financial
+        mark_up_integer:
+            label: 'Product Mark Up #'
+            oc.commentPosition: ''
+            span: auto
+            type: number
+            tab: Financial                     
+        cost_rrp:
+            label: 'codengine.awardbank::lang.awardbank.cost_rrp'
+            oc.commentPosition: ''
+            span: auto
+            type: number
+            tab: Financial   
+        cost_final_cost:
+            label: 'codengine.awardbank::lang.awardbank.cost_final_cost'
+            oc.commentPosition: ''
+            span: auto
+            type: number
+            tab: Financial     
+            disabled: true;  
+        points_source:
+            label: 'codengine.awardbank::lang.awardbank.points_source'
+            oc.commentPosition: ''
+            span: full
+            type: dropdown
+            options:
+                calculated: Calculated
+                rrp: RRP  
+                none: Assess Best Margin                             
+            tab: Financial                                                                               
+        points_value:
+            label: 'codengine.awardbank::lang.awardbank.points_value'
+            oc.commentPosition: ''
+            span: auto
+            type: number
+            tab: Financial 
+            disabled: true;     
+        points_margin:
+            label: 'codengine.awardbank::lang.awardbank.points_margin'
+            oc.commentPosition: ''
+            span: auto
+            type: number
+            tab: Financial  
+            disabled: true;                                      
+        category-string:
+            label: 'Category (string)'
+            type: text
+            span: auto
+            type: text
+            tab: Product Details    
+        description:
+            label: 'codengine.awardbank::lang.awardbank.productdescription'
+            size: ''
+            oc.commentPosition: ''
+            span: full
+            type: richeditor
+            tab: Product Details    
+        small_font_description:
+            label: 'Small Font Description'    
+            oc.commentPosition: ''
+            span: full
+            type: richeditor
+            size: huge            
+        external_image_url:   
+            label: 'External Img. Url'
+            type: text
+            tab: Image Management       
+        feature_image:
+            label: 'codengine.awardbank::lang.awardbank.productfeatureimage'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: auto
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto
+            tab: Image Management           
+        images:
+            label: 'codengine.awardbank::lang.awardbank.productimages'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: auto
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto
+            tab: Image Management  
+
+        replaces:
+            label: 'codengine.awardbank::lang.awardbank.productreplaces'
+            type: relation
+            nameFrom: name
+            span: full
+            emptyOption: None
+            tab: Replacement       
+        replacements:
+            label: 'codengine.awardbank::lang.awardbank.productreplacement'
+            type: relation
+            nameFrom: name
+            span: full
+            tab: Replacement   
+
+        categories:
+            label: 'Categories'
+            type: partial
+            path: field_categories
+            tab: 'Categories & Tags'   
+        tags:
+            label: 'Tags'
+            type: partial
+            path: field_tags
+            tab: 'Categories & Tags'    
+
+        supplier:
+            type: partial
+            path: field_supplier
+            tab: 'codengine.awardbank::lang.awardbank.suppliers'    
+
+        owners:
+            type: partial
+            path: field_owners
+            tab: 'codengine.awardbank::lang.awardbank.permissions'  
+        viewability:
+            type: partial
+            path: field_viewability
+            tab: 'codengine.awardbank::lang.awardbank.permissions'  
+        wishlist:
+            type: partial
+            path: field_wishlist
+            tab: 'codengine.awardbank::lang.awardbank.permissions'  

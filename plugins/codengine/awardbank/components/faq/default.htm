@@ -1,0 +1,93 @@
+{% component 'CKEditorFactory' %}
+<div class="ui segment" id="faq-editor">
+    <h1>FAQs Editor</h1>
+
+    <div class="ui form">
+        <div class="form-group">
+            <div class="field">
+                <label>FAQs Banner Image</label>
+                {% component 'faq_banner_image' %}
+            </div>
+        </div>
+    </div>
+
+    <hr style="margin:20px 0;" />
+
+    <div id="faq_list">
+        {% partial '@faqtable' faqs = faqs %}
+    </div>
+
+</div>
+
+{% put scripts %}
+<script>
+  $('body').on('click', 'button.faq.save', function (e) {
+    e.preventDefault();
+    var id = $(this).attr('data-id');
+    if (id) {
+      var inputs = $('#faq-form-' + id + ' :input');
+      var data = {
+        id: id,
+      };
+      inputs.each(function () {
+        if(this.name) {
+          data[this.name] = $(this).val();
+        }
+      });
+
+      //Replace the textarea value with ckeditor value
+      data['answer'] = window['ckeditor-' +  'answer-' + id + '-editor'].getData();
+
+      requestFactory('onFAQItemSave', data, ['#faq_list']);
+
+      if (id == 'new') {
+        $('#question-new').val('');
+        $('#answer-new').val('');
+        window['ckeditor-' +  'answer-' + id + '-editor'].setData("");
+      }
+    }
+  });
+
+  $('body').on('click', 'button.faq.add', function (e) {
+    e.preventDefault();
+    var data = {
+      id: 'new',
+    };
+    requestFactory('FAQ::onFAQItemAdd', data, ['#faq_list'], () => {
+      convertToCKEditor('answer-new');
+    });
+  });
+
+  $('body').on('click', 'button.faq.edit', function (e) {
+    e.preventDefault();
+    var id = $(this).attr('data-id');
+    if (id) {
+      var data = {
+        id: id,
+      };
+      requestFactory('FAQ::onFAQItemEdit', data, ['#faq_list'], () => {
+        convertToCKEditor('answer-' + id);
+      });
+    }
+  });
+
+  $('body').on('click', 'button.faq.cancel', function (e) {
+    e.preventDefault();
+    requestFactory('FAQ::onFAQList', null, ['#faq_list']);
+  });
+
+  $('body').on('click', 'button.faq.delete', function (e) {
+    e.preventDefault();
+
+    if (confirm("Are you sure you want to delete faq record?")){
+      var id = $(this).attr('data-id');
+      if (id) {
+        var data = {
+          id: id,
+        };
+        requestFactory('onFAQItemDelete', data, ['#faq_list']);
+      }
+    }
+  });
+</script>
+{% endput %}

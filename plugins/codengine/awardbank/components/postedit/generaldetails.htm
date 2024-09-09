@@ -1,0 +1,11 @@
+<div class="ui segment">
+    <div class="ui one column stackable grid">
+        <div class="column">
+            <h3>General Details</h3>
+        </div>
+    </div>
+	<form class="ui form" {% if new == false %}id="post-general-details-update"{% else %}id="post-general-details-create"{% endif %}>
+    	{% partial '@postform' post = post new = new %}
+		<button type="submit" class="ui primary submit button" data-attach-loading>Save {% if posttype != 'static-page' %}Post{% else %}{% endif %}</button>
+	</form>
+</div>

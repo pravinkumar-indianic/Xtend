@@ -1,0 +1,10 @@
+name: Awards
+form: $/codengine/awardbank/models/category/fields.yaml
+modelClass: Codengine\Awardbank\Models\Category
+defaultRedirect: codengine/awardbank/categorys
+create:
+    redirect: 'codengine/awardbank/categorys/update/:id'
+    redirectClose: codengine/awardbank/categorys
+update:
+    redirect: codengine/awardbank/categorys
+    redirectClose: codengine/awardbank/categorys

@@ -1,0 +1,37 @@
+fields:
+    name:
+        label: 'codengine.awardbank::lang.awardbank.programname'
+        oc.commentPosition: ''
+        span: full
+        type: text
+        tab: Program Details
+    description:
+        label: 'codengine.awardbank::lang.awardbank.programdescription'
+        size: large
+        oc.commentPosition: ''
+        span: full
+        type: richeditor
+        tab: Program Details
+    slug:
+        label: 'Slug'
+        placeholder: 'Slug'
+        type: text
+        tab: 'Routes'
+        context: update
+    feature_image:
+        label: 'codengine.awardbank::lang.awardbank.featureimage'
+        type: fileupload
+        mode: image
+        imageHeight: 260
+        imageWidth: auto
+        tab: Image Management
+        thumbOptions:
+            mode: crop
+            offset:
+                - 0
+                - 0
+            quality: 100
+            sharpen: 0
+            extension: auto
+
+             

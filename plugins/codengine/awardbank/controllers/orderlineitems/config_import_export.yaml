@@ -1,0 +1,12 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+ 
+import:
+    title: Import entries
+    modelClass: Codengine\Awardbank\Models\OrderLineItemImport
+    list: $/codengine/awardbank/models/orderlineitem/columns.yaml
+ 
+export:
+    useList: orderlineitems
+    fileName: orderlineitems.csv

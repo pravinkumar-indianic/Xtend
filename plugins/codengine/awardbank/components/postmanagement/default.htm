@@ -1,0 +1,43 @@
+{% set post = __SELF__.post %}
+{% set moduleViewTemplate = __SELF__.moduleViewTemplate %}
+{% set showHeading = __SELF__.showHeading %}
+{% set enableComment =  __SELF__.enableComment %}
+{% set moduleType =  __SELF__.moduleType %}
+{% set categories = __SELF__.categories %}
+{% set tags = __SELF__.tags %}
+{% set me = __SELF__.user %}
+{% set moduleWidth = __SELF__.moduleWidth %}
+
+{% if moduleViewTemplate == 'notification' %}
+	    
+	    {% partial __SELF__ ~ '::notification' %} 
+
+{% else %}
+<!--
+<div class ="{{ moduleWidth }} wide column">-->
+	<!--<div class="ui container container-messages">-->
+	{% if moduleViewTemplate == 'postlist' or moduleViewTemplate == 'postlistbycategory' %}
+		<div id="updatepostlist" class="ui container post-container">
+		    {% partial __SELF__ ~ '::postlist' posts=posts  showHeading=showHeading enableComment=enableComment %}
+		</div>
+
+	{% elseif moduleViewTemplate == 'postcreate' %}
+    
+    	{% partial __SELF__ ~ '::newpost' moduleType=moduleType %} 
+
+	{% elseif moduleViewTemplate == 'postdetail' %}
+	    
+	    {% partial __SELF__ ~ '::postdetail' %} 
+
+	{% elseif moduleViewTemplate == 'message' %}
+	    
+	    {% partial __SELF__ ~ '::inbox_new' %} 
+
+	{% elseif moduleViewTemplate == 'newmessage' %}
+	    
+	    {% partial __SELF__ ~ '::newmessage' %} 
+
+	{% endif %}
+<!--</div>-->
+
+{% endif %}

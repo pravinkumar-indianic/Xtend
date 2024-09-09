@@ -1,0 +1,4 @@
+title: OrderPoints
+modelClass: Codengine\Awardbank\Models\OrderPoint
+toolbar:
+    buttons: reorder_toolbar

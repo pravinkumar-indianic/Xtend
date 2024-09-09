@@ -1,0 +1,9 @@
+<div class="ui segment">
+	<div class="ui one column stackable grid">
+	    <div class="column">
+	    	<h3>Nominations</h3>
+	    	<button class="ui button primary export-nominations" id="exportnominations">Export Nominations</button>
+		</div>
+	</div>
+    {% partial '@nominationslist' nominations = award.nominations.sortByDesc('id') %}
+</div>

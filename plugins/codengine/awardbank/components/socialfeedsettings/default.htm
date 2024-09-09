@@ -1,0 +1,77 @@
+<div class="ui container" id="socialfeed-settings">
+    <div class="ui stackable grid">
+        <div class="ten wide tablet sixteen wide computer column">
+            <div class="ui segment">
+                <h3>Social Feed Settings</h3>
+                <form class="ui form" id="socialfeedsettingsform">
+                    <div class="ui form">
+                        <div class="form-group">
+                            <div class="field">
+                                <label>Top Banner</label>
+                                <div class="user-summary-image">
+                                    {% component 'topBannerComponent' %}
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label>Bottom Banner</label>
+                                <div class="user-summary-image">
+                                    {% component 'bottomBannerComponent' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <button class="ui primary submit button">Update</button>
+                    </div>
+                </form>
+            </div>
+
+            {% partial '@report' %}
+
+        </div>
+    </div>
+</div>
+
+{% put scripts %}
+
+<script>
+  $('body').on('click','.filter.export.button.socialfeed', function(e) {
+    e.preventDefault();
+
+    var inputs = $('#filters :input');
+    var data = {};
+    inputs.each(function() {
+      data[this.name] = $(this).val();
+    });
+    target = $(this);
+    target.addClass('loading');
+    $.request('onExportSocialFeedReport', {
+      data: data,
+      success: function(response)
+      {
+        if (response.manualerror) {
+          alert(response.manualerror);
+          target.removeClass('loading');
+          return false;
+        }
+        // The actual download
+        // Note: Code has been copied from MyProgram231219.js
+        var blob = new Blob([response], { type: 'text/csv' });
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'SocialFeedReport-' + data.type + '.csv';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        target.removeClass('loading');
+      },
+      error: function(data){
+        throw data;
+      },
+    });
+  });
+</script>
+
+{% endput %}

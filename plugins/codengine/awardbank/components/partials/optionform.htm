@@ -1,0 +1,13 @@
+<div class ="fields three wide optionset {{ bigloop }} {{ smallloop }}">
+	<div class="field one wide">
+		<i class="close icon delete-option" data-bigloop="{{ bigloop }}" data-smallloop="{{ smallloop }}"></i>
+	</div>
+	<div class="field eight wide">
+	    <label>Option Key <b style="color:red;">*</b></label>
+	    <input type="text" value="{{ option.questionoptiontext }}" name="Question[{{ bigloop }}][questionoptions][{{ smallloop }}][questionoptiontext]">
+	</div>
+	<div class="field ten wide">
+	    <label>Option Value <b style="color:red;">*</b></label>
+	    <input type="text" value="{{ option.questionoptiondescription }}" name="Question[{{ bigloop }}][questionoptions][{{ smallloop }}][questionoptiondescription]">
+	</div>
+</div>

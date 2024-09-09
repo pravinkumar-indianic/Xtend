@@ -1,0 +1,11 @@
+fields:
+    nomination_id:
+        label: Nomination
+        span: auto
+        oc.commentPosition: ''
+        type: text
+    voter_id:
+        label: Voter
+        oc.commentPosition: ''
+        span: auto
+        type: text

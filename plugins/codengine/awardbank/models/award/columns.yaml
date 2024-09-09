@@ -1,0 +1,233 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        searchable: false
+        sortable: true
+        invisible: false
+    updated_at:
+        label: updated_at
+        type: datetime
+        searchable: false
+        sortable: true
+        invisible: false
+    delete_at:
+        label: updated_at
+        type: datetime
+        searchable: false
+        sortable: true
+        invisible: true
+    featured:
+        label: Featured
+        type: switch
+        sortable: true
+        searchable: true
+        invisible: false
+    program:
+        label: Program
+        span: full
+        relation: program
+        select: name
+        sortable: true
+        searchable: true
+        invisible: false
+    name:
+        label: Name
+        type: text
+        sortable: true
+        searchable: true
+        invisible: false
+    description:
+        label: Description
+        type: text
+        sortable: true
+        searchable: true
+        invisible: true
+    award_open_at:
+        label: 'Open Award at'
+        type: datetime
+        searchable: false
+        sortable: true
+        invisible: false
+    award_close_at:
+        label: 'Close Award at'
+        oc.commentPosition: ''
+        type: datetime
+        searchable: false
+        sortable: true
+        invisible: false
+    awardallprogramnominate:
+        label: 'Whole Program Can Nominate'
+        type: switch
+        sortable: true
+        searchable: true
+        invisible: false
+    awardallprogramnominateable:
+        label: 'Whole Program Can Be Nominated'
+        type: switch
+        sortable: true
+        searchable: true
+        invisible: false
+    awardallprogramvote:
+        label: 'Whole Program Can Vote'
+        type: switch
+        sortable: true
+        searchable: true
+        invisible: false
+    viewingteams:
+        label: 'Viewing Teams'
+        relation: viewingteams
+        select: name
+        searchable: true
+        sortable: true
+        invisible: false
+    managers:
+        label: 'Managers'
+        relation: managers
+        select: full_name
+        searchable: true
+        sortable: true
+        invisible: false
+    nominationsmanagers:
+        label: 'Nominations Managers'
+        relation: nominationsmanagers
+        select: full_name
+        searchable: true
+        sortable: true
+        invisible: false
+    winnersmanagers:
+        label: 'Winners Managers'
+        relation: winnersmanagers
+        select: full_name
+        searchable: true
+        sortable: true
+        invisible: false
+    prize_display_string:
+        label: 'Prize Term'
+        type: text
+        sortable: true
+        searchable: true
+        invisible: false
+    prizes:
+        label: 'Prizes'
+        relation: prizes
+        select: name
+        searchable: true
+        sortable: true
+        invisible: false
+    hide_nominations_tab:
+        label: 'Nominations Are Turned On'
+        type: switch
+        searchable: false
+        sortable: true
+        invisible: false
+    nomination_display_string:
+        label: 'Nomination Term'
+        type: text
+        sortable: true
+        searchable: true
+        invisible: false
+    nomination_type:
+        label: 'Nomination Options Are'
+        type: text
+        sortable: true
+        searchable: true
+        invisible: false
+    nominations_approval_required:
+        label: 'Noms. Require Approval'
+        type: switch
+        sortable: true
+        searchable: false
+        invisible: false
+    nominations_public:
+        label: 'Noms. Can Be Seen'
+        type: switch
+        sortable: true
+        searchable: false
+        invisible: false
+    nomination_image_upload:
+        label: 'Noms. Have Image'
+        type: switch
+        sortable: true
+        searchable: false
+        invisible: false
+    nomination_file_upload:
+        label: 'Noms. Have File Upload'
+        type: switch
+        sortable: true
+        searchable: false
+        invisible: false
+    nominations_open_at:
+        label: 'Open Nomination at'
+        type: datetime
+        sortable: true
+        searchable: true
+        invisible: false
+    nominations_closed_at:
+        label: 'Close Nomination at'
+        type: datetime
+        sortable: true
+        searchable: true
+        invisible: false
+    nominatableusers:
+        label: 'Users You Can Nominate'
+        select: name
+        searchable: true
+        sortable: true
+        invisible: false
+    nominationteams:
+        label: 'Teams You Can Nominate'
+        relation: nominationteams
+        select: name
+        searchable: true
+        sortable: true
+        invisible: false
+    hide_voting_tab:
+        label: 'Votes Are Turned On'
+        type: switch
+        sortable: true
+        searchable: false
+        invisible: false
+    votes_approval_required:
+        label: 'Votes Require Approval'
+        type: switch
+        sortable: true
+        searchable: false
+        invisible: false
+    votes_public:
+        label: 'Noms. Can Be Seen'
+        type: switch
+        sortable: true
+        searchable: false
+        invisible: false
+    votes_open_at:
+        label: 'Open Nomination at'
+        type: datetime
+        sortable: true
+        searchable: true
+        invisible: false
+    votes_close_at:
+        label: 'Close Nomination at'
+        type: datetime
+        sortable: true
+        searchable: true
+        invisible: false
+    votableteams:
+        label: 'Teams You Can Vote For'
+        relation: votingteams
+        select: name
+        searchable: true
+        sortable: true
+        invisible: false
+    votingteams:
+        label: 'Teams Who Can Vote'
+        relation: votingteams
+        select: name
+        searchable: true
+        sortable: true
+        invisible: false

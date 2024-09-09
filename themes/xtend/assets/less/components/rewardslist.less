@@ -1,0 +1,197 @@
+// RewardsList styles
+// Component: RewardsList.php
+
+.ui.container.product-list-container {
+
+    #listWrapper {
+        padding:0px;
+    }
+    
+    .breadcrumbs {
+        margin-top: 9px;
+    }
+    .products-list {
+        .segment-base;
+        @media only screen and (min-width: @tablet) {
+            padding:40px;
+        }   
+    }
+    .shared-product-list {
+        @media only screen and (min-width: @tablet) {
+          padding-top: 1em;
+        }
+        > .column:not(.row) {
+            padding: 0rem!important;
+            @media only screen and (min-width: @tablet) and (max-width: @tablet-max) {
+                width:50%!important;
+            }
+        }
+    }
+    .product-filter-options {
+        text-align:right;
+    }
+    .filter-category,
+    .filter-sortby,
+    .filter-subcategory,
+    .filter-price-range {
+        padding:0 5px 5px;
+        width:100%;
+        max-width:50%;
+        float:left;
+        @media only screen and (max-width: @mobile-max) {
+            float:none;
+            display:inline-block;
+            vertical-align:top;
+            max-width:none;
+        }
+        .ui.selection.dropdown,
+        .ui.dropdown {
+            z-index:40;
+            .text {
+                padding:0;
+                margin:0;
+                height: 100%;
+                line-height: 28px;
+                padding:0;
+                width: 100%;
+                text-align: left;
+                color:@brand-aqua;
+            }
+            .icon.dropdown {
+                padding:0;
+                margin:0;  
+                position:absolute;
+                right:0;
+                top:50%;
+                transform:translateY(-50%);
+                padding:8px;
+                height:100%;
+                width:30px;
+                background:@brand-aqua;
+                font-family: Icons;
+                font-size:17px;
+                color:@white;
+                &:before {
+                    content:"\f107";
+                }
+            }
+        }
+        .ui.selection.dropdown.visible,
+        .ui.dropdown {
+            border:1px solid @brand-aqua;
+            border-radius:0;
+            line-height:@line-height;
+            padding:3px 50px 3px 15px;
+            //height:30px;
+            min-height:30px;
+            width:auto;
+            min-width:20px; 
+            width:100%;
+            &.active {
+                background:@brand-aqua;
+                .text {
+                    color:@white;
+                }
+            }
+        }
+        .ui.selection.active.dropdown, 
+        .ui.selection.active.dropdown .menu {
+            border-color: @brand-aqua;
+            border-radius:0;
+        }
+        .ui.dropdown .menu {
+            z-index:40;
+            margin: 0 -40px 0 -1px;
+            right: 0;
+            width: auto;
+            border-top:1px solid @brand-aqua!important;
+        }
+    }
+    .filter-price-range {
+        margin-bottom: 32px;
+        @media only screen and (min-width: @tablet) {
+            margin-bottom: 0;
+        }
+    }
+    .filter-price-range-title {
+        float: left;
+        width: 50px;
+        padding:0;
+        margin:0;
+        line-height: 36px;
+        text-align: left;
+        color:@brand-aqua;
+    }
+    .filter-price-range-slider {
+        padding:14px 11px 0 56px;
+        width:100%;
+        @media only screen and (min-width: @small-monitor) {
+            padding-right:0;
+        }
+        .range-wrapper {
+            position:relative;
+        }
+        .range-slider-labels {
+            position: relative;
+            top: 2px;
+        }
+        span {
+            color:@gray;
+            &:first-child{
+                float:left;
+            }
+            &:last-child{
+                float:right;
+            }
+        }
+    }
+    .onlyafford {
+        margin-top:10px;
+    }
+    .filter-price-range {
+        padding-right:0;
+        > p {
+            display:none;
+        }  
+        .ui.dropdown .menu {
+            border:1px solid @brand-aqua;
+            border-radius:0;
+            width:auto!important;
+            min-width:auto!important;
+            right:0;
+            input {
+                border:1px solid @gray;
+                width: 100%;
+            }
+            .ui.message {
+                position:relative;
+                border:none;
+                border-top: 1px solid #FAFAFA;
+                background:none;
+                height:auto!important;
+                width:auto!important;
+                min-width:auto!important;
+                box-shadow:none;
+                padding:15px;
+            }
+        }
+    }
+    .ui-widget.ui-widget-content {
+        background:@gray-lighter;
+        border:none;
+    }
+    .ui-widget-header {
+        background:@brand-aqua;
+        border:none;
+    }
+    .ui-state-default, 
+    .ui-widget-content .ui-state-default, 
+    .ui-widget-header .ui-state-default, 
+    .ui-button, 
+    .ui-button.ui-state-disabled:hover, 
+    .ui-button.ui-state-disabled:active {
+        border-radius: 100%;
+        border:none;
+        background:@brand-aqua;
+    }
+} 

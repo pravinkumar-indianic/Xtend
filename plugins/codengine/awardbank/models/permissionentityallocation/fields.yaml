@@ -1,0 +1,38 @@
+fields:
+    permissionentityallocatable_type:
+        label: 'codengine.awardbank::lang.awardbank.permissionentitytype'
+        oc.commentPosition: ''
+        options:
+            Codengine\Awardbank\Models\FormResponse: FormResponse
+            Codengine\Awardbank\Models\FormType: FormType
+            Codengine\Awardbank\Models\Post: Post
+            Codengine\Awardbank\Models\ProgramTool: ProgramTool
+            Codengine\Awardbank\Models\Message: Message
+            Codengine\Awardbank\Models\Vote: Vote
+            Codengine\Awardbank\Models\Nomination: Nomination
+            Codengine\Awardbank\Models\Award: Award
+            Codengine\Awardbank\Models\Prize: Prize
+            Codengine\Awardbank\Models\Result: Result
+            Codengine\Awardbank\Models\ResultType: ResultType
+            Codengine\Awardbank\Models\Report: Report
+            Codengine\Awardbank\Models\Supplier: Supplier
+            Codengine\Awardbank\Models\Product: Product
+            Codengine\Awardbank\Models\Order: Order
+            Codengine\Awardbank\Models\Delivery: Delivery
+            Codengine\Awardbank\Models\Address: Address
+            Codengine\Awardbank\Models\Category: Category
+            Codengine\Awardbank\Models\Tag: Tag
+        span: full
+        type: dropdown
+    permissionentityallocatable_id:
+        label: 'codengine.awardbank::lang.awardbank.permissionentityid'
+        oc.commentPosition: ''
+        span: full
+        type: number
+    permission:
+        label: 'codengine.awardbank::lang.awardbank.permission'
+        oc.commentPosition: ''
+        select: CONCAT(id,' ', type)
+        descriptionFrom: description
+        span: full
+        type: relation

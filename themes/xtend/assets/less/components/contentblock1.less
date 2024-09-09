@@ -1,0 +1,70 @@
+// ContentBlock1 styles
+// Components: ContentBlock1.php
+
+@content-block1-max-height:700px;
+
+
+.ui.container.container-content-block1 {
+    @media only screen and (max-width: @tablet-max) {
+        width:100%;
+    }
+    &.ui.container.container-no-margin {
+        margin: 0 auto!important;
+    }
+}
+
+.content-block1 {
+    overflow:hidden;
+    padding:0;
+    border-radius:0;
+    box-shadow:none;
+    height:360px;
+    @media only screen and (min-width: @tablet) {
+        height:362px;
+    }
+    @media only screen and (min-width: @small-monitor) {
+        height:@content-block1-max-height;
+    }
+    .content-block1-heading {
+        position:absolute;
+        z-index:1;
+        top:50%;
+        left:0;
+        transform:translateY(-50%);
+        padding:50px;
+        @media only screen and (min-width: @tablet) {
+            width:50%;  
+            padding:60px;
+        }
+        h1 {
+            margin:0;
+            font-family:@font-semibold;
+            color:white;
+            font-size:36px;
+            line-height:@line-height;
+        }
+        .button {
+            margin-top: 24px;
+        }
+    }
+    .content-block1-image {
+        width:2000px;
+        position:relative;
+        transform: translateX(-50%);
+        left: 50%;
+        height:100%;
+        img {
+            margin:0 auto;
+            height:100%;
+            width:auto;
+            @media only screen and (min-width: @tablet) {
+                height:362px;
+            }
+            @media only screen and (min-width: @small-monitor) {
+                height:@content-block1-max-height;
+            }
+            display:block;
+            transform:scale(1.3);
+        }
+    }
+}

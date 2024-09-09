@@ -1,0 +1,11 @@
+fields:
+    order_id:
+        label: 'Order Id'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    point_id:
+        label: 'Point Id'
+        span: auto
+        oc.commentPosition: ''
+        type: text

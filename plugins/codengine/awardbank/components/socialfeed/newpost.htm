@@ -1,0 +1,50 @@
+<div class="ui one column grid">
+    <div class="column">
+        <form
+            data-request="onPost"
+            data-request-files
+            id="new-post-form"
+        >
+            <div class="ui grid grid-no-margin">
+                <div class="sixteen wide tablet two sixteen computer column column-no-padding prompt">
+                    <span>Share</span>
+                </div>
+                <div class="sixteen wide tablet sixteen wide computer column column-no-padding">
+                    <div class="user-avatar">
+                        {% if user.avatar %}
+                        <img width="50" height="50"
+                             src="{{ user.avatar.thumb(50 , 50, 'crop') }}"
+                             style="width:50px"
+                             class="circular avatar"
+                        >
+                        {% else %}
+                        <img width="50" height="50"
+                             src="{{ 'assets/img/avatar/people/Enid.png'|theme }}"
+                             class="circular avatar"
+                        >
+                        {% endif %}
+                    </div>
+                    <div class="user-name">
+                        <label>{{user.fullbusinessname|raw}}</label>
+                    </div>
+                </div>
+                <div
+                    class="sixteen wide tablet sixteen wide computer column column-no-padding">
+                    <textarea name="content" style="width: 100%" placeholder="What's on your mind?"></textarea>
+                </div>
+                <div class="sixteen wide tablet sixteen wide computer column column-no-padding input-wrapper">
+                    <div class="custom-input-wrapper">
+                        <label for="files" class="program-default-background-color">Attach images or files</label>
+                        <input id="files" data-id="new-post" name="files[]" type="file" multiple onchange="updateFileList(this)">
+                        <div class="file-list" id="file-list-new-post"></div>
+                    </div>
+                </div>
+                <div
+                    class="sixteen wide tablet sixteen wide computer column column-no-padding button-wrapper"
+                >
+                    <button class="ui button primary" type="submit">Share</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

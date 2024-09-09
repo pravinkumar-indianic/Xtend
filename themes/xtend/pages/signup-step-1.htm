@@ -1,0 +1,98 @@
+title = "Sign Up"
+url = "/sign-up/signup-step-1"
+layout = "signup"
+description = "Sign-up Step 1"
+is_hidden = 0
+
+[account]
+redirect = "home"
+paramCode = "code"
+forceSecure = 0
+
+==
+
+function onStart()
+{
+
+    use Codengine\Awardbank\Models\Program as Program;
+    $this['slug'] = $this->param('slug');
+    $program = Program::where('slug','=', $this['slug'])->first();
+
+    if($program != null){
+
+      $this['backgroundImage'] = $program->login_image->getThumb(420,420);
+      $this['backgroundColor'] = $program->primary_color;
+      $this['registration'] = $program->registration_open;
+
+    } else {
+
+      $this['backgroundImage'] = 'https://s3-ap-southeast-2.amazonaws.com/production-upload-xtend/media/loginbackup.jpg';
+      $this['registration'] = false;
+
+    }
+}
+
+==  
+
+  <!-- Form step 1 -->
+  <div class="ui row">
+
+    <div class="ui column sixteen wide">
+
+        <div class="heading">
+          <h2>Set up your program</h2>
+        </div>
+
+        <div class="signup-form">
+
+        <form class="ui form">
+          <h4 class="ui header">Step 1 of 3: <strong>Payment details</strong></h4>
+          <div class="field">
+            <label class="sr-only">Address details line 1</label>
+            <input type="text" name="address[line-1]" placeholder="Address details">
+          </div>
+          <div class="field">
+            <label class="sr-only">Address details line 2</label>
+            <input type="text" name="address[line-2]" placeholder="Address details">
+          </div>
+          <div class="field">
+            <label class="sr-only">Suburb</label>
+            <input type="text" name="address[suburb]" placeholder="Suburb">
+          </div>
+          <div class="field">
+            <label class="sr-only">Credit Card Number</label>
+            <input type="text" name="address[cc]" placeholder="Credit Card Number">
+          </div>
+
+          <div class="field">
+            <div class="two fields">
+              <div class="field">
+                <label class="sr-only">CVC</label>
+                <input type="text" name="address[cvc]" placeholder="CVC">
+              </div>
+              <div class="field">
+                <label class="sr-only">Expirey date</label>
+                <input type="text" name="address[expiry-date]" placeholder="Expiry date">
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <strong>Note: </strong> Your credit card will not be charged until your trial expires and you choose to continue or if you utilise this card to upload Reward.
+          </div>
+
+          <div class="form-footer align-text-right">
+            <input class="ui button primary button-price" type="submit" value="Submit">
+          </div>
+
+
+          </form>
+
+        </div>
+    </div>
+
+  </div>
+    <!-- /Form step 1 -->
+
+
+

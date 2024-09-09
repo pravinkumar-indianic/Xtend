@@ -1,0 +1,4 @@
+title: Reports
+modelClass: Codengine\Awardbank\Models\Report
+toolbar:
+    buttons: reorder_toolbar

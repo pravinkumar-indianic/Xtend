@@ -1,0 +1,45 @@
+title = "Result Detail"
+url = "/result/:result_id"
+layout = "default-v2"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "login"
+
+[access]
+metaarea = 5
+
+[Results]
+moduleHeading = "Results"
+showHeading = 1
+moduleViewTemplate = "resultdetail"
+moduleFAIcon = "diamond"
+permissions = "cascade"
+access = "programs"
+entities = "results"
+moduleGridCols = twelve
+maxResults = 6
+
+/** GLOBAL COMPONENTS **/
+
+[viewBag]
+metaarea = 5
+
+[CustomStyles]
+
+[Sidebar]
+
+[Cart]
+
+[SwitchProgram]
+
+[RewardsNav]
+
+[FooterUsefullInfo]
+
+==
+
+{% component 'CustomStyles' %} 
+
+{% component 'Results' %}

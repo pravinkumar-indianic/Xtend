@@ -1,0 +1,89 @@
+<div class="ui segment">
+    <p>
+        <a href="/user-management/list">Back to User List</a>
+    </p>
+    <div id="user-detail">
+        {% if user %}
+
+        {% if user.full_name %}
+            <h1>{{ user.full_name }}</h1>
+        {% endif %}
+
+        <div id="user-controls-{{ user.id }}">
+            {% partial '@usercontrols' user = user %}
+        </div>
+
+        <strong>CRM</strong>
+        <p>{{ user.crm}}</p>
+
+        <strong>User Type</strong>
+        <p>{{ user.roll }}</p>
+
+        <strong>Email</strong>
+        <p>{{ user.email}}</p>
+
+        <strong>Phone</strong>
+        <p>{{ user.phone_number}}</p>
+
+        <strong>Business (Store) Name</strong>
+        <p>{{ user.business_name}}</p>
+
+        <strong>Full Name</strong>
+        <p>{{ user.full_name}}</p>
+
+        <strong>KAM</strong>
+        <p>{{ user.kam }}</p>
+
+        <strong>Retail Program</strong>
+        <p>{{ user.retail_program }}</p>
+
+        <strong>Membership Level</strong>
+        <p>{{ user.membership_level }}</p>
+
+        <strong>Ranking 2021</strong>
+        <p>{{ user.ranking_2021 }}</p>
+
+        <strong>Address 1</strong>
+        <p>{{ user.address_1 }}</p>
+
+        <strong>Address 2</strong>
+        <p>{{ user.address_2 }}</p>
+
+        <strong>Suburb</strong>
+        <p>{{ user.suburb }}</p>
+
+        <strong>Postcode</strong>
+        <p>{{ user.postcode }}</p>
+
+        <strong>State</strong>
+        <p>{{ user.state }}</p>
+
+        {% else %}
+        <p>User not found</p>
+        {% endif %}
+    </div>
+</div>
+
+{% put scripts %}
+<script>
+  $('body').on('click', '.activate', function (e) {
+    let id = $(this).attr('data-id');
+    if (id) {
+      var data = {
+        'id': id,
+      };
+      requestFactory('UserManagement::onUserActivate', data, ['#user-controls-' + id]);
+    }
+  });
+
+  $('body').on('click', '.deactivate', function (e) {
+    let id = $(this).attr('data-id');
+    if (id) {
+      var data = {
+        'id': id
+      };
+      requestFactory('UserManagement::onUserDeactivate', data, ['#user-detail']);
+    }
+  });
+</script>
+{% endput %}

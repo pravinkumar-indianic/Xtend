@@ -1,0 +1,196 @@
+{% if access.program.module_allow_social_feed == true %}
+    <div class="ui container" id="social-feed-wrapper">
+        <div class="ui stackable grid">
+            {% if access.program.social_feed_top_banner and view_mode=='page' %}
+                <img src="{{ access.program.social_feed_top_banner.thumb(1127 , 300, 'crop') }}"
+                     class="circular avatar"
+                >
+            {% endif %}
+            <div class="sixteen wide tablet sixteen wide computer column">
+                {% if view_mode=='component' %}
+                <h2 class="ui header">Social Feed – Be a part of the conversation!</h2>
+                <div style="margin: 10px 0 30px 0;text-align: left;">
+                    <a class="ui button primary" href="/social-feed" target="_blank">Open Social Feed Page</a>
+                </div>
+                {% endif %}
+                {% if view_mode=='post-page' %}
+                <div class="social-feed" id="socialfeed">
+                    <div id="social-post-wrapper-{{ post.id }}">
+                        {% partial '@post' post=post %}
+                    </div>
+                </div>
+                {% else %}
+                <div class="new-post-wrapper" id="newpostwrapper">
+                    {% partial '@newpost' %}
+                </div>
+                {% if view_mode !='component' %}
+                <div class="searchbar" id="searchbar">
+                    {% partial '@searchbar' %}
+                </div>
+                {% endif %}
+                <div class="social-feed{% if mode %} view-mode-{{ mode }}{% endif %}" id="socialfeed">
+                    {% partial '@postfeed' %}
+                </div>
+                {% endif %}
+            </div>
+            {% if access.program.social_feed_bottom_banner and view_mode=='page' %}
+            <img src="{{ access.program.social_feed_bottom_banner.thumb(1127 , 300, 'crop') }}"
+                 class="circular avatar"
+            >
+            {% endif %}
+        </div>
+    </div>
+
+    {% put scripts %}
+
+    <script>
+      $("body").on("click", ".social-post-action", function (e) {
+        e.preventDefault();
+
+        let social_post_id = $(this).attr('data-id');
+        let action = $(this).attr('data-action');
+
+        if (social_post_id && action) {
+          var data = {
+            'social_post_id': social_post_id
+          };
+
+          if (action == 'delete') {
+            if (confirm("Are you sure you want to delete this post?")){
+              //continue
+            } else {
+              return false;
+            }
+          }
+
+          requestFactory(
+            'SocialFeed::on' + (action[0].toUpperCase() + action.slice(1)),
+            data,
+            ['#social-post-wrapper-' + social_post_id]
+          );
+        }
+      });
+
+      $("body").on("click", '.social-post-control-like', function (e) {
+        e.preventDefault();
+
+        let social_post_id = $(this).attr('data-id');
+        if (social_post_id) {
+          var data = {
+            'social_post_id': social_post_id
+          };
+
+          requestFactory('SocialFeed::onLike', data, ['#social-post-control-like-' + social_post_id]);
+        }
+      });
+
+      $("body").on("click", '.social-post-comment-like', function (e) {
+        e.preventDefault();
+
+        let comment_id = $(this).attr('data-id');
+        if (comment_id) {
+          var data = {
+            'comment_id': comment_id
+          };
+
+          requestFactory(
+            'SocialFeed::onCommentLike',
+            data,
+            ['#social-post-comment-interactive-controls-' + comment_id]
+          );
+        }
+      });
+
+      function updateFileList(target) {
+        let post_id = $(target).attr('data-id');
+        if (post_id) {
+          if (target.files.length > 1) {
+            let filelist = [];
+            for (var i = 0; i < target.files.length; i++) {
+              filelist.push(target.files[i].name + ' is attached.');
+              document.getElementById("file-list-" + post_id).innerHTML = filelist.join('<br/>');
+            }
+          } else {
+            document.getElementById("file-list-" + post_id).innerHTML = target.files[0].name + ' is attached.';
+          }
+        }
+      }
+
+      $("body").on("click", '.social-post-comment-anchor', function (e) {
+        e.preventDefault();
+        let post_id = $(this).attr('data-id');
+        if (post_id) {
+          document.getElementById('social-post-control-comments-' + post_id).style.display = 'block';
+
+          document.querySelector('#social-post-control-new-comment-wrapper-' + post_id).scrollIntoView({
+            behavior: 'smooth'
+          });
+
+          document.getElementById('social-post-control-comment-input-' + post_id).focus();
+        }
+      });
+
+      $("body").on("click", '.social-post-control-comment-submit-button', function (e) {
+          let post_id = $(this).attr('data-id');
+          if (post_id) {
+              document.getElementById('social-post-control-comments-' + post_id).style.display = 'block';
+
+              document.querySelector('#social-post-control-new-comment-wrapper-' + post_id).scrollIntoView({
+                  behavior: 'smooth'
+              });
+
+              document.getElementById('social-post-control-comment-input-' + post_id).focus();
+          }
+      });
+
+      $('#socialfeed').on('click', 'ul.pagination a', function (e) {
+        var page = $(this).attr('href').split('=').pop();
+        e.preventDefault();
+        if (page) {
+          var data = {
+            'page': page
+          };
+          requestFactory('SocialFeed::onPostsPaginate', data, ['#socialfeed']);
+        }
+      });
+
+
+      let socialFeedSearchTimer;
+      const socialFeedWaitTime = 500;
+
+      function socialFeedSearchRequest(text)
+      {
+        console.log('search for : ' + text);
+        var data = {
+          'text': text
+        };
+        requestFactory('SocialFeed::onPostsSearch', data, ['#socialfeed']);
+      }
+
+      $("body").on('keyup', '#social-feed-search-input', function (e) {
+        const text = e.currentTarget.value;
+        if (text.length >= 3) {
+          // Clear timer
+          clearTimeout(socialFeedSearchTimer);
+
+          // Wait for X ms and then process the request
+          socialFeedSearchTimer = setTimeout(() => {
+            socialFeedSearchRequest(text);
+          }, socialFeedWaitTime);
+        }
+
+        //Load page 1 if search text removed
+        if (text.length == 0) {
+          var data = {
+            'page': 1
+          };
+          requestFactory('SocialFeed::onPostsPaginate', data, ['#socialfeed']);
+        }
+      });
+
+    </script>
+
+    {% endput %}
+{% else %}
+    <h3>Social feed module is disabled for this program.</h3>
+{% endif %}

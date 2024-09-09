@@ -1,0 +1,63 @@
+{% if user.roll != 'Sponsor' %}
+<div class="ui segment" id="results-widget-wrapper">
+    <div id="results-widget-pharmacy-dropdown-wrapper">
+        <div class="ui stackable grid border-bottom top-section-wrapper">
+            <div class="sixteen wide tablet sixteen wide computer column">
+                {% if pharmacies %}
+                <select class="ui dropdown" id="results-widget-pharmacy-dropdown">
+                    {% for pharmacy in pharmacies %}
+                    <option value="{{ pharmacy.id }}" {% if pharmacy.crm == crm %}selected="selected"{% endif %}>{{ pharmacy.business_name }}</option>
+                    {% endfor %}
+                </select>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if crm %}
+    <div id="results-widget">
+        {% if program.slug == '5STEP' %}
+            {% partial '@widget-5stepincentive' %}
+        {% else %}
+            {% partial '@widget' %}
+        {% endif %}
+    </div>
+    {% else %}
+        <p>No Pharmacy Available.</p>
+    {% endif %}
+</div>
+
+{% put scripts %}
+<script>
+  $('body').on('change', '#results-widget-pharmacy-dropdown', function (e) {
+    let id = $('#results-widget-pharmacy-dropdown').val();
+
+    if (id) {
+      let data = [];
+      data['id'] = id;
+      requestFactory('onChangePharmacy', data, ['#results-widget'], () => {
+        initGaugeGraph();
+        initProgressGraph();
+      });
+    }
+  });
+
+  $('body').on('click', '.section', function (e) {
+    let step = $(this).attr('data-scorecard-step');
+    let crm = $('#widget-top-wrapper').attr('data-id');
+
+    if (step && crm) {
+      step = parseInt(step);
+      if (step) {
+        window.open("/scorecard/" + crm + '?step=' + step, '_blank');
+      }
+    }
+  });
+
+  $( document ).ready(function() {
+    initGaugeGraph();
+    initProgressGraph();
+  });
+</script>
+{% endput %}
+{% endif %}

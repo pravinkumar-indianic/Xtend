@@ -1,0 +1,416 @@
+<div class="ui {% if __SELF__.container == true %} container {% endif %} post-create-container">
+
+	<div class="ui grid grid-no-margin">
+
+		<div class="ui sixteen wide column column-no-padding {% if __SELF__.flushtop == true %}flushtop{% endif %} {% if __SELF__.flushbottom == true %}flushbottom{% endif %}">
+
+			<div class="ui segment post post-create {{ __SELF__ }}">
+
+		      	<div class="postcreatewrapper_{{__SELF__}}">
+
+		          	<div class="ui inverted dimmer">
+
+		            	<div class="ui text loader">Loading</div>
+
+		          	</div>
+
+		          	{% if access.manager == true %}
+
+						{{ form_open({ class:'ui form grid', id: 'postcreateform'}) }}
+
+							<div class="ui form">
+
+			                	<div class="field">
+
+			                        <label for="file1">Add Featured Image:</label>
+
+			                        {% component 'fileUploader' %}
+
+			                    </div>
+
+			                    {# 
+				                    <div class="field">
+
+				                        <label for="file2">Add additional post images:</label>
+
+				                        {% component 'multifileUploader' %}
+
+				                    </div>
+			                    #}
+
+			                    <div class="field">
+
+									<label>Post Type:</label>
+									<select class="ui selection dropdown" name="posttype">
+										<option value="post"selected>Post</option>
+										<option value="program-tool">Program Tool</option>
+										<option value="useful-information">Useful Information</option>
+									</select>
+
+								</div>
+
+
+			                    <div class="field">
+
+			                      	<label>Title:</label>
+
+			                      	<input placeholder="Post Title" type="text" name="title">
+
+			                    </div>
+
+			                    <div class="field">
+			                      	<label>Content:</label>
+
+			                      	<textarea placeholder="Post Content" type="text" class="tinymceeditor" name="content" id="contenttxt"></textarea>
+
+			                    </div>
+			                    
+
+			                    {% if __SELF__.categories %}
+
+				                 	<div class="field">
+
+				                      	<label class="" for="categories">Category</label>
+
+				                      	<select multiple="multiple" placeholder="Search category" class="ui fluid search dropdown" id="category_dropdown" name="category[]">
+
+					                        {% for category in __SELF__.categories %}
+
+					                        	<option value="{{category.id}}">{{category.name}}</option>
+
+					                        {% endfor %}
+
+				                      	</select>
+
+				                    </div>
+
+			                    {% endif %}
+
+
+			                    <div class="field">
+
+									<label>Who can see this Post</label>
+									<div class="ui multiple selection searchable dropdown" id="postviewability">
+										<div class="default text">Select</div>
+										<i class="dropdown icon"></i>
+										<div class="menu">
+											{% for access, array in __SELF__.targetOptions %}
+												{% for key, value in array %}
+													<div class="item" data-value='{{access}} => {{key}}'>({{ access|capitalize }}) {{ value }}</div>
+												{% endfor %}
+											{% endfor %}
+										</div>
+									</div>
+
+		                    	</div>
+
+
+			                    <div class="field">
+
+									<label>Tags</label>
+									<div class="ui multiple selection searchable dropdown" id="tags_dropdown_new">
+										<div class="default text">Select</div>
+										<i class="dropdown icon"></i>
+										<div class="menu">
+											{% for tag in __SELF__.tags %}
+												<div class="item" data-value="{{tag.name}}">{{tag.name}}</div>
+											{% endfor %}
+										</div>
+									</div>
+
+	                      		</div>
+
+			                    <div class="field">
+
+									<label>Post Alias</label>
+									<div class="ui multiple selection searchable dropdown" id="postalias" >
+										<div class="default text">Select</div>
+										<i class="dropdown icon"></i>
+										<div class="menu">
+											{% for access, array in __SELF__.targetOptions %}
+												{% for key, value in array %}
+													<div class="item" data-value='{{access}} => {{key}}'>({{ access|capitalize }}) {{ value }}</div>
+												{% endfor %}
+											{% endfor %}									
+										</div>
+									</div>
+
+			                    </div>
+
+			                    <div class="ui hidden divider"></div>
+			                    
+			                    <input type="hidden" name="type" value="{{moduleType}}">
+			                      
+			                    <div class="ui error message"></div>
+
+			                    <button class="ui primary submit button right floated" type="submit">Save</button>
+
+							{{ form_close() }}
+
+						</div>
+
+					{% else %}
+
+						<h1>I'm sorry, you do not have permission to create a post</h1>
+
+					{% endif %}
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+
+{% put styles %}
+
+    <link href="{{ 'assets/js/vendor/tinymce/skins/lightgray/skin.min.css'|theme }}" rel="stylesheet" />
+
+    <style type="text/css">
+        .ui.file.input input[type="file"] {
+            display: none;
+        }
+    </style>
+
+{% endput %}
+
+{% put scripts %}
+
+    <script src="{{ 'assets/js/vendor/tinymce/tinymce.min.js'|theme }}"></script>
+
+    <script src="{{ 'assets/js/vendor/tinymce/themes/modern/theme.min.js'|theme }}"></script>
+
+    <script src="{{ 'assets/js/custom-editor.js'|theme }}"></script>
+
+    <script type="text/javascript">
+
+	    $('#postcreateform').submit(function(e) {
+
+			e.preventDefault();
+
+	    	//console.log('runningfunction');
+
+	      if (tinyMCE.get('contenttxt').getContent() == "" || tinyMCE.get('contenttxt').getContent() == "<p>&nbsp;as</p>"){
+
+	        //$('#postcreateform').form('add errors', {content: 'Please enter content'})
+
+	        $('#postcreateform').form('add prompt', 'content');
+
+	        $('#postcreateform .error.message').html('<li>Please enter content</li>').show();
+
+	        return false;
+
+	      } else {
+
+	        $(this).form('remove prompt', 'content');
+
+	      }
+
+	      var viewabilityarray = $('#postviewability').dropdown('get value');
+	      
+	      if (viewabilityarray === undefined || viewabilityarray.length == 0){
+
+	        //$('#postcreateform').form('add errors', {content: 'Please enter content'})
+
+	        $('#postcreateform').form('add prompt', 'viewability');
+
+	        $('#postcreateform .error.message').html('<li>Please select a target for your post.</li>').show();
+
+	        return false;
+
+	      } else {
+
+	        $(this).form('remove prompt', 'content');
+
+	      }
+
+	      if ($('#postcreateform').form('is valid')){
+
+	      		var contentData = tinyMCE.get('contenttxt').getContent();
+
+	      		$('#postcreateform .error.message').hide();
+
+				$('.postcreatewrapper_{{__SELF__}}').dimmer('show');
+
+				var postviewability = [];
+
+				postviewability.push($('#postviewability').dropdown('get value'));
+
+				var postalias = [];
+
+				postalias.push($('#postalias').dropdown('get value'));	
+
+	       	 	$('#postcreateform').request('{{__SELF__}}::onPostCreateContent', {
+
+	       	 		data: 
+	       	 		{
+
+	       	 			content: contentData,
+	       	 			postviewability: postviewability,
+	       	 			postalias: postalias,
+
+	       	 		},
+		            success: function(data)
+		            {
+
+		            	//$('.postcreatewrapper_{{__SELF__}}').dimmer('hide');
+
+						console.log(data);
+
+						window.location.replace("/post/"+data['slug']);
+
+		            },
+		            error: function(data){
+
+		            	$('.postcreatewrapper_{{__SELF__}}').dimmer('hide');
+
+		              	$('#postcreateform .error.message').html(data['content']).show();
+
+		            },
+
+	       	 	});
+
+	      	}
+
+	      	return false;
+
+	    });
+
+		$('.ui.file.input').find('input:text, .ui.button').on('click', function(e) {
+
+		    $(e.target).parent().find('input:file').click();
+
+		  });
+
+		$(document).ready(function(){
+
+		  	$('select').each( function() {
+
+		      	$(this).val($(this).find("option[selected]").val());
+
+		  	});
+
+		  	$('#postas_dropdown').dropdown({ maxSelections: 1 });
+
+		});
+
+		$('input:file', '.ui.file.input').on('change', function(e) {
+
+		    var file = $(e.target);
+
+		    var name = '';
+
+		    for (var i=0; i<e.target.files.length; i++) {
+
+		      	name += e.target.files[i].name + ', ';
+
+		    }
+		    // remove trailing ","
+
+		    name = name.replace(/,\s*$/, '');
+
+	        $('input:text', file.parent()).val(name);
+
+		  });
+
+		$('.ui.grid form')
+
+		  .form({
+
+		    on: 'blur',
+
+		    fields: {
+
+		      	title: {
+
+			        identifier  : 'title',
+
+			        rules: [
+
+			          	{
+
+				            type   : 'empty',
+
+				            prompt : 'Please enter title'
+
+			          	}
+			        ]
+		      	},
+
+		      	featured_image: {
+
+		        	identifier  : 'featured_image',
+
+		        	rules: [
+
+			          	{
+				            type   : 'empty',
+
+				            prompt : 'Please add feature image'
+
+			          	}
+			        	
+		        	]
+		      	},
+
+		      	postas: {
+
+		        	identifier  : 'postas',
+
+		        	rules: [
+
+			          	{
+			            	type   : 'empty',
+
+				            prompt : 'Please select a dropdown value'
+			          	}
+
+		        	]
+		      	},
+
+		      	category: {
+
+		        	identifier  : 'category_dropdown',
+
+		        	rules: [
+
+			          	{
+
+			            	type   : 'empty',
+
+			            	prompt : 'Please Select category'
+
+			          	}
+		        	
+		        	]
+		      	},
+
+		      	postto: {
+
+		        	identifier  : 'postto',
+
+			        rules: [
+
+			          	{
+
+			            	type   : 'empty',
+
+			            	prompt : 'Please select target post'
+
+			          	}
+			        ]
+		      	},
+
+		    }
+
+	  	});
+
+    </script>
+    
+    <!--<script src="{{ 'assets/js/create-post.js'|theme }}"></script>-->
+
+{% endput %}

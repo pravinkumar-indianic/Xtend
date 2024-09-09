@@ -1,0 +1,14 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+ 
+import:
+    title: Import entries
+    modelClass: Codengine\Awardbank\Models\ResultGroupImport
+    list: $/codengine/awardbank/models/resultgroup/columns.yaml
+    form: $/codengine/awardbank/models/resultgroup/columns.yaml    
+    redirect: 'codengine/awardbank/resultgroups/'
+export:
+    title: Export entries
+    modelClass: Codengine\Awardbank\Models\ResultGroupExport
+    list: $/codengine/awardbank/models/resultgroup/columns.yaml

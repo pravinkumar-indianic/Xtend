@@ -1,0 +1,21 @@
+columns:
+    nomination_id:
+        label: Nomination
+        type: text
+        searchable: true
+        sortable: true
+    voter_id:
+        label: Voter
+        type: text
+        searchable: true
+        sortable: true
+    approver_user_id:
+        label: 'Approved By'
+        type: text
+        searchable: true
+        sortable: true
+    approved_at:
+        label: 'Approved At'
+        type: text
+        searchable: true
+        sortable: true

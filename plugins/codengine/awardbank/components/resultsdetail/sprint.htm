@@ -1,0 +1,16 @@
+{% if results.showSprintModule == true %}
+<div class="ui segment">
+    {% if results.partsservice == 1 %}
+        <h1>{{ results.partHeader }} </h1>
+    {% else %}
+        <h1>{{ results.serviceHeader }} </h1>
+    {% endif %}
+
+    {% for data in results.row %}
+        <h4>
+            {{ results.title[results.partsservice][data.row] }}: {{ data.string ? data.string : data.value }}
+        </h4>
+    {% endfor %}
+ </div>
+{% endif %}
+

@@ -1,0 +1,18 @@
+columns:
+    created_at:
+        label: created_at
+        type: datetime
+    point_id:
+        label: point_id
+        type: number
+        sortable: true
+    pointallocatable_type:
+        label: pointallocatable_type
+        type: text
+        sortable: true
+    pointallocatable_id:
+        label: pointallocatable_id
+        type: number
+    previous_allocation_id:
+        label: previous_allocation_id
+        type: number

@@ -1,0 +1,52 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: false
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        invisible: true
+    updated_at:
+        label: updated_at
+        type: datetime
+    deleted_at:
+        label: deleted_at
+        type: datetime
+        invisible: true
+    sender_id:
+        label: sender_id
+        type: number
+        searchable: true
+        sortable: true
+    sender_fullname:
+        label: sender_fullname
+        type: text
+        searchable: true
+        sortable: true
+    sender_thumb_path:
+        label: sender_thumb_path
+        type: text
+        searchable: true
+        sortable: true
+    receiver_id:
+        label: receiver_id
+        type: number
+        searchable: true
+        sortable: true
+    receiver_fullname:
+        label: receiver_fullname
+        type: text
+        searchable: true
+        sortable: true
+    receiver_thumb_path:
+        label: receiver_thumb_path
+        type: text
+        searchable: true
+        sortable: true
+    message_text:
+        label: message_text
+        type: text
+        searchable: true
+        sortable: true

@@ -1,0 +1,13 @@
+<div class="ui segment">
+	<h3>General Details</h3>
+	<form class="ui form" id="my-profile-general-details">
+    	<div class="field">
+            <label for="file1">Manage user Picture:</label>
+            <div class="user-summary-image">
+        		{% component 'fileUploader' %}
+        	</div>
+    	</div>
+    	{% partial '@userform' user = user %}
+		<button type="submit" class="ui primary submit  button" data-attach-loading>Update user</button>
+	</form>
+</div>

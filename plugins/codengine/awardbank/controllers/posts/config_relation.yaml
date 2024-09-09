@@ -1,0 +1,177 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+categories:
+    label: Categories
+    view:
+        toolbarButtons: add|remove
+        form: $/codengine/awardbank/models/category/fields-relation-post.yaml
+        list: $/codengine/awardbank/models/category/columns-relation.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/category/fields-relation-post.yaml
+        list: $/codengine/awardbank/models/category/columns-relation.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+tags:
+    label: Tags
+    view:
+        toolbarButtons: add|remove
+        form: $/codengine/awardbank/models/tag/fields.yaml
+        list: $/codengine/awardbank/models/tag/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/tag/fields.yaml
+        list: $/codengine/awardbank/models/tag/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+targetingtags:
+    label: Targeting Tags
+    modelClass: Codengine\Awardbank\Models\TargetingTag
+    view:
+        toolbarButtons: add|remove
+        form: $/codengine/awardbank/models/targetingtag/fields_relation.yaml
+        list: $/codengine/awardbank/models/targetingtag/columns.yaml
+        showSearch: true
+    manage:
+        form: $/codengine/awardbank/models/targetingtag/fields_relation.yaml
+        list: $/codengine/awardbank/models/targetingtag/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+teams:
+    label: Teams
+    modelClass: Codengine\Awardbank\Models\Team
+    view:
+        toolbarButtons: add|remove
+        form: $/codengine/awardbank/models/team/fields-relation.yaml
+        list: $/codengine/awardbank/models/team/columns.yaml
+        showSearch: true
+    manage:
+        form: $/codengine/awardbank/models/team/fields-relation.yaml
+        list: $/codengine/awardbank/models/team/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+programs:
+    label: Programs
+    modelClass: Codengine\Awardbank\Models\Program
+    view:
+        toolbarButtons: add|remove
+        form: $/codengine/awardbank/models/program/fields-relation.yaml
+        list: $/codengine/awardbank/models/program/columns.yaml
+        showSearch: true
+    manage:
+        form: $/codengine/awardbank/models/program/fields-relation.yaml
+        list: $/codengine/awardbank/models/program/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+managers:
+    label: Managers
+    modelClass: RainLab\User\Models\User
+    view:
+        toolbarButtons: add|remove
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+poster:
+    label: Poster
+    modelClass: RainLab\User\Models\User
+    view:
+        toolbarButtons: add|remove
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+alias:
+    label: Alias
+    modelClass: RainLab\User\Models\User
+    view:
+        toolbarButtons: add|remove
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/user/fields-relation.yaml
+        list: $/codengine/awardbank/models/user/columns-relation.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+likes:
+    label: Likes
+    view:
+        toolbarButtons: create|remove
+        form: $/codengine/awardbank/models/like/fields.yaml
+        list: $/codengine/awardbank/models/like/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/like/fields.yaml
+        list: $/codengine/awardbank/models/like/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+comments:
+    label: Comments
+    view:
+        toolbarButtons: create|remove
+        form: $/codengine/awardbank/models/comment/fields.yaml
+        list: $/codengine/awardbank/models/comment/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    manage:
+        form: $/codengine/awardbank/models/comment/fields.yaml
+        list: $/codengine/awardbank/models/comment/columns.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        recordsPerPage: 10
+
+owners:
+    label: codengine.awardbank::lang.awardbank.owners
+    modelClass: Codengine\Awardbank\Models\Permission
+    view:
+        toolbarButtons: create|remove
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isOwner
+        recordOnClick: false
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_owner.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        scope: isOwner
+
+viewability:
+    label: codengine.awardbank::lang.awardbank.viewability
+    modelClass: Codengine\Awardbank\Models\Permission
+    view:
+        toolbarButtons: create|remove
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        showSearch: true
+        scope: isViewable
+        recordOnClick: false
+    manage:
+        form: $/codengine/awardbank/models/permission/fields_relation_viewability.yaml
+        list: $/codengine/awardbank/models/permission/columns_relation.yaml
+        emptyMessage: backend::lang.list.no_records
+        showSearch: true
+        scope: isViewable
+

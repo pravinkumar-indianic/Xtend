@@ -1,0 +1,51 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        sortable: true
+        invisible: true        
+    updated_at:
+        label: updated_at
+        type: datetime
+        sortable: true
+    deleted_at:
+        label: deleted_at
+        type: datetime
+        invisible: true
+    name:
+        label: 'Name'
+        type: text
+        searchable: true
+        sortable: true
+    feature_image:
+        label: Feature Image
+        relation: feature_image
+        type: partial
+        path: ~/plugins/codengine/awardbank/models/_feature_image_partial.htm          
+    description:
+        label: 'Description'
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true        
+    type:
+        label: 'Type'
+        type: text
+        searchable: true
+        sortable: true
+    main_color:
+        label: 'Main Color'
+        type: partial
+        path: ~/plugins/codengine/awardbank/models/_color_partial.htm      
+        searchable: false
+        sortable: false
+    my_view:
+        label: 'codengine.awardbank::lang.awardbank.viewability'
+        emptyOption: 'No Permissions Of The Type Exist'  
+        searchable: false
+        sortable: false

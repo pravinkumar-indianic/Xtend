@@ -1,0 +1,10 @@
+name: PointsLedgers
+form: $/codengine/awardbank/models/pointsledger/fields.yaml
+modelClass: Codengine\Awardbank\Models\PointsLedger
+defaultRedirect: codengine/awardbank/pointsledgers
+create:
+    redirect: 'codengine/awardbank/pointsledgers/update/:id'
+    redirectClose: codengine/awardbank/pointsledgers
+update:
+    redirect: codengine/awardbank/pointsledgers
+    redirectClose: codengine/awardbank/pointsledgers

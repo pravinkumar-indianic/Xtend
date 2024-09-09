@@ -1,0 +1,105 @@
+{# Show order Summary and Proceed #}
+
+<div class="ui grid stackable {% if __SELF__.container == true %} container {% endif %} cart-container">
+
+  <div class="ui sixteen wide column {% if __SELF__.flushtop == true %}flushtop{% endif %} {% if __SELF__.flushbottom == true %}flushbottom{% endif %}">
+
+    <div class="ui segment raised order-summary">
+      
+      <div class="ui header">
+        {% if access.program.scale_points_by != null %}
+          <h1>Order Summary</h1>
+        {% else %}
+          <h1> Order Confirmation</h1>
+        {% endif %}
+      </div>
+             
+      <div class="ui horizontal divider">
+          {{ points_name }} Details
+      </div>
+
+      <div class="order-points-details" id="cartpointdetails">
+          
+        <h2>Order Total: <span style="font-size:0.6em">{{ __SELF__.order.points_value }} {{ access.program.points_name }}</span></h2>
+
+        <h2>Order Created At: {{ __SELF__.order.created_at | date("F jS \\a\\t g:ia")  }}</h2>
+
+        <h2>Order Reference Number: <span style="font-size:0.6em">{{ __SELF__.order.order_id }}</span></h2>
+
+        <!--<h2>Shipping Cost: <span style="font-size:0.6em">{{ __SELF__.shippingCostTotal }} points</span></h2> 
+
+        <h2>Total Order Points : {{ __SELF__.orderTotal + __SELF__.shippingCostTotal }} points</span></h2> -->
+
+      </div> 
+
+      <div class="ui horizontal divider">
+         Order Notes:
+      </div>
+
+       <div class="order-points-details" id="cartpointdetails">
+          {% if order.notes != null %}
+            {{ order.notes }}
+          {% else %}
+             <h2>No Notes.</h2>
+          {% endif %}
+       </div>
+      <div class="ui horizontal divider">
+        Delivery Details 
+      </div>
+      <div class="order-address">
+        <h2 id="currentaddressdiv">
+            {% set address = __SELF__.order.shipping_address %}
+
+            {% if address.business_name != null and address.business_name != '' %}
+              <p style="margin-bottom:0.5em;">Business Name: <span style="font-size:1.2em;"> {{ address.business_name }} </span></p>
+            {% endif %}
+            {% if address.attn_name != null and address.attn_name != '' %}
+              <p style="margin-bottom:0.5em;">Attn To: <span style="font-size:1.2em;"> {{ address.attn_name }} </span></p>
+            {% endif %}
+            {% if address.unit_number != null and address.unit_number != '' %}
+              <p style="margin-bottom:0.5em;">Unit Number: <span style="font-size:1.2em;"> {{ address.unit_number }} </span></p>
+            {% endif %}
+            {% if address.floor != null and address.floor != '' %}
+              <p style="margin-bottom:0.5em;">Level: <span style="font-size:1.2em;"> {{ address.floor }} </span></p>
+            {% endif %}
+            <p style="margin-bottom:0.5em;">Order Address: 
+            <span style="font-size:1.2em;">{{address.street_number}} {{address.street_name}} {{address.street_type}} {{address.city}}  {{address.suburb_name}} {{address.postcode}} {{address.state}}</span></p>
+        </h2>
+        
+      </div>
+
+      <div class="ui horizontal divider">
+        Order Items 
+      </div>
+      <div class="">
+        <div class ="sixteen wide column"> 
+
+          {% partial '@sharedproductcart' 
+
+              lines = __SELF__.order.orderlineitems
+              scale_points_by = access.program.scale_points_by
+              points_name = access.program.points_name
+
+          %}
+
+        </div>
+      </div>
+      <a href="/dashboard" class="ui button primary">Return To Dashboard</a>
+    </div>
+    
+  </div>
+
+</div>
+
+{% put scripts %}
+
+  <script>
+
+    $(document).ready(function(){
+
+
+    });
+
+  </script>
+
+{% endput %}

@@ -1,0 +1,121 @@
+<div class="ui one column grid grid-no-margin">
+    {% if post.status == 'publish' %}
+        {% if post %}
+            {% if post.post_type == "static-page" %}
+                {% partial '@poststaticpage' %}
+            {% else %}
+                {% if post.managed == true %}
+                    <div class="ui column wide">
+                        <a href="/post/{{post.slug}}/edit" class="ui button secondary square right">Edit & Manage Post</a>
+                    </div>
+                {% endif %}
+                {% if post.feature_image %}
+                    <div class="ui column">
+                        <div class="post-full-image">
+                            <img class="ui image centered post-image" src="{{ post.feature_image.path }}" >
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="ui column">
+                    {% if post.categories|length > 0 %}
+                        {% for category in post.categories %}
+                            <a class="ui basic label">
+                                <i class="small folder icon"></i>
+                                {{ category.name }}
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="ui column">
+                    <h1 class="post-full-header">{{post.title}}</h1>
+                </div>
+                <div class="ui column">
+                    <time class="date updated" datetime="">{{post.created_at|date("F jS Y")}}</time>
+                    {% if post.poster %}
+                        <span class="compact item">by
+                            {{ post.poster.name}}
+                        </span>
+                    {% endif %}
+                </div>
+                <div class="ui column">
+                    {{ post.content|raw }}
+                </div>
+                <div class="ui column">
+                    {% if post.tags|length > 0 %}
+                        {% for tag in post.tags %}
+                            <a class="ui gray basic label">
+                                {{ tag.name }}
+                                <i class="small tags icon"></i>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="ui sixteen">
+                    <a {% if post.post_type == "post" %} href="/posts" {% else %} href="/dashboard" {% endif %} class="ui button secondary square">Back</a>
+                    {% if post.manager == true %}
+                        <a href="/post/{{ post.slug }}/edit" class="ui button primary square">Edit post</a>
+                    {% endif %}
+                </div>
+                {% if post.post_type == "post" and user.currentProgram.name != '5STEP Incentive' %}
+                    <div class="ui column">
+                        <div class="btnlike">
+                            <small>
+                                <div id="likecount">
+                                    <a class="text-muted" >{{ post.comments|length }} Comment</a> &nbsp;
+                                </div>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="ui column">
+                        <form class="ui reply form" id="createCommentForm">
+                            <input type="hidden" name="post_id" value="{{post.id}}">
+                            <div class="field">
+                                <label for="Comment">Add a comment...</label>
+                                <textarea name="Comment" id="Comment" rows="3"></textarea>
+                            </div>
+                            <div class="field comment-button">
+                                <button type="submit" class="ui button square secondary">Create Comment</button>
+                            </div>
+                        </form>
+                    </div>
+                    {% if post.comments|length >= 1 %}
+                        <div class="ui column">
+                            <h3>Comments</h3>
+                            {% for comment in post.comments %}
+                                <div class="comment">
+                                    <a class="avatar">
+                                        <img src="{{comment.user.getAvatarThumb}}" style="height: auto;">
+                                    </a>
+                                    <div class="content">
+                                        <a class="author">{{ comment.user.name }}</a>
+                                        <div class="metadata">
+                                            <span class="date">{{ comment.created_at }}</span>
+                                        </div>
+                                        <div class="text">
+                                            <p>{{ comment.comment }}</p>
+                                        </div>
+                                    </div>
+                                    {% if post.manager == true %}
+                                        <div class="delete">
+                                            <button class="ui button primary square small delete-comment" data-id="{{ comment.id }}">X</button>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="ui column divider">
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <div class="ui column">
+                <h1 class="post-full-header">No Post Found</h1>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="ui column wide">
+            <p>This Article hasn't been published yet.</p>
+        </div>
+    {% endif %}
+</div>

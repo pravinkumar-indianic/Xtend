@@ -1,0 +1,15 @@
+<div class="ui sixteen wide column" id="listWrapper" data-offset="{{ offset }}" data-totalResults="{{ totalResults }}">
+  	<div class="listtarget">
+		<div class="ui stackable grid">
+			{% if products.count >= 1 %}
+				{% for product in products %}
+					<div class="ui four wide column">
+						{% partial '@productcard' product = product %}
+					</div>
+				{% endfor %}
+			{% else %}
+				{% partial '@noresults' %}
+			{% endif %}
+		</div>
+	</div>
+</div>

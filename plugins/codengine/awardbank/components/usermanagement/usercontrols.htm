@@ -1,0 +1,10 @@
+{% if manager == true %}
+<div style="margin: 20px 0;">
+    {% if user.deleted_at %}
+    <button class="ui button primary activate" data-id="{{ user.id }}">Activate</button>
+    {% else %}
+    <button class="ui button red deactivate" data-id="{{ user.id }}">Suspend</button>
+    <a class="ui button yellow" href="/user-management/useredit?id={{ user.id }}" data-id="{{ user.id }}">Edit</a>
+    {% endif %}
+</div>
+{% endif %}

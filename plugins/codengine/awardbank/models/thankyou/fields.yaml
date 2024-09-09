@@ -1,0 +1,22 @@
+fields:
+    sender_id:
+        label: sender_id
+        type: number
+    sender_fullname:
+        label: sender_fullname
+        type: text
+    sender_thumb_path:
+        label: sender_thumb_path
+        type: text
+    receiver_id:
+        label: receiver_id
+        type: number
+    receiver_fullname:
+        label: receiver_fullname
+        type: text
+    receiver_thumb_path:
+        label: receiver_thumb_path
+        type: text
+    thankyou_text:
+        label: thankyou_text
+        type: text

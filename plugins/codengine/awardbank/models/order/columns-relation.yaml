@@ -1,0 +1,85 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        invisible: true
+        sortable: true  
+    created_at:
+        label: created_at
+        type: datetime
+        searchable: true
+        invisible: false
+        sortable: true    
+    updated_at:
+        label: updated_at
+        type: datetime
+        searchable: true
+        invisible: false
+        sortable: true    
+    order_id:
+        label: 'Order ID'
+        type: text
+        searchable: true
+        invisible: false
+        sortable: true    
+    overall_order_status:
+        label: 'Order Status'
+        type: number
+        searchable: true
+        invisible: false
+        sortable: true   
+    points_value:
+        label: 'Points Value'
+        type: number  
+        searchable: true
+        invisible: false
+        sortable: true  
+    full_processed:
+        label: 'Order Fully Processed'
+        type: switch  
+        searchable: true
+        invisible: false
+        sortable: true  
+    order_has_vouchers:
+        label: 'Order Has Vouchers'
+        type: switch  
+        searchable: true
+        invisible: false
+        sortable: true  
+    order_full_redeemed_vouchers:
+        label: 'Order Vouchers Fully Redeemed'
+        type: switch  
+        searchable: true
+        invisible: false
+        sortable: true  
+    current_shipping_addr_string:
+        label: 'Order Shipping Address'
+        type: text  
+        searchable: true
+        invisible: false
+        sortable: true  
+    customer_full_name_string:
+        label: 'Customer Name'
+        type: text  
+        searchable: true
+        invisible: false
+        sortable: true  
+    customer_full_email_string:
+        label: 'Customer E-mail'
+        type: text  
+        searchable: true
+        invisible: false
+        sortable: true  
+    customer_full_phone_number_string:
+        label: 'Customer Phone Number'
+        type: text  
+        searchable: true
+        invisible: false
+        sortable: true  
+    order_program_name:
+        label: 'Order Program'
+        type: text  
+        searchable: true
+        invisible: false
+        sortable: true  

@@ -1,0 +1,16 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+import:
+    title: Import Users
+    modelClass: Codengine\Awardbank\Models\UserImport
+    list: $/codengine/awardbank/models/user/columns-import.yaml
+    redirect: rainlab/user/users
+
+export:
+    title: Export Users
+    modelClass: Codengine\Awardbank\Models\UserExport
+    list: $/codengine/awardbank/models/user/columns-export.yaml
+    form: $/codengine/awardbank/models/user/fields-export.yaml
+    redirect: rainlab/user/users

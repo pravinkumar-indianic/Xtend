@@ -1,0 +1,51 @@
+<div class="ui stackable grid">
+    <div class="sixteen wide tablet six wide computer column no-padding">
+        {# ASE 2023  #}
+        {% if access.program.id == 112 %}
+        <img src="/themes/xtend/assets/img/wheel_ase_2023.png" width="200" height="200">
+        {% else %}
+        <img src="/themes/xtend/assets/img/wheel.png" width="200" height="200">
+        {% endif %}
+    </div>
+    {% if user_can_spin %}
+    <div class="sixteen wide tablet ten wide computer column">
+        <h1>Spin to Win is Live!</h1>
+        {# ASE 2023  #}
+        {% if access.program.id == 112 %}
+        <p>
+            Spin the wheel and test your luck today!
+        </p>
+        <p>
+            You could have the chance to grow your Rewards just by spinning the wheel!
+        </p>
+        {% else %}
+        <p>
+            To reward our members, we have converted leaderboard points earned so far into "spins". The higher your leaderboard points balance, the more chances you have to win some great prizes!
+        </p>
+        <p>
+            Spin to Win can be played on the store holder account, so get all store members together and Spin to Win today!
+        </p>
+        {% endif %}
+        <p>
+            {% if json_data != '[]' %}
+            <button class="ui button primary" id="display-spin-the-wheel">Spin your luck now</button>
+            {% else %}
+            <span>Sorry, no prizes available at the moment.</span>
+            {% endif %}
+        </p>
+    </div>
+    {% else %}
+    <div class="sixteen wide tablet ten wide computer column">
+        <h1>Spin to Win is Live!</h1>
+        <p>
+            All members are on a level playing field and will be dispensed the same number of Spins.
+        </p>
+        <p>
+            This is a chance for teams to take home some great prizes.
+        </p>
+        <p>
+            Spin to Win can be played on the store holder account, so get all store members together and Spin to Win!
+        </p>
+    </div>
+    {% endif %}
+</div>

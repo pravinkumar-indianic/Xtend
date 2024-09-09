@@ -1,0 +1,90 @@
+{% set categories = __SELF__.categories %}
+{% set tags = __SELF__.tags %}
+{% set post = __SELF__.post %}
+{% set steps = __SELF__.steps %}
+{% set me = __SELF__.user %}
+
+<form class="ui form" id='postcreateform{{steps}}' data-request="onPostCreate" data-request-update="'{{__SELF__}}::partial/steps' : '#createpostdiv'" data-request-complete="formNext();">
+
+    <div class="ui form" style="padding-top: 20px; padding-bottom: 40px;">
+    	<div class="field">
+          <label class="" for="categories">Category</label>
+          <select multiple="multiple" placeholder="Search category" class="ui fluid search dropdown" id="category_dropdown" multiple="" name="category[]">
+            {% for category in categories %}
+            <option value="{{category.id}}">{{category.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field tags">
+          <label class="" for="tags">Tags</label>
+          <div class="ui fluid multiple search selection dropdown" id="tags_dropdown">
+            <input name="tags" id="new_tags" type="hidden">
+            <i class="dropdown icon"></i>
+            <div class="default text">Tags</div>
+            <div class="menu">
+              {% for tag in tags %}
+              <div class="item" data-value="{{tag.name}}">{{tag.name}}</div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="">Post To</label>
+          <div class="ui selection dropdown" >
+            <div class="default text">Select</div>
+            <i class="dropdown icon"></i>
+            <input type="hidden" name="postto" id="postto" onchange="checkPostTo()">
+            <div class="menu">
+              <div class="item" data-value="team">Team</div>
+              <div class="item" data-value="region">Region</div>
+              <div class="item" data-value="program">Program</div>
+              <div class="item" data-value="organization">Organization</div>
+            </div>
+          </div>
+        </div>
+        <div class="field" style="display: none;" id="posttodiv">
+            <div class="ui inverted dimmer">
+              <div class="ui text loader">Loading</div>
+            </div>
+            <label id="posttolbl">Post to Name</label>
+            <div class="ui search" id="posttosearch">
+                <select placeholder="Search user name..." multiple="multiple" class="ui fluid search dropdown" id="postto_dropdown" multiple="" name="posttoname[]">
+                </select>
+            </div>
+        </div>
+        <div class="field">
+          <label>Post As</label>
+          <div class="ui selection dropdown" >
+            <div class="default text">Select</div>
+            <i class="dropdown icon"></i>
+            <input type="hidden" name="postas" id="postas" onchange="checkPostAs()">
+            <div class="menu">
+              <div class="item" data-value="owner">Me</div>
+              <div class="item" data-value="other">Other User</div>
+              <div class="item" data-value="team">Team</div>
+            </div>
+          </div>
+        </div>
+        <div class="field" style="display: none;" id="postasdiv">
+            <div class="ui inverted dimmer">
+              <div class="ui text loader">Loading</div>
+            </div>
+            <label id="postaslbl">Post as Name</label>
+            <div class="ui search" id="postassearch">
+                <select placeholder="Search post as name..." multiple="multiple" class="ui fluid search dropdown" id="postas_dropdown" name="postasname">
+                  
+                </select>
+            </div>
+        </div>
+        <div class="field">
+			<input value="{{post.id}}" name="post_id" type="hidden">
+			<input value="{{steps}}" name="step" type="hidden" id="steps">
+
+	        <div class="ui error message"></div>
+
+	        <button class="ui primary submit button right floated" type="submit">Next</button>
+	    </div>
+    </div>
+       
+
+</form>

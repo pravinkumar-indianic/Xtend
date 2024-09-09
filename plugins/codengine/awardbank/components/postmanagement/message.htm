@@ -1,0 +1,60 @@
+{% set messagetype = __SELF__.messagetype %}
+{% set messages = __SELF__.messages %}
+
+
+    <!-- <div class="ui sixteen wide recent-message">
+        <a href="">Recent <i class="chevron down icon"></i></a>
+    </div> -->
+{% if messages %}
+<div class="ui sixteen wide tablet four wide computer column message-full-column">
+   
+    <div class="ui tabular menu message-short-desc">
+        {% for message in messages %}
+        <a class="item{%if loop.first %} active{% endif %}" data-tab="message-tab-{{message.id}}">
+            {% if messagetype == 'inbox' %}
+                <span class="message-from">
+                    {% for owners in message.owners %}
+                        {% for poster in owners.poster %}
+                            {{poster.name}}
+                        {% endfor %}
+                    {% endfor %}
+                </span>
+            {% elseif messagetype == 'sent'%}
+                <span class="message-from">{{message.viewability}}</span>
+            {% endif %}
+            
+            <time class="message-date">
+                {{message.created_at|date("d/m/Y", "Australia/Sydney")}}
+            </time>
+            <h2 class="message-subject">{{message.title|slice(0,20)}}</h2>
+            <span class="message-intro">{{message.message_text|slice(0,30)|raw}}</span>
+            <i class="star icon message-fav"></i>
+        </a>
+      {% endfor %}
+    </div>
+
+</div>
+
+
+<div class="ui sixteen wide tablet ten wide computer column message-full-column">
+
+{% for message in messages %}
+<div class="ui tab {%if loop.first %}active {% endif %}" data-tab="message-tab-{{message.id}}">
+
+    <time class="message-date">{{message.created_at|date("F jS \\a\\t g:ia")}}</time>
+    <h2 class="message-subject">{{message.title}}</h2>
+
+    <div class="message-full">
+
+        <p>{{message.content|raw}}</p>
+
+    </div>
+
+</div>
+{% endfor %}
+</div>
+{% else %}
+
+    No Messages
+
+{% endif %}

@@ -1,0 +1,13 @@
+list: $/codengine/awardbank/models/pointsledger/columns.yaml
+modelClass: Codengine\Awardbank\Models\PointsLedger
+title: PointsLedgers
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 10
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'codengine/awardbank/pointsledgers/update/:id'
+filter: config_filter.yaml

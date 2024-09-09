@@ -1,0 +1,54 @@
+<div class="ui segment">
+    <h5>Edit Prize</h5>
+    <form class="criteria-form ui form" id="price-form">
+        <div class="ui stackable grid">
+            <div class="sixteen wide tablet eight wide computer column">
+                <label>Label</label>
+                <input type="text" name="label" maxlength="15" placeholder="Label" value="{{ price.label }}">
+                <br/>
+                <small>Max. 15 characters</small>
+            </div>
+            <div class="sixteen wide tablet eight wide computer column">
+                <label>Name</label>
+                <input type="text" name="name" maxlength="255" placeholder="Name" value="{{ price.name }}">
+                <br/>
+                <small>Max. 255 characters</small>
+            </div>
+            <div class="sixteen wide tablet sixteen wide computer column">
+                <label>Message (when the wheel end up on this prize)</label>
+                <input type="text" name="message" maxlength="255" placeholder="Message" value="{{ price.message }}">
+                <br/>
+                <small>Max. 255 characters</small>
+            </div>
+            <div class="sixteen wide tablet four wide computer column">
+                <label>Quantity</label>
+                <input type="text" name="quantity" placeholder="1" value="{{ price.quantity }}">
+            </div>
+            <div class="sixteen wide tablet four wide computer column">
+                <label>Priority</label>
+                <input type="text" name="priority" placeholder="1" value="{{ price.priority }}">
+            </div>
+            <div class="sixteen wide tablet four wide computer column">
+                <label>% Prob. of Win</label>
+                <input type="text" name="probability" placeholder="10" value="{{ price.probability }}">
+            </div>
+            <div class="sixteen wide tablet four wide computer column">
+                <label>Is prize?</label>
+                <select class="ui dropdown" name="is_price">
+                    <option value="1" {% if price.is_price %}selected{% endif %}>Yes</option>
+                    <option value="0" {% if not price.is_price %}selected{% endif %}>No</option>
+                </select>
+            </div>
+
+            <div class="sixteen wide tablet sixteen wide computer column">
+                <small>Recommended image dimensions: 200 x 200 px. Maximum image size: 8 MB.</small>
+                {% component 'priceLogo' %}
+            </div>
+
+            <div class="five wide tablet five wide computer column">
+                <input type="hidden" name="id" value="{{ price.id }}">
+                <button class="ui button primary price update">Update</button>
+            </div>
+        </div>
+    </form>
+</div>

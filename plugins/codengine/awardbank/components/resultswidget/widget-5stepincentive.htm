@@ -1,0 +1,214 @@
+<h1>Engagement Dashboard</h1>
+<div class="ui container" id="widget-top-wrapper" data-id="{{ crm }}">
+    <div class="ui stackable grid top-section-wrapper">
+
+        {% if data['widgetTexts'] %}
+        <div class="sixteen wide tablet eight wide computer column sections-wrapper-1 ">
+
+            <div class="section section-7 section-7-symbion bg-orange round-radius">
+                {% for widgetText in data['widgetTexts'] %}
+                <p>{{ widgetText|raw }}</p>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="sixteen wide tablet eight wide computer column sections-wrapper-2">
+            <div class="blue-border-wrapper bg-blue round-radius">
+                <div class="section section-4 ptop-30" data-scorecard-step="1">
+                    <h3 class="text-white">TOTAL POINTS EARNED TO DATE</h3>
+                    <div class="ui stackable grid">
+                        <div class="eight wide tablet eight wide computer column">
+
+                            <label class="circle">
+                                <img src="/themes/xtend/assets/img/podium_icon.png" width="40" height="40">
+                            </label>
+                            <h3 class="text-white text-3-size">
+                                {% if data['totalPointsMonthly'] %}
+                                {{ data['totalPointsMonthly'] }}
+                                {% else %}
+                                N/A
+                                {% endif %}
+                            </h3>
+                            <h4 class="text-white text-uppercase text-1-size">{{ month|date('M') }} Points</h4>
+                        </div>
+                        <div class="eight wide tablet eight wide computer column">
+
+                            <label class="circle">
+                                <img src="/themes/xtend/assets/img/trophy_icon.png" width="40" height="40">
+                            </label>
+                            <h3 class="text-white text-3-size ">
+                                {% if data['totalPointsOverall'] %}
+                                {{ data['totalPointsOverall'] }}
+                                {% else %}
+                                N/A
+                                {% endif %}
+                            </h3>
+                            <h4 class="text-white text-uppercase text-1-size">Total Points</h4>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="section section-6">
+                    {% if crm %}
+                    <a href="/leaderboard/{{ crm }}" target="_blank">
+                        <button class="program-default-background-color">Access Leaderboard</button>
+                    </a>
+                    <a href="/scorecard/{{ crm }}" target="_blank">
+                        <button class="program-default-background-color">Access Scorecard</button>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="ui stackable grid bottom-section-wrapper bg-gray round-radius">
+        <div class="sixteen wide tablet sixteen wide computer column">
+            <div class="section section-8" data-scorecard-step="1">
+                <h3 class="border-bottom text-left border-b">{{ month|date('F') }} SALES GROWTH Result</h3>
+                <div class="ui stackable grid">
+                    <div class="four wide tablet four wide computer column ">
+                        <div class="section section-9 bg-white round-radius" data-scorecard-step="1">
+
+                            {% if data['salesGrowthHighlights']['S1HAL001'] %}
+                            <span class="score {{ data['salesGrowthHighlights']['S1HAL001']['resultColor'] }}">
+                                {{ data['salesGrowthHighlights']['S1HAL001']['data'] }}
+                            </span>
+                            {% else %}
+                            <span class="score">N/A</span>
+                            {% endif %}
+                            <h4 class="uppercase color-gray font-1rem">Haleon <br/> Sales Growth %</h4>
+                        </div>
+                    </div>
+
+                    <div class="four wide tablet four wide computer column">
+                        <div class="section section-9 bg-white round-radius" data-scorecard-step="1">
+                            {% if data['salesGrowthHighlights']['S1BAY001'] %}
+                            <span class="score {{ data['salesGrowthHighlights']['S1BAY001']['resultColor'] }}">
+                                {{ data['salesGrowthHighlights']['S1BAY001']['data'] }}
+                            </span>
+                            {% else %}
+                            <span class="score">N/A</span>
+                            {% endif %}
+                            <h4 class="uppercase color-gray font-1rem">Bayer <br/> Sales Growth %</h4>
+                        </div>
+                    </div>
+
+                    <div class="four wide tablet four wide computer column">
+                        <div class="section section-10 bg-white round-radius" data-scorecard-step="1">
+                            {% if data['salesGrowthHighlights']['S1ASP001'] %}
+                            <span class="score {{ data['salesGrowthHighlights']['S1ASP001']['resultColor'] }}">
+                                {{ data['salesGrowthHighlights']['S1ASP001']['data'] }}
+                            </span>
+                            {% else %}
+                            <span class="score">N/A</span>
+                            {% endif %}
+                            <h4 class="uppercase color-gray font-1rem">Aspen <br/> Sales Growth %</h4>
+                        </div>
+                    </div>
+
+                    <div class="four wide tablet four wide computer column">
+                        <div class="section section-11 bg-white round-radius" data-scorecard-step="1">
+                            {% if data['salesGrowthHighlights']['S1RB001'] %}
+                            <span class="score {{ data['salesGrowthHighlights']['S1RB001']['resultColor'] }}">
+                                {{ data['salesGrowthHighlights']['S1RB001']['data'] }}
+                            </span>
+                            {% else %}
+                            <span class="score">N/A</span>
+                            {% endif %}
+                            <h4 class="uppercase color-gray font-1rem">Reckitt <br/> Sales Growth %</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui stackable grid top-section-wrapper ">
+        <div class="sixteen wide tablet sixteen wide computer column sections-wrapper-3 ">
+            <div class="section section-1 bg-gray round-radius ptop-30" data-scorecard-step="2">
+                <h3 class="border-bottom text-left border-b">{{ month|date('F') }} STOCK RESULT</h3>
+                <div class="progress-bar-wrapper">
+                {% if data['pointsEarnedMonthly'] %}
+                    <span class="score {{ data['pointsEarnedMonthly']['resultColor'] }}">
+                            {{ data['pointsEarnedMonthly']['data'] }}
+                        </span>
+                    <div class="progress-bar">
+                        <div class="progress-line-wrapper">
+                            <div class="progress-line {{ data['pointsEarnedMonthly']['resultColor'] }}" style="width: {{ data['pointsEarnedMonthly']['data'] }};">
+                                <span class="progress-circle {{ data['pointsEarnedMonthly']['resultColor'] }}"></span>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <span class="score black">N/A</span>
+                {% endif %}
+                </div>
+                <h3 class=" color-gray">STOCK 80% OR MORE DESTINATION<br> CATEGORY COMMON CORE RANGE LINES
+                </h3>
+            </div>
+        </div>
+        <div class="sixteen wide tablet eight wide computer column sections-wrapper-3">
+            <div class="section section-2 bg-gray round-radius ptop-30" data-scorecard-step="3">
+                <h3 class="text-left border-b">Off Location Promotions</h3>
+                <div class="ui stackable grid">
+                    <div class="eight wide tablet eight wide computer column">
+                        <div class="section section-9 bg-white round-radius" data-scorecard-step="1">
+                            <span class="score {{ data['pointsEarnedMonthly']['resultColor'] }}">
+                                {% if data['offLocationPromotions']['data1'] or data['offLocationPromotions']['data1'] is same as ('0') %}
+                                {{ data['offLocationPromotions']['data1'] }}
+                                {% else %}
+                                N/A
+                                {% endif %}
+                            </span>
+                            <h4 class="uppercase color-gray font-1rem">Signed Up</h4>
+                        </div>
+                    </div>
+                    <div class="eight wide tablet eight wide computer column">
+                        <div class="section section-9 bg-white round-radius" data-scorecard-step="1">
+                            <span class="score {{ data['pointsEarnedMonthly']['resultColor'] }}">
+                                {% if data['offLocationPromotions']['data2'] or data['offLocationPromotions']['data2'] is same as ('0') %}
+                                {{ data['offLocationPromotions']['data2'] }}
+                                {% else %}
+                                N/A
+                                {% endif %}
+                            </span>
+                            <h4 class="uppercase color-gray font-1rem">Not Signed Up</h4>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sixteen wide tablet eight wide computer column sections-wrapper-3">
+            <div class="section section-2 bg-gray round-radius ptop-30" data-scorecard-step="3">
+                <h3 class="text-left border-b">EDUCATIONAL WEBINARS</h3>
+                <div class="ui stackable grid">
+                    <div class="eight wide tablet eight wide computer column">
+                        <div class="section section-9 bg-white round-radius" data-scorecard-step="1">
+                            <span class="score {{ data['educationWebinarBitesSeries']['data1Color'] }}">
+                                {{ data['educationWebinarBitesSeries']['data1'] }}
+                            </span>
+                            <h4 class="uppercase color-gray font-1rem">Attended</h4>
+                        </div>
+                    </div>
+                    <div class="eight wide tablet eight wide computer column">
+                        <div class="section section-9 bg-white round-radius" data-scorecard-step="1">
+                            <span class="score {{ data['educationWebinarBitesSeries']['data2Color'] }}">
+                                {{ data['educationWebinarBitesSeries']['data2'] }}
+                            </span>
+                            <h4 class="uppercase color-gray font-1rem">Not Attended</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% partial '@amchartsscript' %}
+{% partial '@gaugegraphscript' %}
+{% partial '@progressgraphscript' %}

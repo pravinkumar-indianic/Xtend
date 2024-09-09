@@ -1,0 +1,10 @@
+name: ActivityFeeds
+form: $/codengine/awardbank/models/activityfeed/fields.yaml
+modelClass: Codengine\Awardbank\Models\ActivityFeed
+defaultRedirect: codengine/awardbank/activityfeeds
+create:
+    redirect: 'codengine/awardbank/activityfeeds/update/:id'
+    redirectClose: codengine/awardbank/activityfeeds
+update:
+    redirect: codengine/awardbank/activityfeeds
+    redirectClose: codengine/awardbank/activityfeeds

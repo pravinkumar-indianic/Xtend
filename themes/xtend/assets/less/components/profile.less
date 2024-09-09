@@ -1,0 +1,242 @@
+// Profile
+// Components: /myprofile/
+
+.ui.statistic{
+
+    width:100%;
+
+}
+
+.ui.segment.profile-summary {
+    .segment-layout;
+    padding:0;
+    .userlogin {
+        padding:2rem;
+    }
+}
+
+.profile-tabs {
+    > .ui.segment {
+        .segment-layout;
+        padding:2rem;
+    }
+}
+
+.profile-tabs {
+    > .ui.segment[data-tab="points"] {
+        border:none;
+        box-shadow:none;
+        background:transparent;
+        padding:0;
+        .ui.segment {
+            .segment-layout;
+            padding:2rem;
+            height:100%;
+        }
+    }
+    .chart-container {
+        position:relative;
+        height:400px;
+        width:100%;
+    }
+    .chart-donut {
+        height:100px;
+        width:100%;
+    }
+}
+
+.profile-summary-image {
+    text-align:center;
+    margin-bottom:1rem;
+    min-height:150px;
+}
+
+.profile-summary-edit {
+    clear:both;
+    display:block;
+    margin:10px 0;
+    text-decoration:underline;
+}
+
+.profile-summary-name {
+    font-size:18px;
+    font-family:@font-semibold;
+    margin:0 0 10px;
+}
+
+.profile-summary-teams {
+    margin:15px 0 0;
+    .ui.toggle.checkbox  {
+        width:100%;
+        position:relative;
+        display:block;
+        padding: 0;
+        span {
+            padding:0;
+            height:40px;
+            margin-top:10px;
+            color:@white;
+            position:relative;
+            line-height:40px;
+            z-index:1;
+            padding:0 5px 0 46px;
+            font-size:14px;
+            font-family:@font-light;
+        }
+        span:after {
+            height:34px;
+            width:34px;
+            left:5px;
+            top:50%;
+            transform:translateY(-50%);
+            box-shadow:none;
+            content:"";
+            background:#fff;
+            position:absolute;
+            border-radius:100%;
+        }
+        input:checked~.box:after,
+        input:checked~label:after {
+            left:~"calc(100% - 39px)";
+        }
+    }
+}
+
+.profile-summary-reset {
+    margin-top:30px;
+}
+
+.profile-summary-description {
+    font-size:14px;
+}
+
+/* Themes for the teams myprofile.htm*/
+.profile-summary-teams .ui.toggle.checkbox.checkbox--purple {
+    background:@overlay-peach;
+}
+
+.profile-summary-teams .ui.toggle.checkbox.checkbox--orange {
+    background:@overlay-oranges;
+}
+
+.profile-summary-teams .ui.toggle.checkbox.checkbox--peach {
+    background:@overlay-purple;
+}
+
+.profile-summary-teams .ui.toggle.checkbox.checkbox--brand1 {
+    background:@overlay-brand1;
+}
+
+.profile-summary-teams .ui.toggle.checkbox.checkbox--brand2 {
+    background:@overlay-brand2;
+}
+
+
+.ui.vertical.text.menu.profile-summary-account-nav {
+    border-top:1px solid @gray;
+    border-bottom:1px solid @gray;
+    padding:1rem 0;
+    width: auto;
+    margin:2rem 0;
+    a {
+        display:block;
+        font-size:14px;
+        line-height:1.2em;
+        font-family:@font-semibold;
+        span span {
+            color:@brand-aqua;
+        }
+    }
+}
+
+
+.ui.vertical.menu.profile-menu {
+    margin:0;
+    width:auto;
+    .item {
+        border-top: 1px solid @gray-dark;
+        margin:0;
+        border-radius:0px!important;
+        position:relative;
+        padding:13px 2rem;
+        transition:background @fast;
+        span {
+            &:before {
+                content:"";
+                position:absolute;
+                top:0;
+                left:0;
+                width:0px;
+                height: 100%;
+                background:@brand-aqua;
+                transition:width @fast;
+            }
+        }
+        &.active {
+            background:#ddf5f4;
+            span {
+                display:block;
+                &:before {
+                    width:5px;
+                }
+            }
+        }
+        &:last-child {
+            border-bottom: 1px solid @gray-dark;
+        }
+        &.subitem {
+            border: none;
+        }
+        &.subitem-2 {
+            border: none;
+            padding: 6px 3rem;
+        }
+    }
+}
+
+
+.ui.segment.tab-address {
+    .ui.header {
+        font-size:14px;
+        font-family:@font-light;
+    }
+    .fieldset-disabled {
+        padding:15px;
+        background:@gray-lighter;
+        .field {
+            margin-bottom:0;
+            label {
+                display:inline-block;
+                width:40%;
+                margin:0;
+                &:after {
+                    content:":";
+                    display:inline-block;
+                }
+            }
+            select[disabled],
+            input[disabled] {
+                display:inline-block;
+                width:58%;
+                padding: 0;
+                background: transparent;
+                border: none;
+                opacity: 1;
+                -webkit-appearance: none;
+            }
+            select[disabled], input[disabled], label {
+                font-family:@font-light;
+                color:@black;
+                line-height:normal;
+                font-size: 11px;
+                vertical-align:middle;
+            }
+        }
+   }
+   .form-map {
+    padding-top:17px;
+   }
+}
+
+
+

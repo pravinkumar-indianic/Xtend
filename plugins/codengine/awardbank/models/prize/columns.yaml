@@ -1,0 +1,47 @@
+columns:
+    award:
+        label: Award
+        type: text
+        select: name
+        invisible: false
+        sortable: true
+        searchable: true
+    name:
+        label: Title
+        type: text
+        invisible: false
+        sortable: true
+        searchable: true
+    prize_value:
+        label: 'Prize Value'
+        type: number
+        invisible: false
+        sortable: true
+        searchable: true
+    order:
+        label: 'Order'
+        type: number
+        invisible: false
+        sortable: true
+        searchable: true
+    iswon:
+        label: Title
+        span: full
+        type: switch
+        invisible: false
+        sortable: true
+        searchable: true
+    userwinners:
+        type: text
+        relation: userwinners
+        select: full_name
+        invisible: false
+        sortable: true
+        searchable: true
+    teamwinners:
+        type: text
+        relation: teamwinners
+        select: name
+        invisible: false
+        sortable: true
+        searchable: true

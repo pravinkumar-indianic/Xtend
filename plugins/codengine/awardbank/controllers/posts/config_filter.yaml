@@ -1,0 +1,59 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    include_deleted:
+        label: Show Deleted
+        type: checkbox
+        default: false
+        scope: filterWithDeleted                         
+    posttype:
+        label: Post Type
+        options:
+            post: Post
+            program-tool: "Program Tool"  
+        conditions: post_type in (:filtered)   
+    created_at:
+        label: Created At
+        type: daterange
+        conditions: created_at >= ':after' AND created_at <= ':before'     
+    updated_at:
+        label: Updated At
+        type: daterange
+        conditions: updated_at >= ':after' AND updated_at <= ':before'                       
+    posters:
+        label: 'Poster'
+        modelClass: Rainlab\User\Models\User
+        scope: filterHasPoster
+        nameFrom: full_name
+    managers:
+        label: 'Manager'
+        modelClass: Rainlab\User\Models\User
+        scope: filterHasManagers
+        nameFrom: full_name   
+    teams:
+        label: codengine.awardbank::lang.awardbank.teams
+        modelClass: Codengine\Awardbank\Models\Team
+        scope: filterHasTeams
+        nameFrom: name                                      
+    programs:
+        label: codengine.awardbank::lang.awardbank.programs
+        modelClass: Codengine\Awardbank\Models\Program
+        scope: filterHasPrograms
+        nameFrom: name
+    targetingtags:
+        label: "Targeting Tags"
+        modelClass: Codengine\Awardbank\Models\TargetingTag
+        scope: filterHasTargetingTags
+        nameFrom: name    
+    categories:
+        label: Category
+        modelClass: Codengine\Awardbank\Models\Category
+        scope: filterHasCategorys
+        nameFrom: name     
+    tags:
+        label: Tags
+        modelClass: Codengine\Awardbank\Models\Tag
+        scope: filterHasTags
+        nameFrom: name 

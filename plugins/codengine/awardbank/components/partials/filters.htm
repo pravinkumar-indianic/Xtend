@@ -1,0 +1,35 @@
+<h3>Filters</h3>
+<form class="ui form" id="filters">
+	<input type="hidden" name="navoption" value="{{ navoption }}">
+	<div class="ui grid three columns">	
+		{% for filter in filters %}
+			<div class="column">
+				<div class="field">
+				    <label>{{ filter.label }}</label>
+				    {% if filter.type == 'date' %}
+						<div class="ui calendar">
+							<div class="ui input left icon">
+								<i class="calendar icon"></i>
+								<input type="date" name="{{ filter.name }}" {% if filter.value != NULL %}value="{{ filter.value|date('Y-m-d') }}"{% endif %}>
+							</div>
+						</div>			    	
+				    {% else %}
+					    <select class="ui selection dropdown" name="{{ filter.name }}">
+					    	{% for key,value in filter.options %}
+					        	<option value="{{ key }}">{{ value }}</option>
+				        	{% endfor %}
+					    </select>
+				    {% endif %}
+				</div>
+			</div>	
+		{% endfor %}
+	</div>
+</form>
+<div class="ui grid two columns">
+	<div class="column">
+		<button class="ui primary filter submit button" data-attach-loading>Filter Results</button>
+	</div>
+	<div class="column">
+		<button class="ui primary filter export button {{ exporttarget }}" data-attach-loading>Export Results</button>
+	</div>
+</div>

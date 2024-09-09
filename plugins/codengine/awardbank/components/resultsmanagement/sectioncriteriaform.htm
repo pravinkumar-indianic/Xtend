@@ -1,0 +1,38 @@
+<div class="ui segment">
+    <h5>Edit Criteria</h5>
+    <form class="criteria-form ui form" id="criteria-form">
+        <div class="ui stackable grid">
+            <div class="sixteen wide tablet six wide computer column">
+                <input type="text" name="key" placeholder="Key" value="{{ criteria.key }}">
+            </div>
+            <div class="sixteen wide tablet ten wide computer column">
+                <input type="text" name="label" placeholder="Label" value="{{ criteria.label }}">
+            </div>
+            <div class="sixteen wide tablet sixteen wide computer column">
+                <textarea type="text" name="tooltip" id="tooltip" class="tinymceeditor" placeholder="Tooltip" rows="4">{{ criteria.tooltip }}</textarea>
+            </div>
+            <div class="sixteen wide tablet sixteen wide computer column">
+                <div class="ui toggle checkbox">
+                    <label>Display on dashboard only</label>
+                    <input type="checkbox" name="dashboard_only" {% if criteria.dashboard_only == 1 %}checked{% endif  %}>
+                </div>
+            </div>
+            <div class="two wide tablet two wide computer column">
+                <input type="hidden" name="id" value="{{ criteria.id }}">
+                <button class="ui button primary section-criteria update">Update</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="sixteen wide tablet ten sixteen computer column">
+        <div class="criteria-targets-wrapper">
+            <h5>Criteria Targets</h5>
+
+            {% partial('@sectioncriteriatargetsform') %}
+
+            <div id="criteria-targets">
+                {% partial('@sectioncriteriatargets') %}
+            </div>
+        </div>
+    </div>
+</div>

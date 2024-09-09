@@ -1,0 +1,52 @@
+fields:
+    is_current:
+        span: full
+        type: switch
+    value:
+        label: Value
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    string:
+        label: String
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    region:
+        label: Region
+        span: full
+        type: dropdown
+        select: name
+        emptyOption: 'Not Set'
+    month_index:
+        label: Month Index
+        type: number
+    year_index:
+        label: Year Index
+        type: number
+    team:
+        label: Team
+        span: full
+        type: relation
+        relation: team
+        select: name
+        emptyOption: 'Not Set'
+    user:
+        label: User
+        span: full
+        type: relation
+        relation: user
+        select: full_name
+        emptyOption: 'Not Set'
+    row:
+        label: 'Row'
+        span: full
+        type: dropdown
+        options:
+            '1' : Row one
+            '2' : Row two
+            '3' : Row three
+            '4' : Row four
+            '5' : Row five
+
+

@@ -1,0 +1,12 @@
+fields:
+    name:
+        label: 'Menu Item Text'
+        oc.commentPosition: ''
+        span: full
+        type: text
+    hovertext:
+        label: 'Hover Text'
+        size: ''
+        oc.commentPosition: ''
+        span: full
+        type: textarea

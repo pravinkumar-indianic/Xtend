@@ -1,0 +1,86 @@
+/* Pagination */
+
+.ui.pagination.menu {
+    border:none;
+    border-radius:0;
+    height:40px;
+    margin-bottom:0;
+    box-shadow:none;
+    a.item {
+        color:@brand-aqua;
+        &:hover,
+        &:active,
+        &:focus,
+        &.active {
+            padding:0 10px;
+            color:@white;
+            background:@brand-aqua;
+        }
+    }
+    .item {
+        border:1px solid @brand-aqua!important;
+        border-right:none!important;
+        height:100%;
+        border-radius:0!important;
+        box-shadow:none;
+        width:40px;
+        padding:0;
+        text-align:center;
+        line-height:40px;
+        display:block;
+        background:none;
+        padding:0 10px;
+        &:before {
+            display:none;
+        }
+        &:last-child {
+            border-right:1px solid @brand-aqua!important;
+        }
+        .icon {
+            margin:0;
+        }
+        .right.icon {
+            float:none!important;
+        }
+        &.item-label {
+            width:auto; 
+            margin:0 15px;  
+            border:1px solid @brand-aqua!important;   
+            &:last-child {
+                margin-right:0;
+            }
+        }
+        &.item-title {
+            color:@gray;
+            width:auto;
+            border:none!important;
+        }
+    }
+    &.pagination-grey {
+        a.item {
+            color:@gray;
+            &:hover,
+            &:active,
+            &:focus,
+            &.active {
+                color:@white;
+                background:@gray;
+            }
+        }
+        .item {
+            border:1px solid @gray!important;
+            border-right:none!important;
+            &:last-child {
+                border-right:1px solid @gray!important;
+            }
+            &.item-label {
+                border:1px solid @gray!important;   
+
+            }
+            &.item-title {
+                color:@white;
+            }
+        }
+
+    }
+}

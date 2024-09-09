@@ -1,0 +1,58 @@
+<h1>Renewals - Billing Day {{ __SELF__.billingDay }} </h1>
+<div id="renewal-list">
+	<ul>
+		{% for renewal in __SELF__.todayBilling %}
+			<li>{{ renewal.name }}</li>
+		{% endfor %}
+	</ul>
+</div>
+<button class="ui primary button stretch square item right" id="process">Process Manually</button>
+{% put scripts %}
+	<script>
+		
+		  $('#process').on('click', function() {
+
+		  	$('#renewal-list').html('processing');
+		  	
+		    $.request('onRunBilling', 
+		    {
+
+		        success: function(data) 
+		        {
+					$('#renewal-list').html('Succesfull. Check Xero To Confirm.');
+		        },
+		        error: function(data)
+		        {
+					$('#renewal-list').html('Error. Not processed.');
+		          	throw data;
+		        },
+		    });
+		  })
+		;
+	</script>
+{% endput %}
+<button class="ui primary button stretch square item right" id="testtenure">Test Tenure</button>
+{% put scripts %}
+	<script>
+		
+		  $('#testtenure').on('click', function() {
+
+		  	$('#renewal-list').html('processing');
+		  	
+		    $.request('onSendTenure', 
+		    {
+
+		        success: function(data) 
+		        {
+					$('#renewal-list').html('Tenure Emails Send.');
+		        },
+		        error: function(data)
+		        {
+					$('#renewal-list').html('Error. Not processed.');
+		          	throw data;
+		        },
+		    });
+		  })
+		;
+	</script>
+{% endput %}

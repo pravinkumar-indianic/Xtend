@@ -1,0 +1,250 @@
+fields:
+  supplier:
+    label: Supplier
+    type: section
+    comment: Manage the supplier information in the CSV
+  import_supplier:
+      label: 'Override / Set Supplier For Import'
+      emptyOption: -- Use Import CSV Values --
+      type: dropdown
+      span: full
+
+  owner:
+    label: Owners
+    type: section
+    comment: Manage the owners information for this import
+  owner_override:
+    label: Override CSV Owner Column With Selection
+    type: switch
+    comment: Leaving 'Off' will append selections
+    default: false    
+  owner_permission_access:
+      label: 'Override Owner Access Type - The Most Specific Selection Will Be Used'
+      emptyOption: -- Use Import CSV Values --
+      type: checkboxlist
+      span: full
+      options:
+        organizations: Organizations     
+        programs: Programs    
+        regions: Region 
+        teams: Team                     
+        users: User
+  owner_organization_permission_id:
+      label: 'Override Owner Organizations'
+      type: checkboxlist
+      dependsOn: owner_permission_access
+      span: full
+      hidden: true
+  owner_program_permission_id:
+      label: 'Override Owner Programs'
+      type: checkboxlist
+      dependsOn: [owner_permission_access, owner_organization_permission_id]
+      span: full
+      hidden: true   
+  owner_region_permission_id:
+      label: 'Override Owner Regions'
+      type: checkboxlist
+      dependsOn: [owner_permission_access, owner_program_permission_id]
+      span: full
+      hidden: true           
+  owner_team_permission_id:
+      label: 'Override Owner Teams'
+      type: checkboxlist
+      dependsOn: [owner_permission_access, owner_region_permission_id]
+      span: full
+      hidden: true            
+  owner_user_permission_id:
+      label: 'Override Owner Users'
+      type: checkboxlist
+      dependsOn: [owner_permission_access, owner_team_permission_id]
+      span: full
+      hidden: true
+
+  viewability:
+    label: Viewability
+    type: section
+    comment: Manage the viewability information for this import
+  viewability_override:
+    label: Override CSV Viewability Column With Selection
+    type: switch
+    comment: Leaving 'Off' will append selections
+    default: false
+  viewability_permission_type:
+      label: 'Set The Viewability Access Type'
+      type: dropdown
+      span: full
+      options:
+        cascade: Cascade     
+        ascend: Ascend    
+        direct: Direct   
+  viewability_permission_access:
+      label: 'Override / Append Viewability Access Type - The Most Specific Selection Will Be Used'
+      emptyOption: -- Use Import CSV Values --
+      type: checkboxlist
+      span: full
+      options:
+        organizations: Organizations     
+        programs: Programs    
+        regions: Region 
+        teams: Team                     
+        users: User
+  viewability_organization_permission_id:
+      label: 'Override Viewability Organizations'
+      type: checkboxlist
+      dependsOn: viewability_permission_access
+      span: full
+      hidden: true        
+  viewability_program_permission_id:
+      label: 'Override Viewability Programs'
+      type: checkboxlist
+      dependsOn: [viewability_permission_access, viewability_organization_permission_id]
+      span: full
+      hidden: true   
+  viewability_region_permission_id:
+      label: 'Override Viewability Regions'
+      type: checkboxlist
+      dependsOn: [viewability_permission_access, viewability_program_permission_id]
+      span: full
+      hidden: true           
+  viewability_team_permission_id:
+      label: 'Override Viewability Teams'
+      type: checkboxlist
+      dependsOn: [viewability_permission_access, viewability_region_permission_id]
+      span: full
+      hidden: true            
+  viewability_user_permission_id:
+      label: 'Override Viewability Users'
+      type: checkboxlist
+      dependsOn: [viewability_permission_access, viewability_team_permission_id]
+      span: full
+      hidden: true
+
+  wishlist:
+    label: In Wishlist
+    type: section
+    comment: Manage the Wishlist information for this import
+  wishlist_override:
+    label: Override CSV Wishlist Column With Selection
+    type: switch
+    comment: Leaving 'Off' will append selections
+    default: false
+  wishlist_permission_access:
+      label: 'Override / Append Wishlist Access Type - The Most Specific Selection Will Be Used'
+      emptyOption: -- Use Import CSV Values --
+      type: checkboxlist
+      span: full
+      options:
+        organizations: Organizations     
+        programs: Programs    
+        regions: Region 
+        teams: Team                     
+        users: User
+  wishlist_organization_permission_id:
+      label: 'Override Wishlist Organizations'
+      type: checkboxlist
+      dependsOn: wishlist_permission_access
+      span: full
+      hidden: true        
+  wishlist_program_permission_id:
+      label: 'Override Wishlist Programs'
+      type: checkboxlist
+      dependsOn: [wishlist_permission_access, wishlist_organization_permission_id]
+      span: full
+      hidden: true   
+  wishlist_region_permission_id:
+      label: 'Override Wishlist Regions'
+      type: checkboxlist
+      dependsOn: [wishlist_permission_access, wishlist_program_permission_id]
+      span: full
+      hidden: true           
+  wishlist_team_permission_id:
+      label: 'Override Wishlist Teams'
+      type: checkboxlist
+      dependsOn: [wishlist_permission_access, wishlist_region_permission_id]
+      span: full
+      hidden: true            
+  wishlist_user_permission_id:
+      label: 'Override Wishlist Users'
+      type: checkboxlist
+      dependsOn: [wishlist_permission_access, wishlist_team_permission_id]
+      span: full
+      hidden: true
+
+  cart:
+    label: In Cart
+    type: section
+    comment: Manage the Cart information for this import
+  cart_override:
+    label: Override CSV Cart Column With Selection
+    type: switch
+    comment: Leaving 'Off' will append selections
+    default: false
+  cart_permission_access:
+      label: 'Override / Append Cart Access Type - The Most Specific Selection Will Be Used'
+      emptyOption: -- Use Import CSV Values --
+      type: checkboxlist
+      span: full
+      options:
+        organizations: Organizations     
+        programs: Programs    
+        regions: Region 
+        teams: Team                     
+        users: User
+  cart_organization_permission_id:
+      label: 'Override Cart Organizations'
+      type: checkboxlist
+      dependsOn: cart_permission_access
+      span: full
+      hidden: true        
+  cart_program_permission_id:
+      label: 'Override Cart Programs'
+      type: checkboxlist
+      dependsOn: [cart_permission_access, cart_organization_permission_id]
+      span: full
+      hidden: true   
+  cart_region_permission_id:
+      label: 'Override Cart Regions'
+      type: checkboxlist
+      dependsOn: [cart_permission_access, cart_program_permission_id]
+      span: full
+      hidden: true           
+  cart_team_permission_id:
+      label: 'Override Cart Teams'
+      type: checkboxlist
+      dependsOn: [cart_permission_access, cart_region_permission_id]
+      span: full
+      hidden: true            
+  cart_user_permission_id:
+      label: 'Override Cart Users'
+      type: checkboxlist
+      dependsOn: [cart_permission_access, cart_team_permission_id]
+      span: full
+      hidden: true
+
+  categories:
+    label: Categories
+    type: section
+    comment: Manage the Category information for this import      
+  category_override:
+    label: Override CSV Category Column With Selection
+    type: switch
+    comment: Leaving 'Off' will append selections
+    default: false
+  category_type:
+      label: 'Select Cateogries'
+      type: checkboxlist
+      span: full
+
+  tags:
+    label: Tags
+    type: section
+    comment: Manage the Tag information for this import      
+  tag_override:
+    label: Override CSV Tag Column With Selection
+    type: switch
+    comment: Leaving 'Off' will append selections
+    default: false
+  tag_type:
+      label: 'Select Tags'
+      type: checkboxlist
+      span: full      

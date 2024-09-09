@@ -1,0 +1,334 @@
+<div class="ui container">
+    <div class="ui grid">
+        {% if access.user.today_birth_date == true %}
+        <div class="ui sixteen wide column dash-hero" style="text-align:center;margin-bottom:50px;">
+            <h1 style="color:{{ access.program.primary_color }};font-size:2.5em;">{{ access.program.name }} wanted to wish you a Happy Birthday!!</h1>
+        </div>
+        {% endif %}
+        <div class="ui sixteen wide column dash-hero">
+            {% if access.program.slider_images.count() >= 1 %}
+            <div class="full-screen-feature-image">
+                <div class="slick_header" style="display:none;">
+                    {% for image in access.program.slider_images %}
+                    <div><img src="{{ image.path }}" style="width:100%;height:auto"></div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if access.program.feature_image_mobile %}
+            <div class="hero mobile-feature-image" >
+                <img src="{{ access.program.feature_image_mobile.path  }}" style="width:100%;height:auto">
+            </div>
+            {% endif %}
+
+            {% put scripts %}
+
+
+            <script>
+
+              $(document).ready(function(){
+
+                $('.slick_header').show();
+                $('.slick_header').slick({autoplay:true,autoplaySpeed: 3000,arrows:false});
+
+              });
+
+            </script>
+
+            {% endput %}
+
+            {% else %}
+            {% if access.program.feature_image %}
+            <div class="hero full-screen-feature-image" >
+                <img src="{{ access.program.feature_image.path  }}" style="width:100%;height:auto" >
+            </div>
+
+            {% else %}
+            {% if access.managedprograms != null %}
+            <div class="hero-empty-desktop">
+                <a href="/program-settings/default">Click Here To Upload A Desktop Feature Image For This Program.</a>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% if access.program.feature_image_mobile %}
+            <div class="hero mobile-feature-image" >
+                <img src="{{ access.program.feature_image_mobile.path  }}" style="width:100%;height:auto">
+            </div>
+            {% else %}
+            {% if access.managedprograms != null %}
+            <div class="hero-empty-mobile">
+                <a href="/program-settings/default">Click Here To Upload A Mobile Feature Image For This Program.</a>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endif %}
+        </div>
+
+        <div class="ui sixteen wide tablet sixteen wide computer column">
+            {% component 'SpinTheWin' %}
+        </div>
+
+        {% if access.program.module_allow_results == true and access.program.resultsPosition == 'top' %}
+
+        {% component 'ResultsDashboard' %}
+
+        {% endif %}
+
+        {% if access.program.module_allow_user_profile == true %}
+
+        <div class="ui sixteen wide tablet four wide computer column dash-profile">
+
+            <!--  PROFILE -->
+            <!-- Taken from /components/myprofile/myprofile.htm:-->
+            <div class="six wide tablet four wide computer column">
+                <div class="ui segment profile-summary">
+
+                    <div class="userlogin">
+                        <div class="profile-summary-image">
+                            {% if access.user.avatar %}
+                            <img src="{{ access.user.avatar.thumb(150 , 150, 'crop') }}" class="ui small circular image avatar">
+                            {% else %}
+                            <img src="{{ 'assets/img/avatar/people/Enid.png'|theme }}" class="ui small circular image avatar">
+                            {% endif %}
+                            <!-- <a href="" class="profile-summary-edit">Edit</a> -->
+                        </div>
+
+                        <div class="profile-summary-description">
+                            <p>You are logged in as: <br>
+                                <a href="/profile/{{ access.user.slug }}">{% if access.program.use_business_names == true %}{{ access.user.business_name }}{% else %}{{ access.user.full_name }}{% endif %}</a><br>
+                                <a data-request="onLogout" data-request-data="redirect: '/login'" class="secondary underlined">Sign out</a>
+                            </p>
+                        </div>
+
+                        <div class="ui vertical text menu profile-summary-account-nav">
+                            <a class="item secondary"  href="/profile/{{ access.user.slug }}">
+                                <span>My Account</span>
+                            </a>
+                        </div>
+
+                        <div class="profile-summary-teams">
+
+                            {% if access.program.module_allow_users == false %}
+
+                            <div style="margin-bottom:20px;">
+                                <span class="ui label side-bar-label">{{ access.team.name|length > 50 ? access.team.name|slice(0, 50) ~ '...' : access.team.name  }}</span>
+                            </div>
+                            {#
+                            <div>
+                                <span class="ui label side-bar-label">{{ access.region.name|length > 50 ? access.region.name|slice(0, 50) ~ '...' : access.region.name  }}</span>
+                            </div>
+                            #}
+                            <div style="margin-bottom:20px;">
+                                <span class="ui label side-bar-label">{{ access.program.name|length > 50 ? access.program.name|slice(0, 50) ~ '...' : access.program.name  }}</span>
+                            </div>
+
+
+
+                            {% else %}
+
+                            <div>
+                                <a href="/profiles/default/{{access.team.slug}}" class="ui label side-bar-label"><span>{{ access.team.name|length > 15 ? access.team.name|slice(0, 15) ~ '...' : access.team.name  }}</span></a>
+                            </div>
+                            {#
+                            <div>
+                                <a href="/profiles/{{access.region.slug}}/default" class="ui label side-bar-label"><span>{{ access.region.name|length > 15 ? access.region.name|slice(0, 15) ~ '...' : access.region.name  }}</span></a>
+                            </div>
+                            #}
+                            <div>
+                                <a href="/profiles/default/default" class="ui label side-bar-label"><span>{{ access.program.name|length > 15 ? access.program.name|slice(0, 15) ~ '...' : access.program.name  }}</span></a>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <!--div style="padding-top: 20px;">My Point:</div><div><h3>{{mypoint}}</h3></div>-->
+                    </div>
+
+                    <div class="ui vertical secondary menu profile-menu">
+                        <a class="item" href="/rewards">Rewards</a>
+                        <!--<a class="item active"><span>Suppliers</span></a>-->
+                        {% if access.program.module_allow_posts == true %}
+                        <a class="item" href="/posts"><span>Posts</span></a>
+                        {% endif %}
+                        {% if access.program.module_allow_awards == true %}
+                        <a class="item" href="/awards"><span>Awards</span></a>
+                        {% endif %}
+                        <!--<a class="item" href="/results">Results</a>-->
+                    </div>
+
+                </div>
+            </div>
+            <!-- /Taken from /components/myprofile/myprofile.htm:-->
+            <!-- END: PROFILE -->
+        </div>
+        {% endif %}
+
+        {% if (access.program.module_allow_results == true and access.program.id == 2) %}
+
+        <div class="ui sixteen wide tablet twelve wide computer column">
+            <div class="ui sixteen wide column toyota-results">
+                <div class="ui grid">
+                    <div class="ui sixteen wide column">
+                        <div class="ui segment">
+                            <div class="content">
+                                <div class="header"><h1>The results for Aftersales Elite 2019 have now closed. Await an invitation once the achievers have been finalised in Q1 2020. Keep your eyes peeled for the new Aftersales Elite website in 2020.</h1></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+        {% if access.program.display_results_elite == true or access.user.id == 3068  %}
+
+        <div class="ui sixteen wide tablet twelve wide computer column">
+            {% component 'ResultsDetail' %}
+        </div>
+
+        {% endif %}
+
+
+        <!-- AWARD -->
+
+        {% if access.program.module_allow_awards == true %}
+
+        <div class="ui sixteen wide tablet {% if access.program.module_allow_user_profile == true %}twelve{% else %}sixteen{% endif %} wide computer column dash-awards">
+            {% component 'AwardsDashboard' %}
+            {% if access.program.module_allow_rewards == true %}
+
+            <div class="ui sixteen wide tablet {% if access.program.module_allow_user_profile == true %}five{% else %}eight{% endif %} wide computer column dash-points">
+                <div class="ui segment" >
+                    <h2 class="ui header sixteen wide column">Your {{ access.program.points_name }}</h2>
+                    {% component 'Gauge' %}
+                </div>
+            </div>
+
+            {% endif %}
+        </div>
+
+        {% endif %}
+
+        {% if access.program.module_allow_activity_feed == true and access.program.id != 78 %}
+
+        <div class="ui sixteen wide tablet {% if access.program.module_allow_user_profile == true and access.program.module_allow_awards == false %}twelve{% else %}eight{%endif%} wide computer column dash-programs">
+
+            {% component 'ActivityFeedDashboard' %}
+
+        </div>
+
+        {% endif %}
+        <!-- CURRENT PROGRAM -->
+        <!--
+                    <div class="sixteen wide tablet eight wide computer column dash-programs">
+                        <div class="ui segment">
+                            <div class="ui grid">
+
+                                <h2 class="ui header sixteen wide column">Current Program</h2>
+
+                                <div class="ui sixteen wide column">
+                                    {% if access.program.feature_image %}
+                                    <div class="program" style="background-image:url({{ access.program.feature_image.path}});"></div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        -->
+        <!-- END: CURRENT PROGRAM -->
+
+        {% if access.program.module_allow_posts == true %}
+        <div class="ui sixteen wide tablet {% if access.user.id == 3068 or access.program.id == 2 or access.program.module_allow_user_profile == false and access.program.module_allow_activity_feed == false and access.program.module_allow_awards == false %}sixteen{% elseif access.program.module_allow_activity_feed == false and access.program.module_allow_awards == false or access.program.id == 78  %}twelve{% elseif access.program.module_allow_activity_feed == false %}sixteen{% else %}eight{% endif %} wide computer column {% if access.program.module_allow_activity_feed == true and access.program.module_allow_rewards == true and access.program.module_allow_activity_feed == true %}dash-post{% endif %}">
+
+            {% component 'PostsListDashboard' %}
+        </div>
+        {% endif %}
+
+        {% if access.program.module_allow_activity_feed == true and access.program.id == 78 %}
+
+        <div class="ui sixteen wide tablet sixteen wide computer column dash-programs">
+
+            {% component 'ActivityFeedDashboard' %}
+
+        </div>
+
+        {% endif %}
+
+        {% if access.program.module_allow_program_tools == true %}
+        <div class="ui sixteen wide tablet {% if access.program.module_allow_user_profile == false and access.program.module_allow_activity_feed == false and access.program.module_allow_awards == false  %}sixteen{% elseif access.program.module_allow_activity_feed == false
+	and access.program.module_allow_awards == false
+	and access.program.module_allow_posts == false %}twelve{% else %}sixteen{% endif %} wide computer column">
+            {% component 'ProgramToolsDashboard' %}
+        </div>
+        {% endif %}
+
+        {% if access.program.module_allow_rewards == true %}
+
+        <div class="ui sixteen wide tablet sixteen wide computer column dash-programs">
+
+            {% component 'WishlistDashboard' %}
+
+        </div>
+
+        {% endif %}
+
+        {% if access.program.module_allow_results == true and access.program.resultsPosition == 'standard' %}
+
+        {% component 'ResultsDashboard' %}
+
+        {% endif %}
+
+
+
+        {% if access.program.module_allow_rewards == true %}
+
+        {% if access.program.id == 11 %}
+
+        {% component 'RewardsCoverFlow' %}
+
+        {% else %}
+
+
+
+        {% endif %}
+
+        {% component 'ContentBlock2' %}
+
+        {% endif %}
+
+
+        {% if access.program.module_allow_users == true %}
+
+        <h2 class="ui header center aligned sixteen wide column">
+            Meet Your Colleagues
+            <div class="sub header">Contact and reward your work mates</div>
+        </h2>
+
+        {% component 'ProfilesDashboard' %}
+
+        <div class="ui center aligned sixteen wide column">
+            <a class="cta-link" href="/profiles/default/default/">Click here to find more colleagues</a>
+        </div>
+
+        {% endif %}
+
+        <!-- LATEST POSTS -->
+
+        <!-- END: LATEST POSTS -->
+
+        <!-- WISHLIST AND SHOPPING BAG -->
+
+        {% if access.program.module_allow_rewards == true %}
+
+        {% if access.program.id == 11 %}
+
+
+        {% else %}
+
+        {% component 'RewardsCoverFlow' %}
+
+        {% endif %}
+
+        {% endif %}
+
+    </div></div>
+<!-- END: WISHLIST AND SHOPPING BAG -->

@@ -1,0 +1,103 @@
+tabs:    
+    defaultTab: Team Details
+    fields:
+        name:
+            label: 'codengine.awardbank::lang.awardbank.teamname'
+            oc.commentPosition: ''
+            span: full
+            type: text
+            tab: Team Details
+        description:
+            label: 'codengine.awardbank::lang.awardbank.teamdescription'
+            size: large
+            oc.commentPosition: ''
+            span: full
+            type: richeditor
+            tab: Team Details
+        primary_color:
+            label: 'codengine.awardbank::lang.awardbank.teamprimarycolor'
+            oc.commentPosition: ''
+            span: auto
+            type: colorpicker
+            tab: Team Details
+        secondary_color:
+            label: 'codengine.awardbank::lang.awardbank.teamsecondarycolor'
+            oc.commentPosition: ''
+            span: auto
+            type: colorpicker
+            tab: Team Details
+        external_reference:
+            label: 'External Reference'
+            type: text
+            searchable: true
+            sortable: true
+        parent:
+            label: Parent
+            type: partial
+            path: field_parent
+            tab: Parent
+        program:
+            label: Program
+            type: partial
+            path: field_program
+            tab: Program
+        billingcontact:
+            label: Billing Contact
+            type: partial
+            path: field_billingcontact
+            tab: Billing Contact           
+        users:
+            label: Users
+            type: partial
+            path: field_users
+            tab: Users
+        managers:
+            label: Managers
+            type: partial
+            path: field_managers
+            tab: Managers   
+        pointsledgers:
+            label: Points Ledgers
+            type: partial
+            path: field_pointsledgers
+            tab: Points Ledgers
+        nominations:
+            label: Nominations
+            type: partial
+            path: field_nominations
+            tab: Nominations
+        results:
+            label: Results
+            type: partial
+            path: field_results
+            tab: Results
+        feature_image:
+            label: 'codengine.awardbank::lang.awardbank.supplierfeatureimage'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: 260
+            tab: Image Management
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto
+        images:
+            label: 'codengine.awardbank::lang.awardbank.supplierimages'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: 260
+            tab: Image Management
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto            

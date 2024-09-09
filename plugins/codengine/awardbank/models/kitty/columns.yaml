@@ -1,0 +1,25 @@
+columns:
+    id:
+        label: id
+        type: number
+    transaction_id:
+        label: transaction_id
+        type: number
+        searchable: true
+        sortable: true
+    credit_id:
+        label: credit_id
+        type: number
+        searchable: true
+        sortable: true
+    spent:
+        label: spent
+        type: text
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        sortable: true
+    updated_at:
+        label: updated_at
+        type: datetime

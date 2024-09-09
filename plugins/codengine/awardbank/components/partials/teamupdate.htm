@@ -1,0 +1,7 @@
+<div class="ui segment">
+    <h3>{{ team.name }}</h3>
+    <form class="ui form" id="team-form">
+    	{% partial '@teamform' team = team otherteams = otherteams%}
+    	<button type="submit" class="ui primary submit button">Update team</button>
+	</form>
+</div>

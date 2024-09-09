@@ -1,0 +1,170 @@
+<div class="ui segment">
+
+	{% if __SELF__.program %}
+
+	      <a class="ui large teal button square right" {% if __SELF__.program.primary_color %} style="background-color:{{ __SELF__.program.primary_color }}; border-color:{{ __SELF__.program.primary_color }}; margin-bottom:40px;" 
+	      {% else %} style="margin-bottom:40px;" {% endif %} href="/login/{{__SELF__.slug }}" >
+	      	I have an account. Take me back to login.
+	      </a>
+
+		<img src="{{ __SELF__.program.feature_image.path() }}" style="width:100%;">
+
+	    <form class="ui form" id="registeruserform" style="margin-top:20px;">
+	      <div class="field">
+	          <label>E-mail:</label>
+	          <div class="ui left icon input">
+	            <i class="mail icon"></i>
+	            <input name="email" placeholder="Enter your email" type="email" required>
+	          </div>
+	      </div>	
+	      <div class="field">
+	          <label>First Name:</label>
+	          <div class="ui left icon input">
+	            <i class="user icon"></i>
+	            <input name="firstname" placeholder="Enter your first name" type="text" required>
+	          </div>
+	      </div>	
+	      <div class="field">
+	          <label>Last Name:</label>
+	          <div class="ui left icon input">
+	            <i class="user icon"></i>
+	            <input name="surname" placeholder="Enter your surname" type="text" required>
+	          </div>
+	      </div>	
+	      <div class="field">
+	          <label>Contact Phone Number:</label>
+	          <div class="ui left icon input">
+	            <i class="phone icon"></i>
+	            <input name="phonenumber" placeholder="Enter your Contact Number" type="text" required>
+	          </div>
+	      </div>	
+	      <div class="field">
+	          <label>Password:</label>
+	          <div class="ui left icon input">
+	            <i class="lock icon"></i>
+	            <input name="password" placeholder="Enter your password" type="password" required>
+	          </div>
+	      </div>	
+	      <div class="field">
+	          <label>Confirm Password:</label>
+	          <div class="ui left icon input">
+	            <i class="lock icon"></i>
+	            <input name="password" placeholder="Enter your password" type="password" required>
+	          </div>
+	      </div>
+	      <div class="field">
+	          <label>Company Position / Title:</label>
+	          <div class="ui left icon input">
+	            <i class="user icon"></i>
+	            <input name="position" placeholder="Enter your position" type="text" required>
+	          </div>
+	      </div>	
+	      <div class="field">
+	          <label>{{ __SELF__.program.region_label }}:</label>
+	          <div class="ui search region_list"  style="text-align:left;">
+				  <div class="ui icon input">
+				    <input class="prompt" type="text" placeholder="Search results..." name="regionname" autocomplete="off" required>
+				    <i class="search icon"></i>
+				  </div>
+			  	<div class="results"></div>
+			</div>
+	      </div>
+	      <div class="field">
+	          <label>{{ __SELF__.program.team_label }}:</label>
+	          <div class="ui search team_list" style="text-align:left;">
+				  <div class="ui icon input">
+				    <input class="prompt" type="text" placeholder="Search results..." name="teamname" autocomplete="off" required>
+				    <i class="search icon"></i>
+				  </div>
+			  	<div class="results"></div>
+			</div>
+	      </div>	
+	      {% for question in __SELF__.program.register_form_questions %}
+		      <div class="field">
+		          <label>{{ question['questiondescription'] }}</label>
+		          <div class="ui input">
+		            <input name="{{ question['questiondescription'] }}" type="text" required>
+		          </div>
+		      </div>
+	      {% endfor %}
+	      <div class="field">
+	          <label>T&Cs:</label>
+	          <div class="ui left icon input">
+	          	<textarea readonly>{{ __SELF__.program.program_t_and_c }} </textarea>
+					
+	          </div>
+	      </div>	
+	      <div class="field">
+	          <label>I Accept the Terms And Conditions Above</label>
+	          <div class="ui left icon input">
+	       		<select name="tandcaccept" required>
+	       				<option value='1'>Accept</option>
+	       				<option value='0'>Decline</option>
+	   			</select>
+	          </div>
+	      </div>	
+	      <button class="ui fluid large teal square submit button" type="submit" {% if __SELF__.program.primary_color %} style="background-color:{{ __SELF__.program.primary_color }}" {% endif %}>
+	        <i class="unlock alternate icon"></i>
+	        Register
+	      </button>
+	  </form>
+
+	  {% put scripts %}
+
+	  	<script type="text/javascript">
+
+			var contentregions = [
+				{% for region in __SELF__.regions %}
+			  		{ title: '{{region.name}}' },
+		  		{% endfor %}
+			];
+
+			var contentteams = [
+				{% for team in __SELF__.teams %}
+			  		{ title: '{{team.name}}' },
+		  		{% endfor %}
+			];
+
+	  		$('.ui.region_list')
+			  .search({
+			    source: contentregions,
+			    showNoResults: false,
+			  })
+			;
+
+	  		$('.ui.team_list')
+			  .search({
+			    source: contentteams,
+			    showNoResults: false,
+			  })
+			;
+
+		    $('#registeruserform').submit(function(e) {
+
+				e.preventDefault();
+
+	       	 	$('#registeruserform').request('{{__SELF__}}::onCreateRegisteredUser', {
+
+			        success: function(data) 
+			        {
+
+	       	 			window.location.href = "/profile/"+data['slug'];
+
+	       	 		},
+
+       	 		});
+
+				return false;
+
+			});
+
+	  	</script>
+
+
+	  {% endput %}
+  {% else %}
+
+  	<h4>No Program Selected To Register For Or Registrations Not Available For This Program</h4>
+
+  {% endif %}
+</div>

@@ -1,0 +1,16 @@
+<div class="ui segment">
+    <div class="ui one column stackable grid">
+    	<div class="column">
+		    {% if billingcontact %}
+				<form class="ui form" id="buy-points">
+			    	{% partial '@transaction' billingcontact = billingcontact program = user.currentProgram value = value dollarvalue = dollarvalue limit = limit %}
+					<button type="submit" class="ui primary submit button" id="update_billing_details">Click here to purchase points.</button>
+			    </form>
+		    {% endif %}
+	    </div>
+        <div class="column">
+			<p>Before You Can Purchase Points, You Must Provide A Billing Contact & Card To Use For Your Account</p>
+			<a href="/myprofile/billingdetails" class="ui button secondary square" id="payment_update">Click here if you wish to update your payment method</a>
+		</div>
+	</div>
+</div>

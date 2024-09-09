@@ -1,0 +1,7 @@
+<div class="ui grid">
+	{% for award in awards %}
+		<div class="sixteen wide column">
+			{% partial '@awardbanner' award = award %}
+		</div>
+	{% endfor %}
+</div>

@@ -1,0 +1,16 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    access_names:
+        label: 'Access Names'
+        emptyOption: 'No Permissions Of The Type Exist'  
+        searchable: false
+        sortable: true        
+    access_total_points:
+        label: 'Available Points'
+        emptyOption: 'No Permissions Of The Type Exist'  
+        searchable: false
+        sortable: true           

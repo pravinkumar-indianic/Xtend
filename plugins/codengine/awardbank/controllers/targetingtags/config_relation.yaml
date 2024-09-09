@@ -1,0 +1,31 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+users:
+    label: Users
+    modelClass: Rainlab\User\Models\User
+    view:
+        toolbarButtons: add|remove          
+        form: $/codengine/awardbank/models/order/userfields.yaml
+        list: $/codengine/awardbank/models/order/usercolumns.yaml
+        showSearch: true    
+    manage:
+        form: $/codengine/awardbank/models/order/userfields.yaml
+        list: $/codengine/awardbank/models/order/usercolumns.yaml
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true     
+posts:
+    label: Posts
+    modelClass: Codengine\Awardbank\Models\Post    
+    view:
+        toolbarButtons: add|create|remove          
+        form: $/codengine/awardbank/models/post/fields-relation.yaml
+        list: $/codengine/awardbank/models/post/columns.yaml
+        showSearch: true    
+    manage:
+        form: $/codengine/awardbank/models/post/fields-relation.yaml
+        list: $/codengine/awardbank/models/post/columns.yaml
+        emptyMessage: backend::lang.list.no_records        
+        showSearch: true     
+

@@ -1,0 +1,10 @@
+name: PermissionAccessAllocations
+form: $/codengine/awardbank/models/permissionaccessallocation/fields.yaml
+modelClass: Codengine\Awardbank\Models\PermissionAccessAllocation
+defaultRedirect: codengine/awardbank/permissionaccessallocations
+create:
+    redirect: 'codengine/awardbank/permissionaccessallocations/update/:id'
+    redirectClose: codengine/awardbank/permissionaccessallocations
+update:
+    redirect: codengine/awardbank/permissionaccessallocations
+    redirectClose: codengine/awardbank/permissionaccessallocations

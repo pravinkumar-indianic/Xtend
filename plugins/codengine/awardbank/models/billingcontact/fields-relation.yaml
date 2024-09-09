@@ -1,0 +1,89 @@
+fields:
+    xero_id:
+        label: Xero ID
+        type: text
+        readOnly: true 
+    accountnumber:
+        label: Account Number
+        type: number
+        readOnly: true 
+    contactstatus:
+        label: Contact Status
+        type: text
+        readOnly: true 
+    name:
+        label: Full Name
+        type: text
+    firstname:
+        label: First Name
+        type: text
+    lastname:
+        label: Last Name
+        type: text
+    emailaddress:
+        label: E-mail Address
+        type: text
+    defaultcurrent:
+        label: Default Curent
+        type: text
+        readOnly: true 
+    trackingcategoryname:
+        label: Tracking Category Name
+        type: text
+        readOnly: true 
+    trackingcategoryoptions:
+        label: Tracking Category Options
+        type: text
+        readOnly: true 
+    taxnumber:
+        label: Tax Number
+        type: text
+        readOnly: true 
+    is_supplier:
+        label: Is Supplier
+        type: text
+        readOnly: true 
+    is_customer:
+        label: Is Customer
+        type: text
+        readOnly: true 
+    default_currency:
+        label: Default Curreny
+        type: text
+        readOnly: true 
+    sales_default_account_code:
+        label: Sales Default Account Code
+        type: text
+        readOnly: true 
+    purchase_default_account_code:
+        label: Purchase Default Account Code
+        type: text
+        readOnly: true 
+    purchase_tracking_categories:
+        label: Purchase Tracking Categories
+        type: text
+        readOnly: true 
+    tracking_category_name:
+        label: Tracking Category Name
+        type: text
+        readOnly: true 
+    tracking_option_name:
+        label: Tracking Option Name
+        type: text
+        readOnly: true 
+    payment_terms:
+        label: Payment Terms
+        type: text
+        readOnly: true 
+    contact_groups:
+        label: Contact Groups
+        type: text
+        readOnly: true 
+    website:
+        label: Website
+        type: text
+        readOnly: true 
+    branding_theme:
+        label: Branding Theme
+        type: text
+        readOnly: true 

@@ -1,0 +1,20 @@
+<?php $completeness_array = json_decode($model->completeness_array); ?>
+
+<?php if(!empty($completeness_array)): ?>
+    <div class="callout fade in callout-warning">
+        <button
+            type="button"
+            class="close"
+            data-dismiss="callout"
+            aria-hidden="true">&times;</button>
+        <div class="header">
+            <i class="icon-warning"></i>
+            <h3>Incomplete Areas</h3>
+        </div>
+        <div class="content">
+            <?php foreach($completeness_array as $completeness){ ?>
+                <p><?= $completeness; ?></p>
+            <?php } ?>
+        </div>
+    </div>
+<?php endif; ?>

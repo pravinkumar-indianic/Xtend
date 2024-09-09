@@ -1,0 +1,114 @@
+#spin-the-wheel-announcement-wrapper {
+    text-align: center;
+
+    .no-padding {
+        padding: 0;
+    }
+}
+
+#spin-the-wheel-wrapper {
+    display: none;
+
+    text{
+        font-family:Helvetica, Arial, sans-serif;
+        font-size:14px;
+        font-weight: bold;
+        pointer-events:none;
+        cursor: pointer;
+    }
+
+    #chart-wrapper {
+        #chart {
+            width: 450px;
+            height: 450px;
+            margin: 0 auto;
+
+            g.unavailable {
+                opacity: 0.3;
+            }
+        }
+
+        #chart-loading {
+            display: none;
+            position: absolute;
+            top: 140px;
+            left: 192px;
+            width: 200px;
+            height: 200px;
+            background: #000;
+            opacity: 0.8;
+            border-radius: 250px;
+
+            @media only screen and (max-width: @tablet-max) {
+                left: 230px;
+            }
+
+            span {
+                font-weight: bold;
+                font-size: 2rem;
+                color: white;
+                text-align: center;
+                display: block;
+                padding-top: 90px;
+            }
+        }
+    }
+
+    #content {
+        text-align: center;
+
+        .red {
+            color:red;
+        }
+
+        #close-button-wrapper {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        #spin-count {
+            p {
+                font-size: 2.65rem;
+            }
+        }
+
+        #price {
+            margin: 20px 0px;
+
+            &.price-details {
+                display: none;
+            }
+
+            div.you-won {
+                font-size: 2.1rem;
+                margin-top: 85px;
+            }
+
+            div.price-label {
+                h3 {
+                    font-size: 3rem;
+                    line-height: 3rem;
+                    margin: 20px 0;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                }
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 80px;
+                margin: 0px 0 20px 0;
+            }
+
+            div.claim {
+                font-size: 2rem;
+                margin: 40px 0 50px 0;
+            }
+
+            div.info {
+                small {
+                    font-size: 1.1rem
+                }
+            }
+        }
+    }
+}

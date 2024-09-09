@@ -1,0 +1,19 @@
+<div class="ui stackable grid">
+{% if criteria.target %}
+{% for target in criteria.target %}
+    <div class="sixteen wide tablet four wide computer column">
+        {{ target.start|date('M') }}
+    </div>
+    <div class="sixteen wide tablet four wide computer column">
+        {{ target.end|date('M') }}
+    </div>
+    <div class="sixteen wide tablet six wide computer column">
+        <strong>{{ target.target }}</strong>
+    </div>
+{% endfor %}
+{% else %}
+    <div class="sixteen wide tablet sixteen wide computer column">
+        <p>No Targets have been defined yet.</p>
+    </div>
+{% endif %}
+</div>

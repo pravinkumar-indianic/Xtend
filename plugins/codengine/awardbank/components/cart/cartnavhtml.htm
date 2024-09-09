@@ -1,0 +1,60 @@
+<div class="item">
+    <nav class="utlity-nav">
+        <a class="mobile-only" href="/cart">Cart</a>
+        <div class="ui dropdown top-cart" id="menucart">
+            <a><i class="in cart icon icon"></i> Cart </a>
+            <div class="ui small cart-count label circular primary">
+                {{ count }}
+            </div>                  
+            {% if count > 0 %}
+                <nav class="menu" id="cart-dropdown">
+                    <div class="ui divided items">
+                        {% for product in products %}
+                            {% partial '@cartnavproducthtml' product = product %}
+                        {% endfor %}
+                    </div>
+                    <div class="item">
+                        <h4>{{ count }} items</h4>
+                        <h4>Total: {{ ordertotal }} {{ points_name }}</h4> 
+                    </div>
+                    <div class="item">
+                        <a href="/ordercheckout" class="ui button secondary small">Checkout</a>
+                    </div>
+                </nav>
+            {% endif %}
+        </div>
+    </nav>
+</div>
+<div class="item simple-account" data-count="{{ count }}">
+    Your Account<br>
+    <span class="simple-account-number"><span class="simple-account-points">{{ myavailable }}</span> {{ points_name }}</span>
+</div>
+<a class="item simple-account" data-count="{{ count }}" href="/ordercheckout">
+    In Cart<br>
+    <span class="simple-account-number"><span class="simple-account-pending">{{ mypending }}</span> {{ points_name }}</span>
+</a>
+<div class="item">
+    <div class="ui dropdown account-dropdown">
+        <div class="simple-avatar">
+            <a  href="/myprofile/default">
+                <img class="ui circular image" 
+                {% if user.avatar %} 
+                    src="{{ user.avatar.thumb(35,35, 'crop') }}" 
+                {% else %} 
+                    src="{{ 'assets/img/avatar/people/Enid.png'|theme }}" 
+                {% endif %}>
+            </a>
+            <span id="inboxcount">
+                <a href="#" class="ui small label circular primary mailbox-count">{{ inboxcount }}</a>
+            </span>
+        </div>
+        <nav class="menu simple-avatar-menu" id="profiledropdown">
+            <div class="item">
+                <a href="/myprofile/default">My Profile</a>
+            </div>
+             <div class="item">
+                <a data-request="onLogout" data-request-data="redirect: '/login/{{ user.currentProgram.slug }}'">Sign out</a>
+            </div>
+        </nav>
+    </div>
+</div>

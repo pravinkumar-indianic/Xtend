@@ -1,0 +1,10 @@
+name: Transactions
+form: $/codengine/awardbank/models/transaction/fields.yaml
+modelClass: Codengine\Awardbank\Models\Transaction
+defaultRedirect: codengine/awardbank/transactions
+create:
+    redirect: 'codengine/awardbank/transactions/update/:id'
+    redirectClose: codengine/awardbank/transactions
+update:
+    redirect: codengine/awardbank/transactions
+    redirectClose: codengine/awardbank/transactions

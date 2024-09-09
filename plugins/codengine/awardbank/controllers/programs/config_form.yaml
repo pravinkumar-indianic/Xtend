@@ -1,0 +1,10 @@
+name: Programs
+form: $/codengine/awardbank/models/program/fields.yaml
+modelClass: Codengine\Awardbank\Models\Program
+defaultRedirect: codengine/awardbank/programs
+create:
+    redirect: 'codengine/awardbank/programs/update/:id'
+    redirectClose: codengine/awardbank/programs
+update:
+    redirect: codengine/awardbank/programs
+    redirectClose: codengine/awardbank/programs

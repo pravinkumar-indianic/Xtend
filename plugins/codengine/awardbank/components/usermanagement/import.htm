@@ -1,0 +1,30 @@
+{% if manager == true %}
+<div class="ui segment">
+    <h1>Import Users</h1>
+    <p>Upload your scorecard data here. (<a href="https://staging-upload-xtend.s3.ap-southeast-2.amazonaws.com/downloads/users_import_sample.csv" target="_blank">download example.csv</a>)</p>
+
+    <!-- AJAX enabled form -->
+    <form data-request="onImport"
+          data-request-files
+          data-request-update="'{{ __SELF__}}::importresults': '#importResults'"
+    >
+        <p>
+            <input type="file" name="file" accept=".csv">
+        </p>
+
+        <div class="ui toggle checkbox">
+            <label>Skip invalid records</label>
+            <input type="checkbox" name="skip_errors">
+        </div>
+
+        <!-- Action button -->
+        <p>
+            <button type="submit" class="ui button primary">Submit</button>
+        </p>
+
+    </form>
+
+    <!-- Result container -->
+    <div id="importResults"></div>
+</div>
+{% endif %}

@@ -1,0 +1,10 @@
+name: OrderLineItems
+form: $/codengine/awardbank/models/orderlineitem/fields.yaml
+modelClass: Codengine\Awardbank\Models\OrderLineitem
+defaultRedirect: codengine/awardbank/orderlineitems
+create:
+    redirect: 'codengine/awardbank/orderlineitems/update/:id'
+    redirectClose: codengine/awardbank/orderlineitems
+update:
+    redirect: codengine/awardbank/orderlineitems
+    redirectClose: codengine/awardbank/orderlineitems

@@ -1,0 +1,232 @@
+{% put scripts %}
+<script src="/themes/xtend/assets/js/d3.v3.min.js" charset="utf-8"></script>
+<script>
+    $(document).on('click', 'button#display-spin-the-wheel', function() {
+      $('#spin-the-wheel-announcement-wrapper').hide();
+      $('#spin-the-wheel-wrapper').show();
+    });
+
+    $(document).on('click', 'button#hide-spin-the-wheel', function() {
+      $('#spin-the-wheel-wrapper').hide();
+      $('#spin-the-wheel-announcement-wrapper').show();
+    });
+</script>
+
+<script>
+  var padding = {top: 0, right: 30, bottom: 0, left: 0},
+    w = 450 - padding.left - padding.right,
+    h = 450 - padding.top - padding.bottom,
+    r = Math.min(w, h) / 2,
+    rotation = 0,
+    oldrotation = 0,
+    picked = 100000,
+    color = d3.scale.category20();
+
+  var data = {{ json_data|raw }};
+  var available_spins_count = {{ available_spins_count }};
+  var svg = d3.select('#chart')
+    .append("svg")
+    .data([data])
+    .attr("width", w + padding.left + padding.right)
+    .attr("height", h + padding.top + padding.bottom);
+  var container = svg.append("g")
+    .attr("class", "chartholder")
+    .attr("transform", "translate(" + (w / 2 + padding.left) + "," + (h / 2 + padding.top) + ")");
+  var vis = container
+    .append("g");
+
+  var pie = d3.layout.pie().sort(null).value(function (d) {
+    return 1;
+  });
+  // declare an arc generator function
+  var arc = d3.svg.arc().outerRadius(r);
+  // select paths, use arc generator to draw
+  var arcs = vis.selectAll("g.slice")
+    .data(pie)
+    .enter()
+    .append("g")
+    .attr("class", "slice")
+    .attr("class", function (d, i) {
+      if (!data[i].available) {
+        return "unavailable";
+      }
+    });
+
+  arcs.append("path")
+    .attr("fill", function (d, i) {
+      let colorIndex = i % 5;
+      const customColors = [{{ prize_colors|raw }}];
+      if (data[i].available) {
+        return '#' + customColors[colorIndex]; //color(i);
+      } else {
+        return '#bdbec0';
+      }
+    })
+    .attr("d", function (d) {
+      return arc(d);
+    });
+
+  // add the text
+  arcs.append("text").attr("transform", function (d) {
+    d.innerRadius = 0;
+    d.outerRadius = r;
+    d.angle = (d.startAngle + d.endAngle) / 2;
+    return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")translate(" + (d.outerRadius - 10) + ")";
+  })
+    .attr("text-anchor", "end")
+    .text(function (d, i) {
+      return data[i].label;
+    });
+  container.on("click", spin);
+
+  function spin() {
+    if (available_spins_count > 0) {
+      container.on("click", null);
+
+      getResultAndAnimate();
+    }
+  }
+
+  async function getResultAndAnimate() {
+    $('#chart-loading').show();
+    await getResultAjax().then((response) => {
+      let resultResponse = JSON.parse(response);
+      if (resultResponse.result || resultResponse.result == 0) {
+        picked = false;
+        let priceId = parseInt(resultResponse.result);
+        let addspins = parseInt(resultResponse.addspins);
+        for (itemKey in data) {
+          if (data[itemKey].value == priceId) {
+            picked = itemKey;
+          }
+        }
+
+        if (!picked) {
+          return false;
+        }
+
+        var ps = 360 / data.length,
+          pieslice = Math.round(1440 / data.length),
+          rng = Math.floor((Math.random() * 1440) + 360);
+
+        //ps - 360 / number of items e.g. 360/7 = 51.42857142857143
+        //Note 1440 equals 4 * 360
+        //pieslice - 1400 / number of items = 1440
+        //rng - (random number (0.000 - 1) * 1440) + 360
+
+        rotation = 1440 - (ps * picked); //(Math.round(rng / ps) * ps);
+
+        /*picked = Math.round(data.length - (rotation % 360) / ps);
+        picked = picked >= data.length ? (picked % data.length) : picked;*/
+
+        $('#chart-loading').hide();
+
+        available_spins_count = available_spins_count - 1 + addspins;
+
+        animateSpin(ps);
+      } else {
+        $('#chart-loading').find('span').html('Error');
+      }
+    });
+  }
+
+  function getResultAjax() {
+    return new Promise(resolve => {
+      $.request('onGetRandomPrice', {
+        data: {},
+        success: function(data) {
+          resolve(data.result);
+        },
+        error: function(data){
+          throw data;
+        },
+      });
+    });
+  }
+
+  function animateSpin(ps) {
+    rotation += 90 - Math.round(ps / 2);
+    vis.transition()
+      .duration(3000)
+      .attrTween("transform", rotTween)
+      .each("end", function () {
+        //mark question as seen
+        /*d3.select(".slice:nth-child(" + (picked + 1) + ") path")
+        .attr("fill", "#111");*/
+        d3.select("#price-label")
+          .text(data[picked].name);
+
+        //Display custom prize message if available
+        if (data[picked].message && data[picked].message.length > 0) {
+          d3.select("#price-message").text(data[picked].message);
+        } else {
+          d3.select("#price-message").text('You have won a:');
+        }
+
+        //Hide prompt for non-prizefc
+        if (data[picked].is_price) {
+          $('.price-info').show();
+        } else {
+          $('.price-info').hide();
+        }
+
+        oldrotation = rotation;
+
+        if (typeof data[picked]!= 'undefined' && data[picked].img_path) {
+          $('#price-image').attr('src', data[picked].img_path);
+          $('#price-image').show();
+        } else {
+          $('#price-image').hide();
+        }
+
+        /* Comment the below line for restrict spin to single time */
+        container.on("click", spin);
+
+        $('.price-prompt').hide();
+        $('.price-details').show();
+
+        if (available_spins_count == 0) {
+          alert('You don’t have any Spins left.');
+        }
+
+        d3.select("#spin-count-label")
+          .text(parseInt(available_spins_count));
+      });
+  }
+
+  //make arrow
+  svg.append("g")
+    .attr("transform", "translate(" + (w + padding.left + padding.right) + "," + ((h / 2) + padding.top) + ")")
+    .append("path")
+    .attr("d", "M-" + (r * .15) + ",0L0," + (r * .05) + "L0,-" + (r * .05) + "Z")
+    .style({"fill": "#0388a6"});
+  //draw spin circle
+  container.append("circle")
+    .attr("cx", 0)
+    .attr("cy", 0)
+    .attr("r", 60)
+    .style({"fill": "white", "cursor": "pointer"});
+  //draw inner contrast circle
+  container.append("circle")
+    .attr("cx", 0)
+    .attr("cy", 0)
+    .attr("r", 70)
+    .style({"fill": "transparent", "cursor": "default", "stroke" : "white", "stroke-width" : "3"});
+  //spin text
+  container.append("text")
+    .attr("x", 0)
+    .attr("y", 15)
+    .attr("text-anchor", "middle")
+    .text("SPIN")
+    .style({"font-weight": "bold", "font-size": "30px"});
+
+
+  function rotTween(to) {
+    var i = d3.interpolate(oldrotation % 360, rotation);
+    return function (t) {
+      return "rotate(" + i(t) + ")";
+    };
+  }
+
+</script>
+{% endput %}

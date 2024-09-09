@@ -1,0 +1,28 @@
+tabs:    
+    defaultTab: Team Details
+    fields:
+        name:
+            label: 'codengine.awardbank::lang.awardbank.teamname'
+            oc.commentPosition: ''
+            span: full
+            type: text
+            tab: Team Details
+        description:
+            label: 'codengine.awardbank::lang.awardbank.teamdescription'
+            size: large
+            oc.commentPosition: ''
+            span: full
+            type: richeditor
+            tab: Team Details
+        primary_color:
+            label: 'codengine.awardbank::lang.awardbank.teamprimarycolor'
+            oc.commentPosition: ''
+            span: auto
+            type: colorpicker
+            tab: Team Details
+        secondary_color:
+            label: 'codengine.awardbank::lang.awardbank.teamsecondarycolor'
+            oc.commentPosition: ''
+            span: auto
+            type: colorpicker
+            tab: Team Details

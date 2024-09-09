@@ -1,0 +1,375 @@
+tabs:
+    defaultTab: Award Details
+    fields:
+        featured:
+            label: 'Featured'
+            span: full
+            type: switch
+            tab: Award Details
+        program:
+            label: 'Program'
+            span: full
+            type: relation
+            select: name
+            tab: Award Details
+        name:
+            label: 'codengine.awardbank::lang.awardbank.awardname'
+            oc.commentPosition: ''
+            span: full
+            required: 1
+            type: text
+            tab: Award Details
+        description:
+            label: 'codengine.awardbank::lang.awardbank.awarddescription'
+            size: ''
+            oc.commentPosition: ''
+            span: full
+            required: 1
+            type: textarea
+            tab: Award Details
+        award_open_at:
+            label: 'Open Award at'
+            oc.commentPosition: ''
+            mode: datetime
+            span: auto
+            required: 1
+            type: datepicker
+            tab: Award Details
+        award_close_at:
+            label: 'Close Award at'
+            oc.commentPosition: ''
+            mode: datetime
+            span: auto
+            required: 1
+            type: datepicker
+            tab: Award Details
+        awardallprogramview:
+            label: 'Whole Program Can View'
+            span: auto
+            type: switch
+            default: false
+            tab: Award Details
+        awardallprogramnominate:
+            label: 'Whole Program Can Nominate'
+            span: auto
+            type: switch
+            default: false
+            tab: Award Details
+        awardallprogramnominateable:
+            label: 'Whole Program Can Be Nominated'
+            span: auto
+            type: switch
+            default: false
+            tab: Award Details
+        awardallprogramvote:
+            label: 'Whole Program Can Vote'
+            span: auto
+            type: switch
+            default: false
+            tab: Award Details
+        feature_image:
+            label: 'Feature Image'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: auto
+            thumbOptions:
+                mode: auto
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto
+            tab: 'Image Management'
+        trophy_image:
+            label: 'Trophy Image'
+            type: fileupload
+            mode: image
+            imageHeight: 150
+            imageWidth: 150
+            thumbOptions:
+                mode: auto
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto
+            tab: 'Image Management'
+        paired_award:
+            label: 'Paired Award'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_paired_award.htm
+            tab: 'Paired Awards'
+        prize_display_string:
+            label: 'Prize Term'
+            oc.commentPosition: ''
+            span: full
+            required: 1
+            type: text
+            tab: Prizes
+        prizes:
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_prizes.htm
+            tab: Prizes
+        managers:
+            label: 'Managers'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_managers.htm
+            tab: 'Managers'
+        nominationsmanagers:
+            label: 'Nomination Managers'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_nominationsmanagers.htm
+            tab: 'Nominations Managers'
+        winnersmanagers:
+            label: 'Winners Managers'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_winnersmanagers.htm
+            tab: 'Winners Managers'
+        viewingteams:
+            label: 'Viewing Teams'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_viewingteams.htm
+            tab: 'Viewing Teams'
+        hide_nominations_tab:
+            label: 'Nominations Are Turned On'
+            span: full
+            type: switch
+            default: false
+            tab: Nominations Settings
+        nomination_display_string:
+            label: 'Nomination Term'
+            span: full
+            type: text
+            required: 1
+            tab: Nominations Settings
+        nomination_header:
+            label: 'Nomination Header'
+            span: full
+            type: text
+            tab: Nominations Settings
+        nomination_secondary_header:
+            label: 'Nomination Secondary Header'
+            span: full
+            type: text
+            tab: Nominations Settings
+        nomination_submit_button_text:
+            label: 'Nomination Submit Button Text (Default text: Submit %Nomination Terms%)'
+            span: full
+            type: text
+            tab: Nominations Settings
+        nomination_type:
+            label: 'Nomination Options Are'
+            span: full
+            type: dropdown
+            options:
+                0: 'Users'
+                1: 'Teams'
+                2: 'Auto-Self Nomination (User Submit)'
+            default: 0
+            tab: Nominations Settings
+        nominations_approval_required:
+            label: 'Nominations Require Approval Before Displaying'
+            span: auto
+            type: switch
+            default: false
+            tab: Nominations Settings
+        nominations_public:
+            label: 'Nominations Can Be Seen By Other Users'
+            span: auto
+            type: switch
+            default: true
+            tab: Nominations Settings
+        nomination_image_upload:
+            label: 'Nominations Can Include An Image'
+            span: auto
+            type: switch
+            tab: Nominations Settings
+        nomination_file_upload:
+            label: 'Nomination Can Include A File Upload'
+            span: auto
+            type: switch
+            default: false
+            tab: Nominations Settings
+        nominations_open_at:
+            label: 'Nominations Open At'
+            oc.commentPosition: ''
+            mode: datetime
+            span: auto
+            type: datepicker
+            tab: Nominations Settings
+        nominations_closed_at:
+            label: 'Nominations Close At'
+            oc.commentPosition: ''
+            mode: datetime
+            span: auto
+            type: datepicker
+            tab: Nominations Questions
+        nomination_questions_json:
+            label: Nomination Questions
+            type: repeater
+            form:
+                fields:
+                    questiondescription:
+                        label: Question Description
+                        type: textarea
+                    questionrequired:
+                        label: Question Required
+                        type: switch
+                    questiontype:
+                        label: Question Type
+                        type: dropdown
+                        options:
+                            0 : Short Text
+                            1 : Long Text
+                            2 : Dropdown
+                            3 : Multichoice
+                    questiontextshort:
+                        label: Question Text
+                        type: text
+                        trigger:
+                            action: show
+                            field: questiontype
+                            condition: value[0]
+                    questiontextlong:
+                        label: Question Text
+                        type: textarea
+                        trigger:
+                            action: show
+                            field: questiontype
+                            condition: value[1]
+                    questionoptions:
+                        label: Question Options
+                        type: repeater
+                        trigger:
+                            action: show
+                            field: questiontype
+                            condition: value[2] || value[3]
+                        form:
+                            fields:
+                                questionoptiondescription:
+                                    label: Question Option Description
+                                    type: textarea
+                                questionoptiontext:
+                                    label: Question Option Text
+                                    type: text
+
+            tab: Nominations Questions
+        nominatableusers:
+            label: 'Users You Can Nominate If Not Whole Program'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_nominatableusers.htm
+            tab: 'Users You Can Nominate'
+        nominatableteams:
+            label: 'Teams You Can Nominate If Not Whole Program'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_nominatableteams.htm
+            tab: 'Teams You Can Nominate'
+        nominationteams:
+            label: 'Teams Who Can Nominate If Not Whole Program'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_nominationteams.htm
+            tab: 'Teams Who Can Nominate'
+        nominations:
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_nominations.htm
+            tab: Nominations Results
+
+        hide_voting_tab:
+            label: 'Votes Are Turned On'
+            span: auto
+            type: switch
+            default: false
+            tab: Vote Settings
+        votes_approval_required:
+            label: 'Votes Require Approval Before Displaying'
+            span: auto
+            type: switch
+            default: false
+            tab: Vote Settings
+        votes_public:
+            label: 'Votes Can Be Seen By Other Users'
+            span: full
+            type: switch
+            default: true
+            tab: Vote Settings
+        votes_open_at:
+            label: 'Votes Open At'
+            oc.commentPosition: ''
+            mode: datetime
+            span: auto
+            type: datepicker
+            tab: Vote Settings
+        votes_close_at:
+            label: 'Close Voting at'
+            oc.commentPosition: ''
+            mode: datetime
+            span: auto
+            type: datepicker
+            tab: Vote Settings
+        votes_question_json:
+            label: Vote Questions
+            type: repeater
+            form:
+                fields:
+                    questiondescription:
+                        label: Question Description
+                        type: textarea
+                    questionrequired:
+                        label: Question Required
+                        type: switch
+                    questiontype:
+                        label: Question Type
+                        type: dropdown
+                        options:
+                            0 : Short Text
+                            1 : Long Text
+                            2 : Dropdown
+                            3 : Multichoice
+                    questiontextshort:
+                        label: Question Text
+                        type: text
+                        trigger:
+                            action: show
+                            field: questiontype
+                            condition: value[0]
+                    questiontextlong:
+                        label: Question Text
+                        type: textarea
+                        trigger:
+                            action: show
+                            field: questiontype
+                            condition: value[1]
+                    questionoptions:
+                        label: Question Options
+                        type: repeater
+                        trigger:
+                            action: show
+                            field: questiontype
+                            condition: value[2] || value[3]
+                        form:
+                            fields:
+                                questionoptiondescription:
+                                    label: Question Option Description
+                                    type: textarea
+                                questionoptiontext:
+                                    label: Question Option Text
+                                    type: text
+            tab: Vote Questions
+        votableteams:
+            label: 'Teams You Can Vote For If Not Whole Program'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_votableteams.htm
+            tab: 'Teams You Can Vote For'
+        votingteams:
+            label: 'Teams Who Can Vote If Not Whole Program'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_votingteams.htm
+            tab: 'Teams Who Can Vote'
+        votes:
+            label: 'Votes'
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_votes.htm
+            tab: 'Votes'

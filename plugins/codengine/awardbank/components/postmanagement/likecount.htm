@@ -1,0 +1,24 @@
+{% set post = __SELF__.post %}
+
+<small>
+
+<form id="likeform_{{post.id}}" onsubmit="handle_{{ post.id }}(this); return false;">
+    <div id="likecount">
+        <a class="text-muted" >{{ post.comment|length }} Comment</a> &nbsp;
+        <a class="text-muted" style="margin-right:10px;" id="lbllike_{{ __SELF__ }}_{{ post.id }}">{{ post.like|length }} Likes</a>
+        <input type="hidden" name="post_id" value="{{post.id}}">
+        <input type="hidden" name="like_type" value="{{moduleType}}">
+        
+        <button type="submit">
+        {% if post.isliked %}
+            <i class="thumbs up icon" id="iconlike_{{ __SELF__ }}_{{ post.id }}"></i>
+            <span class="lbllike" id="btnlike_{{ __SELF__ }}_{{ post.id }}">Liked</span> 
+        {% else %}
+            <i class="thumbs outline up icon" id="iconlike_{{ __SELF__ }}_{{ post.id }}"></i>
+            <span class="lbllike" id="btnlike_{{ __SELF__ }}_{{ post.id }}">Like</span> 
+        {% endif %}
+        </button>
+    </div>    
+</form>
+
+</small>

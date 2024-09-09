@@ -1,0 +1,23 @@
+<div class="ui segment">
+    <h5>Create New Section</h5>
+    <form
+        id="new-section-form"
+        class="ui form"
+    >
+        <div class="two fields">
+            <div class="field">
+                <input type="text" id="section-name" name="section-name" placeholder="Name">
+            </div>
+            <div class="field">
+                <select name="section-type">
+                    <option value="gold">Gold</option>
+                    <option value="silver">Silver</option>
+                    <option value="bronze">Bronze</option>
+                    <option value="ethical">Ethical</option>
+                </select>
+            </div>
+        </div>
+        <input type="hidden" name="step" value="{{ step }}">
+        <button type="submit" class="ui primary button new-section save">Create Section</button>
+    </form>
+</div>

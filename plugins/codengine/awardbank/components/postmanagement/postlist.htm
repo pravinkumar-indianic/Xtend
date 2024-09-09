@@ -1,0 +1,255 @@
+{% set permissions = __SELF__.permissions %}
+{% set entities = __SELF__.entities %}
+{% set categories = __SELF__.categories %}
+{% set category = __SELF__.category %}
+{% set access = __SELF__.access %}
+{% set maxPosts = __SELF__.maxPosts %}
+{% set posts = __SELF__.posts %}
+{% set showHeading = __SELF__.showHeading %}
+{% set enableComment =  __SELF__.enableComment %}
+{% set moduleType =  __SELF__.moduleType %}
+
+<div class="ui segment">
+
+
+    <div class="ui grid posttlistwrapper_{{__SELF__}}">
+        {% if access.manager == true %}
+            <div class="ui eight wide column">
+                <a href="/posts/create" class="ui button primary square right">Create post</a>
+            </div>
+        {% endif %}
+
+
+
+        <div class="breadcrumbs sixteen wide column">
+            
+            <a href="/dashboard">Dashboard ></a>
+
+            {% if category.parent %}
+                <a href="/posts">All Posts > </a> <a href="/posts/category/{{category.parent.slug}}">{{category.parent.name}} ></a> {{category.name}}
+            {% elseif category %}
+                <a href="/posts">All Posts</a> > {{category.name}}
+            {% else %}
+                All Posts
+            {% endif %}
+            
+        </div>
+
+
+    {% if posts|length > 0 %}
+    <div class="sixteen wide tablet eight wide computer column post-search right">
+        <div class="post-filter">
+            <div class="ui form">
+                <div class="field">
+                    <input id="searchtxt" class="search" type="text" placeholder="Search posts">
+                </div>
+
+                <div class="field">
+
+                    <select class="ui dropdown sortby" name="sortby">
+
+                        <option value="">Sort By</option>
+
+                        <option value="asc">A to Z</option>
+
+                        <option value="desc">Z to A</option>
+
+                        <option value="new">Latest Post</option>
+
+                        <option value="old">Oldest Post</option>
+
+                    </select>
+
+                </div>
+
+                <div class="field">
+                    <select class="ui dropdown subcategory" name="subcategory" multiple="true">
+                        <option value="">Category: </option>
+                        {% for child in __SELF__.categories  %}
+                            <option value="{{child.id}}" {% if category and category.id == child.id%} selected {% endif %}  href="/posts/category/{{ child.slug}}">{{child.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="field">
+                    <select class="ui dropdown tag" name="tag" multiple="true">
+                        <option value="">Tag: </option>
+                        {% for child in __SELF__.tags  %}
+                            <option value="{{child.id}}" {% if tag and tag.id == child.id%} selected {% endif %}  href="/posts/tag/{{ child.slug}}">{{child.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+            </div>
+            
+            <!-- <h3>Tags:</h3>
+            <div class="post-filter-categories">
+                {% for tag in tags %}
+                    <a class="ui aqua basic label">{{tag.name}}<i class="delete icon"></i></a>
+                {% endfor %}
+            </div> -->
+
+        </div>
+    </div>
+    {% endif %}
+
+
+
+        <div class="sixteen wide tablet eight wide computer column post-content-list">
+
+            <div class="ui inverted dimmer">
+                <div class="ui text loader">Loading</div>
+            </div>
+            <div class="listtarget">
+
+              {% partial '@sharedpostlist' 
+
+                  posts = posts
+                  page = __SELF__.posts.currentPage
+                  hasmorepage =  __SELF__.hasmorepage
+                  totalpage = __SELF__.posts.total/__SELF__.posts.perPage
+                  listMode = __SELF__.listMode
+
+              %}
+
+        </div>
+    </div>
+
+
+
+</div>
+</div>
+
+{% put scripts %}
+
+    <script>
+
+        var sortBy = 'new';
+        var subCategory = null;
+        var tagfilter = null;
+        var searchTerm = null;
+        var tag = null;
+        var redeemFilter = false;
+        var includeFilter = false;
+        var page = {{__SELF__.posts.currentPage}};
+        var totalPages = {{__SELF__.posts.lastPage}};
+        var listMode = '{{__SELF__.listMode}}';
+
+        $(document).ready(function() {
+            //console.log(listMode);
+            
+        }); 
+
+        $('body').on('change', '.sortby', function() {
+            sortBy = $(this).find(":selected").val();
+            subCategory = $('.subcategory').dropdown("get value");
+            tagfilter = $('.tag').dropdown("get value");
+            ajaxList(sortBy, subCategory, searchTerm, tagfilter, 1);
+
+        });
+
+        $('body').on('change', '.subcategory', function() {
+
+            subCategory = $(this).dropdown("get value");
+            tagfilter = $('.tag').dropdown("get value");
+            ajaxList(sortBy, subCategory, searchTerm, tagfilter, 1);
+
+        });
+
+        $('body').on('change', '.tag', function() {
+
+            tagfilter = $(this).dropdown("get value");
+            subCategory = $('.subcategory').dropdown("get value");
+            ajaxList(sortBy, subCategory, searchTerm, tagfilter, 1);
+
+        });
+
+        $('body').on('keypress', '.search', function (e) {
+            if (e.which == 13) {
+                searchTerm = $(this).val();
+                subCategory = $('.subcategory').dropdown("get value");
+                tagfilter = $('.tag').dropdown("get value");
+                
+                ajaxList(sortBy, subCategory, searchTerm, tagfilter, 1);
+
+                return false;
+            }
+        });
+
+        if (listMode == 'loadmore'){
+            $('#loadmorebtn-'+ page).click(function(){
+                $(this).hide();
+                ajaxList(sortBy, subCategory, searchTerm, tagfilter, page+1);
+            });
+        }
+
+        if (listMode == 'paginate'){
+            $('.pagination').on('click', '.item', function() {
+                ajaxList(sortBy, subCategory, searchTerm, tagfilter, $(this).data("item"));
+            });
+        }
+
+        function ajaxList(a,b,e,f,g){
+
+            $('.posttlistwrapper_{{__SELF__}}').dimmer('show');
+
+            $.request('onRefreshListFilter', {
+
+                data: {
+
+                  'sortBy' : a, 
+                  'subCategory' : b,
+                  'searchTerm' : e,
+                  'tagfilter' : f,
+                  'page': g
+
+                },
+
+                beforeSend: function(){
+                    
+                },
+                success: function(data) {
+                    //console.log('#loadmorebtn-'+ data['page']);
+                    if (data['page'] == 1)
+                        $('.posttlistwrapper_{{__SELF__}} .listtarget').html("");
+
+                    $('.paginate').remove();
+                    $('.posttlistwrapper_{{__SELF__}} .listtarget').append(data['html']);
+                    $('.posttlistwrapper_{{__SELF__}}').dimmer('hide');
+
+                    if (listMode == 'loadmore'){
+                        $('#loadmorebtn-'+ data['page']).click(function(){
+                            $(this).hide();
+                            ajaxList(sortBy, subCategory, searchTerm, tagfilter, 1 + parseInt(data['page']));
+                        });
+                    }
+
+                    if (listMode == 'paginate'){
+                        $('.pagination').on('click', '.item', function() {
+                            console.log($(this).data("item"));
+                            ajaxList(sortBy, subCategory, searchTerm, tagfilter, $(this).data("item"));
+                        });
+                    }
+
+                },
+                error: function(data){
+                  throw data;
+                },
+            });
+        }
+
+        if (listMode == 'autoload'){
+            $('.posttlistwrapper_{{__SELF__}}').visibility({
+                once: false,
+                observeChanges: true,
+                onBottomVisible: function() {
+                    //console.log('onBottomVisible: ' + page);
+                    if (page < totalPages)
+                        ajaxList(sortBy, subCategory, searchTerm, tagfilter, ++page);
+                }
+            });
+        }
+
+    </script>
+
+{%  endput %}

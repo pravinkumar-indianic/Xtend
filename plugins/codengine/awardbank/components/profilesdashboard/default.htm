@@ -1,0 +1,17 @@
+{% for profile in __SELF__.profiles %}
+
+	<div class="sixteen wide tablet eight wide computer column dash-wish-bag">
+
+		<div class="ui segment"> 
+			
+			<div class="ui grid grid-no-margin grid-no-padding">
+
+	            {% partial  '@sharedprofilepreview' profile = profile %}
+
+		    </div>
+
+		</div>
+
+	</div>
+
+{% endfor %}

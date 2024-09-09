@@ -1,0 +1,79 @@
+<nav class="ui top attached tabular menu category-filter-top-menu">
+	<ul class="category-filter-top-menu-list">
+		<li class="category-filter-top-menu-item"><a href="/rewards/category/default">All</a></li>
+		{% for category in categories %}
+			{% if category.productcount >=1 %}
+				<li class="category-filter-top-menu-item"><a class="item" data-tab="{{ category.slug }}">{{ category.name }} ({{category.productcount}})</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+</nav>
+<div class="ui bottom attached category-filter-tab-content {% if startopen == false %} closed {% endif %}">
+	<nav class="ui top attached tabular menu category-filter-mobile">
+		<a class="item" href="/rewards/category/default/">All</a>
+	</nav>
+	{% for category in categories %}	
+		{% if category.productcount >=1 %}
+			<nav class="ui top attached tabular menu category-filter-mobile">
+				<a class="item" data-tab="{{ category.slug }}">{{ category.name }} ({{category.productcount}})</a>
+			</nav>
+			<div class="ui tab {% if loop.first and __SELF__.startopen == true %} active {% endif %} category-filter-tab" data-tab="{{ category.slug }}">
+
+				<div class="ui grid three column">
+					<div class="ui column four wide category-filter-sub-nav">
+						<nav class="ui two column centered grid"> 
+						</nav>
+					</div>
+					<div class="ui column eight wide category-filter-sub-cats">	
+						<nav>
+							<ul class="category-filter-sub-cats-list category-filter-sub-cats-level-one">
+								{% for subcategory in category.children %}
+									{% if subcategory.productcount >= 1 %}
+										<li class="category-filter-sub-cats-item">	    
+											<h5 class="ui header">
+											<a href="/rewards/category/{{subcategory.slug}}">{{ subcategory.name }} ({{subcategory.productcount}})</a>
+											</h5>
+											<ul class="category-filter-sub-cats-level-two">
+												{% for subsubcategory in subcategory.children %}
+													{% if subsubcategory.productcount >= 1 %}
+														<li>	
+															{% if subsubcategory.children|length >= 1 %}
+
+																<i class="plus icon"></i>
+																<a href="/rewards/category/{{subsubcategory.slug}}">{{ subsubcategory.name}} ({{subsubcategory.productcount}})</a>
+															{% else %}		
+																<a href="/rewards/category/{{subsubcategory.slug}}">{{ subsubcategory.name}} ({{subsubcategory.productcount}})</a>
+															{% endif %}
+															{% if subsubcategory.children|length >= 1 %}																								  			
+																<ul class="category-filter-sub-cats-level-three" style="display:none;">
+																					
+																	{% for subsubsubcategory in subsubcategory.children %}
+
+																		{% if subsubsubcategory.productcount >= 1 %}
+
+																			<li>
+
+																			<a href="/rewards/category/{{subsubsubcategory.slug}}">{{ subsubsubcategory.name}} ({{subsubsubcategory.productcount}})</a>
+
+																			</li>
+																		{% endif %}
+																	{% endfor %}
+																</ul>
+															{% endif %}
+														</li>
+													{% endif %}
+												{% endfor %}
+											</ul>
+										</li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</nav>
+					</div>
+					<div class="ui column four wide category-filter-tab-promo">
+					</div>
+				</div>
+			</div>
+		{% endif %}
+ 	{% endfor %}
+</div>

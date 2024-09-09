@@ -1,0 +1,79 @@
+<div class="ui container" id="dashboard-settings">
+    <div class="ui stackable grid">
+        <div class="ten wide tablet sixteen wide computer column">
+            <div class="ui segment">
+                <h3>Dashboard Settings</h3>
+                <form class="ui form" id="dashboardsettingsform">
+                    <div class="form-group switch-field span-full is-required">
+                        <div class="field">
+                            <label>Template</label>
+                            <select id="template" name="template" class="ui dropdown">
+                                <option value="default" {% if dashboardsettings.template == 'default' %}selected{% endif %}>Default</option>
+                                <option value="5stepincentive" {% if dashboardsettings.template == '5stepincentive' %}selected{% endif %}>5 Step Incentive</option>
+                                <option value="aftersaleselite" {% if dashboardsettings.template == 'aftersaleselite' %}selected{% endif %}>AfterSales Elite</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ui form">
+                        <div class="form-group">
+                            <div class="field">
+                                <label>Rolling Banner Pictures</label>
+                                <div class="user-summary-image">
+                                    {% component 'sliderImages' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group switch-field span-full is-required"
+                         data-field-name="announcement"
+                         id="Form-field-DashboardSettings-announcement-group"
+                         style="margin-top: 10px;"
+                    ><!-- Switch -->
+                        <div class="field-switch">
+                            <label>Announcement</label>
+                        </div>
+
+                        <input type="hidden" name="announcement" value="0">
+
+                        <label class="custom-switch">
+                            <input type="checkbox" id="announcement" name="announcement" value="1" {{ dashboardsettings.announcement ? 'checked' : '' }}>
+                            <span>
+                                <span>On</span>
+                                <span>Off</span>
+                            </span>
+                            <a class="slide-button"></a>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="field">
+                            <label>Announcement Content</label>
+                            <textarea name="announcement_content"
+                                      id="announcement_content"
+                                      autocomplete="off"
+                                      class="form-control field-textarea size-giant not-required"
+                                      placeholder=""
+                                      spellcheck="false">
+                                {{ dashboardsettings.announcement_content }}
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <button class="ui primary submit button">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% component 'CKEditorFactory' %}
+
+{% put scripts %}
+<script>
+  convertToCKEditor('announcement_content');
+</script>
+{% endput %}

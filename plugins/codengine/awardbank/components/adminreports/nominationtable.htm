@@ -1,0 +1,32 @@
+<div class="table-scroller">
+<table class="ui tablet unstackable table award-table">	
+	<thead>
+		<tr>
+			<th>Nominee Name</th>
+			<th>Creator Name</th>
+			<th>Created At</th>
+			<th>Award Name</th>
+			{% for nomination in programnominations %}
+				{% if loop.first %}
+					{% for key , question in nomination.questions_answers %}<th>{{ key|replace({'_' : ' '}) }}</th> {% endfor %}			
+				{% endif %}
+			{% endfor %}
+			<th>Approved</th>
+			<th>Winner</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for nomination in programnominations %}
+			<tr>
+				<td>{{ nomination.nominee_full_name }}</td>
+				<td>{{ nomination.created_full_name }}</td>
+				<td>{{ nomination.created_at }}</td>
+				<td>{{ nomination.award.name }}</td>
+				{% for key , question in nomination.questions_answers %}<td>{{ question }}</td> {% endfor %}			
+				<td>{% if nomination.approved != null %} Yes {% else %} No {% endif %}</td>
+				<td>{% if nomination.is_winner == 1 %} Yes {% else %} No {% endif %}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+</div>

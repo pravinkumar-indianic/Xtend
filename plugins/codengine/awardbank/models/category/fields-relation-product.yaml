@@ -1,0 +1,51 @@
+fields:
+    name:
+        label: 'Name'
+        span: auto
+        required: 1
+        type: text
+    main_color:
+        label: 'Main Color'
+        oc.commentPosition: ''
+        span: auto
+        type: colorpicker       
+    description:
+        label: Content
+        oc.commentPosition: ''
+        span: full
+        type: ShahiemSeymor\Ckeditor\FormWidgets\Wysiwyg
+        size: giant
+    type:
+        label: 'Category Type'
+        type: text
+        default: product
+        readOnly: true
+
+    feature_image:
+        label: 'Feature Image'
+        type: fileupload
+        mode: image
+        imageHeight: 260
+        imageWidth: auto
+        thumbOptions:
+            mode: crop
+            offset:
+                - 0
+                - 0
+            quality: 90
+            sharpen: 0
+            extension: auto
+    images:
+        label: 'Category Images'
+        type: fileupload
+        mode: image
+        imageHeight: 260
+        imageWidth: auto
+        thumbOptions:
+            mode: crop
+            offset:
+                - 0
+                - 0
+            quality: 90
+            sharpen: 0
+            extension: auto 

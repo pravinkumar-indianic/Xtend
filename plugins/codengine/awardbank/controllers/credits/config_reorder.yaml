@@ -1,0 +1,4 @@
+title: Credits
+modelClass: Codengine\Awardbank\Models\Credit
+toolbar:
+    buttons: reorder_toolbar

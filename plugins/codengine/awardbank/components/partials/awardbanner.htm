@@ -1,0 +1,20 @@
+<a href="/award/{{ award.slug }}" style="width:100%">
+	<div class="award-promo">
+		<div class="award-promo-graphic" {% if award.trophy_image %} style="background-image:url('{{ award.trophy_image.getThumb(210,auto) }}')" {% endif %}>
+		</div>
+		<div class="award-promo-summary">
+			<h3>{{award.name}}</h3>
+			<p>{{ award.description }}</p>
+			<p>Opens: <time class="date updated" datetime="">{{award.award_open_at|date("F jS Y")}}</time>.<p>
+			<P>Closes: <time class="date updated" datetime="">{{award.award_close_at|date("F jS Y")}}</time></p>
+		</div>
+		{% if award.prizes.count >= 1 %}
+			<div class="award-promo-points">
+				<div class="award-promo-points-wrap">
+					<span class="award-promo-points-amount">{{award.prizes.count }}</span>
+					<span class="award-promo-points-title">{{ award.prize_display_string }}(s)</span>
+				</div>
+			</div>
+		{% endif %}
+	</div>
+</a>

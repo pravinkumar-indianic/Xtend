@@ -1,0 +1,53 @@
+<div class="ui segment raised product-segment {% if product.featured == true %} featured {% endif %}">
+  	<div class="product-segment-inner">
+      	<div class="product-buttons"> 
+      			{% if product.redeemable == true %}
+      				  <button class="circular ui icon button add-to-cart-on-product product-{{product.id}}" data-id="{{product.id}}" data-view='list' data-content="Add Product To Your Cart">
+      		    		  <i class="plus icon"></i>
+      				  </button> 
+      			{% endif %} 
+            <button class="circular ui icon button add-to-wishlist-on-product product-{{product.id}}" data-id="{{product.id}}" data-view='list' data-content="Add Product To Your Wishlist">
+                <i class="heart icon"></i>
+            </button> 
+      	</div>
+        <a href="/rewards/{{ product.slug }}">
+          	<div class="product-image-box">
+                <div class="product-image-internal-box" style="background-image:url('{{ product.imagepath }}')">
+                </div>
+  			    </div>
+    	  </a>
+        <div class="product-points">
+          	<div class="ui fluid labeled" tabindex="0">
+            	  <a class="ui basic fluid label" href="/rewards/{{ product.slug }}">
+              		{{ product.points_value }} {{ product.points_name }}
+            	  </a>
+          	</div>
+        </div>                
+        <div class="product-header">
+      	   <h4><a href="/rewards/{{ product.slug }}">{{ product.name|raw  }}</a></h4>
+        </div>
+      	<div class="progress-bar">
+        	  <div class="ui indicating progress active" data-percent="{{ product.percent }}">
+          	    <div class="bar" style="width: {{ product.percent }}%;"></div>
+					  </div>
+      	</div>
+      	{% if product.redeemable == false %}
+        	  <div class="product-points-to-go">{{ product.pointsdif }} {{ product.points_name }} to go</div>
+      	{% else %}
+        	  <div class="product-points-to-go">Ready To redeem</div>
+      	{% endif %}
+      	{% if product.redeemable == false and product.can_buy_points == true %}
+            <div class="product-sale-button">
+                <a class="secondary ui button fluid" href="/transaction/{{ product.pointsdif }}/{{ product.id }}">Buy {{ product.points_name }}</a>
+            </div>
+        {% elseif product.redeemable == false %}
+             <div class="product-sale-button">
+                  <button class="primary ui button fluid in-cart product-{{product.id}} disabled" data-id="{{product.id}}">Earn More To Redeem</button>
+            </div>
+        {% else %}
+            <div class="product-sale-button">
+                  <button class="primary ui button fluid add-to-cart-on-product product-{{product.id}}" data-id="{{product.id}}" data-view='list' data-content="Add Product To Your Cart">Redeem</button>
+            </div>
+        {% endif %}
+  	</div>
+</div>

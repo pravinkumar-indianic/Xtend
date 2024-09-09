@@ -1,0 +1,365 @@
+fields:
+    _completeness_array:
+        type: partial
+        path: field_incompletelist
+    appearance:
+        label: Appearance Management
+        type: section
+    active:
+        label: 'Active'
+        span: auto
+        type: switch
+    register_interest:
+        label: 'Register Interst Type Product'
+        span: auto
+        type: switch
+    featured:
+        label: 'Featured'
+        span: auto
+        type: switch
+    activate_after:
+        label: 'Activate After'
+        mode: datetime
+        span: auto
+        type: datepicker
+    deleted_at:
+        label: 'Deleted At'
+        mode: datetime
+        span: auto
+        type: datepicker
+
+    product_details:
+        label: Product Details
+        type: section
+    name:
+        label: 'codengine.awardbank::lang.awardbank.product_name'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+        required: true
+    model_number:
+        label: 'Model Number'
+        type: text
+        span: auto
+    brand:
+        label: 'Brand'
+        type: text
+        span: auto
+    category-string:
+        label: 'Category (string)'
+        type: text
+        span: full
+    category-string-check:
+        label: 'Check Category String For Match On Update'
+        type: switch
+        span: auto
+        default: 'On'
+    primary_color:
+        label: 'Product Primage Color'
+        oc.commentPosition: ''
+        span: auto
+        type: colorpicker
+
+    financial_details:
+        label: Financial Details
+        type: section
+    cost_currency:
+        label: 'codengine.awardbank::lang.awardbank.currency'
+        span: auto
+        type: dropdown
+        options:
+            aud: AUD
+            nzd: NZ
+            eur: EUR
+            gbp: 'Great Britain Pound'
+            fdd: 'Food Tax'
+            ntx: 'No Tax'
+    cost_ex:
+        label: 'codengine.awardbank::lang.awardbank.cost_ex'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+        required: true
+        containerAttributes: test
+    cost_tax_percent:
+        label: 'codengine.awardbank::lang.awardbank.cost_tax_percent'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+        dependsOn: [cost_currency]
+        disabled: true
+    cost_freight:
+        label: 'codengine.awardbank::lang.awardbank.cost_freight'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+        required: true
+    cost_gross:
+        label: 'codengine.awardbank::lang.awardbank.cost_gross'
+        oc.commentPosition: ''
+        span: full
+        type: number
+        dependsOn: [cost_currency,cost_ex,cost_freight]
+        disabled: true
+    my_supplier_markup_type:
+        label: 'Supplier Mark Up Type'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+        nameFrom: my_supplier_markup_type
+        disabled: true
+        dependsOn: [supplier]
+    my_supplier_markup_integer:
+        label: 'Supplier Mark Up Integer'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+        nameFrom: my_supplier_markup_integer
+        disabled: true
+        dependsOn: [supplier]
+    mark_up_override:
+        label: 'Supplier Mark Up Override'
+        oc.commentPosition: ''
+        span: full
+        type: switch
+    mark_up_type:
+        label: 'Product Mark Up Type'
+        oc.commentPosition: ''
+        span: auto
+        type: dropdown
+        options:
+            percent: Percent
+            dollar: Dollars
+            none: None
+        required: true
+    mark_up_integer:
+        label: 'Product Mark Up #'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+        required: true
+    cost_rrp:
+        label: 'codengine.awardbank::lang.awardbank.cost_rrp'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+        required: true
+    cost_final_cost:
+        label: 'codengine.awardbank::lang.awardbank.cost_final_cost'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+        disabled: true;
+        dependsOn: [cost_rrp,cost_currency,cost_ex,cost_freight,cost_gross,mark_up_override,mark_up_type,mark_up_integer]
+    points_source:
+        label: 'codengine.awardbank::lang.awardbank.points_source'
+        oc.commentPosition: ''
+        span: full
+        type: dropdown
+        options:
+            calculated: Calculated
+            rrp: RRP
+            none: Assess Best Margin
+        dependsOn: [points_source]
+    points_value:
+        label: 'codengine.awardbank::lang.awardbank.points_value'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+        disabled: true;
+        dependsOn: [cost_rrp, points_source,cost_currency,cost_ex,cost_freight,cost_gross,mark_up_override,mark_up_type,mark_up_integer]
+    points_margin:
+        label: 'codengine.awardbank::lang.awardbank.points_margin'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+        disabled: true;
+        dependsOn: [points_source,cost_currency,cost_ex,cost_freight,cost_gross,mark_up_override,mark_up_type,mark_up_integer]
+
+
+    image_details:
+        label: Image Details
+        type: section
+    external_image_preview:
+        label: 'External Img. Preview'
+        type: partial
+        path: ~/plugins/codengine/awardbank/models/_external_image_preview_partial.htm
+        dependsOn: external_image_url
+    external_image_url:
+        label: 'External Img. Url'
+        type: text
+    feature_image:
+        label: 'codengine.awardbank::lang.awardbank.productfeatureimage'
+        type: fileupload
+        mode: image
+        imageHeight: 260
+        imageWidth: auto
+        thumbOptions:
+            mode: crop
+            offset:
+                - 0
+                - 0
+            quality: 90
+            sharpen: 0
+            extension: auto
+    images:
+        label: 'codengine.awardbank::lang.awardbank.productimages'
+        type: fileupload
+        mode: image
+        imageHeight: 260
+        imageWidth: auto
+        thumbOptions:
+            mode: crop
+            offset:
+                - 0
+                - 0
+            quality: 90
+            sharpen: 0
+            extension: auto
+
+    options:
+        label: Product Specs Details
+        type: section
+    options1:
+        label: Colour
+        type: repeater
+        form:
+            fields:
+                option_name:
+                    label: Option Name
+                    type: text
+                option_model_number_prefix:
+                    label: Option Model Number Prefix
+                    type: text
+                option_model_number_suffix:
+                    label: Option Model Number Suffix
+                    type: text
+                option_model_number_replace:
+                    label: Option Model Number Replace
+                    type: text
+    options2:
+        label: Size
+        type: repeater
+        form:
+            fields:
+                option_name:
+                    label: Option Name
+                    type: text
+                option_model_number_prefix:
+                    label: Option Model Number Prefix
+                    type: text
+                option_model_number_suffix:
+                    label: Option Model Number Suffix
+                    type: text
+                option_model_number_replace:
+                    label: Option Model Number Replace
+                    type: text
+    options3:
+        label: Custom Option
+        type: repeater
+        form:
+            fields:
+                option_name:
+                    label: Option Name
+                    type: text
+                option_model_number_prefix:
+                    label: Option Model Number Prefix
+                    type: text
+                option_model_number_suffix:
+                    label: Option Model Number Suffix
+                    type: text
+                option_model_number_replace:
+                    label: Option Model Number Replace
+                    type: text
+
+    description:
+        label: 'codengine.awardbank::lang.awardbank.productdescription'
+        oc.commentPosition: ''
+        span: full
+        type: richeditor
+        size: huge
+    small_font_description:
+        label: 'Small Font Description'
+        oc.commentPosition: ''
+        span: full
+        type: richeditor
+        size: huge
+
+    shipping_details:
+        label: Shipping Details
+        type: section
+    deliver_base:
+        label: Deliver this product to EVT before customer.
+        type: switch
+        span: full
+    width:
+        label: 'codengine.awardbank::lang.awardbank.width'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+    length:
+        label: 'codengine.awardbank::lang.awardbank.length'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+    height:
+        label: 'codengine.awardbank::lang.awardbank.height'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+    weight:
+        label: 'codengine.awardbank::lang.awardbank.weight'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+
+    replacement_details:
+        label: Replacement Details
+        type: section
+    replaces:
+        label: 'codengine.awardbank::lang.awardbank.productreplaces'
+        type: partial
+        path: field_replaces
+    replacements:
+        label: 'codengine.awardbank::lang.awardbank.productreplacement'
+        type: partial
+        path: field_replacements
+
+    cat_tag_details:
+        label: Category & Tag Details
+        type: section
+    categories:
+        label: 'Categories'
+        type: partial
+        path: field_categories
+    tags:
+        label: 'Tags'
+        type: partial
+        path: field_tags
+
+    supplier_details:
+        label: Supplier Details
+        type: section
+    supplier:
+        type: partial
+        path: field_supplier
+
+    permission_details:
+        label: Permission Details
+        type: section
+    program_exclusions:
+        type: relation
+        label: Program Exclusion
+        nameFrom: name
+    owners:
+        type: partial
+        path: field_owners
+    viewability:
+        type: partial
+        path: field_viewability
+    wishlist:
+        type: partial
+        path: field_wishlist
+    cart:
+        type: partial
+        path: field_cart

@@ -1,0 +1,87 @@
+columns:
+    id:
+        label: id
+        type: number
+    programid:
+        label: Program ID
+        span: auto
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    value:
+        label: value
+        type: number
+        searchable: true
+        sortable: true
+    is_current:
+        span: full
+        type: text
+        searchable: false
+        sortable: true
+    string:
+        label: String
+        oc.commentPosition: ''
+        span: auto
+        type: text
+        searchable: true
+        sortable: true
+    resulttypeid:
+        label: Result Type ID
+        span: full
+        relation: resulttype
+        select: id
+        emptyOption: 'Not Set'
+        sortable: false
+        searchable: false
+    resulttypename:
+        label: Result Type Name
+        span: full
+        relation: resulttype
+        select: name
+        emptyOption: 'Not Set'
+        sortable: false
+        searchable: false
+    row:
+        label: 'Row'
+        type: number
+    attachment_level:
+        label: Attachment Level
+        oc.commentPosition: ''
+        span: auto
+        type: text
+        searchable: true
+        sortable: true
+    region:
+        label: Region
+        span: full
+        relation: region
+        select: name
+        emptyOption: 'Not Set'
+        sortable: false
+        searchable: false
+    team:
+        label: Team
+        span: full
+        relation: team
+        select: name
+        emptyOption: 'Not Set'
+        sortable: false
+        searchable: false
+    user:
+        label: User
+        span: full
+        relation: user
+        select: full_name
+        emptyOption: 'Not Set'
+        sortable: false
+        searchable: false
+    month_index:
+        label: Month Index
+        type: number
+    year_index:
+        label: Year Index
+        type: number

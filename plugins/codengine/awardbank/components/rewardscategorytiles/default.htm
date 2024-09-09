@@ -1,0 +1,30 @@
+<div class="ui container container-categories">
+    <div class="ui grid">
+        <h2 class="ui header center aligned sixteen wide column">
+            Popular Categories
+            <div class="sub header">Browse a wide range of categories and products</div>
+        </h2>
+        <div class="ui sixteen wide column column-no-padding categories">
+            <div class="categories-slider">
+                <div class="column">
+                    <a href="/rewards/category/default" class="ui segment raised category-card category-card-brand" style="background-image: url('/plugins/codengine/awardbank/assets/images/all-categories.png');">
+                        <div class="category-card-heading">
+                            <i class="icon-rewards icon"></i>
+                            <h2 class="category-card-name">All Rewards</h2>
+                        </div>
+                    </a>
+                </div>
+                {% for category in __SELF__.categories %}
+                    <div class="column">
+                        <a href="/rewards/category/{{category.slug}}" class="ui segment raised category-card {{ cardvar }}" style="background-image: url('{{ category.feature_image.getThumb(334,222) }}');">
+                            <div class="category-card-heading">
+                                <i class="icon-rewards icon"></i>
+                                <h2 class="category-card-name">{{ category.name }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

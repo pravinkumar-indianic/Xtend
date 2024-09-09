@@ -1,0 +1,5 @@
+title: MenuItems
+nameFrom: name
+modelClass: Codengine\Awardbank\Models\MenuItem
+toolbar:
+    buttons: reorder_toolbar

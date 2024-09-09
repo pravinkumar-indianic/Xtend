@@ -1,0 +1,78 @@
+columns:
+    id:
+        label: id
+        type: number
+    xero_id:
+        label: xero_id
+        type: text
+    accountnumber:
+        label: accountnumber
+        type: number
+    contactstatus:
+        label: contactstatus
+        type: text
+    name:
+        label: name
+        type: text
+        searchable: true
+    firstname:
+        label: firstname
+        type: text
+        searchable: true
+    lastname:
+        label: lastname
+        type: text
+        searchable: true
+    emailaddress:
+        label: emailaddress
+        type: text
+        searchable: true
+    defaultcurrent:
+        label: Default Curent
+        type: text
+    trackingcategoryname:
+        label: Tracking Category Name
+        type: text
+    trackingcategoryoptions:
+        label: Tracking Category Options
+        type: text
+    taxnumber:
+        label: Tax Number
+        type: text
+    is_supplier:
+        label: Is Supplier
+        type: text
+    is_customer:
+        label: Is Customer
+        type: text
+        readOnly: true 
+    default_currency:
+        label: Default Curreny
+        type: text
+    sales_default_account_code:
+        label: Sales Default Account Code
+        type: text
+    purchase_default_account_code:
+        label: Purchase Default Account Code
+        type: text
+    purchase_tracking_categories:
+        label: Purchase Tracking Categories
+        type: text
+    tracking_category_name:
+        label: Tracking Category Name
+        type: text
+    tracking_option_name:
+        label: Tracking Option Name
+        type: text
+    payment_terms:
+        label: Payment Terms
+        type: text
+    contact_groups:
+        label: Contact Groups
+        type: text
+    website:
+        label: Website
+        type: text
+    branding_theme:
+        label: Branding Theme
+        type: text

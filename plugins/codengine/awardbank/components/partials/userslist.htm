@@ -1,0 +1,59 @@
+<div class="ui two column stackable grid">
+    {% if users|length >= 1 %}
+    	{% for user in users %}
+            <div class="column">
+                <div class="ui raised card fluid">
+                    <div class="content">   
+                        {% if user.avatar %}
+                            <img class="right floated mini ui circular image" src="{{ user.avatar.thumb(50 , 50, 'crop') }}" class="ui small circular image avatar">
+                        {% else %}
+                            <img class="right floated mini ui circular image"src="{{ 'assets/img/avatar/people/Enid.png'|theme }}" class="ui small circular image avatar">
+                        {% endif %}
+      			        <div class="header">{{ user.full_name }}</div>
+          				<div class="meta">
+                            {% if user.is_activated == true and user.email_confirmed == true %}
+                                <div class="ui green label" style="margin-top:10px;margin-bottom:10px;">
+                                    <i class="check circle icon"></i>
+                                    User has been Activated
+                                </div>
+                            {% else %}
+                                {% if user.id %}
+                                    <div class="ui orange label send_activation" data-id="{{ user.id}}" style="margin-top:10px;margin-bottom:10px;">
+                                        <i class="paper plane icon" data-content="Send User Activation Link."></i>
+                                        Send user activation email
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        </div>  
+                        <div>Teams: {% for team in user.teams %}{{ team.name }}{% if not loop.last %}, {% endif %}{% endfor %}</div>
+                        {% if user.managed == true %}
+                            <div>Created At: {{ user.created_at|date('Y-m-d') }}</div>
+                            <div>Last Log In: {{ user.last_login|date('Y-m-d') }}</div>
+                            <div>Current Points: {{ user.current_points }}</div>
+                        {% endif %}
+                    </div> 
+                    <div class="extra content">             
+                        {% if user.managed == true %}
+                            <div class="ui two buttons">
+                                <div class="ui bottom primary button manage-user" data-id="{{ user.id }}">
+                                    Edit
+                                </div>
+                                <div class="ui bottom secondary button delete-user" data-id="{{ user.id }}">
+                                    Delete
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+    	{% endfor %}
+    {% else %}
+        <div class="column">
+            <div class="ui raised card fluid no-results">
+                <div class="content">
+                    <div class="header">No Results Found.</div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>

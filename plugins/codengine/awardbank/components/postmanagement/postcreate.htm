@@ -1,0 +1,323 @@
+{% set categories = __SELF__.categories %}
+{% set tags = __SELF__.tags %}
+{% set post = __SELF__.post %}
+{% set me = __SELF__.user %}
+
+{% put styles %}
+    <link href="{{ 'assets/css/flexslider.css'|theme }}" rel="stylesheet" />
+    <link href="{{ 'assets/js/vendor/tinymce/skins/lightgray/skin.min.css'|theme }}" rel="stylesheet" />
+    <style type="text/css">
+        .ui.file.input input[type="file"] {
+            display: none;
+        }
+    </style>
+{% endput %}
+
+{% put scripts %}
+    <script src="{{ 'assets/js/vendor/tinymce/tinymce.min.js'|theme }}"></script>
+    <script src="{{ 'assets/js/vendor/tinymce/themes/modern/theme.min.js'|theme }}"></script>
+    <script src="{{ 'assets/js/custom-editor.js'|theme }}"></script>
+
+    <script type="text/javascript">
+      function checkPostAs(){
+
+      if ($('#postas').val() == "owner" || $('#postas').val() == ""){
+          $('#postasdiv').hide();
+          
+          $('#postasid').val('{{me.id}}');
+          $('#postas_dropdown').dropdown('clear');
+          $('#postas_dropdown').append($('<option>', { 
+                value: '{{me.id}}',
+                text : '{{me.name}} {{me.surname}}'
+            }));
+          $('#postas_dropdown').val('{{me.id}}');
+      }else{
+          $('#postasdiv').show();
+          $('#postasdiv')
+            .dimmer('show')
+          ;
+          $('#postas_dropdown').dropdown('clear');
+
+          $(this).request('{{ __SELF__}}::onPostasSelect', {
+            data: {type: $('#postas').val(), postto: $('#postto').val()}, 
+            complete: function(data){
+              //console.log(data['responseText']);
+              $('#postas_dropdown').children().remove();
+              var users = $.parseJSON(data['responseText']);
+              $.each(users, function (i, user) {
+                //alert(user);
+                if ($('#postas').val() == "other"){
+                  $('#postas_dropdown').append($('<option>', { 
+                      value: user.id,
+                      text : user.name + ' ' + user.surname
+                  }));
+                }else{
+                  $('#postas_dropdown').append($('<option>', { 
+                      value: user.id,
+                      text : user.name 
+                  }));
+                }
+                
+              });
+              $('#postasdiv')
+                .dimmer('hide')
+              ;
+            }
+          });
+      }
+      
+      $('#postaslbl').text('Post as ' + $('#postas').val() + ': ');
+
+    }
+
+    function checkPostTo(){
+
+      if ($('#postto').val() == "owner" || $('#postto').val() == ""){
+          $('#posttodiv').hide();
+      }else{
+          $('#posttodiv').show();
+          $('#posttodiv')
+            .dimmer('show')
+          ;
+          $('#postto_dropdown').dropdown('clear');
+
+          $(this).request('{{ __SELF__}}::onSelectPostTo', {
+            data: {type: $('#postto').val()}, 
+            complete: function(data){
+              //console.log(data['responseText']);
+              $('#postto_dropdown').children().remove();
+              var users = $.parseJSON(data['responseText']);
+              $.each(users, function (i, user) {
+
+                $('#postto_dropdown').append($('<option>', { 
+                    value: user.id,
+                    text : user.name 
+                }));
+               
+              });
+              $('#posttodiv')
+                .dimmer('hide')
+              ;
+            }
+          });
+
+      }
+      $('#posttoname').val('');
+      $('#posttolbl').text('Post to ' + $('#postto').val() + ': ');
+    }
+
+    $('#postcreateform').submit(function() {
+      if (tinyMCE.get('contenttxt').getContent() == "" || tinyMCE.get('contenttxt').getContent() == "<p>&nbsp;as</p>"){
+        //$('#postcreateform').form('add errors', {content: 'Please enter content'})
+        $('#postcreateform').form('add prompt', 'content');
+        $('#postcreateform .error.message').html('Please enter content').show();
+        return false;
+      }else{
+        $(this).form('remove prompt', 'content');
+      }
+      
+      if ($('#postcreateform').form('is valid')){
+        $('#postcreateform').addClass('loading');
+        $('#postcreateform').submit();
+        
+      }
+      return false;
+    });
+
+    </script>
+    
+    
+
+{% if moduleType == 'post' %}
+    <script src="{{ 'assets/js/create-post.js'|theme }}"></script>
+  {% else %}
+    <script src="{{ 'assets/js/create-program.js'|theme }}"></script>
+  {% endif %}
+{% endput %}
+
+<div class="ui steps">
+  <div class="active step">
+    <i class="plane icon"></i>
+    <div class="content">
+      <div class="title">Content</div>
+      <div class="description">Add post title and description</div>
+    </div>
+  </div>
+  <div class="step">
+    <i class="info circle icon"></i>
+    <div class="content">
+      <div class="title">Configuration</div>
+      <div class="description">Choose your post setting</div>
+    </div>
+  </div>
+  <div class="step">
+    <i class="image icon"></i>
+    <div class="content">
+      <div class="title">Media</div>
+      <div class="description">Add images or video url</div>
+    </div>
+  </div>
+</div>
+
+{{ form_open({ request: 'onPostCreateContent', class:'ui form grid', id: 'postcreateform'}) }}
+
+<div class="ten wide column ui form">
+<div class="ui segments">
+
+    {% if showHeading == true %}
+        <div class="ui segment no-padding-bottom">
+            <i class="circular {{ __SELF__.moduleFAIcon }} icon link"></i> {{ __SELF__.moduleHeading }}
+        </div>
+    {% endif %}
+
+        <div class="ui segment">
+            <div class="ui items">
+                <div class="item">
+                    <div class="content">
+
+                        <div class="ui form">
+                            <div class="field">
+                              <label>Title</label>
+                              <input placeholder="Post Title" type="text" name="title">
+                            </div>
+                            <div class="field">
+                              <label>Content</label>
+                              <textarea placeholder="Post Content" type="text" class="tinymceeditor" name="content" id="contenttxt"></textarea>
+                            </div>
+                            
+                            <div class="field">
+                              <label>Video Url</label>
+                              <input placeholder="Video Url" type="text" name="video">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="sixteen wide tablet six wide computer column ui form">
+    <div class="ui segments">
+        <div class="ui segment">
+            <div class="ui items">
+                <div class="item">
+                    <div class="content">
+                        <div class="field">
+                          <label class="" for="categories">Category</label>
+                          <select multiple="multiple" placeholder="Search category" class="ui fluid search dropdown" id="category_dropdown" multiple="" name="category[]">
+                            {% for category in categories %}
+                            <option value="{{category.id}}">{{category.name}}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                        <div class="field tags">
+                          <label class="" for="tags">Tags</label>
+                          <div class="ui fluid multiple search selection dropdown" id="tags_dropdown">
+                            <input name="tags" id="new_tags" type="hidden">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Tags</div>
+                            <div class="menu">
+                              {% for tag in tags %}
+                              <div class="item" data-value="{{tag.name}}">{{tag.name}}</div>
+                              {% endfor %}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label class="">Post To</label>
+                          <div class="ui selection dropdown" >
+                            <div class="default text">Select</div>
+                            <i class="dropdown icon"></i>
+                            <input type="hidden" name="postto" id="postto" onchange="checkPostTo()">
+                            <div class="menu">
+                              <div class="item" data-value="team">Team</div>
+                              <div class="item" data-value="region">Region</div>
+                              <div class="item" data-value="program">Program</div>
+                              <div class="item" data-value="organization">Organisation</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="field" style="display: none;" id="posttodiv">
+                            <div class="ui inverted dimmer">
+                              <div class="ui text loader">Loading</div>
+                            </div>
+                            <label id="posttolbl">Post to Name</label>
+                            <div class="ui search" id="posttosearch">
+                                <select placeholder="Search user name..." multiple="multiple" class="ui fluid search dropdown" id="postto_dropdown" multiple="" name="posttoname[]">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field">
+                          <label>Post As</label>
+                          <div class="ui selection dropdown" >
+                            <div class="default text">Select</div>
+                            <i class="dropdown icon"></i>
+                            <input type="hidden" name="postas" id="postas" onchange="checkPostAs()">
+                            <div class="menu">
+                              <div class="item" data-value="owner">Me</div>
+                              <div class="item" data-value="other">Other User</div>
+                              <div class="item" data-value="team">Team</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="field" style="display: none;" id="postasdiv">
+                            <div class="ui inverted dimmer">
+                              <div class="ui text loader">Loading</div>
+                            </div>
+                            <label id="postaslbl">Post as Name</label>
+                            <div class="ui search" id="postassearch">
+                                <select placeholder="Search post as name..." multiple="multiple" class="ui fluid search dropdown" id="postas_dropdown" name="postasname">
+                                  
+                                </select>
+                            </div>
+                        </div>
+                        <div class="ui hidden divider"></div>
+                        
+                        <input type="hidden" name="type" value="{{moduleType}}">
+                          
+                        <div class="ui error message"></div>
+
+                        <button class="ui primary submit button right floated" type="submit">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ form_close() }}
+
+<div class="ui hidden divider"></div>
+<div class="sixteen wide tablet six wide computer column ui form">
+    <div class="ui segments">
+        <div class="ui segment">
+            <div class="ui items">
+                <div class="item">
+                    <div class="content">
+                        <div class="field">
+                                <label for="file1">Add Featured Image:</label>
+                                <!-- File uploader -->
+                                {% component 'fileUploader' %}
+                                <!-- <div class="ui fluid file input action">
+                                    <input type="text" readonly>
+                                    <input type="file" id="file1" name="featured_image" autocomplete="off">
+                                    <div class="ui button">
+                                        Select...
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="field">
+                                <label for="file2">Add post images:</label>
+                                {% component 'multifileUploader' %}
+                            </div>
+                        
+
+                        <button class="ui primary submit button right floated" type="submit">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

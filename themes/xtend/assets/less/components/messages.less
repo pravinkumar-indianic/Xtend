@@ -1,0 +1,230 @@
+// Messages
+// Components: messages.htm
+
+.ui.segment.message-container {
+    .segment-base;
+    .column-top-spacer {
+        border-bottom: 1px solid @gray-light;
+    }
+    .column-message-intro {
+       border-right: 1px solid @gray-light; 
+    }
+    .column-message-short {
+        box-shadow:inset -1px 0 0 @gray-light;
+        padding-bottom: 0;
+        overflow:hidden;
+        background:@gray-lighter;
+    }
+}
+
+
+.new-message {
+    border-bottom:1px solid @gray-light;
+    margin: -1rem -1rem 0;
+    padding: 1rem;
+    a.button {
+        width: 160px;
+        margin: 0 auto;
+        padding: 7px 20px;
+        display: block;
+    }
+}
+
+
+.message-menu {
+    width:160px;
+    margin:0 auto;
+    .ui.vertical.menu {
+        padding-top: 7px;
+        .segment-clear;
+        .item {
+            padding:20px 0;
+            >i.icon {
+                float: left;
+                margin: 0 .5em 0 0;
+                color:@gray;
+            }  
+            &:before {
+                display:none;
+            }
+            &:hover {
+                color:@gray;
+                background:transparent;
+            }
+            &.add-cat {
+                color:@gray-light;
+                &:hover {
+                    color:@gray; 
+                }
+            }
+            &.active {
+                font-family:@font-semibold;
+                background:transparent;
+                .icon {
+                    color:@black;
+                }
+            }
+        }
+
+        & + .ui.vertical.menu {
+            border-top:1px solid @gray-light;
+        }
+    }
+    .message-avatar {
+        border-top:1px solid @gray-light; 
+        padding-top: 30px;
+        margin-bottom:20px;
+        text-align:center;
+        img {
+            max-width:70px;
+        }
+    }
+    .message-name {
+        font-family:@font-light;
+        font-size:14px;
+        margin:10px 0;
+    }
+}
+
+
+.recent-message {
+    border-bottom:1px solid @gray-light;
+    background:@gray-lighter;
+    margin: -1rem -1rem 0;
+    padding: 1rem;
+    a {
+        line-height:35px;
+        display:block;
+        text-align:right;
+        color:@gray-dark;
+    }
+}
+
+
+.ui.tabular.menu.message-short-desc {
+    display:block;
+    border:none;
+    margin:0 -1rem 0 -1rem;
+    @media screen and (min-width: @tablet) {
+        overflow-y:scroll;
+        height:800px; 
+        margin:0 -2.25rem 0 -1rem;
+    }
+    a.item {
+        border:none;
+        width:100%;
+        display:block;
+        border:none;
+        border-radius:0px;
+        box-shadow:inset 0 -1px 0 @gray-light, inset -1px 0 0 @gray-light;
+        margin:0;
+        &.active {
+            box-shadow:inset 0 -1px 0 @gray-light, inset 5px 0 0 @brand-aqua;
+            border-radius:0px!important;
+            background:@white;
+        }
+    }
+    .message-from {
+        font-family:@font-light;
+        font-size:14px;
+        color: @gray-lightest;
+    } 
+    .message-date {
+        float:right;
+        font-family:@font-semibold;
+        font-size:11px;
+        color: @gray-lightest;
+    } 
+    .message-subject {
+        font-family:@font-semibold;
+        font-size:14px;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin:3px 0;
+        color: @gray;
+    }
+    .message-intro {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-family:@font-light;
+        font-size:14px;
+        display:block;
+        color: @gray;
+    }
+    a.item.active {
+        .message-subject,
+        .message-intro {
+            color: @black;
+        }
+    }
+    .message-fav {
+        position:absolute;
+        right:0.25rem;
+        top:50%;
+        transform:translateY(-50%);
+        color: @gray;
+    }
+
+}
+
+.message-search {
+    border-bottom:1px solid @gray-light;
+    border-left:1px solid @gray-light;
+    margin: -1rem -1rem 0;
+    padding: 1rem;
+    .input{
+        height:35px;
+        display:block;
+        text-align:right;
+        color:@gray-dark;
+        margin-bottom:0;
+        .icon {
+            left:0;
+            right:auto;
+        }
+        input {
+            margin-bottom:0;
+            border:none;
+            font-size:14px;
+            font-family:@font-light;
+            padding: .67861429em 1em;
+            padding-left: 2.67142857em!important;
+        }
+    }
+}
+
+.message-full-column .tab {
+    padding:2rem;
+    height:350px;
+    overflow-y:auto;
+    margin:0 -1rem 1rem;
+    .message-utilities {
+        text-align: right;
+        font-size: 20px;
+        .icon {
+            color:@gray-lighter;
+        }
+        a:hover {
+            .icon {
+                color:@gray;  
+            }
+        }
+    }
+    .message-date {
+        font-family:@font-light;
+        font-size:14px;
+        color: @gray-lightest;
+    }
+    .message-subject {
+        font-family:@font-light;
+        font-size:21px;
+        margin:12px 0 15px;
+    }
+    .message-full {
+        margin-top:1rem;
+    }
+}

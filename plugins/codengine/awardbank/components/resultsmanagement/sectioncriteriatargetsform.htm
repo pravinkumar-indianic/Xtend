@@ -1,0 +1,43 @@
+<form class="criteria-form ui form" id="criteria-target-form">
+    <div class="ui stackable grid">
+        <div class="sixteen wide tablet four wide computer column">
+            <div class="field">
+                <label for="start">Period Start</label>
+                <select name="start" id="start">
+                    <option value="3">Mar</option>
+                    <option value="4">Apr</option>
+                    <option value="5">May</option>
+                    <option value="6">Jun</option>
+                    <option value="7">Jul</option>
+                    <option value="8">Aug</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="sixteen wide tablet four wide computer column">
+            <div class="field">
+                <label for="end">Period End</label>
+                <select name="end" id="end">
+                    <option value="3">Mar</option>
+                    <option value="4">Apr</option>
+                    <option value="5">May</option>
+                    <option value="6">Jun</option>
+                    <option value="7">Jul</option>
+                    <option value="8">Aug</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="sixteen wide tablet four wide computer column">
+            <div class="field">
+                <label for="target">Period Points Available</label>
+                <input type="text" name="target" id="target" placeholder="Target">
+            </div>
+        </div>
+
+        <div class="sixteen wide tablet four wide computer column">
+            <input type="hidden" name="id" value="{{ criteria.id }}">
+            <button class="ui button primary save criteria-target">Add</button>
+        </div>
+    </div>
+</form>

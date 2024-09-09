@@ -1,0 +1,36 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:  
+    dollar_value:
+        label: codengine.awardbank::lang.PointsLedger.dollar_value
+        type: numberrange
+        conditions: dollar_value >= ':min' and dollar_value <= ':max'
+    points_value:
+        label: codengine.awardbank::lang.PointsLedger.points_value
+        type: numberrange
+        conditions: points_value >= ':min' and points_value <= ':max'
+    type:
+        label: codengine.awardbank::lang.PointsLedger.type
+        type: group
+        conditions: type in (:filtered)
+        options:
+            0 : 'Fixed Value'
+            1 : 'Addition Value'
+            2 : 'Subtraction Value'
+    xero_id:
+        label: codengine.awardbank::lang.PointsLedger.xero_id
+        type: text
+        conditions: xero_id = :value
+        size: 4
+    program:
+        label: codengine.awardbank::lang.Program.Program
+        modelClass: Codengine\Awardbank\Models\Program
+        scope: filterPrograms
+        nameFrom: name   
+    user:
+        label: codengine.awardbank::lang.User.User
+        modelClass: Rainlab\User\Models\User
+        scope: filterUsers
+        nameFrom: email     

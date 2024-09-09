@@ -1,0 +1,22 @@
+columns:
+    id:
+        label: id
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    deleted_at:
+        label: deleted_at
+        type: datetime
+    p_id:
+        label: p_id
+        type: number
+    p_type:
+        label: p_type
+        type: text
+    tag_id:
+        label: tag_id
+        type: number

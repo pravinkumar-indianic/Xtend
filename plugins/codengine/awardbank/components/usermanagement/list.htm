@@ -1,0 +1,49 @@
+<div class="ui grid dashboard-posts-grid">
+    <div class="columns">
+        <div class="ui header sixteen wide tablet eight wide computer column">
+            <h2 class="ui header">List of the {{ program.name }} program users</h2>
+        </div>
+    </div>
+</div>
+
+<div class="right floated ten wide column search column-no-padding" style="margin-top:20px">
+    <div class="ui search">
+        <div class="ui left icon input">
+            <i class="search icon"></i>
+            <input class="search" id="users-search-term" type="text" placeholder="Search Users">
+        </div>
+    </div>
+</div>
+
+<p>
+    <br/>
+</p>
+
+
+<div id="users">
+    {% partial '@userlist' users = users %}
+</div>
+
+{% put scripts %}
+
+<script>
+  $('body').on('keypress', '.ui.search .search', function (e) {
+    if (e.which === 13) {
+      let searchterm = $(this).val();
+      filterUsers(searchterm);
+      return false;
+    }
+
+  });
+
+  function filterUsers(searchterm){
+    var data = {
+      'page': 1,
+      'searchterm': searchterm
+    };
+    requestFactory('UserManagement::onUsersPaginate', data, ['#users']);
+  }
+
+</script>
+
+{%  endput %}

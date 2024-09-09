@@ -1,0 +1,13 @@
+columns:
+    id:
+        label: id
+        type: number
+    permissionentityallocatable_id:
+        label: permissionenityallocatable_id
+        type: number
+    permissionentityallocatable_type:
+        label: permissionenityallocatable_type
+        type: text
+    permission_id:
+        label: permission_id
+        type: number

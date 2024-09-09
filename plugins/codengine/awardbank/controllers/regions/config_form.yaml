@@ -1,0 +1,10 @@
+name: Regions
+form: $/codengine/awardbank/models/region/fields.yaml
+modelClass: Codengine\Awardbank\Models\Region
+defaultRedirect: codengine/awardbank/regions
+create:
+    redirect: 'codengine/awardbank/regions/update/:id'
+    redirectClose: codengine/awardbank/regions
+update:
+    redirect: codengine/awardbank/regions
+    redirectClose: codengine/awardbank/regions

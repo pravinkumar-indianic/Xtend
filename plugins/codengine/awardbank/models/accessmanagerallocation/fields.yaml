@@ -1,0 +1,21 @@
+fields:
+    managable_id:
+        label: 'Managable ID'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    managable_type:
+        label: 'Managable Type'
+        oc.commentPosition: ''
+        options:
+            Codengine\Awardbank\Models\Team: Team
+            Codengine\Awardbank\Models\Region: Region
+            Codengine\Awardbank\Models\Program: Program
+            Codengine\Awardbank\Models\Organization: Organization
+        span: auto
+        type: dropdown
+    user_id:
+        label: 'User ID'
+        oc.commentPosition: ''
+        span: auto
+        type: number

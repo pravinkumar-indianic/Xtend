@@ -1,0 +1,78 @@
+tabs:
+    defaultTab: Content Management:
+    fields:
+        status:
+            label: 'Status'
+            type: dropdown
+            span: full
+            options:
+                publish: 'Publish'
+                unpublish: 'Unpublish'
+            tab: 'Content Management'
+        post_live_date:
+            label: Post Live Time
+            type: datepicker
+            span: full
+            tab: 'Content Management'
+        title:
+            label: title
+            type: text
+            span: full
+            tab: 'Content Management'
+        content:
+            label: Content
+            oc.commentPosition: ''
+            span: full
+            type: ShahiemSeymor\Ckeditor\FormWidgets\Wysiwyg
+            size: giant
+            tab: 'Content Management'
+        pinned:
+            label: 'Pinned'
+            type: checkbox
+            tab: 'Content Management'
+        post_type:
+            label: 'Post Type'
+            type: dropdown
+            span: full
+            options:
+                post: Post
+                program-tool: 'Program Tool'
+                useful-information: 'Useful Information'
+                message: Message
+            tab: 'Content Management'
+        video_url:
+            label: Video
+            oc.commentPosition: ''
+            span: full
+            type: text
+            tab: 'Content Management'
+        feature_image:
+            label: 'Post Feature Image'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: auto
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto
+            tab: Image Management
+        images:
+            label: 'Post Images'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: auto
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto
+            tab: Image Management

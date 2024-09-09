@@ -1,0 +1,10 @@
+name: Suppliers
+form: $/codengine/awardbank/models/supplier/fields.yaml
+modelClass: Codengine\Awardbank\Models\Supplier
+defaultRedirect: codengine/awardbank/suppliers
+create:
+    redirect: 'codengine/awardbank/suppliers/update/:id'
+    redirectClose: codengine/awardbank/suppliers
+update:
+    redirect: codengine/awardbank/suppliers
+    redirectClose: codengine/awardbank/suppliers

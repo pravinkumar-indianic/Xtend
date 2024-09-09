@@ -1,0 +1,22 @@
+<?php 
+	
+	if(isset($model)){
+		$result = $model;
+	}
+	if(isset($record)){
+		$result = $record;
+	}
+	if(isset($result)){
+		if(isset($model)){ ?>
+			<div class="relation-widget">
+		<?php }
+		if($result->purchase_order_url != null){ ?>
+			<button class="btn btn-primary" data-request="onEmailPO" data-request-confirm="Are you sure you want to email the supplier this PO?" data-request-data="id: <?= $result->id ?>">Send PO E-mail</button>
+		<?php } else { ?>
+			<div class="btn btn-default disabled">Not Set</div>
+		<?php } 
+		if(isset($model)){ ?>
+			</div>
+		<?php }
+	}
+?>

@@ -1,0 +1,63 @@
+fields:
+    country_id:
+        label: 'Country Id (Generated from dropdown)'
+        oc.commentPosition: ''
+        span: right
+        type: dropdown
+        options:
+            'AU' : Australia
+            'NZ' : New Zealand
+            'IRL': Ireland
+            'UK' : UK
+            'PH' : Phillipines
+    country:
+        label: 'Country (Generated from from textfield)'
+        oc.commentPosition: ''
+        span: right
+        type: text
+    state:
+        label: 'codengine.awardbank::lang.awardbank.state'
+        oc.commentPosition: ''
+        span: right
+        type: text
+    city:
+        label: 'codengine.awardbank::lang.awardbank.city'
+        oc.commentPosition: ''
+        span: right
+        type: text
+    suburb_name:
+        label: 'codengine.awardbank::lang.awardbank.suburbname'
+        oc.commentPosition: ''
+        span: right
+        type: text
+    unit_number:
+        label: 'codengine.awardbank::lang.awardbank.unitnumber'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+    street_number:
+        label: 'codengine.awardbank::lang.awardbank.street_number'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+    street_name:
+        label: 'codengine.awardbank::lang.awardbank.streetname'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    postcode:
+        label: 'codengine.awardbank::lang.awardbank.postcode'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+    phone_number:
+        label: 'codengine.awardbank::lang.awardbank.phone_number'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+    suppliers@update:
+        label: 'codengine.awardbank::lang.awardbank.suppliername'
+        type: relation
+        nameFrom: name
+        span: full
+        emptyOption: None

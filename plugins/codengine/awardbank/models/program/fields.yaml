@@ -1,0 +1,807 @@
+fields:
+    name:
+        label: 'codengine.awardbank::lang.awardbank.programname'
+        span: full
+        type: text
+    slug:
+        label: 'Slug'
+        placeholder: 'Slug'
+        type: text
+tabs:
+    defaultTab: Program Details
+    fields:
+        timezone:
+            label: 'Timezone'
+            placeholder: 'Timezone'
+            type: dropdown
+        registration_open:
+            label: 'Registration Open'
+            span: auto
+            type: switch
+            tab: Program Details
+        cancellation_active:
+            label: 'Cancellation Model Active'
+            span: auto
+            type: switch
+            tab: Program Details
+        use_business_names:
+            label: 'Use Business Names As User Names'
+            span: auto
+            type: switch
+            tab: Program Details
+        use_targeting_tags:
+            label: 'Use Targeting Tags'
+            span: auto
+            type: switch
+            tab: Program Details
+        team_label:
+            label: 'Team Label'
+            span: full
+            type: text
+            tab: Program Details
+        territory:
+            label: 'Territory'
+            oc.commentPosition: ''
+            span: full
+            type: dropdown
+            options:
+                'AU' : Australia
+                'NZ' : New Zealand
+                'IRL': Ireland
+                'UK' : UK
+                'PH' : Phillipines
+            tab: Program Details
+        description:
+            label: 'codengine.awardbank::lang.awardbank.programdescription'
+            size: large
+            oc.commentPosition: ''
+            span: full
+            type: richeditor
+            tab: Program Details
+        primary_color:
+            label: 'codengine.awardbank::lang.awardbank.programprimarycolor'
+            oc.commentPosition: ''
+            span: auto
+            type: colorpicker
+            default: '#000000'
+            tab: Program Details
+        secondary_color:
+            label: 'codengine.awardbank::lang.awardbank.programsecondarycolor'
+            oc.commentPosition: ''
+            span: auto
+            type: colorpicker
+            default: '#000000'
+            tab: Program Details
+        start_date:
+            label: 'codengine.awardbank::lang.awardbank.programstartdate'
+            oc.commentPosition: ''
+            mode: datetime
+            span: auto
+            type: datepicker
+            tab: Program Details
+        end_date:
+            label: 'codengine.awardbank::lang.awardbank.programenddate'
+            oc.commentPosition: ''
+            mode: datetime
+            span: auto
+            type: datepicker
+            tab: Program Details
+        program_t_and_c:
+            label: 'Program T & Cs'
+            span: full
+            type: textarea
+            size: large
+        register_form_questions:
+            label: Registration Form Questions
+            type: repeater
+            form:
+                fields:
+                    questiondescription:
+                        label: Question Text
+                        type: text
+
+        module_allow_rewards:
+            label: 'Activate Rewards Module'
+            span: auto
+            type: switch
+            tab: Modules
+        module_allow_posts:
+            label: 'Activate Posts Module'
+            span: auto
+            type: switch
+            tab: Modules
+        module_allow_awards:
+            label: 'Activate Awards Module'
+            span: auto
+            type: switch
+            tab: Modules
+        module_allow_users:
+            label: 'Activate Users Module'
+            span: auto
+            type: switch
+            tab: Modules
+        module_allow_results:
+            label: 'Activate Results Module'
+            span: auto
+            type: switch
+            tab: Modules
+        display_results_elite:
+            label: 'Display Result'
+            span: auto
+            type: switch
+            tab: Modules
+        module_allow_admin_reports:
+            label: 'Activate Admin Reports Module'
+            span: auto
+            type: switch
+            tab: Modules
+        module_allow_activity_feed:
+            label: 'Activate Activity Feed Module'
+            span: auto
+            type: switch
+            tab: Modules
+        module_allow_user_profile:
+            label: 'Activate User Profile Module'
+            span: auto
+            type: switch
+            tab: Modules
+        module_allow_program_tools:
+            label: 'Activate Program Tools Module'
+            span: auto
+            type: switch
+            tab: Modules
+        module_allow_program_settings:
+            label: 'Activate Program Settings Module'
+            span: auto
+            type: switch
+            tab: Modules
+        module_allow_social_feed:
+            label: 'Activate Social Feed Module'
+            span: auto
+            type: switch
+            tab: Modules
+        module_allow_user_management:
+            label: 'Activate User Management Module'
+            span: auto
+            type: switch
+            tab: Modules
+
+        birthday_prize_value:
+            label: 'Give The Following Points Value For Birthdays'
+            span: auto
+            type: number
+            default: 0
+            tab: Birthdays & Tenure
+        anniversary_prize_value:
+            label: 'Give The Following Points Value For Anniversaries'
+            span: auto
+            type: number
+            default: 0
+            tab: Birthdays & Tenure
+        celebrate_birthdays:
+            label: 'Celebrate Birthdays'
+            span: full
+            type: switch
+            tab: Birthdays & Tenure
+        celebrate_tenure:
+            label: 'Celebrate Tenure'
+            span: full
+            type: switch
+            tab: Birthdays & Tenure
+        tenure_array:
+            label: 'Celebrate Tenure'
+            span: full
+            type: repeater
+            form:
+                fields:
+                    tenure_year:
+                        label: Years Of Service To Recognize
+                        type: number
+                    tenure_value:
+                        label: Recognition Value (points)
+                        type: number
+            tab: Birthdays & Tenure
+
+        can_buy_points:
+            label: Users Of This Program Can Buy Additional Points
+            type: switch
+            span: full
+            tab: Financial
+        maximum_product_value:
+            label: Maximum Points A Product Can Be Worth In A Program (Dollar Value)
+            type: number
+            placeholder: 'No Limit'
+            span: auto
+            tab: Financial
+        points_limit:
+            label: Maximum Points A User Can Purchase In A Single Transaction (Dollar Value)
+            type: number
+            placeholder: 'No Limit'
+            span: auto
+            tab: Financial
+        scale_points_by:
+            label: 'codengine.awardbank::lang.awardbank.scalepointsby'
+            oc.commentPosition: ''
+            span: auto
+            type: number
+            default: 1
+            tab: Financial
+        points_name:
+            label: 'codengine.awardbank::lang.awardbank.points_name'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            default: 'Points'
+            tab: Financial
+        program_markup_type:
+            label: 'Program Mark Up Type'
+            oc.commentPosition: ''
+            span: auto
+            type: dropdown
+            default: dollar
+            options:
+                percent: Percent
+                dollar: Dollars
+                none: None
+            tab: Financial
+        program_markup_integer:
+            label: 'Program Mark Up #'
+            oc.commentPosition: ''
+            span: auto
+            default: 0
+            type: number
+            tab: Financial
+        external_reference:
+            label: External System Reference ID
+            type: text
+            placeholder: 'XXXX-XXXX'
+            span: auto
+            tab: Financial
+        xero_details_section:
+            label: Xero details
+            type: section
+            tab: Financial
+        xero_job_code_suffix:
+            label: Xero Job Code Suffix
+            type: text
+            placeholder: 'AA'
+            span: auto
+            tab: Financial
+        xero_renewal_billing_frequency:
+            label: Xero Renewal Billing Frequency
+            type: dropdown
+            options:
+                0: 'Monthly'
+            span: auto
+            readOnly: true
+            tab: Financial
+        xero_billing_start_date:
+            label: Xero Billing Start Date
+            type: datepicker
+            mode: date
+            span: auto
+            tab: Financial
+        xero_billing_next_date:
+            label: Xero Billing Next Billing Date
+            type: datepicker
+            mode: date
+            span: auto
+            readOnly: true
+            tab: Financial
+        xero_renewal_day_of_month:
+            label: Xero Renewal Day Of Month
+            type: number
+            span: auto
+            tab: Financial
+        manual_pricing:
+            label: Manual Pricing
+            type: switch
+            span: auto
+            tab: Financial
+        xero_renewal_price_plan:
+            label: Xero Price Plan
+            type: number
+            span: auto
+            tab: Financial
+        xero_renewal_member_count:
+            label: Xero Renewal Member Count
+            type: number
+            span: auto
+            tab: Financial
+        payment_made:
+            label: Payments Currently Valid
+            type: switch
+            span: auto
+            tab: Financial
+        first_billing_sent:
+            label: First Bill Sent / Off Trial
+            type: switch
+            disabled: true
+            span: auto
+            tab: Financial
+
+        new_account_send:
+            label: 'Send System New Account'
+            type: switch
+            comment: '*|programname|*, *|pointsname|*, *|pointsvalue|*, *|programimageurl|*, *|programslug|*, *|title|*, *|passwordurl|*, *|receiverfullname|*, *|prebuiltbody|*'
+            tab: 'Emails'
+            context: update
+        new_account_template:
+            label: 'Override Template For New Account'
+            type: text
+            tab: 'Emails'
+            context: update
+        new_created_variables:
+            label: New User Confirm E-mail Variables details
+            type: section
+            comment: '*|programname|*, *|pointsname|*, *|pointsvalue|*, *|programimageurl|*, *|programslug|*, *|title|*, *|randomurl|*, *|receiverfullname|*, *|prebuiltbody|*'
+            tab: 'Emails'
+        new_created_send:
+            label: 'Send System New User Confirm E-mail'
+            type: switch
+            tab: 'Emails'
+            context: update
+        new_created_template:
+            label: 'Override Template For New User Confirm E-mail'
+            type: text
+            tab: 'Emails'
+            context: update
+        unsubscribe_send:
+            label: 'Send System Unsubscribe'
+            type: switch
+            tab: 'Emails'
+            context: update
+        unsubscribe_template:
+            label: 'Override Template For Unsubscribe'
+            type: text
+            tab: 'Emails'
+        order_placed_variables:
+            label: Order Placed Variables details
+            type: section
+            comment: '*|programname|*, *|pointsname|*, *|pointsvalue|*, *|programimageurl|*, *|title|*, *|ordertable|*, *|receiverfullname|*, *|businessname|*, *|attnname|*, *|shippinglevel|*, *|shippingunit|*, *|shippingaddress|*, *|orderid|*'
+            tab: 'Emails'
+        order_placed_send:
+            label: 'Send System Order Placed'
+            type: switch
+            tab: 'Emails'
+            context: update
+        order_placed_template:
+            label: 'Override Template For Order Placed'
+            type: text
+            tab: 'Emails'
+            context: update
+        order_shipped_send:
+            label: 'Send System Order Shipped'
+            type: switch
+            tab: 'Emails'
+            context: update
+        order_shipped_template:
+            label: 'Override Template For Order Shipped'
+            type: text
+            tab: 'Emails'
+            context: update
+        product_backorder_send:
+            label: 'Send System Product Backorder'
+            type: switch
+            tab: 'Emails'
+            context: update
+        product_backorder_template:
+            label: 'Override Template For Product Backorder'
+            type: text
+            tab: 'Emails'
+            context: update
+        award_result_send:
+            label: 'Send System Award Result'
+            type: switch
+            tab: 'Emails'
+            context: update
+        award_result_template:
+            label: 'Override Template For Award Result'
+            type: text
+            tab: 'Emails'
+            context: update
+        award_nomination_send:
+            label: 'Send System Award Nomination'
+            type: switch
+            tab: 'Emails'
+            context: update
+        award_nomination_template:
+            label: 'Override Template For Award Nomination'
+            type: text
+            tab: 'Emails'
+            context: update
+        award_vote_send:
+            label: 'Send System Award Vote'
+            type: switch
+            tab: 'Emails'
+            context: update
+        award_vote_template:
+            label: 'Override Template For Award Vote'
+            type: text
+            tab: 'Emails'
+            context: update
+        award_winner_send:
+            label: 'Send System Award Winner'
+            type: switch
+            tab: 'Emails'
+            context: update
+        award_winner_template:
+            label: 'Override Template For Award Winner'
+            type: text
+            tab: 'Emails'
+            context: update
+        new_post_send:
+            label: 'Send System New Post'
+            type: switch
+            tab: 'Emails'
+            context: update
+        new_post_template:
+            label: 'Override Template For New Post'
+            type: text
+            tab: 'Emails'
+            context: update
+        new_comment_send:
+            label: 'Send System New Comment'
+            type: switch
+            tab: 'Emails'
+            context: update
+        new_comment_template:
+            label: 'Override Template For New Comment'
+            type: text
+            tab: 'Emails'
+            context: update
+        thankyou_variables:
+            label: Thankyou Variables details
+            type: section
+            comment: '*|programname|*, *|pointsname|*, *|pointsvalue|*, *|programimageurl|*, *|title|*, *|senderfullname|*, *|programslug|*, *|message|*, *|receiverfullname|*'
+            tab: 'Emails'
+        new_thankyou_send:
+            label: 'Send System New Thankyou'
+            type: switch
+            tab: 'Emails'
+            context: update
+        new_thankyou_template:
+            label: 'Override Template For New Thankyou'
+            type: text
+            tab: 'Emails'
+            context: update
+        birthday_variables:
+            label: Birthday Variables details
+            type: section
+            comment: '*|programname|*, *|pointsname|*, *|pointsvalue|*, *|programimageurl|*, *|receiverfullname|*'
+            tab: 'Emails'
+        new_birthday_send:
+            label: 'Send System Birthday'
+            type: switch
+            tab: 'Emails'
+            context: update
+        new_birthday_template:
+            label: 'Override Template For Birthday'
+            type: text
+            tab: 'Emails'
+            context: update
+        # Tenure section
+        tenure_variables:
+            label: Tenure Variables Details
+            type: section
+            comment: '*|programname|*, *|pointsname|*, *|pointsvalue|*, *|programimageurl|*, *|receiverfullname|*, *|diffYears|*'
+            tab: 'Emails'
+        new_tenure_send:
+            label: 'Send System Tenure'
+            type: switch
+            tab: 'Emails'
+            context: update
+        new_tenure_template:
+            label: 'Override Template For Tenure'
+            type: text
+            tab: 'Emails'
+            context: update
+        transfer_variables:
+            label: Transfer Variables Details
+            type: section
+            comment: '*|programname|*, *|pointsname|*, *|pointsvalue|*, *|programimageurl|*, *|receiverfullname|*, *|message|*, *|transferamount|*'
+            tab: 'Emails'
+        new_transfer_send:
+            label: 'Send System Transfer'
+            type: switch
+            tab: 'Emails'
+            context: update
+        new_transfer_template:
+            label: 'Override Template For Transfer'
+            type: text
+            tab: 'Emails'
+            context: update
+        new_spend_send:
+            label: 'Send Unspent Points Notify'
+            type: switch
+            tab: 'Emails'
+            context: update
+        new_spend_reminder:
+            label: 'Override Template Unspent Points Notify'
+            type: text
+            tab: 'Emails'
+            context: update
+        wishlist_notifications:
+            label: 'Send Wishlist Notifications'
+            type: switch
+            tab: 'Emails'
+            context: update
+        wishlist_template:
+            label: 'Override Template Wishlist Notification'
+            type: text
+            tab: 'Emails'
+            context: update
+
+        shipping_message_status:
+            label: 'On/Off (If On but Message is empty, the system will use default Shipping and Delivery Message)'
+            type: switch
+            tab: 'Shipping and Delivery Message'
+        shipping_message:
+            label: 'Shipping and Delivery Message'
+            type: richeditor
+            tab: 'Shipping and Delivery Message'
+
+        teams:
+            label: Teams
+            type: partial
+            path: field_teams
+            tab: Teams
+
+        content_block:
+            label: Content Block
+            type: nestedform
+            tab: Content Block
+            form:
+                fields:
+                    label_first:
+                        label: Label Left Block
+                        type: text
+                    description_first:
+                        label: Text Left Block
+                        type: richeditor
+                    text_color_first:
+                        label: 'Text Color Left Block'
+                        span: auto
+                        type: colorpicker
+                    background_color_first:
+                        label: 'Background Color Left Block'
+                        span: auto
+                        type: colorpicker
+                    dashboard_image_first:
+                        label: 'Dashboard Image (Left Block)'
+                        type: fileupload
+                        mode: image
+                        tab: Content Block
+                        thumbOptions:
+                            mode: crop
+                            offset:
+                                - 0
+                                - 0
+                            quality: 100
+                            sharpen: 0
+                            extension: auto
+
+                    label_second:
+                        label: Label Right Block
+                        type: text
+                    description_second:
+                        label: Text Right Block
+                        type: richeditor
+                    text_color_second:
+                        label: 'Text Color Right Block'
+                        span: auto
+                        type: colorpicker
+                    background_color_second:
+                        label: 'Background Color Right Block'
+                        span: auto
+                        type: colorpicker
+                    dashboard_image_second:
+                        label: 'Dashboard Image (Right Block)'
+                        type: fileupload
+                        mode: image
+                        tab: Content Block
+                        thumbOptions:
+                            mode: crop
+                            offset:
+                                - 0
+                                - 0
+                            quality: 100
+                            sharpen: 0
+                            extension: auto
+
+                    reward_banner_image:
+                        label: 'Reward Banner Image'
+                        span: auto
+                        type: fileupload
+                        mode: image
+                        tab: Content Block
+                        thumbOptions:
+                            mode: crop
+                            offset:
+                                - 0
+                                - 0
+                            quality: 100
+                            sharpen: 0
+                            extension: auto
+                    reward_banner_title:
+                        label: 'Reward Banner Title'
+                        type: Text
+                    reward_banner_title_color:
+                        label: 'Reward Banner Title Color'
+                        span: full
+                        type: colorpicker
+
+                    reward_banner_button_text:
+                        label: 'Reward Banner Button Text'
+                        type: text
+
+                    reward_banner_button_url:
+                        label: 'Button Link to'
+                        type: text
+
+                    reward_banner_button_text_color:
+                        label: 'Reward Banner Button Text Color'
+                        type: colorpicker
+                        span: full
+
+                    reward_banner_button_background_color:
+                        label: 'Reward Banner Button Background Color'
+                        type: colorpicker
+                        span: full
+
+                    reward_banner_button_border_color:
+                        label: 'Reward Banner Button Border Color'
+                        type: colorpicker
+                        span: full
+
+                    reward_banner_overrideHoverButton:
+                        label: 'Override Hover Button Color'
+                        type: colorpicker
+                        span: full
+
+
+
+        feature_image:
+            label: 'codengine.awardbank::lang.awardbank.featureimage (Desktop)'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: auto
+            tab: Image Management
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 100
+                sharpen: 0
+                extension: auto
+        feature_image_mobile:
+            label: 'Feature Image (Mobile)'
+            type: fileupload
+            mode: image
+            imageHeight: 300
+            imageWidth: 300
+            tab: Image Management
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 100
+                sharpen: 0
+                extension: auto
+        slider_images:
+            label: 'Slider Options (Desktop Only)'
+            type: fileupload
+            mode: image
+            imageHeight: auto
+            imageWidth: auto
+            tab: Image Management
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 100
+                sharpen: 0
+                extension: auto
+        header_icon:
+            label: 'Hero Image'
+            type: fileupload
+            mode: image
+            imageHeight: 100
+            imageWidth: 100
+            tab: Image Management
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 100
+                sharpen: 0
+                extension: auto
+
+        login_image:
+            label: 'Login Image'
+            type: fileupload
+            mode: image
+            imageHeight: 420
+            imageWidth: 420
+            tab: Image Management
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 100
+                sharpen: 0
+                extension: auto
+        organization:
+            label: Organization
+            type: partial
+            path: field_organization
+            tab: Organization
+        billingcontact:
+            label: Billing Contact
+            type: partial
+            path: field_billingcontact
+            tab: Billing Contact
+        billing_invoices:
+            label: Billing Invoices
+            type: partial
+            path: field_billing_invoices
+            tab: Billing Invoices
+        users:
+            label: Users
+            type: partial
+            path: field_users
+            tab: Users
+        managers:
+            label: Managers
+            type: partial
+            path: field_managers
+            tab: Managers
+        pointsledgers:
+            label: Points Ledgers
+            type: partial
+            path: field_pointsledgers
+            tab: Points Ledgers
+        address:
+            label: Address
+            type: partial
+            path: field_address
+            tab: Address
+        product_exclusions:
+            label: Product Exclusions
+            type: partial
+            path: field_product_exclusions
+            tab: Product Exclusions
+        category_exclusions:
+            label: Category Exclusions
+            type: partial
+            path: field_category_exclusions
+            tab: Category Exclusions
+        resultgroups:
+            label: Result Groups
+            type: partial
+            path: field_resultgroups
+            tab: Result Groups
+        posts:
+            label: Posts
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_posts.htm
+            tab: Posts
+        awards:
+            label: Awards
+            type: partial
+            path: ~/plugins/codengine/awardbank/controllers/fields/_field_awards.htm
+            tab: Awards
+        popup_title:
+            label: Pop-up Title
+            type: text
+            tab: Pop-up
+        popup_content:
+            label: Pop-up Content
+            type: richeditor
+            tab: Pop-up

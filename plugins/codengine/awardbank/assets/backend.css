@@ -1,0 +1,246 @@
+/**
+
+	LIST STICKY CONTROLS
+
+**/
+
+
+/* #sticky-control-list table.table.data thead{
+
+	display: block;
+
+} */
+
+
+/*
+#sticky-control-list table.table.data tbody
+{
+   overflow: auto;
+   height:650px;
+   float:left;
+} */
+
+/* #sticky-control-list table.table.data th
+{
+    min-width: 175px;
+    max-width:	175px;
+}
+
+#sticky-control-list table.table.data td
+{
+    min-width: 175px;
+    max-width:	175px;
+} */
+/*
+#sticky-control-list .list-footer .list-pagination{
+
+    width: 500px;
+    position: fixed;
+    bottom: 10px;
+    right: 19px;
+
+} */
+
+/**
+
+	MODAL SAVE BUTTONS
+
+**/
+
+.modal-header ul{
+
+    list-style-type: none;
+    padding:0px;
+    margin:0px;
+
+}
+
+.modal-content {
+
+	border:1px solid black;
+
+}
+
+
+
+.modal-body.add-bottom-padding{
+
+	padding-bottom:20px;
+
+}
+
+.modal-footer{
+
+    position:fixed;
+    background-color:white;
+    padding:10px;
+    z-index:400;
+    top:10px;
+	border:1px solid black;
+
+}
+
+.popup-backdrop.fade.in.loading{
+
+	/**z-index:5000;**/
+
+}
+
+/**
+
+	Region Nested List
+
+**/
+
+.modal-content .control-list .begin-hidden{
+
+	display:none;
+
+}
+
+.modal-content .control-list .region-button{
+
+	background-color:maroon;
+	color:white;
+}
+
+.modal-content .control-list .team-button{
+
+	background-color:firebrick;
+	color:white;
+
+}
+
+.modal-content .control-list .user-button{
+
+	background-color:indianred;
+	color:white;
+
+}
+
+/**
+
+	_TOP_INFO Partial
+
+**/
+
+ul.top-info-unordered-list{
+    list-style-type: none;
+    padding:0px;
+    margin:0px;
+}
+
+ul.top-info-unordered-list li{
+
+	padding-bottom:10px;
+}
+
+.options .options-col .btn{
+
+	width:100%;
+
+}
+
+
+
+/**
+
+	LIST COMPLETENESS STYLES
+
+**/
+
+.control-list table.table.data tbody .xl-incomplete:nth-child(even) td{
+
+	background-color:rgba(153, 0, 28, 5);
+	color:white;
+}
+
+.control-list table.table.data tbody .l-incomplete:nth-child(even) td{
+
+	background-color:rgba(153, 0, 28, 0.4);
+	color:white;
+}
+
+.control-list table.table.data tbody .m-incomplete:nth-child(even) td{
+
+	background-color:rgba(153, 0, 28, 0.3);
+	color:black;
+}
+
+.control-list table.table.data tbody .s-incomplete:nth-child(even) td{
+
+	background-color:rgba(153, 0, 28, 0.2);
+	color:black;
+
+}
+
+.control-list table.table.data tbody .xs-incomplete:nth-child(even) td{
+
+	background-color:rgba(153, 0, 28, 0.1);
+	color:black;
+
+}
+
+.control-list table.table.data tbody .xl-incomplete td{
+
+	background-color:rgba(153, 0, 28, 5);
+	color:white;
+}
+
+.control-list table.table.data tbody .l-incomplete td{
+
+	background-color:rgba(153, 0, 28, 0.4);
+	color:white;
+}
+
+.control-list table.table.data tbody .m-incomplete td{
+
+	background-color:rgba(153, 0, 28, 0.3);
+	color:black;
+}
+
+.control-list table.table.data tbody .s-incomplete td{
+
+	background-color:rgba(153, 0, 28, 0.2);
+	color:black;
+
+}
+
+.control-list table.table.data tbody .xs-incomplete td{
+
+	background-color:rgba(153, 0, 28, 0.1);
+	color:black;
+
+}
+
+.btn.btn-red{
+
+	background-color:red;
+	color:white;
+
+}
+
+.btn.btn-red:hover{
+
+	background-color:crimson;
+	color:white;
+
+}
+
+.btn.btn-green{
+
+	background-color:green;
+	color:white;
+
+}
+
+.btn.btn-green:hover{
+
+	background-color:mediumseagreen;
+	color:white;
+
+}
+
+.component-backend-modal .modal-footer button{
+    min-width: 65px;
+}

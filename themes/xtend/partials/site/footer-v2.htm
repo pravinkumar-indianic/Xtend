@@ -1,0 +1,88 @@
+<footer id="pre-footer" class="ui fluid pre-footer-main">
+	<div class="ui grid stackable container">
+        <div class="column four wide">
+		  	<nav class="footer-nav">
+                {{ FooterUsefullInfo.html1|raw }}
+		  	</nav>
+        </div>
+        <div class="column four wide">
+		  	<nav class="footer-nav">
+                {{ FooterUsefullInfo.html2|raw }}
+		  	</nav>
+        </div>
+        <div class="column four wide">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#">Important Links:</a>
+                        <ul>
+                            <li><a href="https://s3-ap-southeast-2.amazonaws.com/production-upload-xtend/Generic+Website+Terms+of+Use.pdf" target="_blank">Terms Of Use</a></li>
+                            {% if FooterUsefullInfo.user.current_program_id != 2 %}
+                                <li><a href="https://s3-ap-southeast-2.amazonaws.com/production-upload-xtend/Generic+Webiste+Privacy+Policy+.pdf" target="_blank">Privacy Policy</a></li>
+                                <li><a href="http://www.xtendsystem.com/faqs/" target="_blank">FAQS</a></li>
+                                <li><a href="https://s3-ap-southeast-2.amazonaws.com/production-upload-xtend/guide_documents/XTEND_User+Guide.pdf" target="_blank">User Guide</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+	</div>
+</footer>
+<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=bb25f5b9-5fcb-4b88-91c9-36bfa7cf11f8"> </script>
+{% if Cart.user.t_and_c_accept == false and Cart.user.currentProgram.id == 86 %}
+    {% put scripts %}
+        <script>
+            $(document).ready(function() {
+                $('.ui.modal .header').html('Please Complete your Program Registration.');
+                $('.ui.modal .content').html('<div id="div_7081809" style="min-height:700px;"></div>');
+                $('.ui.modal .actions').html('<button class="ui button primary square disabled survey" id="survey-complete">Survey Completed</i></button>');
+                $('.ui.modal').modal({
+                    closable  : false,
+                    inverted: true
+                }).modal('show');
+            });  
+
+            $('body').on('click', '#survey-complete', function() {    
+                $(this).addClass('oc-loading');
+                $('.ui.modal .content #errorcatcher').html('');
+
+                $.request('Cart::onAcceptTandC', 
+                {
+                    data: {
+                    },
+                    success: function(data) 
+                    {
+                        $('#survey-complete').removeClass('oc-loading');
+                        $(this).removeClass('oc-loading');
+                        $('.ui.modal').modal('hide');
+                        $('.ui.modal .header').html('');
+                        $('.ui.modal .content').html('');
+                        $('.ui.modal .actions').html('');
+                    },
+                    error: function(data)
+                    {
+                        console.log(data);
+                        $(this).removeClass('oc-loading');
+                        $('.ui.modal .content #errorcatcher').html(data.responseText);
+                    },
+                });
+            }); 
+
+            function removeDisabled(){ 
+                $('.ui.button.survey').removeClass('disabled');
+            };
+
+            setInterval(removeDisabled, 30000);           
+        </script>
+        <script>
+            EMBED_PARAMS = {};
+            EMBED_PARAMS.surveyID =7081809;
+            EMBED_PARAMS.domain ="//www.questionpro.com";
+            EMBED_PARAMS.src ="//www.questionpro.com/a/TakeSurvey?tt=2mMag8cTnog%3D";
+            EMBED_PARAMS.width ="100%";
+            EMBED_PARAMS.height = null;
+            EMBED_PARAMS.border = "hidden";
+        </script>
+        <script src="//www.questionpro.com/javascript/embedsurvey.js?version=1"></script>
+    {% endput %}
+{% endif %}

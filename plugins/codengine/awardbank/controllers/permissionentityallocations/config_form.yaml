@@ -1,0 +1,10 @@
+name: PermissionEntityAllocations
+form: $/codengine/awardbank/models/permissionentityallocation/fields.yaml
+modelClass: Codengine\Awardbank\Models\PermissionEntityAllocation
+defaultRedirect: codengine/awardbank/permissionentityallocations
+create:
+    redirect: 'codengine/awardbank/permissionentityallocations/update/:id'
+    redirectClose: codengine/awardbank/permissionentityallocations
+update:
+    redirect: codengine/awardbank/permissionentityallocations
+    redirectClose: codengine/awardbank/permissionentityallocations

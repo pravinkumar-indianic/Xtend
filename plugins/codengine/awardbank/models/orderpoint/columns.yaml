@@ -1,0 +1,17 @@
+columns:
+    id:
+        label: id
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    order_id:
+        label: order_id
+        type: number
+        searchable: true
+        sortable: true
+    point_id:
+        label: point_id
+        type: number
+        searchable: true
+        sortable: true

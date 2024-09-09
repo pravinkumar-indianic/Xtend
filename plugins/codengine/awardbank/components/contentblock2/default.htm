@@ -1,0 +1,53 @@
+<div class="ui container container-content-block2" style="padding-left:0px;padding-right:0px;padding-top:1rem;padding-bottom:1rem;">
+	<div class="ui grid">
+		<div class="ui sixteen wide tablet ten wide computer column">
+			<div class="ui segment content-block2 content-block2-invert content-block2-left {{ __SELF__ }}">
+				<div class="ui divided grid">
+					<div class="sixteen wide mobile ten wide tablet ten wide computer column content-block2-text">
+						<div class="content-block2-heading">
+                            <h2><i class="{{ __SELF__.lhsHeadingIcon }} icon"></i>
+                                {% if __SELF__.program.content_block.label_first %}
+                                {{__SELF__.program.content_block.label_first}}
+                                {% else %}
+                                {{ __SELF__.lhsHeadingText}}
+                                {% endif %}
+                            </h2>
+						</div>
+						<div class="content-block2-content">
+                            {% if __SELF__.program.content_block.description_first %}
+                                {{__SELF__.program.content_block.description_first|raw}}
+                            {% else %}
+							<p class="line1">{{ __SELF__.lhsLine1 }}</p>
+							<p class="line2">{{ __SELF__.lhsLine2 }}</p>
+                            <p class="line3"><a href="{{__SELF__.lhsLink}}">Find out More Here</a></p>
+                            {% endif %}
+						</div>
+					</div>
+					<div class="computer tablet only ui six wide column content-block2-image" href="{{__SELF__.lhsLink}}"style="background-image:url('{{__SELF__.lhsimage }}')"></div>
+				</div>
+			</div>
+		</div>
+		<div class="computer tablet only ui sixteen wide tablet six wide computer column">
+			<div class="ui segment content-block2 content-block2-right content-block2-text {{ __SELF__ }}" style="background-image:url('{{__SELF__.rhsimage }}');background-size:cover;">
+				<div class="content-block2-heading"></div>
+				<div class="content-block2-content">
+
+                    {% if __SELF__.program.content_block.label_second %}
+                        <div class="line1">{{__SELF__.program.content_block.label_second}}</div>
+                    {% else %}
+                      <p class="line1">{{ __SELF__.rhsLine1 }}</p>
+                    {% endif %}
+
+
+                    {% if __SELF__.program.content_block.description_second %}
+                    <div class="line3">{{__SELF__.program.content_block.description_second|raw}}</div>
+                    {% else %}
+
+                    <p class="line2">{{ __SELF__.rhsLine2 }}</p>
+                    <p class="line3"><a href="{{__SELF__.rhsLink}}">Find out More Here</a></p>
+                    {% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

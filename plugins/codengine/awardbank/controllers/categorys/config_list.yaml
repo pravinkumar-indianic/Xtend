@@ -1,0 +1,11 @@
+list: $/codengine/awardbank/models/category/columns.yaml
+modelClass: Codengine\Awardbank\Models\Category
+title: Categories
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+recordUrl: 'codengine/awardbank/categorys/update/:id'
+filter: config_filter.yaml
+recordsPerPage: 50

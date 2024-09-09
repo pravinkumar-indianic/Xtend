@@ -1,0 +1,21 @@
+fields:
+    likeable_type:
+        label: 'Like for'
+        oc.commentPosition: ''
+        options:
+            Codengine\Awardbank\Models\Post: Post
+            Codengine\Awardbank\Models\Program: Program
+        span: full
+        type: dropdown
+    likeable_id:
+        label: 'Post/Program Id'
+        oc.commentPosition: ''
+        span: full
+        type: number
+    like_id:
+        label: Like
+        span: full
+        oc.commentPosition: ''
+        nameFrom: user_id
+        descriptionFrom: description
+        type: relation

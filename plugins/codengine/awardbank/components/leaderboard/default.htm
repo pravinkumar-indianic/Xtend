@@ -1,0 +1,54 @@
+{% if user.roll != 'Sponsor' %}
+<div class="ui container" id="leaderboard-wrapper">
+    <div class="ui stackable grid">
+        <div class="ui sixteen wide column dash-hero">
+            <div class="full-screen-feature-image">
+                {% if access.program.social_feed_top_banner %}
+                <img width="1127" height="300" src="https://xtend23-production.s3.ap-southeast-2.amazonaws.com/media/5step_leaderboard_2024.jpg"
+                     class="circular avatar"
+                >
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if data %}
+    <div class="ui stackable grid header">
+        <div class="ui sixteen wide column">
+            <h1>{{ month|date('F') }} Leaderboards</h1>
+        </div>
+    </div>
+    <div class="ui stackable grid" id="navigation">
+        {% partial('@navigation') %}
+    </div>
+
+    <div class="ui stackable grid leaderboard-tables" id="leaderboard-tables">
+        {% if section == 'leaderboard' %}
+        {% partial('@leaderboard') %}
+        {% else %}
+        {% partial('@tables') %}
+        {% endif %}
+    </div>
+    {% else %}
+        <h1 style="text-align: center">Coming soon</h1>
+    {% endif %}
+</div>
+
+{% put scripts %}
+<script>
+  $('body').on('click', 'div.circle-criterium', function (e) {
+    e.preventDefault();
+    let isInactive = $(this).hasClass('inactive');
+    let id = $(this).attr('data-id');
+    if (id && !isInactive) {
+      var data = {
+        'id': id,
+      };
+      requestFactory('onSectionChange', data, ['#leaderboard-tables']);
+    }
+  });
+
+</script>
+{% endput %}
+{% else %}
+<h1>Page not available.</h1>
+{% endif %}

@@ -1,0 +1,32 @@
+title = "Reward Detail"
+url = "/rewards/:product_id"
+layout = "default-v2"
+description = "Reward Detail"
+
+[session]
+security = "user"
+redirect = "login"
+
+[RewardView]
+
+/** GLOBAL COMPONENTS **/
+
+[viewBag]
+metaarea = 1
+
+[CustomStyles]
+
+[Sidebar]
+
+[Cart]
+
+[SwitchProgram]
+
+[RewardsNav]
+
+[FooterUsefullInfo]
+
+==
+{% component 'CustomStyles' %}
+{% component 'RewardsNav' %}
+{% component 'RewardView' %}

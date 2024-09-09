@@ -1,0 +1,24 @@
+<div class="ui segment">
+    <div class="ui four columns stackable center aligned grid">
+    	<div class="column">
+			{% partial '@statistic' value = totalusers label = 'Total Users' %}
+		</div>
+    	<div class="column">
+			{% partial '@statistic' value = loggedinusers label = 'Logged In' %}
+		</div>
+    	<div class="column">
+			{% partial '@statistic' value = userspoints label = 'Live ' ~ user.currentProgram.points_name %}
+		</div>
+
+	</div>
+	<div class="ui one column stackable grid">
+	    <div class="column">
+	    	<h3>Users</h3>
+	    	<button class="ui button primary manage-new-user">Create New User</button>
+		</div>
+		<div class="column">
+			{% partial '@filters' filters = filters navoption = navoption exporttarget = 'users' %}
+		</div>
+	</div>
+    {% partial '@userslist' users = users %}
+</div>

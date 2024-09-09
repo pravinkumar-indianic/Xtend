@@ -1,0 +1,10 @@
+name: ShippingRate
+form: $/codengine/awardbank/models/shippingrate/fields.yaml
+modelClass: Codengine\Awardbank\Models\ShippingRate
+defaultRedirect: codengine/awardbank/shippingrate
+create:
+    redirect: 'codengine/awardbank/shippingrate/update/:id'
+    redirectClose: codengine/awardbank/shippingrate
+update:
+    redirect: codengine/awardbank/shippingrate
+    redirectClose: codengine/awardbank/shippingrate

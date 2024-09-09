@@ -1,0 +1,10 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+ 
+export:
+    title: Export entries
+    modelClass: Codengine\Awardbank\Models\GoogleAnalyticsExport
+    list: $/codengine/awardbank/models/googleanalytics/columns.yaml
+    fileName: 'googleanalytics.csv'
+    # useList: true

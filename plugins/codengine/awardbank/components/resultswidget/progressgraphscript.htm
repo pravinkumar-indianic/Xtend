@@ -1,0 +1,123 @@
+<data-slot id="progress-graph-element-id" data="{{ graphId }}"></data-slot>
+<data-slot id="progress-graph-value" data="{{ graphValue }}"></data-slot>
+<data-slot id="progress-graph-color" data="{{ graphColor }}"></data-slot>
+
+{% put scripts %}
+<!-- Chart code -->
+<script>
+  function initProgressGraph() {
+
+    let elementId = 'chart-members-signed-up';
+    let graphValue = $('#chart-members-signed-up').attr('data-value');
+    let graphColor = $('#chart-members-signed-up').attr('data-color');
+
+    if (elementId && graphValue !== undefined) {
+      if (am5) {
+        //am5.ready(function () {
+
+// Create root element
+// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+        var root = am5.Root.new(elementId);
+
+
+// Set themes
+// https://www.amcharts.com/docs/v5/concepts/themes/
+        root.setThemes([am5themes_Animated.new(root)]);
+
+
+// Create chart
+// https://www.amcharts.com/docs/v5/charts/xy-chart/
+        var chart = root.container.children.push(
+          am5xy.XYChart.new(root, {
+            panX: false,
+            panY: false,
+            wheelX: "none",
+            wheelY: "none"
+          })
+        );
+
+
+// Create axes
+// https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+        var yRenderer = am5xy.AxisRendererY.new(root, {minGridDistance: 30});
+
+        var yAxis = chart.yAxes.push(
+          am5xy.CategoryAxis.new(root, {
+            maxDeviation: 0,
+            categoryField: "country",
+            renderer: yRenderer,
+            text: "text",
+            fill: am5.color(0xffffff),
+            populateText: true,
+          })
+        );
+
+        var xAxis = chart.xAxes.push(
+          am5xy.ValueAxis.new(root, {
+            maxDeviation: 5,
+            min: 0,
+            max: 100,
+            renderer: am5xy.AxisRendererX.new(root, {}),
+          })
+        );
+
+
+// Create series
+// https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+        var series = chart.series.push(
+          am5xy.ColumnSeries.new(root, {
+            name: "Series 1",
+            xAxis: xAxis,
+            yAxis: yAxis,
+            valueXField: "value",
+            sequencedInterpolation: true,
+            categoryYField: "country",
+          })
+        );
+
+        var columnTemplate = series.columns.template;
+
+// Add label bullet
+        series.bullets.push(function () {
+          return am5.Bullet.new(root, {
+            locationX: 0.6,
+            sprite: am5.Label.new(root, {
+              text: "{valueXWorking.formatNumber('#.# a')}%",
+              fill: root.interfaceColors.get("alternativeText"),
+              centerX: am5.p50,
+              centerY: am5.p50,
+              populateText: true,
+              fontSize: "1.6em",
+            })
+          });
+        });
+
+        columnTemplate.adapters.add("fill", () => {
+          return am5.color(graphColor);
+        });
+
+        columnTemplate.adapters.add("stroke", () => {
+          return am5.color(graphColor);
+        });
+
+// Set data
+        var data = [{
+          country: "",
+          value: graphValue,
+        }];
+
+        yAxis.data.setAll(data);
+        series.data.setAll(data);
+
+
+// Make stuff animate on load
+// https://www.amcharts.com/docs/v5/concepts/animations/
+//series.appear(1000);
+        chart.appear(1000, 100);
+
+        //}); // end am5.ready()
+      }
+    }
+  }
+</script>
+{% endput %}

@@ -1,0 +1,50 @@
+<?php 
+	
+	if(isset($model)){
+		$result = $model;
+	}
+	if(isset($record)){
+		$result = $record;
+	}
+	if(isset($result)){
+		if(isset($model)){ ?>
+
+		<?php }
+		if($result->points_json){ ?>
+			<div class="control-list">
+			    <table class="table data">
+			        <thead>
+			            <tr>
+			                <th>Program ID</th>
+			                <th>Program Name</th>
+			                <th>Points</th>
+			                <th>In Cart</th>
+			                <th>High ID</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			        	<?php foreach($result->points_json as $key => $value){ ?>
+				            <tr>
+				            	<td><?= $key ?></td>
+				            	<td><?php if(isset($value['name'])){ echo $value['name']; }?></td>
+				            	<td><?php if(isset($value['points'])){ echo $value['points']; }?></td>
+				            	<td><?php if(isset($value['inCart'])){ echo $value['inCart']; }?></td>
+				            	<td><?php if(isset($value['highId'])){ echo $value['highId']; }?></td>
+				            </tr>
+			            <?php } ?>
+			        </tbody>
+			    </table>
+			</div>
+
+		<?php } else { ?>
+			<div class="callout fade in callout-danger no-icon">
+			    <div class="header">
+			        <h3>No Points Array Set Yet.</h3>
+		        </div>
+	        </div>
+		<?php }
+		if(isset($model)){ ?>
+
+		<?php }
+	}
+?>

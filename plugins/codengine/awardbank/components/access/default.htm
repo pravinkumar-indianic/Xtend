@@ -1,0 +1,95 @@
+<!--
+
+{% if __SELF__.programs|length >= 2 %}
+	<div class="ui dropdown">
+		Current Program: {{ __SELF__.program.name }}
+		<i class="caret down icon"></i>    		
+		<div class="menu">		
+			{% for program in __SELF__.programs %}
+				<a 
+					class="item program-option {% if __SELF__.program.id != program.id %}program-option{% endif %}"
+					data-id="{{program.id}}" 
+					style="color:white;">
+						{{program.organization.name}} - {{ program.name }} 
+						{% if __SELF__.program.id == program.id %}
+							<i class="checkmark icon"></i>
+						{% endif %}
+				</a>
+			{% endfor %}
+		</div>
+	</div>
+{% else %}
+	<a>
+		{{ __SELF__.program.organization.name }} - {{ __SELF__.program.name }}
+	</a>
+{% endif %}
+-->
+
+{% if __SELF__.teams |length >= 2 %}
+
+	<div class="ui dropdown">
+
+		<a class="active company-avatar" href="/dashboard">
+		    <img 
+		        {% if __SELF__.program.header_icon %}
+
+		            src="{{ __SELF__.program.header_icon.thumb(50,50) }}" 
+
+		        {% else %}
+
+	                src="{{ __SELF__.backupimage }}" 
+
+		        {% endif %}
+
+		         class="ui image">    
+		</a>
+	
+		<span class="header-team">{{ __SELF__.program.name }}
+			<i class="caret down icon"></i>
+		</span>	
+		
+		<div class="menu ">		
+			<div class="item menu-team-switch heading">
+				<span class="item team-option">
+					Available Programs:
+				</span>
+			</div>
+
+			{% for program in __SELF__.programs %}
+				<div class="item menu-team-switch">
+					<a 
+						class="item {% if __SELF__.program.id != program.id %}program-option{% endif %}" 
+						data-id="{{program.id}}"">
+							{{ program.name }}  
+							{% if __SELF__.program.id == program.id %}
+								<i class="checkmark icon"></i>
+							{% endif %}
+					</a>
+				</div>
+
+			{% endfor %}
+
+		</div>
+
+	</div>
+{% else %}
+
+		<a class="active company-avatar" href="/dashboard">
+		    <img 
+		        {% if __SELF__.program.header_icon %}
+
+		            src="{{ __SELF__.program.header_icon.thumb(50,50) }}" 
+
+		        {% else %}
+
+	                src="{{ __SELF__.backupimage }}" 
+
+		        {% endif %}
+
+		         class="ui image">    
+		</a>
+
+		<a class="header-team" >{{ __SELF__.program.name }}
+		</a>	
+
+{% endif %}

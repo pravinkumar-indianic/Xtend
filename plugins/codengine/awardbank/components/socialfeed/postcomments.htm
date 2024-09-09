@@ -1,0 +1,60 @@
+{% if post.comments %}
+{% for comment in post.comments %}
+<div class="comment">
+    <div class="ui grid grid-no-margin user-profile">
+        <div class="sixteen wide tablet sixteen wide computer column column-no-padding">
+            <div class="user-avatar">
+                {% if comment.poster.avatar %}
+                <img width="40" height="40"
+                     src="{{ comment.poster.avatar.thumb(40 , 40, 'crop') }}"
+                     class="circular avatar"
+                >
+                {% else %}
+                <img width="40" height="40"
+                     src="{{ 'assets/img/avatar/people/Enid.png'|theme }}"
+                     class="circular avatar"
+                >
+                {% endif %}
+            </div>
+
+            <div class="poster">
+                <p class="fullname">
+                    {{ comment.poster.fullbusinessname|raw }}
+                </p>
+                <p class="date">
+                    <small>{{ comment.created_at | date("d F Y H:i", "Australia/Sydney") }}</small>
+                </p>
+            </div>
+
+            <div class="content-wrapper">
+                <p class="content">
+                    {{ comment.response_content }}
+                </p>
+                {% if comment.attachment %}
+                <p class="attachment">
+                    {%if str_contains(comment.attachment.content_type, 'image/') %}
+                    <img
+                         src="{% if mode=='dashboard' %}{{comment.attachment.thumb(480 , 400, 'fit')}}{% else %}{{comment.attachment.thumb(1045 , 400, 'fit')}}{% endif %}"
+                         class="comment-image"
+                    >
+                    {% else %}
+                    <span class="comment-file-download">
+                            <a href="{{ comment.attachment.path }}" target="_blank">
+                                {{ comment.attachment.file_name }}
+                                <i class="icon outline download"></i>
+                            </a>
+                        </span>
+                    {% endif %}
+                </p>
+                {% endif %}
+
+                <div class="interactive-controls" id="social-post-comment-interactive-controls-{{ comment.id }}">
+                    {% partial '@commentlike' comment = comment %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}

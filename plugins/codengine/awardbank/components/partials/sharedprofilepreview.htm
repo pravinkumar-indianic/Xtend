@@ -1,0 +1,88 @@
+<div class="ui grid grid-no-margin">
+
+	<div class="ui sixteen wide tablet eight wide computer column profile-summary-image-column">
+
+		<div class="profile-summary-image">
+			{% if profile.avatar %}
+				<img src="{{ profile.avatar.thumb(150 , 150, 'crop') }}" class="ui small circular image avatar" id="avatar_{{profile.id}}">
+			{% else %}
+				{% if user.currentProgram.id == 81 %}
+					<img src="https://s3-ap-southeast-2.amazonaws.com/xtendsystem/media/program/people-icon2.png" class="ui small circular image avatar" id="avatar_{{profile.id}}">
+				{% else %}
+					<img src="https://app.xtendsystem.com/themes/xtend/assets/img/avatar/pawns/Profiles_icon-{{ random(['green','pink','purple']) }}.png" class="ui small circular image avatar" id="avatar_{{profile.id}}">
+				{% endif %}
+			{% endif %}
+		</div>
+
+	</div>
+
+	<div class="ui sixteen wide tablet eight wide computer column profile-summary-description-column">
+
+		<div class="profile-summary-description">
+			<h2 class="profile-summary-name">{{ profile.full_name }}</h2>
+		  	<button class="ui tiny icon button thankyou-count-button a-popup" data-content="{{ profile.full_name}} has been thanked {{ profile.getMyThankyouCount }} time(s)" id="thankyou-count-button_{{ profile.id }}">
+		    	<i class="star icon"></i>
+		    	{{ profile.getMyThankyouCount }}
+		  	</button>
+		  	<button class="ui tiny icon button email-popup a-popup" data-content="Email: {{ profile.email }}" data-email="{{ profile.email }}">
+		    	<i class="mail icon"></i>
+		  	</button>
+		  	<button class="ui tiny icon button info-popup_{{profile.id}} a-popup" data-content="Title: {% if profile.company_position  != null and profile.company_position != '' %} {{ profile.company_position }} {% else %} Staff {% endif %}. Teams: {% for team in profile.teams %} {% if loop.last %} {{ team.name }} {%else%} {{ team.name}} {%endif %}{% endfor %}">
+		    	<i class="address book icon"></i>
+		  	</button>
+		</div>
+
+	</div>
+	<div class="ui eight wide tablet eight wide computer column button-column">
+        <button class="ui button {% if profile.id == __SELF__.user.id %} disabled {% else %} primary {% endif %} fluid square message-button" data-receiver-id='{{ profile.id }}' data-receiver-name='{{ profile.full_name }}' data-sender-id ='{{ __SELF__.user.id }}'>
+        	<i class="star icon"></i>
+        	Message
+        </button>
+	</div>
+	<div class="ui eight wide tablet eight wide computer column button-column">
+        <button class="ui button {% if profile.id == __SELF__.user.id %} disabled {% else %} primary {% endif %} fluid square thankyou-button" data-receiver-id='{{ profile.id }}' data-receiver-name='{{ profile.full_name }}' data-sender-id ='{{ __SELF__.user.id }}'>
+        	<i class="star icon"></i>
+        	Thank
+        </button>
+	</div>
+
+	<div class="ui sixteen wide tablet sixteen wide computer column button-column">
+
+
+		<a href="/awards/" class="ui button {% if profile.id == __SELF__.user.id %} disabled {% else %} primary {% endif %} fluid square"><i class="trophy icon"></i>Nominate</a>
+		{# STICKY TAPE
+        <button class="ui button {% if profile.id == __SELF__.user.id %} disabled {% else %} primary {% endif %} fluid square nominate-button" data-receiver-id='{{ profile.id }}' data-receiver-name='{{ profile.full_name }}' data-sender-id ='{{ __SELF__.user.id }}'>
+        	<i class="trophy icon"></i>
+        	Nominate
+        </button>
+
+    	#}
+	</div>
+
+</div>
+
+{% put scripts %}
+
+<script>
+
+	$(document).ready(function(){
+		$('.a-popup').popup();
+		/**
+		var title_{{profile.id}} = '{{ profile.full_name }}';
+		var html_{{profile.id }} = '<p>Title: {% if profile.company_position  != null and profile.company_position != '' %} {{ profile.company_position }} {% else %} Staff {% endif %}</p><p>Teams: {% for team in profile.teams %} {% if loop.last %} {{ team.name }} {%else%} {{ team.name}}, {%endif %}{% endfor %}</p>';
+
+		$('#avatar_{{profile.id}}').popup({
+		    title    : title_{{profile.id}},
+		    html  : html_{{profile.id}},
+		});
+
+		$('.info-popup_{{profile.id}}').popup({
+		    title    : title_{{profile.id}},
+		    html  : html_{{profile.id}},
+		});
+		**/
+	});
+
+</script>
+
+{% endput %}

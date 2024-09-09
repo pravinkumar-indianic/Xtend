@@ -1,0 +1,15 @@
+{% set smallloop = 1 %}
+<div id="options-set-{{ bigloop }}">
+	{% for option in options %}
+		{% partial '@optionform' 
+			option = option 
+			bigloop = bigloop 
+			smallloop = smallloop
+		%}
+		{% set smallloop = smallloop+1 %}
+	{% endfor %}
+</div>
+<div class="column">
+	<p>* Options only appear for Dropdown or Multichoice Quesions.</p>
+	<a class="ui secondary button add-option {{ bigloop }}"  data-bigloop = "{{ bigloop }}" data-nextloop = "{{ smallloop + 1 }}">Add Option</a>
+</div>

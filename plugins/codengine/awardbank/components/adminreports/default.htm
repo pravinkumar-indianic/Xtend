@@ -1,0 +1,2914 @@
+{% if access.program.id != 2 %}
+<div class="ui {% if __SELF__.container == true %} container {% endif %} admin-report-container">
+
+    <div class="ui grid grid-no-margin">
+
+        <div class="ui sixteen wide column column-no-padding {% if __SELF__.flushtop == true %}flushtop{% endif %} {% if __SELF__.flushbottom == true %}flushbottom{% endif %}">
+
+
+    		{% if __SELF__.label_level == 'Program' %}
+
+    			{% if __SELF__.currentProgram.is_activated == false %}
+	    			<div class="ui segment" style="text-align:center;">
+	    				<a class="ui button primary" id="activate_program">Click Here To Activate Your Program and notify your users they can login (depending on the size of your program, this may take some time).</a>
+					</div>
+					{% put scripts %}
+						<script>
+								$('body').on('click', '#activate_program', function() {
+
+									var id = $(this).attr('data-id');
+									var button = $(this);
+									button.addClass('oc-loading');
+
+									$.request('onAllActivateProgram', {
+
+							        	data: {
+
+							        	},
+
+						                success: function(data)
+						                {
+						                	button.removeClass('oc-loading');
+						                	button.text('Your Users Have Been Notified And Your Program Is Active.');
+						                },
+
+							            error: function(data){
+						                	button.removeClass('oc-loading');
+						                	button.text('An Error Has Taken Place. Please Contact hq@xtendsystem.com.');
+							              throw data;
+							            },
+							        });
+
+								});
+						</script>
+					{% endput %}
+    			{% endif %}
+				<div class="ui segment{% if __SELF__.currentProgram.cancellation_active == false %} hide-this{% endif %}" id="restore_slot" style="text-align:center;">
+					<a class="ui button red" id="in_cancellation_mode">This Program Is Currently In Cancellation Mode. It Will Be Deleted At {{ __SELF__.currentProgram.xero_billing_next_date|date("F jS \\a\\t g:ia")  }}. Click Here If You Wish To Continue Your Program And Avoid Cancellation.</a>
+				</div>
+				{% put scripts %}
+					<script>
+
+						$('body').on('click', '#in_cancellation_mode', function() {
+
+							var button = $(this);
+
+							button.addClass('oc-loading');
+
+							$.request('onRestoreProgram', {
+
+					        	data: {
+
+					        	},
+
+				                success: function(data)
+				                {
+				                	button.removeClass('oc-loading');
+						  			$('#restore_slot').addClass('hide-this');
+						  			$('#delete_slot').removeClass('hide-this');
+				                },
+
+					            error: function(data){
+					              throw data;
+					            },
+					        });
+
+						});
+
+					</script>
+				{% endput %}
+			{% endif %}
+
+
+
+
+            <div class="ui segment admin-report{{ __SELF__ }}">
+
+
+        		{% if __SELF__.label_level == 'Empty' %}
+
+        			<h1>You do not have the correct management permissions to view admin in this program.</h1>
+
+        		{% else %}
+
+				<div class="labelset">
+					<a class="item active ui label" data-tab="management-reports"><span>{{ __SELF__.label_level }} Management</span></a>
+					{% if __SELF__.label_level == 'Program' %}
+						<a class="item ui label" data-tab="structure-details"><span>Structure Details</span></a>
+						<a class="item ui label" data-tab="management-tenure"><span>{{ __SELF__.label_level }} Tenure</span></a>
+						<a class="item ui label" data-tab="management-transactions"><span>{{ __SELF__.label_level }} Transaction</span></a>
+					{% endif %}
+
+					<a class="item ui label" data-tab="management-points"><span>{{access.program.points_name|title }} Allocation</span></a>
+
+					<a class="item ui label" data-tab="program-redemption-reports"><span>Redemption Reports</span></a>
+					{% if access.program.module_allow_awards == true %}
+						<a class="item ui label" data-tab="program-nominations-reports"><span>Nominations Reports</span></a>
+					{% endif %}
+					<a class="item ui label" data-tab="program-user-reports"><span>User Reports</span></a>
+					{#
+						<a class="item" data-tab="program-engagement-reports"><span>Engagement Reports</span></a>
+						{% if __SELF__.label_level == 'Program' %}
+							<a class="item" data-tab="program-budget-reports"><span>Budget Reports</span></a>
+						{% endif %}
+					#}
+					{% if __SELF__.label_level == 'Program' %}
+						<a class="item ui label" data-tab="program-communication"><span>Program Communication</span></a>
+					{% endif %}
+				</div>
+				<div class="ui tab active" data-tab="management-reports">
+
+			      	<div class="ui horizontal divider">
+		           		{{ __SELF__.label_level }} Management
+		      		</div>
+
+		      		{% if __SELF__.label_level == 'Program' %}
+
+						<form class="ui form form4" id="program_form">
+							<input name="program_id" type="hidden" value="{{ access.program.id }}">
+							<div class="ui grid one columns">
+								<div class="column">
+									<div class="field">
+										<label>Desktop Feature Image 1127px x 267px:</label>
+										{% component 'featureImage' %}
+									</div>
+								</div>
+							</div>
+							<div class="ui grid one columns">
+								<div class="column">
+									<div class="field">
+										<label>Desktop Slider Feature Images 1127px x 267px (Upload multiple images that will rotate on your top banner):</label>
+										{% component 'sliderImages' %}
+									</div>
+								</div>
+							</div>
+							<div class="ui grid one columns">
+								<div class="column">
+									<div class="field">
+										<label>Mobile Feature Image 300px x 300px:</label>
+										{% component 'featureImageMobile' %}
+									</div>
+								</div>
+							</div>
+							<div class="ui grid one columns">
+								<div class="column">
+									<div class="field small-upload">
+										<label>Icon Image 40px x 25px:</label>
+										{% component 'headerIcon' %}
+									</div>
+								</div>
+							</div>
+							<div class="ui grid one columns">
+								<div class="column">
+									<div class="field">
+										<label>Login Image 400px x 400px:</label>
+										{% component 'loginImage' %}
+									</div>
+								</div>
+							</div>
+							<div class="ui grid two columns">
+								<div class="column">
+					              	<div class="field">
+						            	<label for="signup-program-name">Program Name:</label>
+					            		<input type="text" name="programname" placeholder="Create a program name" id="signup-program-name" value="{{access.program.name }}">
+					              	</div>
+				            	</div>
+								<div class="column">
+					              	<div class="field">
+						            	<label for="signup-program-name">Program SubDomain:</label>
+					            		<input type="text" name="subdomain" placeholder="" id="signup-program-subdomain" value="{{access.program.slug }}">
+					              	</div>
+				            	</div>
+								<div class="column">
+	            					<div class="field">
+						            	<label for="signup-program-name">Program Primary Color:</label>
+										<input type="text" id="primarycolor" name="primarycolor" class="auto" value="{{access.program.primary_color }}">
+									</div>
+								</div>
+								{% put scripts %}
+									<script>
+										$("#primarycolor").spectrum({
+										    color: "{{access.program.primary_color }}"
+										});
+									</script>
+								{% endput %}
+								<div class="column">
+	            					<div class="field">
+						            	<label for="signup-program-name">Program Secondary Color:</label>
+										<input type="text" id="secondarycolor" name="secondarycolor" class="auto" value="{{access.program.secondary_color }}">
+									</div>
+								</div>
+								{% put scripts %}
+									<script>
+										$("#secondarycolor").spectrum({
+										    color: "{{access.program.secondary_color }}"
+										});
+									</script>
+								{% endput %}
+								<div class="column">
+									<div class="field">
+										<label>Point Name:</label>
+										<input name="points_name" type="text" value="{{access.program.points_name }}">
+									</div>
+								</div>
+								<div class="column">
+									<div class="field">
+										<label>Scale Points By:</label>
+										<input name="scale_points_by" type="text" value="{{access.program.scale_points_by }}">
+									</div>
+								</div>
+								<div class="column">
+									<div class="field">
+										<label>Maximum Product {{access.program.points_name }} Value (0 Represents No Limit):</label>
+										<input name="maximum_product" type="text" value="{{access.program.scale_points_by * access.program.maximum_product_value }}">
+									</div>
+								</div>
+								<div class="column">
+									<div class="field">
+										<label>Allow Points To Be Purchased:</label>
+										<select class="ui selection dropdown" name="can_buy_points">
+											<option value="1"{% if access.program.can_buy_points == 1 %} selected{% endif %}>Yes</option>
+											<option value="0"{% if access.program.can_buy_points == 0 %} selected{% endif %}>No</option>
+										</select>
+									</div>
+								</div>
+								<div class="column">
+									<div class="field">
+										<label>Maximum Purchasable {{access.program.points_name }} Value (In a single transaction - 0 Represents No Limit) :</label>
+										<input name="maximum_points" type="text" value="{{access.program.scale_points_by * access.program.points_limit }}">
+									</div>
+								</div>
+								<div class="column">
+									<div class="field">
+										<label>Region Label (Name To Refer To Regions By):</label>
+										<input name="region_name" type="text" value="{{access.program.region_label }}">
+									</div>
+								</div>
+								<div class="column">
+									<div class="field">
+										<label>Team Label (Name To Refer To Teams By):</label>
+										<input name="team_name" type="text" value="{{access.program.team_label }}">
+									</div>
+								</div>
+								<div class="column">
+									<div class="field">
+										<label>Celebrate Birthdays <i class="exclamation circle icon link inline" data-content="By clicking yes, if your users have their birthday's in their profile, it will share it's their birthday (not year) in the Activity Feed, send an email to them to say happy birthday from Xtend and also when they login, celebrate with on screen confetti! A nice little touch to drive engagement of your program."></i>:</label>
+										<select class="ui selection dropdown" name="celebrate_birthdays">
+											<option value="1"{% if access.program.celebrate_birthdays == 1 %} selected{% endif %}>Yes</option>
+											<option value="0"{% if access.program.celebrate_birthdays == 0 %} selected{% endif %}>No</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</form>
+				      	<div class="ui horizontal divider">
+		           			Module Controls
+		      			</div>
+						<div class="ui form">
+							<div class="ui grid two columns">
+								<div class="column">
+									<div class="field">
+										<div class="ui toggle checkbox" id="postsmodule">
+											<label>Allow Posts Module</label>
+											<input type="checkbox" {% if access.program.module_allow_posts == 1 %}checked{% endif  %}>
+										</div>
+									</div>
+								</div>
+								<div class="column">
+									<div class="field">
+										<div class="ui toggle checkbox" id="awardsmodule">
+											<label>Allow Awards Module</label>
+											<input type="checkbox" {% if access.program.module_allow_awards == 1 %}checked{% endif  %}>
+										</div>
+									</div>
+								</div>
+								<div class="column">
+									<div class="field">
+										<div class="ui toggle checkbox" id="usersmodule">
+											<label>Allow Profiles Module</label>
+											<input type="checkbox" {% if access.program.module_allow_users == 1 %}checked{% endif  %}>
+										</div>
+									</div>
+								</div>
+								<div class="column">
+									<div class="field">
+										<div class="ui toggle checkbox" id="activitymodule">
+											<label>Allow Activity Feed Module</label>
+											<input type="checkbox" {% if access.program.module_allow_activity_feed == 1 %}checked{% endif  %}>
+										</div>
+									</div>
+								</div>
+								<div class="column">
+									<div class="field">
+										<div class="ui toggle checkbox" id="toolsmodule">
+											<label>Allow Program Tools Module</label>
+											<input type="checkbox" {% if access.program.module_allow_program_tools == 1 %}checked{% endif  %}>
+										</div>
+									</div>
+								</div>
+
+								{#
+									<div class="column">
+										<div class="field">
+											<div class="ui toggle checkbox" id="resultsmodule">
+												<label>Allow Results Module</label>
+												<input type="checkbox" {% if access.program.module_allow_results == 1 %}checked{% endif  %}>
+											</div>
+										</div>
+									</div>
+									<div class="column">
+										<div class="field">
+											<label>Birthday Reward Points Value:</label>
+											<input name="birthday_prize_value" type="text" value="{{access.program.birthday_prize_value * access.program.scale_points_by}} ">
+										</div>
+									</div>
+									<div class="column">
+										<div class="field">
+											<label>Work Anniversary Points Value:</label>
+											<input name="anniversary_prize_value" type="text" value="{{access.program.anniversary_prize_value * access.program.scale_points_by}}">
+										</div>
+									</div>
+								#}
+							</div>
+						</div>
+						<div class="ui grid">
+							<div class="ui sixteen wide column">
+								<a class="ui primary submit button right" id="program-update">Update Program</a>
+
+								<div class="alert alert-danger" data-validate-error>
+									<p data-message></p>
+								</div>
+							</div>
+						</div>
+
+						{% put scripts %}
+
+							<script>
+								$('body').on('click', '#program-update', function(event) {
+
+									event.preventDefault();
+
+									var button = $(this);
+									button.addClass('oc-loading');
+
+									var postsmodule = $('#postsmodule').checkbox('is checked');
+									var awardsmodule = $('#awardsmodule').checkbox('is checked');
+									var usersmodule = $('#usersmodule').checkbox('is checked');
+									var awardsmodule = $('#awardsmodule').checkbox('is checked');
+									var activitymodule = $('#activitymodule').checkbox('is checked');
+									var toolsmodule = $('#toolsmodule').checkbox('is checked');
+
+							        $('#program_form').request('onUpdateProgram', {
+
+							        	data: {
+							        		'postsmodule': postsmodule,
+							        		'awardsmodule': awardsmodule,
+							        		'usersmodule': usersmodule,
+							        		'awardsmodule': awardsmodule,
+							        		'activitymodule': activitymodule,
+							        		'toolsmodule': toolsmodule,
+							        	},
+
+						                success: function(response)
+						                {
+
+											button.removeClass('oc-loading');
+											button.text('Program Updated');
+
+						                },
+
+							            error: function(data){
+											button.removeClass('oc-loading');
+							              throw data;
+							            },
+							        });
+
+								});
+							</script>
+
+						{% endput %}
+
+					{% endif %}
+					{% if __SELF__.label_level == 'Region' %}
+
+						<form class="ui form form4" id="team_form">
+							<input name="region_id" type="hidden" value="{{ access.region.id }}">
+							<div class="ui grid two columns">
+								<div class="column">
+					              	<div class="field">
+						            	<label for="signup-region-name">Region Name:</label>
+					            		<input type="text" name="region_name" placeholder="Create a team name" id="signup-region-name" value="{{access.region.name }}">
+					              	</div>
+				            	</div>
+							</div>
+							<div class="ui grid">
+								<div class="ui sixteen wide column">
+									<a class="ui primary submit button right" id="region-update">Update Region</a>
+
+									<div class="alert alert-danger" data-validate-error>
+										<p data-message></p>
+									</div>
+								</div>
+							</div>
+						</form>
+
+						{% put scripts %}
+
+							<script>
+
+								$('body').on('click', '#region-update', function(event) {
+
+									event.preventDefault();
+									var button = $(this);
+									button.addClass('oc-loading');
+
+							        $('#team_form').request('onUpdateRegion', {
+
+							        	data: {
+
+							        	},
+
+						                success: function(response)
+						                {
+											button.removeClass('oc-loading');
+
+						                },
+
+							            error: function(data){
+											button.removeClass('oc-loading');
+							              throw data;
+							            },
+							        });
+
+								});
+							</script>
+
+						{% endput %}
+
+					{% endif %}
+					{% if __SELF__.label_level == 'Team' %}
+
+						<form class="ui form form4" id="team_form">
+							<input name="team_id" type="hidden" value="{{ access.team.id }}">
+							<div class="ui grid two columns">
+								<div class="column">
+					              	<div class="field">
+						            	<label for="signup-team-name">Team Name:</label>
+					            		<input type="text" name="team_name" placeholder="Create a team name" id="signup-team-name" value="{{access.team.name }}">
+					              	</div>
+				            	</div>
+							</div>
+							<div class="ui grid">
+								<div class="ui sixteen wide column">
+									<a class="ui primary submit button right" id="team-update">Update Team</a>
+
+									<div class="alert alert-danger" data-validate-error>
+										<p data-message></p>
+									</div>
+								</div>
+							</div>
+						</form>
+
+						{% put scripts %}
+
+							<script>
+
+								$('body').on('click', '#team-update', function(event) {
+
+									event.preventDefault();
+									var button = $(this);
+									button.addClass('oc-loading');
+
+							        $('#team_form').request('onUpdateTeam', {
+
+							        	data: {
+
+							        	},
+
+						                success: function(response)
+						                {
+											button.removeClass('oc-loading');
+
+						                },
+
+							            error: function(data){
+											button.removeClass('oc-loading');
+							              throw data;
+							            },
+							        });
+
+								});
+							</script>
+
+						{% endput %}
+
+					{% endif %}
+				</div>
+
+				<div class="ui tab" data-tab="management-points">
+
+
+			      	<div class="ui horizontal divider">
+		           		Allocate {{access.program.points_name|title }}
+		      		</div>
+
+                	<div class="ui form" id="allocatepointsform">
+
+			          	<div class="ui inverted dimmer">
+
+			            	<div class="ui text loader">Loading</div>
+
+			          	</div>
+
+	                    <div class="field">
+
+							<label>Transfer Points From:</label>
+							<div class="ui search selection dropdown" id="pointstransfersource" >
+							  	<input type="hidden" name="pointstransfersource">
+								<div class="default text">Select</div>
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									{% for access, array in __SELF__.targetOptions %}
+										{% for key, value in array %}
+											<div class="item" data-value='{{access}} => {{key}}'>({{ access|capitalize }}) {{ value }}</div>
+										{% endfor %}
+									{% endfor %}
+								</div>
+							</div>
+							<label style="font-size:0.8em;">To Search / Filter You Must Use The Format "(*Type*) *Name*"</label>
+                    	</div>
+                    	{% put scripts %}
+
+                    		<script>
+
+                    			$( document ).ready(function() {
+
+                    				var transfermin = 0;
+                    				var transfermax = 0;
+
+			                    	$('#pointstransfersource').dropdown({
+
+									    onChange: function(value, text, $selectedItem) {
+
+				                    		$('#pointsvoltotransferexternal').addClass('disabled');
+				                    		$('#pointstransfertargetexternal').addClass('disabled');
+				                    		$('#transferpointsubmit').addClass('disabled');
+
+										    $.request('onGetEntityAvailablePoints',
+										    {
+										        data: {
+
+										          'value' : value,
+
+										        },
+										        success: function(data)
+										        {
+
+										        	var count = parseInt(data['count']);
+										        	if(count > 0){
+							                    		$('#pointsvoltotransferexternal').removeClass('disabled');
+							                    		$('#pointstransfertargetexternal').removeClass('disabled');
+							                    		$('#pointspublicselect').removeClass('disabled');
+							                    		$('#transfermessagecontainer').removeClass('disabled');
+							                    		$('#transferemailcontainer').removeClass('disabled');
+							                    		$('#transferpointsubmit').removeClass('disabled');
+									        			$('#transfer_available_target').html('<h2 style="margin-bottom:20px;">'+data['count']+' points available to transfer.</h2>');
+													    $("#pointsvoltotransfer").val(count);
+													    transfermax = count;
+										        	} else {
+						        						$('#transfer_available_target').html('<h2 style="margin-bottom:20px;color:red;">No points available to transfer.</h2>');
+										        	}
+
+										        },
+										        error: function(data)
+										        {
+
+										        	console.log(data);
+
+										        },
+										    });
+
+									    }
+
+									});
+
+								 	$(function () {
+								       $( "#pointsvoltotransfer" ).change(function() {
+								          if ($(this).val() > transfermax)
+								          {
+								              $(this).val(transfermax);
+								          }
+								          else if ($(this).val() < transfermin)
+								          {
+								              $(this).val(transfermin);
+								          }
+								        });
+								    });
+
+								});
+
+							</script>
+
+                    	{% endput %}
+                    	<div id="transfer_available_target">
+
+
+                		</div>
+
+	                    <div class="field disabled" id="pointsvoltotransferexternal">
+
+	                      	<label>How Many Points To Transfer</label>
+
+	                      	<input id="pointsvoltotransfer" type="number" name="pointsvoltotransfer" step="{{access.program.scale_points_by }}">
+
+	                    </div>
+
+	                    <div class="field disabled" id="pointstransfertargetexternal">
+
+							<label>Transfer Points To</label>
+							<div class="ui search selection dropdown" id="pointstransfertarget" >
+							  	<input type="hidden" name="pointstransfertarget">
+								<div class="default text">Select</div>
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									{% for access, array in __SELF__.targetOptions %}
+										{% for key, value in array %}
+											<div class="item" data-value='{{access}} => {{key}}'>({{ access|capitalize }}) {{ value }}</div>
+										{% endfor %}
+									{% endfor %}
+								</div>
+							</div>
+							<label style="font-size:0.8em;">To Search / Filter You Must Use The Format "(*Type*) *Name*"</label>
+
+                    	</div>
+	                    <div class="field disabled" id="pointspublicselect">
+							<label>Display Transfer In Activty Feed:</label>
+							<div class="ui search selection dropdown" id="pointstransferpublic" >
+							  	<input type="hidden" name="pointstransferpublic">
+								<div class="default text">Select</div>
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item" data-value='0'>False</div>
+									<div class="item" data-value='1'>True</div>
+								</div>
+							</div>
+						</div>
+	                    <div class="field disabled" id="transferemailcontainer">
+							<label>Send E-mail With Transfer:</label>
+							<div class="ui search selection dropdown" id="transferemail" >
+							  	<input type="hidden" name="transferemail">
+								<div class="default text">Select</div>
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item" data-value='0'>False</div>
+									<div class="item" data-value='1'>True</div>
+								</div>
+							</div>
+						</div>
+	                    <div class="field disabled" id="transfermessagecontainer">
+							<label>Send Message With Transfer (Leave Blank To Skip Message):</label>
+							<textarea id="transfermessage"></textarea>
+						</div>
+						<div class="ui grid">
+							<div class="ui sixteen wide column">
+								<button type="submit" id="transferpointsubmit" class="ui primary submit button right disabled" data-attach-loading>Transfer Points</button>
+
+								<div class="alert alert-danger" data-validate-error>
+									<p data-message></p>
+								</div>
+							</div>
+						</div>
+                    	{% put scripts %}
+
+                    		<script>
+
+                    			$('body').on('click', '#transferpointsubmit', function() {
+                					$('#allocatepointsform').dimmer('show');
+                					$('#allocations_dimmer_target').dimmer('show');
+                    				var transferamount = $('#pointsvoltotransfer').val();
+                    				var from = $('#pointstransfersource').dropdown('get value');
+                    				var target = $('#pointstransfertarget').dropdown('get value');
+                    				var activityfeed = $('#pointstransferpublic').dropdown('get value');
+                    				var sendemail = $('#transferemail').dropdown('get value');
+                    				var message = $('#transfermessage').val();
+
+								    $.request('onReallocatePoints',
+								    {
+								        data: {
+
+								          'from' : from,
+								          'amounttotransfer' : transferamount,
+								          'target' : target,
+								          'activityfeed' : activityfeed,
+								          'message' : message,
+								          'send_transfer_email' : sendemail
+
+								        },
+								        success: function(data)
+								        {
+								        	$('#allocatepointsform').dimmer('hide');
+                							$('#allocations_dimmer_target').dimmer('hide');
+								        	$('#point_allocations').html(data['html']);
+				                    		$('#pointsvoltotransferexternal').addClass('disabled');
+				                    		$('#pointstransfertargetexternal').addClass('disabled');
+				                    		$('#transferpointsubmit').addClass('disabled');
+						        			$('#transfer_available_target').html('<h2 style="margin-bottom:20px;color:green;">Points Transferred Succesfully</h2>');
+					        			    $("pointsvoltotransfer").attr({
+										       "max" : 0,
+										    });
+										    $("#pointsvoltotransfer").val(0);
+								        },
+								        error: function(data)
+								        {
+								        	$('#allocatepointsform').dimmer('hide');
+                							$('#allocations_dimmer_target').dimmer('hide');
+						        			$('#transfer_available_target').html('<h2 style="margin-bottom:20px;color:red;">There was an error:'+data['textStatus']+'</h2>');
+					        			    $("pointsvoltotransfer").attr({
+										       "max" : 0,
+										    });
+										    $("#pointsvoltotransfer").val(0);
+				                    		$('#pointsvoltotransferexternal').addClass('disabled');
+				                    		$('#pointstransfertargetexternal').addClass('disabled');
+				                    		$('#transferpointsubmit').addClass('disabled');
+								        },
+								    });
+                				});
+
+            				</script>
+
+        				{% endput %}
+
+					</div>
+
+			      	<div class="ui horizontal divider">
+		           		Current Point Allocations
+		      		</div>
+		      		<div id="allocations_dimmer_target">
+			          	<div class="ui inverted dimmer">
+
+			            	<div class="ui text loader">Loading</div>
+
+			          	</div>
+						<div id="point_allocations">
+
+			    				{% partial __SELF__  ~ '::pointsallocationtable' levels = __SELF__.pointstable scale_points_by = access.program.scale_points_by %}
+
+						</div>
+					</div>
+				</div>
+				{% if __SELF__.label_level == 'Program' %}
+					<div class="ui bottom attached tab" data-tab="structure-details">
+
+			      		<div class="ui horizontal divider">
+			      			Structure Details
+		      			</div>
+
+						<div class="signup-fields">
+			      			<div class="export-import-buttons-users ui form" style="margin-bottom:40px;">
+			      				<div class="ui inverted dimmer" id="uploadownload">
+						        	<div class="ui text loader">Loading</div>
+						      	</div>
+			      				<div class="field guide">
+			      					<div class="ui message" style="text-align:center;">
+			      						<p>Unclear on how to upload a new program structure? Try out our <a href="https://s3-ap-southeast-2.amazonaws.com/xtendsystem/guide_documents/XTEND_Program+Structure+Guide.pdf" target="_blank">Program Structure Guide</a> and <a href="https://s3-ap-southeast-2.amazonaws.com/xtendsystem/guide_documents/programstructure+-+sample.csv">Sample Data</a> here for help</a>
+		      							</p>
+	      							</div>
+	      						</div>
+			      				<div class="two fields">
+			      					<div class="field">
+			      						<a href="#" class="ui button square primary" id="export_program_structure">Export Structure</a>
+		      						</div>
+	      							<div class="field">
+							    		<form data-request="onImportProgramStructure" data-request-files data-request-flash data-request-loading="#uploadownload" data-request-redirect="/admin-reports">
+							            	<label>Select CSV File To Import - we recommend you export the basic template first before building your program. Ideal date formats is YYYY-MM-DD.</label>
+							            	<input type="file" name="csv" accept="csv/*">
+							            	<button type="submit" class="ui button square primary">Import</button>
+							    		</form>
+						    		</div>
+								</div>
+		      				</div>
+							{% put scripts %}
+								<script>
+
+									$('body').on('click', '#export_program_structure', function(event) {
+
+										event.preventDefault();
+
+										var button = $(this);
+
+										button.addClass('oc-loading');
+
+										$.request('onExportProgramStructure', {
+
+								        	data: {
+
+								        	},
+
+							                success: function(data)
+							                {
+										        // The actual download
+										        var blob = new Blob([data], { type: 'text/csv' });
+										        var link = document.createElement('a');
+										        link.href = window.URL.createObjectURL(blob);
+										        link.download = 'programstructure.csv';
+
+										        document.body.appendChild(link);
+
+										        link.click();
+
+										        document.body.removeChild(link);
+
+        										button.removeClass('oc-loading');
+
+							                },
+
+								            error: function(data){
+								              throw data;
+								            },
+								        });
+							        });
+
+									$('body').on('click', '#uploadcsvbutton', function(event) {
+
+										event.preventDefault();
+
+										var button = $(this);
+
+										button.addClass('oc-loading');
+
+										$('#csvstructureupload').request('onImportProgramStructure', {
+
+								        	data: {
+
+								        	},
+
+							                success: function(data)
+							                {
+
+        										button.removeClass('oc-loading');
+
+							                },
+
+								            error: function(data){
+								              throw data;
+								            },
+								        });
+
+									});
+
+								</script>
+							{% endput %}
+							<div id="program-tree-setup">
+								<ul class='regions' id="program-tree">
+								  {% for region in __SELF__.currentProgram.regions %}
+								  <li class="region-li"><div class="ui blue big label data-div" data-type="region" data-id="{{ region.id}}" data-name="{{ region.name }}"  data-email="" data-changed="0" data-moved="0"><i class="expand arrows alternate icon regionsort"></i><span class="text-target">{{ region.name }}</span></div><div class='ui blue big label'><i class='pencil alternate icon'></i></div><div class='ui red big label'><i class='trash icon'></i></div><div class="ui purple big label" data-type="region" data-id="{{ region.id}}"><i class="suitcase icon"></i></div>
+								  	<ul class="teams children">
+								  		{% for team in region.teams %}
+								  		<li class="team-li"><div class="ui teal big label data-div" data-type="team" data-id="{{ team.id}}" data-changed="0" data-name="{{ team.name }}" data-email="" data-moved="0"><i class="expand arrows alternate icon teamsort"></i><span class="text-target">{{ team.name }}</span></div><div class='ui blue big label'><i class='pencil alternate icon'></i></div><div class='ui red big label'><i class='trash icon'></i></div><div class="ui purple big label" data-type="team" data-id="{{ team.id}}"><i class="suitcase icon"></i></div>
+										  	<ul class="users children">
+				  								{% for user in team.users %}
+									  				<li class="user-li"><div class="ui grey big label data-div" data-type="user" data-id="{{ user.id}}" data-name="{% if access.program.use_business_names == true %}{{ user.business_name }}{% else %}{{ user.full_name }}{% endif %}" data-email="{{ user.email }}" data-changed="0" data-moved="0"><i class="expand arrows alternate icon usersort"></i><span class="text-target">{% if access.program.use_business_names == true %}{{ user.business_name }}{% else %}{{ user.full_name }}{% endif %} - {{ user.email }}</span></div><div class='ui blue big label'><i class='pencil alternate icon'></i></div><div class='ui red big label'><i class='trash icon'></i></div>{% if user.is_activated == true and user.email_confirmed == true %}<div class="ui green big label"><i class="check circle icon"></i></div>{% else %}<div class="ui orange big label send_activation" data-id="{{ user.id}}"><i class="paper plane icon" data-content="Send User Activation Link."></i></div>{% endif %}</li>
+									  			{% endfor %}
+									  			<li class="user-li empty-target"></li>
+								  			</ul>
+							  			</li>
+							  			{% endfor %}
+							  			<li class="team-li empty-target"></li>
+							  		</ul>
+								  </li>
+								  {% endfor %}
+								</ul>
+							</div>
+						{% put scripts %}
+
+							<script>
+
+								var deletedArray = [];
+
+								var selected = null;
+
+								$(function  () {
+
+									runSortable();
+
+							 	 });
+
+								function runSortable(){
+
+								  	$(".regions").sortable({
+									 	connectWith: ".regions",
+					                    dropOnEmpty: true,
+								        axis: 'y',
+								        zIndex: 1003,
+							          	handle: ".regionsort",
+									  	change: function( event, ui ) {
+									  		changeMoved(ui.item.find('.data-div'));
+									  	}
+									});
+
+								  	$(".teams").sortable({
+									 	connectWith: ".teams",
+					                    dropOnEmpty: true,
+								        axis: 'y',
+								        zIndex: 1004,
+							          	handle: ".teamsort",
+									  	change: function( event, ui ) {
+									  		changeMoved(ui.item.find('.data-div'));
+									  	}
+									});
+
+								  	$(".users").sortable({
+									 	connectWith: ".users",
+					                    dropOnEmpty: true,
+								        axis: 'y',
+								        zIndex: 1005,
+							          	handle: ".usersort",
+									  	change: function( event, ui ) {
+									  		changeMoved(ui.item.find('.data-div'));
+									  	}
+									});
+
+								}
+
+								function changeMoved(element){
+									element.attr('data-moved', 1);
+									$('#savestructure').show();
+								}
+
+								$('body').on('click', '.ui.red.big.label', function() {
+
+									var datadiv = $(this).parent().find('.data-div').first();
+									deletedObject = {
+										type: datadiv.attr('data-type'),
+										id: datadiv.attr('data-id'),
+										changed: datadiv.attr('data-changed'),
+									};
+									deletedArray.push(deletedObject);
+									$(this).parent().remove();
+									$("body").getNiceScroll().resize();
+									console.log(deletedArray);
+									$('#savestructure').show();
+								});
+
+
+								$('body').on('click', '.pencil.alternate.icon', function() {
+
+									if($(this).parent().parent().find('.data-div').first().attr('data-type') == 'user'){
+										var name = $(this).parent().parent().find('.data-div').first().attr('data-name');
+										var email = $(this).parent().parent().find('.data-div').first().attr('data-email');
+										$(this).parent().append('<span class="open-text"><input type="text" class="nameinput" value="'+name+'" style="margin-right:10px;color:black;padding-left:5px;"></span><span class="open-email"><input type="text" class="emailinput" value="'+email+'" style="margin-right:10px;color:black;padding-left:5px;"></span><i class="save icon"></i>');
+									} else {
+										var text = $(this).parent().parent().find('.data-div').first().attr('data-name');
+										$(this).parent().append('<span class="open-text"><input type="text" value="'+text+'" style="margin-right:10px;color:black;padding-left:5px;"></span><i class="save icon"></i>');
+									}
+
+									$(this).removeClass('pencil');
+									$(this).removeClass('alternate');
+									$(this).addClass('ban')
+								});
+
+								$('body').on('click', '.ban.icon', function() {
+
+										$(this).removeClass('ban');
+										$(this).addClass('pencil');
+										$(this).addClass('alternate');
+										$(this).parent().find('.open-text').remove();
+										$(this).parent().find('.open-email').remove();
+										$(this).parent().find('.save.icon').remove();
+
+								});
+
+								$('body').on('click', '.save.icon', function() {
+
+									if($(this).parent().parent().find('.data-div').first().attr('data-type') == 'user'){
+										var name = $(this).parent().find('input.nameinput').first().val();
+										var email = $(this).parent().find('input.emailinput').first().val();
+										var text = name+ ' - '+email;
+										$(this).parent().parent().find('.data-div').first().attr('data-changed', 1);
+										$(this).parent().parent().find('.data-div').first().attr('data-name', name);
+										$(this).parent().parent().find('.data-div').first().attr('data-email', email);
+
+									} else {
+										var text = $(this).parent().find('input').first().val();
+										$(this).parent().parent().find('.data-div').first().attr('data-changed', 1);
+										$(this).parent().parent().find('.data-div').first().attr('data-name', text);
+									}
+									$(this).parent().parent().find('.text-target').first().text(text);
+									$(this).parent().find('.ban.icon').addClass('pencil');
+									$(this).parent().find('.ban.icon').addClass('alternate');
+									$(this).parent().find('.ban.icon').removeClass('ban');
+									$(this).parent().find('.open-text').remove();
+									$(this).parent().find('.open-email').remove();
+									$(this).remove();
+
+									$('#savestructure').show();
+								});
+
+
+								$('body').on('click', '.ui.purple.big.label', function() {
+
+									var type = $(this).attr('data-type');
+									var id = $(this).attr('data-id');
+									$.request('onGetEntityManagers', {
+
+							        	data: {
+
+							        		'type': type,
+							        		'id' : id,
+
+							        	},
+
+						                success: function(data)
+						                {
+						                	var body = data['html'];
+										  	$('.ui.modal .header').html('Add A Manager');
+										  	$('.ui.modal .content').html(body);
+									  		$('.ui.modal .actions').html()
+										  	$('.ui.modal').modal({
+												inverted: true
+											}).modal('show');
+											$('#manager_option').dropdown();
+						                },
+
+							            error: function(data){
+							              throw data;
+							            },
+							        });
+
+								});
+
+
+
+								$('body').on('click', '#add_manager_button', function(event) {
+
+									event.preventDefault();
+
+									var type = $(this).attr('data-type');
+									var id = $(this).attr('data-id');
+									var userid = $('#manager_option').dropdown('get value');
+
+									$.request('onAddEntityManager', {
+
+							        	data: {
+
+							        		'type': type,
+							        		'id' : id,
+							        		'userid' : userid,
+							        	},
+
+						                success: function(data)
+						                {
+						                	var body = data['html'];
+										  	$('.managers_target').html(body);
+						                },
+
+							            error: function(data){
+							              throw data;
+							            },
+							        });
+
+								});
+
+								$('body').on('click', '.delete-manager', function() {
+
+									var type = $(this).attr('data-type');
+									var id = $(this).attr('data-id');
+									var userid = $(this).attr('data-userid');
+
+									$.request('onDeleteEntityManager', {
+
+							        	data: {
+
+							        		'type': type,
+							        		'id' : id,
+							        		'userid' : userid,
+							        	},
+
+						                success: function(data)
+						                {
+						                	var body = data['html'];
+										  	$('.managers_target').html(body);
+						                },
+
+							            error: function(data){
+							              throw data;
+							            },
+							        });
+
+								});
+
+
+								$('body').on('click', '.send_activation', function() {
+
+									var id = $(this).attr('data-id');
+									var button = $(this);
+									button.addClass('oc-loading');
+									button.text('Sending');
+
+									$.request('onSingleActivateUser', {
+
+							        	data: {
+
+							        		'id' : id,
+							        	},
+
+						                success: function(data)
+						                {
+						                	button.text('Sent');
+						                	button.removeClass('oc-loading');
+						                	button.removeClass('send_activation');
+
+						                },
+
+							            error: function(data){
+							              throw data;
+							            },
+							        });
+
+								});
+
+							</script>
+
+						{% endput %}
+
+
+								<div class="ui form">
+									<div class="field">
+										<p>This is where you set-up the structure of your program.  In most cases this will mimic the organisational chart of your business. You can do this now, or go to ‘Next Step’ and do this later. </p>
+									</div>
+						          <div class="field">
+						            <div class="four fields">
+						              <div class="field">
+						                <label class="color-label middle-label">Add Region <i class="exclamation circle icon link inline" data-content="These are the broader areas your business falls into eg. NSW/QLD or Sales / HR.  Each Region will have people looking after it, but we’ll get to that later."></i>	</label>
+						              </div>
+						              <div class="field">
+        								<input type="text" name="add-region" placeholder="Region Name" id="addregiontext">
+						              </div>
+						              <div class="field">
+				              		  </div>
+						              <div class="field">
+										<button class="ui primary button stretch square item right" id="addregion">Add Region</button>
+					              		</div>
+						            </div>
+							            <div class="one fields region-error" style="display:none;color:red;">
+							            	<div class="field">
+							            		<label  style="color:red;">You must enter a name.</label>
+						            		</div>
+					            		</div>
+						          </div>
+
+								{% put scripts %}
+
+									<script>
+
+										$('body').on('click', '#addregion', function() {
+											var name = $('#addregiontext').val();
+											if(name != ''){
+												var html = "<li class='region-li'><div class='ui blue big label data-div' data-type='region' data-id='new' data-name='"+ name +"'' data-email='' data-changed='0' data-moved='0'><i class='expand arrows alternate icon regionsort'></i><span class='text-target'>"+ name +"</span></div><div class='ui blue big label'><i class='pencil alternate icon'></i></div><div class='ui red big label'><i class='trash icon'></i></div><ul class='teams children'><li class='team-li empty-target'></li><li class='team-li'><ul class='users children'><li class='user-li empty-target'></li></ul></li></ul></li>";
+												$('#program-tree-setup ul.regions').append(html);
+												$('.region-error').hide();
+												$('#addregiontext').val('');
+												runSortable();
+												$("body").getNiceScroll().resize();
+												$('#savestructure').show();
+											} else {
+												$('.region-error').show();
+												$("body").getNiceScroll().resize();
+											}
+										});
+
+									</script>
+
+								{% endput %}
+
+				          		<div class="field">
+						            <div class="four fields">
+						              <div class="field">
+						                <label class="color-label middle-label">Add Team <i class="exclamation circle icon link inline" data-content="The main thing to remember is that they must sit underneath a Region. Again, you will probably want a Team Leader for each of your Teams, but we’ll get to that later."></i>	</label>
+						              </div>
+						              <div class="field">
+        								<input type="text" name="addteamtext" placeholder="Team Name" id="addteamtext">
+						              </div>
+						              <div class="field">
+				              		  </div>
+						              <div class="field">
+										<button class="ui primary button stretch square item right" id="addteam">Add Team</button>
+					              		</div>
+				              		</div>
+						            <div class="one fields team-error" style="display:none;color:red;">
+						            	<div class="field">
+						            		<label  style="color:red;">You must enter a name.</label>
+					            		</div>
+				            		</div>
+						          </div>
+
+								{% put scripts %}
+
+									<script>
+
+										$('body').on('click', '#addteam', function() {
+											var name = $('#addteamtext').val();
+											if(name != ''){
+												var html = "<li class='team-li'><div class='ui teal big label data-div' data-type='team' data-id='new' data-name='"+ name +"'' data-email='' data-changed='0' data-moved='0'><i class='expand arrows alternate icon teamsort'></i><span class='text-target'>"+ name +"</span></div><div class='ui blue big label'><i class='pencil alternate icon'></i></div><div class='ui red big label'><i class='trash icon'></i></div><ul class='users children'><li class='user-li empty-target'></li></ul></li>";
+												$('#program-tree-setup ul.regions ul.teams').last().append(html);
+												$('.team-error').hide();
+												$('#addteamtext').val('');
+												runSortable();
+												$("body").getNiceScroll().resize();
+												$('#savestructure').show();
+											} else {
+												$('.team-error').show();
+												$("body").getNiceScroll().resize();
+											}
+										});
+
+									</script>
+
+								{% endput %}
+
+					          <div class="field">
+					            <div class="four fields">
+					              <div class="field">
+					                <label class="color-label middle-label">Add User</label>
+					              </div>
+					              <div class="field">
+									<input type="text" name="addusertext" placeholder="User Name" id="addusertext">
+					              </div>
+					              <div class="field">
+									<input type="email" name="adduseremail" placeholder="User Email" id="adduseremail">
+					              </div>
+					              <div class="field">
+									<button class="ui primary button stretch square item right" id="adduser">Add User</button>
+		              				</div>
+					            </div>
+					            <div class="one fields e-mail-error" style="display:none;color:red;">
+					            	<div class="field">
+					            		<label  style="color:red;">You must enter a name and e-mail.</label>
+				            		</div>
+			            		</div>
+					          </div>
+					          	<div class="field">
+									<button class="ui orange button stretch square item renotify_users">Renotify Unconfirmed Users</button>
+				          		</div>
+				         	</div>
+
+								{% put scripts %}
+
+									<script>
+
+										$('body').on('click', '#adduser', function() {
+
+											var name = $('#addusertext').val();
+											var email = $('#adduseremail').val();
+											if(name != '' && email != '' && isValidEmailAddress(email) == true){
+												var html = "<li class='user-li'><div class='ui grey big label data-div' data-type='user' data-id='new' data-name='"+ name +"'' data-email='"+email+"'' data-changed='0' data-moved='0'><i class='expand arrows alternate icon usersort'></i><span class='text-target'>"+name+" - "+email+"</span></div><div class='ui blue big label'><i class='pencil alternate icon'></i></div><div class='ui red big label'><i class='trash icon'></i></div></li>";
+												$('#program-tree-setup ul.regions ul.teams ul.users').last().append(html);
+												$('#adduseremail').val('');
+												$('#addusertext').val('');
+												$('.e-mail-error').hide();
+												runSortable();
+												$("body").getNiceScroll().resize();
+												$('#savestructure').show();
+											} else {
+												$('.e-mail-error').show();
+												$("body").getNiceScroll().resize();
+											}
+
+										});
+
+										function isValidEmailAddress(emailAddress) {
+										    var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+										    return pattern.test(emailAddress);
+										}
+
+										$('body').on('click', '.renotify_users', function() {
+
+
+											var button = $(this);
+
+											button.addClass('oc-loading');
+
+											$.request('onRenotifyUsers', {
+
+									        	data: {
+
+									        	},
+
+								                success: function(data)
+								                {
+								                	button.removeClass('oc-loading');
+								                	button.removeClass('renotify_users');
+								                	button.text('Notifications Sent');
+								                },
+
+									            error: function(data){
+									              throw data;
+									            },
+									        });
+
+										});
+
+									</script>
+
+								{% endput %}
+						</div>
+
+								<a class="ui red button stretch square item right" id="savestructure" style="display:none;position:fixed;bottom:60px;right:0px;">Unsaved Changes. Click to Save</a>
+
+								{% put scripts %}
+									<script>
+
+										$('body').on('click', '#savestructure', function(){
+
+	    									var out = [];
+
+										    function processOneLi(node) {
+
+										        var aNode = node.children("div:first");
+										        var retVal = {
+										            "id": aNode.attr("data-id"),
+										            "changed": aNode.attr("data-changed"),
+										            "moved": aNode.attr("data-moved"),
+										            "name": aNode.attr("data-name"),
+										            "email": aNode.attr("data-email"),
+										        };
+
+										        node.find("> .children > li").each(function() {
+										            if (!retVal.hasOwnProperty("children")) {
+										                retVal.children = [];
+										            }
+										            retVal.children.push(processOneLi($(this)));
+										        });
+
+										        return retVal;
+										    }
+
+										    $("#program-tree").children("li").each(function() {
+										        out.push(processOneLi($(this)));
+										    });
+
+											out = JSON.stringify(out);
+											deletedArrayJSON = JSON.stringify(deletedArray);
+
+										    //console.log("got the following JSON from your HTML:", JSON.stringify(out));});
+
+								        	$.request('onUpdateProgramStructure', {
+
+									        	data: {
+
+									        		'structure': out,
+									        		'deleted' : deletedArrayJSON,
+
+									        	},
+
+								                success: function(response)
+								                {
+													$('#savestructure').hide();
+													$('.data-div').each(function() {
+													  	$( this ).attr( "data-changed", 0);
+													});
+													$.each(response, function( index, value ) {
+														console.log(value.type);
+														var updatetarget = $("#program-tree").find(`[data-type="`+value.type+`"][data-name="`+value.name+`"]`).first();
+														updatetarget.attr('data-id', value.id);
+														//console.log(updatetarget);
+
+													});
+								                },
+
+									            error: function(data){
+									              throw data;
+									            },
+									        });
+							        	});
+
+									</script>
+								{% endput %}
+					</div>
+					<div class="ui bottom attached tab" data-tab="management-tenure">
+				      	<div class="ui inverted dimmer">
+
+				        	<div class="ui text loader">Loading</div>
+
+				      	</div>
+			      		<div class="ui horizontal divider">
+			      			Tenure Recognition Details
+		      			</div>
+		      			<div ïd="tenure-wrap">
+		      				{% set years_amount = 0 %}
+							{% if __SELF__.currentProgram.tenure_array is empty %}
+								<h4 id="empty-tenure">No Tenure Rewards Set.</h4>
+							{% endif %}
+							{{ form_open({ class: 'ui form', id: 'tenure_form'}) }}
+								{% if __SELF__.currentProgram.tenure_array is not empty %}
+									{% for tenure in __SELF__.currentProgram.tenure_array %}
+											{% set years_amount = loop.index %}
+								          	<div class="field" id="tenure-field-{{ loop.index }}">
+								            	<div class="two fields">
+									              	<div class="field">
+									                	<label class="color-label middle-label">Service Years: <i class="exclamation circle icon link inline" data-content="The number of years service you want to recognize"></i></label>
+									                	<input type="text" name="tenure-{{ loop.index }}[year]" placeholder="1" id="tenure-year-{{ loop.index }}" value="{{ tenure.tenure_year }}">
+									              	</div>
+								              		<div class="field">
+									                	<label class="color-label middle-label">Reward Points Value: <i class="exclamation circle icon link inline" data-content="The number of points you want to reward for this tenure recognition."></i></label>
+									                	<input type="text" name="tenure-{{ loop.index }}[value]" placeholder="100" id="tenure-value-{{ loop.index }}" value="{{ tenure.tenure_value }}">
+								              		</div>
+							              		</div>
+								          	</div>
+									{% endfor %}
+								{% endif %}
+
+							{{ form_close() }}
+						</div>
+						<a class="ui button secondary" id="tenure-add-year">Add Year</a>
+						<a class="ui button secondary" id="tenure-remove-year">Remove Year</a>
+						<a class="ui button primary" id="tenure-update-year">Update Tenure Recognition</a>
+						{% put scripts %}
+							<script>
+
+									var years_amount = {{ years_amount }};
+									$('body').on('click', '#tenure-add-year', function(event) {
+								        event.preventDefault();
+								        years_amount++;
+								        console.log(years_amount);
+								        var html = '<div class="field" id="tenure-field-'+years_amount+'">';
+								        html  += '<div class="two fields">';
+									    html  += '<div class="field">';
+									    html  += '<label class="color-label middle-label">Service Years: <i class="exclamation circle icon link inline" data-content="The number of years service you want to recognize"></i></label>';
+									    html  += '<input type="text" name="tenure-'+years_amount+'[year]" placeholder="'+years_amount+'" id="tenure-year-'+years_amount+'">';
+									    html  += '</div>';
+									    html  += '<div class="field">';
+									    html  += '<label class="color-label middle-label">Reward Points Value: <i class="exclamation circle icon link inline" data-content="The number of points you want to reward for this tenure recognition."></i></label>';
+									    html  += '<input type="text" name="tenure-'+years_amount+'[value]" placeholder="100" id="tenure-value-'+years_amount+'">';
+									    html  += '</div></div></div>';
+										$('#tenure_form').append(html)
+									});
+
+									$('body').on('click', '#tenure-remove-year', function(event) {
+								        event.preventDefault();
+							        	console.log(years_amount);
+								        $('#tenure-field-'+years_amount).remove();
+								        if(years_amount > 0){
+								        	years_amount--;
+							        	}
+									});
+
+									$('body').on('click', '#tenure-update-year', function(event) {
+
+								        event.preventDefault();
+								        var button = $(this);
+								        button.addClass('oc-loading');
+								        $('#tenure-wrap').dimmer('show');
+
+								        $('#tenure_form').request('onUpdateTenure', {
+
+							            	success: function(response)
+							                {
+
+										        button.removeClass('oc-loading');
+										        $('#tenure-wrap').dimmer('hide');
+
+							                },
+
+								            error: function(XMLHttpRequest, textStatus, errorThrown){
+
+										        button.removeClass('oc-loading');
+										        $('#tenure-wrap').dimmer('hide');
+
+								            },
+								    	});
+
+									});
+
+							</script>
+						{% endput %}
+					</div>
+				{% endif %}
+				<div class="ui tab" data-tab="management-transactions">
+
+			      	<div class="ui inverted dimmer">
+
+			        	<div class="ui text loader">Loading</div>
+
+			      	</div>
+
+		            <div class="ui grid grid-no-margin">
+
+		                <div class="ui column sixteen wide column-no-padding">
+
+		                	{% if __SELF__.currentProgram.billingcontact != null %}
+						      	<div class="ui horizontal divider">
+					           		Purchase additional {{ access.program.points_name|title }}
+					      		</div>
+
+								<div class="transactiontargetbox_update">
+
+								    <form action="#" method="post" id="transactionform">
+								      <div class="field">
+								          <label>{{ access.program.points_name }} Value:</label>
+								          <div class="ui input fluid" style="margin-bottom:20px;">
+								            <input name="pointsvalue" id="pointsvalue" value="{{ __SELF__.value }}" type="number" step="{{access.program.scale_points_by }}">
+								          </div>
+								      </div>
+								      <div class="field" style="margin-bottom:20px;">
+								          <label>Dollar Value:</label>
+								          <div class="ui input fluid disabled">
+								            <input name="dollarvalue" id="dollarvalue" value="{{  __SELF__.value / access.program.scale_points_by|round(1, 'ceil') }}" type="text" readonly="true" class="disabled">
+								          </div>
+								      </div>
+						        	</form>
+					        	</div>
+							    <div class="cc-fees-message" style="margin-bottom:30px;">
+
+									<p>Your {{ __SELF__.currentProgram.billingcontact.payment_terms|capitalize }} Card {{ __SELF__.currentProgram.billingcontact.defaultcurrent }} will be charged for this account. In addition to the above dollar value, transaction include the following transaction Fee.</p>
+
+									<p>Mastercard & VISA: 1.04%</p>
+									<p>AMEX: 2.04%</p>
+
+									<a href="#" class="ui button primary square" id="process_transaction">Click here to purchase points</a>
+
+					    		</div>
+
+						      	<div class="ui horizontal divider">
+					           		Update Program Payment Details:
+					      		</div>
+
+				    		{% else %}
+
+						      	<div class="ui horizontal divider">
+					           		Create Program Payment Details:
+					      		</div>
+
+				    		{% endif %}
+
+							<div class="transactiontargetbox">
+
+								<h4>Current Card Details: {{ __SELF__.currentProgram.billingcontact.payment_terms|capitalize }} - {{ __SELF__.currentProgram.billingcontact.defaultcurrent }}</h4>
+								<p>Enter new details below to update:</p>
+						      	<div class="paywaycontainer" style="width:370px;margin-right:auto;margin-left:auto;margin-bottom:20px;">
+						        	<div id="payway-credit-card"></div>
+					        	</div>
+								<button type="submit" class="ui button secondary square disabled" id="updatebillingcontact">Update Payment Method</button>
+							</div>
+
+						</div>
+
+
+								{% put scripts %}
+
+								    <script type="text/javascript">
+
+								    	var update = false;
+
+										$('body').on('keyup', '#pointsvalue', function() {
+
+											var pointvalue = $(this).val();
+											dollarvalue = Math.ceil(pointvalue / {{ access.program.scale_points_by }});
+											$('#dollarvalue').val(dollarvalue).text(dollarvalue);
+
+										});
+
+
+										/**
+
+								        var submit = document.getElementById('payway-cc-submit');
+
+								        $('#transactionform').submit(function(e){
+								                e.preventDefault();
+								                console.log('block submit');
+								        });
+
+								        **/
+
+										$('body').on('click', '#process_transaction', function(event) {
+
+											event.preventDefault();
+											$(this).addClass('oc-loading');
+											$(this).addClass('disabled');
+											processCreateTransaction();
+
+										});
+
+
+
+
+										var createdCallback = function( err, frame ) {
+
+											$('#createbillingcontact').removeClass('disabled');
+											$('#updatebillingcontact').removeClass('disabled');
+
+									      	if ( !err ) {
+
+
+												$('body').on('click', '#updatebillingcontact', function() {
+
+													update = true;
+													$(this).addClass('oc-loading');
+													$(this).addClass('disabled');
+													frame.getToken( tokenCallback );
+
+												});
+
+											};
+
+										};
+
+										var tokenCallback = function( err, data ) {
+
+								        	console.log('token');
+										  if ( err ) {
+										    console.log( 'error=' + err.message );
+										  } else {
+								        	console.log('server request');
+
+											processSubmitCreate(data);
+
+										    // TODO: Send token to your server via AJAX
+										  }
+										};
+										// frame was second argument to createdCallback
+
+										var styleobject = {
+										    'div.payway-account' : { 'background-color': 'white',
+										                             'border-radius': '0em' ,
+										                             'width': '100%',
+										                         },
+										    '.payway-account label' : { },
+										    '.payway-account input' : {  }
+										};
+
+										payway.createCreditCardFrame({
+										    publishableApiKey: '{{ __SELF__.publishableAPI }}',
+										    onValid: function() { console.log('valid'); },
+										    onInvalid: function() { console.log('invalid'); },
+										    tokenMode: 'callback' },
+										    createdCallback
+										);
+
+										function processSubmitCreate(data){
+
+								  		    $.request('onUpdateBillingContact', {
+
+										        data: {
+
+										          'responsedata' : data,
+
+										        },
+
+								            	success: function(response)
+								                {
+
+													location.reload();
+
+								                },
+
+									            error: function(XMLHttpRequest, textStatus, errorThrown){
+
+									            },
+									    	});
+
+										}
+
+										function processCreateTransaction(){
+
+								  		    $('#transactionform').request('onCreateTransaction', {
+
+										        data: {
+
+										        },
+
+								            	success: function(data)
+								                {
+
+								                	console.log('success');
+													$('.transactiontargetbox_update').html('<div class="ui positive message"><p>Transaction Succesful. <a href="#" class="activate_allocation"">Click Here</a> to allocate your points.</p></div>');
+													$('.cc-fees-message').hide();
+								        			$('#point_allocations').html(data['html']);
+								                },
+
+									            error: function(XMLHttpRequest, textStatus, errorThrown){
+
+									            },
+									    	});
+
+										}
+
+										$('body').on('click', '.activate_allocation', function(event) {
+										  	event.preventDefault();
+										    // programmatically activating tab
+										    $.tab('change tab', 'management-points');
+										    $('.item').removeClass('active');
+											$('.item[data-tab = management-points]').addClass('active');
+
+										  })
+										;
+
+									</script>
+
+								{% endput %}
+
+				 	</div>
+
+				</div>
+				<div class="ui tab" data-tab="program-redemption-reports">
+
+			      	<div class="ui horizontal divider">
+		           		Redemption Reports
+		      		</div>
+					<div class="ui grid two columns">
+						<div class="column">
+							<div class="ui statistic">
+							  <div class="value">
+							   		{{ __SELF__.program_total_orders }}
+							  </div>
+							  <div class="label">
+							    Total Orders Made To Date
+							  </div>
+							</div>
+						</div>
+
+						<div class="column">
+							<div class="ui statistic">
+							  <div class="value">
+							   		{{ __SELF__.program_total_orders_value }}
+							  </div>
+							  <div class="label">
+							    Total Orders {{ access.program.points_name|title }} Values
+							  </div>
+							</div>
+						</div>
+						<!--
+						<div class="column">
+							<h4 style="text-align:center;width:100%;height:25px;">Most Popular Reward</h4>
+							<div class="profile-summary-image">
+								{% if access.managedprograms != null %}
+									<img src="{% if  __SELF__.firstproduct.feature_image %} {{  __SELF__.firstproduct.feature_image.getThumb(150,150) }} {% else %} {{ __SELF__.firstproduct.external_image_url }} {% endif %}" class="ui small circular image avatar">
+																	 <a href="" class="profile-summary-edit">Edit</a>
+								  	<div id="preview-textfield_{{__SELF__}}" style="font-size: 12px;text-align:center;">{{ __SELF__.firstproduct.name }}	</div>
+							  	{% else %}
+
+									<img src="https://s3-ap-southeast-2.amazonaws.com/xtendsystem/media/products/10106/20609.jpg" class="ui small circular image avatar">
+																	 <a href="" class="profile-summary-edit">Edit</a>
+								  	<div id="preview-textfield_{{__SELF__}}" style="font-size: 12px;text-align:center;">Lifespan Kids Wombat Plus Playhouse</div>
+							  {% endif %}
+							</div>
+						</div>
+						-->
+					</div>
+					<div class="ui grid">
+						<div class="ui sixteen wide column">
+						  	<div class="label">
+						    	Most Recent Order
+						  	</div>
+					      	<div class="order-points-details" id="cartpointdetails">
+						      	<h4><a href="/order/{{__SELF__.programlastorder.id}}">Order {{ __SELF__.programlastorder.order_id }}</a></h4>
+						        <h4>Order Date: <span style="font-size:0.8em">{{ __SELF__.programlastorder.created_at | date("F jS \\a\\t g:ia")  }}</span></h4>
+						        <h5>Total Order {{ access.program.points_name|title }} : {{ __SELF__.programlastorder.points_value }} {{ access.program.points_name|title }}</h5>
+						        <h5>Order Placed By : {{ __SELF__.programlastorder.customer_full_name_string }}</h5>
+						        <h5>Order Products:</h5>
+						        <ol>
+							        {% for product in __SELF__.programlastorder.products %}
+							        	<li>{{ product.name }}</li>
+							        {% endfor %}
+						        </ol>
+						    </div>
+						</div>
+					</div>
+					{#
+			      	<div class="ui horizontal divider">
+		           		Orders Reports
+		      		</div>
+					<div class="ui grid stackable four columns" style="margin-top:20px">
+						<div class="column">
+							<div class="inline inline-equal field wide">
+								<label>Filter Processed</label>
+								<div class="ui multiple selection searchable dropdown" id="orderprocessed" >
+									<div class="default text">Select</div>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										<div class="item" data-value="true">Processed</div>
+										<div class="item" data-value="false">Un-Processed</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<div class="inline inline-equal field wide">
+								<label>Created After</label>
+								<div class="ui calendar" id="ordersstart">
+									<div class="ui input left icon">
+							      <i class="calendar icon"></i>
+							      <input type="text" name="nominationstart" id="ordersstartinput" placeholder="Date/Time">
+							    </div>
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<div class="inline inline-equal field wide">
+								<label>Created Before</label>
+								<div class="ui calendar" id="ordersend">
+									<div class="ui input left icon">
+							      <i class="calendar icon"></i>
+							      <input type="text" name="nominationsend" id="ordersendinput" placeholder="Date/Time">
+							    </div>
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<button class="ui button primary square" style="margin-top:20px;margin-left:10px" id="export_button_orders">Export</button>
+						</div>
+						{% put scripts %}
+							<script>
+								$(document).ready(function(){
+
+									var orderprocessed = null;
+									var orderstartdate = null;
+									var orderenddate = null;
+
+									$('#ordersstart').calendar();
+									$('#ordersend').calendar();
+
+									$('#orderprocessed').dropdown('setting', 'onChange', function(){
+
+										orderprocessed = $('#orderprocessed').dropdown('get value');
+										updateOrderTable();
+
+									});
+
+									$('#ordersstart').calendar('setting', 'onChange', function (date, text, mode) {
+
+										orderstartdate = date.toISOString();
+										updateOrderTable();
+
+									});
+
+									$('#ordersend').calendar('setting', 'onChange', function (date, text, mode) {
+
+										orderenddate = date.toISOString();
+										updateOrderTable();
+
+									});
+
+
+									$('body').on('click', '#export_button_orders', function() {
+
+								        $.request('onExportOrders', {
+
+								        	data: {
+
+								        		'orderprocessed': orderprocessed,
+								        		'startdate' : orderstartdate,
+								        		'enddate' : orderenddate,
+
+								        	},
+
+							                success: function(response)
+							                {
+
+										        // The actual download
+										        var blob = new Blob([response], { type: 'text/csv' });
+										        var link = document.createElement('a');
+										        link.href = window.URL.createObjectURL(blob);
+										        link.download = 'orders.csv';
+
+										        document.body.appendChild(link);
+
+										        link.click();
+
+										        document.body.removeChild(link);
+							                },
+
+								            error: function(data){
+								              throw data;
+								            },
+								        });
+
+									});
+
+									function updateOrderTable(){
+
+										$('.ordertabledimmertarget').dimmer('show');
+
+								        $.request('onExportTableUpdateOrders', {
+
+								        	data: {
+
+								        		'orderprocessed': orderprocessed,
+								        		'startdate' : orderstartdate,
+								        		'enddate' : orderenddate,
+
+								        	},
+
+							                success: function(response)
+							                {
+
+							                	$('#programorders_container').html(response['html']);
+												$('.ordertabledimmertarget').dimmer('hide');
+												$('body').getNiceScroll().resize();
+							                },
+
+								            error: function(data){
+								              throw data;
+								            },
+								        });
+
+									}
+
+								});
+							</script>
+						{% endput %}
+
+					</div>
+					<div class="ui grid one columns ordertabledimmertarget" style="margin-top:20px">
+		                <div class="ui inverted dimmer">
+		                    <div class="ui text loader">Loading</div>
+		                </div>
+						<div class="column" id="programorders_container">
+				    		{% partial __SELF__  ~ '::orderstable' orders = __SELF__.ordersreport scale_points_by = access.program.scale_points_by %}
+						</div>
+					</div>
+					#}
+			      	<div class="ui horizontal divider">
+		           		Products Reports
+		      		</div>
+					<div class="ui grid stackable four columns" style="margin-top:20px">
+						<div class="column">
+							<div class="inline inline-equal field wide">
+								<label>Filter Status</label>
+								<div class="ui selection dropdown" id="orderprocessed_lineitems" >
+									<div class="default text">Select</div>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										<div class="item" data-value="-2">All Stages</div>
+										<div class="item" data-value="0">Processing</div>
+										<div class="item" data-value="1">Order Placed With Supplier</div>
+										<div class="item" data-value="2">On Backorder</div>
+										<div class="item" data-value="3">In Warehouse</div>
+										<div class="item" data-value="4">Item Ready For Dispatch</div>
+										<div class="item" data-value="5">Item Dispatched</div>
+										<div class="item" data-value="6">Product Delivered</div>
+										<div class="item" data-value="7">Product Cancelled</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<div class="inline inline-equal field wide">
+								<label>Created After</label>
+								<div class="ui calendar" id="ordersstart_lineitems">
+									<div class="ui input left icon">
+							      <i class="calendar icon"></i>
+							      <input type="text" name="nominationstart" id="ordersstartinput_lineitems" placeholder="Date/Time">
+							    </div>
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<div class="inline inline-equal field wide">
+								<label>Created Before</label>
+								<div class="ui calendar" id="ordersend_lineitems">
+									<div class="ui input left icon">
+							      <i class="calendar icon"></i>
+							      <input type="text" name="nominationsend" id="ordersendinput_lineitems" placeholder="Date/Time">
+							    </div>
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<button class="ui button primary square" style="margin-top:20px;margin-left:10px" id="export_button_orders_lineitems">Export</button>
+						</div>
+						{% put scripts %}
+							<script>
+								$(document).ready(function(){
+
+									var orderprocessed_lineitems = null;
+									var orderstartdate_lineitems = null;
+									var orderenddate_lineitems = null;
+
+									$('#ordersstart_lineitems').calendar();
+									$('#ordersend_lineitems').calendar();
+
+									$('#orderprocessed_lineitems').dropdown('setting', 'onChange', function(){
+
+										orderprocessed_lineitems = $('#orderprocessed_lineitems').dropdown('get value');
+										updateOrderLineItemsTable();
+
+									});
+
+									$('#ordersstart_lineitems').calendar('setting', 'onChange', function (date, text, mode) {
+
+										orderstartdate_lineitems = date.toISOString();
+										updateOrderLineItemsTable();
+
+									});
+
+									$('#ordersend_lineitems').calendar('setting', 'onChange', function (date, text, mode) {
+
+										orderenddate_lineitems = date.toISOString();
+										updateOrderLineItemsTable();
+
+									});
+
+
+									$('body').on('click', '#export_button_orders_lineitems', function() {
+
+								        $.request('onExportOrdersLineItem', {
+
+								        	data: {
+
+								        		'orderprocessed': orderprocessed_lineitems,
+								        		'startdate' : orderstartdate_lineitems,
+								        		'enddate' : orderenddate_lineitems,
+
+								        	},
+
+							                success: function(response)
+							                {
+
+										        // The actual download
+										        var blob = new Blob([response], { type: 'text/csv' });
+										        var link = document.createElement('a');
+										        link.href = window.URL.createObjectURL(blob);
+										        link.download = 'products.csv';
+
+										        document.body.appendChild(link);
+
+										        link.click();
+
+										        document.body.removeChild(link);
+							                },
+
+								            error: function(data){
+								              throw data;
+								            },
+								        });
+
+									});
+
+									function updateOrderLineItemsTable(){
+
+										$('.ordertabledimmertarget_lineitems').dimmer('show');
+
+								        $.request('onExportTableUpdateOrdersLineItems', {
+
+								        	data: {
+
+								        		'orderprocessed': orderprocessed_lineitems,
+								        		'startdate' : orderstartdate_lineitems,
+								        		'enddate' : orderenddate_lineitems,
+
+								        	},
+
+							                success: function(response)
+							                {
+
+							                	$('#programorders_container_lineitems').html(response['html']);
+												$('.ordertabledimmertarget_lineitems').dimmer('hide');
+												$('body').getNiceScroll().resize();
+							                },
+
+								            error: function(data){
+								              throw data;
+								            },
+								        });
+
+									}
+
+								});
+							</script>
+						{% endput %}
+
+					</div>
+					<div class="ui grid one columns producttabledimmertarget_lineitems" style="margin-top:20px">
+		                <div class="ui inverted dimmer">
+		                    <div class="ui text loader">Loading</div>
+		                </div>
+						<div class="column" id="programorders_container_lineitems">
+				    		{% partial __SELF__  ~ '::lineitemstable' lineitems = __SELF__.orderlineitems scale_points_by = access.program.scale_points_by %}
+						</div>
+					</div>
+				</div>
+		  		{% if access.managedprograms != null %}
+					<div class="ui tab" data-tab="program-budget-reports">
+				      	<div class="ui horizontal divider">
+			           		Budget
+			      		</div>
+						<div class="ui grid stackable four columns" style="margin-top:20px">
+							<div class="column">
+
+							</div>
+							<div class="column">
+
+							</div>
+							<div class="column">
+
+							</div>
+							<div class="column">
+								<button class="ui button primary square" style="margin-top:20px;margin-left:10px" id="export_button_budget">Export</button>
+							</div>
+							{% put scripts %}
+								<script>
+									$(document).ready(function(){
+
+
+										$('body').on('click', '#export_button_budget', function() {
+
+									        $.request('onExportBudget', {
+
+									        	data: {
+
+									        	},
+
+								                success: function(response)
+								                {
+
+											        // The actual download
+											        var blob = new Blob([response], { type: 'text/csv' });
+											        var link = document.createElement('a');
+											        link.href = window.URL.createObjectURL(blob);
+											        link.download = 'budget.csv';
+
+											        document.body.appendChild(link);
+
+											        link.click();
+
+											        document.body.removeChild(link);
+								                },
+
+									            error: function(data){
+									              throw data;
+									            },
+									        });
+
+										});
+
+									});
+								</script>
+							{% endput %}
+
+						</div>
+						<div class="ui grid one columns" style="margin-top:20px">
+							<div class="column">
+								<div class="table-scroller">
+									<table class="ui tablet unstackable table award-table">
+										<tbody>
+											<tr>
+												<th>Reward Trading Account</th>
+												<td>$100,000</td>
+											</tr>
+											<tr>
+												<th>Total Live Points</th>
+												<td>$185,000</td>
+											</tr>
+											<tr>
+												<th>Total Points Spent</th>
+												<td>$60,000</td>
+											</tr>
+											<tr>
+												<th>Trading Account Balance</th>
+												<td>$40,000</td>
+											</tr>
+											<tr>
+												<th>Total Live Budget Not Spent</th>
+												<td>$125,000</td>
+											</tr>
+											<tr>
+												<th>Remainder To Be Billed</th>
+												<td>$65,000</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+
+				{% if access.program.module_allow_awards == true %}
+
+					<div class="ui tab" data-tab="program-nominations-reports">
+				      	<div class="ui horizontal divider">
+			           		Nominations
+			      		</div>
+						<div class="ui grid stackable four columns">
+							<div class="column">
+								<div class="ui statistic">
+								  <div class="value">
+								  	{% if  __SELF__.programweekcount %}
+								   		{{ __SELF__.programweekcount }}
+							   		{% else %}
+							   			0
+							   		{% endif %}
+								  </div>
+								  <div class="label">
+								    Nominations This Week
+								  </div>
+								</div>
+							</div>
+							<div class="column">
+								<div class="ui statistic">
+								  <div class="value">
+								  	{% if  __SELF__.programmonthcount %}
+								   		{{ __SELF__.programmonthcount }}
+							   		{% else %}
+							   			0
+							   		{% endif %}
+								  </div>
+								  <div class="label">
+								    Nominations This Month
+								  </div>
+								</div>
+							</div>
+							<div class="column">
+								<div class="ui statistic">
+								  <div class="value">
+								  	{% if  __SELF__.programquartercount %}
+								   		{{ __SELF__.programquartercount }}
+							   		{% else %}
+							   			0
+							   		{% endif %}
+								  </div>
+								  <div class="label">
+								    Nominations This Quarter
+								  </div>
+								</div>
+							</div>
+							<div class="column">
+								<div class="ui statistic">
+								  <div class="value">
+								  	{% if  __SELF__.programyearcount %}
+								   		{{ __SELF__.programyearcount }}
+							   		{% else %}
+							   			0
+							   		{% endif %}
+								  </div>
+								  <div class="label">
+								    Nominations This Year
+								  </div>
+								</div>
+							</div>
+						</div>
+
+						<div class="ui grid stackable three columns" style="margin-top:20px">
+							<div class="column">
+								{% if __SELF__.mostnominatinguser != null %}
+									<h4 style="text-align:center;width:100%;height:25px;">Most Active Nominator</h4>
+									<div class="profile-summary-image">
+										{% if  __SELF__.mostnominatinguser.avatar %}
+											<img src="{{ __SELF__.mostnominatinguser.avatar.thumb(150 , 150, 'crop') }}" class="ui small circular image avatar">
+										{% else %}
+											<img src="https://app.xtendsystem.com/themes/xtend/assets/img/avatar/pawns/Profiles_icon-{{ random(['green','pink','purple']) }}.png" class="ui small circular image avatar" id="avatar_{{profile.id}}">
+										{% endif %}
+																		<!-- <a href="" class="profile-summary-edit">Edit</a> -->
+									  	<div id="preview-textfield_{{__SELF__}}" style="font-size: 12px;text-align:center;">{{ __SELF__.mostnominatinguser.full_name }}</div>
+									</div>
+								{% endif %}
+							</div>
+							<div class="column">
+								{% if __SELF__.mostnominateduser != null %}
+									<h4 style="text-align:center;width:100%;height:25px;">Most Nominated User</h4>
+									<div class="profile-summary-image">
+										{% if  __SELF__.mostnominateduser.avatar %}
+											<img src="{{  __SELF__.mostnominateduser.avatar.thumb(150 , 150, 'crop') }}" class="ui small circular image avatar">
+										{% else %}
+											<img src="https://app.xtendsystem.com/themes/xtend/assets/img/avatar/pawns/Profiles_icon-{{ random(['green','pink','purple']) }}.png" class="ui small circular image avatar" id="avatar_{{profile.id}}">
+										{% endif %}
+																		<!-- <a href="" class="profile-summary-edit">Edit</a> -->
+									  	<div id="preview-textfield_{{__SELF__}}" style="font-size: 12px;text-align:center;">{{ __SELF__.mostnominateduser.full_name }}</div>
+									</div>
+								{% endif %}
+							</div>
+							<div class="column">
+								{% if __SELF__.mostnominatedteam != null %}
+									<h4 style="text-align:center;width:100%;height:25px;">Most Nominated Team</h4>
+									<div class="profile-summary-image">
+											<img src="https://app.xtendsystem.com/themes/xtend/assets/img/avatar/pawns/Profiles_icon-{{ random(['green','pink','purple']) }}.png" class="ui small circular image avatar">
+																		<!-- <a href="" class="profile-summary-edit">Edit</a> -->
+									  	<div id="preview-textfield_{{__SELF__}}" style="font-size: 12px;text-align:center;">{{  __SELF__.mostnominatedteam.name }}</div>
+									</div>
+								{% endif %}
+							</div>
+						</div>
+
+						<div class="ui grid stackable four columns" style="margin-top:20px">
+							<div class="column">
+								{#
+								<div class="inline inline-equal field wide">
+									<label>Filter Awards</label>
+									<div class="ui multiple selection searchable dropdown" id="awardviewability" >
+										<div class="default text">Select</div>
+										<i class="dropdown icon"></i>
+										<div class="menu">
+											{% for program in __SELF__.programawards %}
+												<div class="item" data-value="{{ program.id }}">{{ program.name }}</div>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+								#}
+							</div>
+							<div class="column">
+								<div class="inline inline-equal field wide">
+									<label>Created After</label>
+									<div class="ui calendar" id="nominationstart">
+										<div class="ui input left icon">
+								      <i class="calendar icon"></i>
+								      <input type="text" name="nominationstart" id="nominationstartinput" placeholder="Date/Time">
+								    </div>
+									</div>
+								</div>
+							</div>
+							<div class="column">
+								<div class="inline inline-equal field wide">
+									<label>Created Before</label>
+									<div class="ui calendar" id="nominationsend">
+										<div class="ui input left icon">
+								      <i class="calendar icon"></i>
+								      <input type="text" name="nominationsend" id="nominationsendinput" placeholder="Date/Time">
+								    </div>
+									</div>
+								</div>
+							</div>
+							<div class="column">
+								<button class="ui button primary square" style="margin-top:20px;margin-left:10px" id="export_button">Export</button>
+							</div>
+							{% put scripts %}
+								<script>
+									$(document).ready(function(){
+
+										var nominationawardfilters = null;
+										var startdate = null;
+										var enddate = null;
+
+										$('#nominationstart').calendar();
+										$('#nominationsend').calendar();
+
+										$('#awardviewability').dropdown('setting', 'onChange', function(){
+
+											nominationawardfilters = $('#awardviewability').dropdown('get value');
+											updateNominationTable();
+
+										});
+
+										$('#nominationstart').calendar('setting', 'onChange', function (date, text, mode) {
+
+											startdate = date.toISOString();
+											updateNominationTable();
+
+										});
+
+										$('#nominationsend').calendar('setting', 'onChange', function (date, text, mode) {
+
+											enddate = date.toISOString();
+											updateNominationTable();
+
+										});
+
+
+										$('body').on('click', '#export_button', function() {
+
+									        $.request('onExportNominations', {
+
+									        	data: {
+
+									        		'awardfilters': nominationawardfilters,
+									        		'startdate' : startdate,
+									        		'enddate' : enddate,
+
+									        	},
+
+								                success: function(response)
+								                {
+
+											        // The actual download
+											        var blob = new Blob([response], { type: 'text/csv' });
+											        var link = document.createElement('a');
+											        link.href = window.URL.createObjectURL(blob);
+											        link.download = 'nomination.csv';
+
+											        document.body.appendChild(link);
+
+											        link.click();
+
+											        document.body.removeChild(link);
+								                },
+
+									            error: function(data){
+									              throw data;
+									            },
+									        });
+
+										});
+
+										function updateNominationTable(){
+
+											$('.nominationtabledimmertarget').dimmer('show');
+
+									        $.request('onExportTableUpdateNominations', {
+
+									        	data: {
+
+									        		'awardfilters': nominationawardfilters,
+									        		'startdate' : startdate,
+									        		'enddate' : enddate,
+									        	},
+
+								                success: function(response)
+								                {
+
+								                	$('#programnominations_container').html(response['html']);
+													$('.nominationtabledimmertarget').dimmer('hide');
+													$('body').getNiceScroll().resize();
+								                },
+
+									            error: function(data){
+									              throw data;
+									            },
+									        });
+
+										}
+
+									});
+								</script>
+							{% endput %}
+
+						</div>
+						<div class="ui grid one columns nominationtabledimmertarget" style="margin-top:20px">
+			                <div class="ui inverted dimmer">
+			                    <div class="ui text loader">Loading</div>
+			                </div>
+							<div class="column" id="programnominations_container">
+
+					    			{% partial __SELF__  ~ '::nominationtable' programnominations = __SELF__.programnominations %}
+							</div>
+						</div>
+					</div>
+
+				{% endif %}
+
+				<div class="ui tab" data-tab="program-user-reports">
+			      	<div class="ui horizontal divider">
+		           		Users
+		      		</div>
+					<div class="ui grid stackable four columns">
+						<div class="column">
+							<div class="ui statistic">
+							  <div class="value">
+							   	{{ __SELF__.loginsweek }}
+							  </div>
+							  <div class="label">
+							    Logins This Week
+							  </div>
+							</div>
+						</div>
+						<div class="column">
+							<div class="ui statistic">
+							  <div class="value">
+							   	{{ __SELF__.loginsmonth }}
+							  </div>
+							  <div class="label">
+							    Logins This Month
+							  </div>
+							</div>
+						</div>
+						<div class="column">
+							<div class="ui statistic">
+							  <div class="value">
+							   	{{ __SELF__.loginsquarter }}
+							  </div>
+							  <div class="label">
+							    Logins This Quarter
+							  </div>
+							</div>
+						</div>
+						<div class="column">
+							<div class="ui statistic">
+							  <div class="value">
+							   	{{ __SELF__.loginsyear }}
+							  </div>
+							  <div class="label">
+							    Logins This Year
+							  </div>
+							</div>
+						</div>
+					</div>
+			      	<div class="ui horizontal divider">
+		           		Program
+		      		</div>
+					<div class="ui grid stackable three columns">
+						<div class="column">
+							<div class="ui statistic">
+							  <div class="value">
+							   	{{ __SELF__.programregioncount }}
+							  </div>
+							  <div class="label">
+							   	Program Regions
+							  </div>
+							</div>
+						</div>
+						<div class="column">
+							<div class="ui statistic">
+							  <div class="value">
+							   	{{ __SELF__.programteamcount }}
+							  </div>
+							  <div class="label">
+							   	Program Teams
+							  </div>
+							</div>
+						</div>
+						<div class="column">
+							<div class="ui statistic">
+							  <div class="value">
+							   	{{ __SELF__.programusercount }}
+							  </div>
+							  <div class="label">
+							   	Program Users
+							  </div>
+							</div>
+						</div>
+					</div>
+					<div class="ui grid stackable four columns" style="margin-top:20px">
+						<div class="column">
+							<div class="inline inline-equal field wide">
+								<label>Filter Teams</label>
+								<div class="ui multiple selection searchable dropdown" id="userteam" >
+									<div class="default text">Select</div>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										{% for team in __SELF__.programteams %}
+											<div class="item" data-value="{{ team.id }}">{{ team.name }}</div>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<div class="inline inline-equal field wide">
+								<label>Last Login After</label>
+								<div class="ui calendar" id="usersstart">
+									<div class="ui input left icon">
+							      <i class="calendar icon"></i>
+							      <input type="text" name="nominationstart" id="usersstartinput" placeholder="Date/Time">
+							    </div>
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<div class="inline inline-equal field wide">
+								<label>Last Login Before</label>
+								<div class="ui calendar" id="userssend">
+									<div class="ui input left icon">
+							      <i class="calendar icon"></i>
+							      <input type="text" name="nominationsend" id="usersendinput" placeholder="Date/Time">
+							    </div>
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<button class="ui button primary square" style="margin-top:20px;margin-left:10px" id="export_button_users">Export</button>
+						</div>
+						{% put scripts %}
+							<script>
+
+								$(document).ready(function(){
+
+									var userteam = null;
+									var userstartdate = null;
+									var usersenddate = null;
+
+									$('#usersstart').calendar();
+									$('#userssend').calendar();
+
+									$('#userteam').dropdown('setting', 'onChange', function(){
+
+										userteam = $('#userteam').dropdown('get value');
+										updateUserTable();
+
+									});
+
+									$('#usersstart').calendar('setting', 'onChange', function (date, text, mode) {
+
+										userstartdate = date.toISOString();
+										updateUserTable();
+
+									});
+
+									$('#userssend').calendar('setting', 'onChange', function (date, text, mode) {
+
+										usersenddate = date.toISOString();
+										updateUserTable();
+
+									});
+
+
+									$('body').on('click', '#export_button_users', function() {
+
+								        $.request('onExportUsers', {
+
+								        	data: {
+
+								        		'userteam': userteam,
+								        		'startdate' : userstartdate,
+								        		'enddate' : usersenddate,
+
+								        	},
+
+							                success: function(response)
+							                {
+
+										        // The actual download
+										        var blob = new Blob([response], { type: 'text/csv' });
+										        var link = document.createElement('a');
+										        link.href = window.URL.createObjectURL(blob);
+										        link.download = 'users.csv';
+
+										        document.body.appendChild(link);
+
+										        link.click();
+
+										        document.body.removeChild(link);
+							                },
+
+								            error: function(data){
+								              throw data;
+								            },
+								        });
+
+									});
+
+									function updateUserTable(){
+
+										$('.userstabledimmertarget').dimmer('show');
+
+								        $.request('onExportTableUpdateUsers', {
+
+								        	data: {
+
+								        		'userteam': userteam,
+								        		'startdate' : userstartdate,
+								        		'enddate' : usersenddate,
+
+								        	},
+
+							                success: function(response)
+							                {
+
+							                	$('#programusers_container').html(response['html']);
+												$('.userstabledimmertarget').dimmer('hide');
+												$('body').getNiceScroll().resize();
+							                },
+
+								            error: function(data){
+								              throw data;
+								            },
+								        });
+
+									}
+
+								});
+
+							</script>
+						{% endput %}
+
+					</div>
+					<div class="ui grid one columns userstabledimmertarget" style="margin-top:20px">
+		                <div class="ui inverted dimmer">
+		                    <div class="ui text loader">Loading</div>
+		                </div>
+						<div class="column" id="programusers_container">
+
+				    			{% partial __SELF__  ~ '::userstable' users = __SELF__.programusers %}
+						</div>
+					</div>
+		  		</div>
+		  		{% if access.managedprograms != null %}
+					<div class="ui tab" data-tab="program-engagement-reports">
+					      	<div class="ui horizontal divider">
+				           		Engagement
+				      		</div>
+							<div class="ui grid stackable three columns">
+								<div class="column">
+
+									<h4 style="text-align:center;width:100%;height:50px">Program Logins Week On Week</h4>
+									<div class="gauge_1" style="margin-left:auto;margin-right:auto;width:100px;">
+
+									  <canvas width="100" height="100" id="canvas-preview_1"></canvas>
+									  <div id="preview-textfield_{{__SELF__}}" style="font-size: 12px;text-align:center;">400 this week vs 1000 last week</div>
+									</div>
+
+									{% put scripts %}
+										<script>
+
+											var opts = {
+											  lines: 12, // The number of lines to draw
+											  angle: 0.22, // The length of each line
+											  lineWidth: 0.2, // The line thickness
+											  pointer: {
+											    length: 0.9, // The radius of the inner circle
+											    strokeWidth: 0.035, // The rotation offset
+											    color: '#000000' // Fill color
+											  },
+											  limitMax: 'false', // If true, the pointer will not go past the end of the gauge
+											  colorStart: '{{ access.program.primary_color }}', // Colors
+											  colorStop: '{{ access.program.secondary_color }}', // just experiment with them
+											  strokeColor: '#EEEEEE', // to see which ones work best for you
+											  generateGradient: true
+											};
+											var target = document.getElementById('canvas-preview_1'); // your canvas element
+											var gauge = new Donut(target).setOptions(opts); // create sexy gauge!
+											gauge.maxValue = 1000; // set max gauge value
+											gauge.animationSpeed = 32; // set animation speed (32 is default value)
+											gauge.set(400); // set actual value
+											//gauge.setTextField(document.getElementById("preview-textfield_{{__SELF__}}"));
+
+										</script>
+									{% endput %}
+
+								</div>
+								<div class="column">
+
+									<h4 style="text-align:center;width:100%;height:50px">Program Logins Month On Month</h4>
+									<div class="gauge_2" style="margin-left:auto;margin-right:auto;width:100px;">
+
+									  <canvas width="100" height="100" id="canvas-preview_2"></canvas>
+									  <div id="preview-textfield_{{__SELF__}}" style="font-size: 12px;text-align:center;">1600 this week vs 3000 last week</div>
+									</div>
+
+									{% put scripts %}
+										<script>
+
+											var opts = {
+											  lines: 12, // The number of lines to draw
+											  angle: 0.22, // The length of each line
+											  lineWidth: 0.2, // The line thickness
+											  pointer: {
+											    length: 0.9, // The radius of the inner circle
+											    strokeWidth: 0.035, // The rotation offset
+											    color: '#000000' // Fill color
+											  },
+											  limitMax: 'false', // If true, the pointer will not go past the end of the gauge
+											  colorStart: '{{ access.program.primary_color }}', // Colors
+											  colorStop: '{{ access.program.secondary_color }}', // just experiment with them
+											  strokeColor: '#EEEEEE', // to see which ones work best for you
+											  generateGradient: true
+											};
+											var target = document.getElementById('canvas-preview_2'); // your canvas element
+											var gauge = new Donut(target).setOptions(opts); // create sexy gauge!
+											gauge.maxValue = 3000; // set max gauge value
+											gauge.animationSpeed = 32; // set animation speed (32 is default value)
+											gauge.set(1600); // set actual value
+											//gauge.setTextField(document.getElementById("preview-textfield_{{__SELF__}}"));
+
+										</script>
+									{% endput %}
+
+								</div>
+
+								<div class="column">
+
+									<h4 style="text-align:center;width:100%;height:50px;">Program Logins Quarter On Quarter</h4>
+									<div class="gauge_3" style="margin-left:auto;margin-right:auto;width:100px;">
+
+									  <canvas width="100" height="100" id="canvas-preview_3"></canvas>
+									  <div id="preview-textfield_{{__SELF__}}" style="font-size: 12px;text-align:center;">7000 this quarter vs 10000 last quarter</div>
+									</div>
+
+									{% put scripts %}
+										<script>
+
+											var opts = {
+											  lines: 12, // The number of lines to draw
+											  angle: 0.22, // The length of each line
+											  lineWidth: 0.2, // The line thickness
+											  pointer: {
+											    length: 0.9, // The radius of the inner circle
+											    strokeWidth: 0.035, // The rotation offset
+											    color: '#000000' // Fill color
+											  },
+											  limitMax: 'false', // If true, the pointer will not go past the end of the gauge
+											  colorStart: '{{ access.program.primary_color }}', // Colors
+											  colorStop: '{{ access.program.secondary_color }}', // just experiment with them
+											  strokeColor: '#EEEEEE', // to see which ones work best for you
+											  generateGradient: true
+											};
+											var target = document.getElementById('canvas-preview_3'); // your canvas element
+											var gauge = new Donut(target).setOptions(opts); // create sexy gauge!
+											gauge.maxValue = 10000; // set max gauge value
+											gauge.animationSpeed = 32; // set animation speed (32 is default value)
+											gauge.set(7000); // set actual value
+											//gauge.setTextField(document.getElementById("preview-textfield_{{__SELF__}}"));
+
+										</script>
+									{% endput %}
+
+								</div>
+							</div>
+					</div>
+				{% endif %}
+
+				{% if __SELF__.label_level == 'Program' %}
+
+					<div class="ui tab" data-tab="program-communication">
+				      	<div class="ui horizontal divider">
+			           		Program Communication
+			      		</div>
+			      		<p>Xtend comes with automated e-mails that ensure your program runs smoothly at your participants every interaction. These are branded Xtend and reference your program.</p>
+
+						<p>These emails include:</p>
+
+						<ul style="list-style-type: disc;"><li>User Login Account send once you notify users to login and simply includes a link and their username and for them to set their password.</li>
+						<li>Unsubscribe Email sent in the instance you remove a user from the program once live.</li>
+						<li>Thank you Emails sent to participants as they receive Thank yous to prompt them to login and see what they received.</li>
+						<li>Order Emails including order placed, status of orders and order shipped.</li>
+						<li>Award Winners sent to all participants when a winner / top achiever is chosen in a given award.</li>
+						<li>Emails related to Posts you will be notified as program manager if a new post is created by a team leader (is appropriate) or a comment is made.</li>
+						<li>Birthday Email wishing them a happy birthday and drive them to access your site.</li>
+						<li>Transfer of Points notifying the recipient if they have received Reward Points.</li>
+						</ul>
+		      		</div>
+
+				{% endif %}
+
+				{% endif %}
+
+    		</div>
+
+    		{% if __SELF__.label_level == 'Program' %}
+				<div class="ui segment{% if __SELF__.currentProgram.cancellation_active == true %} hide-this{% endif %}" id="delete_slot" style="text-align:center;">
+					<a class="ui button red" id="cancel_program">Click Here To Cancel Your Program. Your program will remain valid until your final paid month / year or trial period has completed.</a>
+				</div>
+			{% endif %}
+
+			{% put scripts %}
+				<script>
+
+					$('body').on('click', '#cancel_program', function() {
+
+
+					  	$('.ui.modal .header').html('Cancel Program');
+					  	$('.ui.modal .content').html('<p>Are You Sure You Want To Cancel This Program? Clicking Confirm Below Will Action This And Delete All Program Information</p>');
+					  	$('.ui.modal .actions').html('<button class="ui red right square small button" id="confirm_cancel_program">Cancel Program</button>');
+					  	$('.ui.modal').modal({
+							inverted: true
+							}).modal('show');
+
+					});
+
+					$('body').on('click', '#confirm_cancel_program', function() {
+
+
+						var button = $(this);
+
+						button.addClass('oc-loading');
+
+						$.request('onCancelProgram', {
+
+				        	data: {
+
+				        	},
+
+			                success: function(data)
+			                {
+			                	button.removeClass('oc-loading');
+					  			$('.ui.modal').modal('hide');
+					  			$('#restore_slot').removeClass('hide-this');
+					  			$('#delete_slot').addClass('hide-this');
+			                },
+
+				            error: function(data){
+				              throw data;
+				            },
+				        });
+
+					});
+
+				</script>
+			{% endput %}
+
+
+		</div>
+
+	</div>
+
+</div>
+
+
+{% put scripts %}
+	<script>
+
+		$(document).ready(function(){
+
+			$('.ui.checkbox').checkbox();
+
+			$('.labelset .item').tab({
+				'onLoad': function(path, arr, history){
+					$('body').getNiceScroll().resize();
+				}
+			});
+		});
+
+	</script>
+
+{% endput %}
+{% endif %}
+

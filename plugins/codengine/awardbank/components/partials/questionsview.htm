@@ -1,0 +1,69 @@
+{% if award.nomination_header %}
+<div class="header"style="margin-bottom:20px;">
+	<h4>{{ award.nomination_header }}</h4>
+</div>
+{% endif %}
+<div class="modal-nom-name content">
+    <div class="ui form" style="margin-bottom:20px;">
+        {% for question in award.nomination_questions_json %}
+            {% if question.questiontype == 0 %}
+                <div class="field" style="margin-bottom:20px;">
+                    <label>
+                    	{{ question.questiondescription }}
+                    	{% if question.questionrequired == 1 %}
+                    		<b style="color:red;">*</b>
+                    	{% endif %}
+                    </label>
+                    <input placeholder="Answer Question Here" name="{{ question.questiondescription }}" type="text" id="nominationquestion{{ loop.index }}" {% if question.questionrequired == 0 %}class="not-required"{% endif %}>
+                </div>
+            {% endif %}
+            {% if question.questiontype == 1 %}
+                <div class="field" style="margin-bottom:20px;">
+                    <label>
+                    	{{ question.questiondescription }}
+                    	{% if question.questionrequired == 1 %}
+                    		<b style="color:red;">*</b>
+                    	{% endif %}
+                    </label>
+                    <textarea name="{{ question.questiondescription }}" id="nominationquestion{{ loop.index }}" {% if question.questionrequired == 0 %}class="not-required"{% endif %}></textarea>
+                </div>
+            {% endif %}
+            {% if question.questiontype == 2 %}
+                <div class="field">
+                	<label>
+                		{{ question.questiondescription}}
+                		{% if question.questionrequired == 1 %}
+                			<b style="color:red;">*</b>
+                		{% endif %}
+            		</label>
+                    <select class="ui selection dropdown" name="{{ question.questiondescription }}">
+                    	<option value=''>Nothing Selected</option>
+                        {% for option in question.questionoptions %}
+                        	<option value="{{ option.questionoptiontext }}">{{ option.questionoptiondescription }}</option>
+                    	{% endfor %}
+                	</select>
+            	</div>
+        	{% endif %}
+            {% if question.questiontype == 3 %}
+            	<div class="field">
+	                <label>
+	                	{{ question.questiondescription }}
+	                	{% if question.questionrequired == 1 %}
+	                		<b style="color:red;">*</b>
+	                	{% endif %}
+	                </label>
+	                <ul class="question-set" style="margin-bottom:20px;">
+	                    {% set questionset = loop.index %}
+                        {% for option in question.questionoptions %}
+	                    <li>
+                            <div class="ui checkbox">
+                                <input id="question-set-checkbox-{{questionset}}-{{ loop.index }}" type="checkbox" name="{{ question.questiondescription }}" value="{{ option.questionoptiontext}}" class="not-required"><label for="question-set-checkbox-{{questionset}}" ><span class="label-heading">{{ option.questionoptiondescription}}</span></label>
+                            </div>
+                        </li>
+	                    {% endfor %}
+	                </ul>
+                </div>
+        	{% endif %}
+    	{% endfor %}
+	</div>
+</div>

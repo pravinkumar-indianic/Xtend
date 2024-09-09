@@ -1,0 +1,101 @@
+{% set users = __SELF__.users %}
+{% set moduleType = __SELF__.moduleType %}
+{% set message = __SELF__.message %}
+
+{% put scripts %}
+
+    {% if message %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            {% for permission in message.owners %}
+                {% for poster in permission.poster %}
+                    $("#postto_dropdown").dropdown("set selected", "{{poster.id}}");
+                {% endfor %}
+            {% endfor %}
+            
+        });
+    </script>
+    {% endif %}
+
+    <script type="text/javascript">
+        $('#MessageCreateForm').submit(function() {
+            if ($('#MessageCreateForm').form('is valid')){
+                $('#MessageCreateForm').addClass('loading');
+                $('#MessageCreateForm').submit();
+            }
+        });
+
+        $(document).ready(function(){
+            $('#MessageCreateForm')
+                .form({
+                    fields: {
+                        postto_dropdown     : 'empty',
+                        title   : 'empty',
+                        content : 'empty',
+                    }
+            });
+        });
+    </script>
+
+{% endput %}
+
+<div class="ui container container-inbox">
+
+    <div class="ui grid">
+        
+        <div class="row">
+            <div class="sixteen wide tablet three wide computer column">
+                <div class="ui segments">
+                    <div class="ui segment">
+                        <h5 class="ui header">
+                            Menu
+                        </h5>
+                    </div>
+                    <div class="ui  segment">
+                        {% partial __SELF__ ~ '::partial/menu' %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="sixteen wide tablet thirteen wide computer column">
+                <div class="ui segments">
+                    <div class="ui segment">
+                        <h5 class="ui header">
+                            New Message
+                        </h5>
+                    </div>
+                    <div class="ui segment" id="inboxdiv">
+                        {{ form_open({ request: 'onNewMessageCreate', class:'ui form', id: 'MessageCreateForm'}) }}
+                            <div class="field" id="posttodiv">
+                                <label  id="posttolbl">To</label>
+                                <div class="ui fluid search" id="posttosearch">
+                                    <select placeholder="Search user name..." multiple="multiple" class="ui fluid search dropdown" id="postto_dropdown" multiple="" name="posttoname[]">
+                                        {% for user in users %}
+                                            <option value="{{user.id}}">{{user.full_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="field">
+                              <label>Message</label>
+                              <textarea placeholder="Write Message" type="text" class="tinymceeditor" name="content">{% if message %}<p></p><hr><p>{{message.content}}</p>{% endif %}</textarea>
+                            </div>                
+                            <input type="hidden" name="type" value="{{moduleType}}">
+                            
+                            <div class="ui message error"></div>
+                            
+                            <div class="field">
+                                <button type="submit" class="ui primary button right floated">Send</button>
+
+                            </div>
+                            
+                        {{ form_close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

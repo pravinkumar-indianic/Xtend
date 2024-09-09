@@ -1,0 +1,174 @@
+<div class="ui sixteen wide column toyota-results">
+	<div class="ui grid">
+		{% if __SELF__.dashboardview == true %}
+			<div class="ui sixteen wide column">
+				<div class="ui three column grid" id="controlfilterstarget">
+					{{ __SELF__.controlfiltershtml|raw }}
+				</div>
+			</div>
+			<div class="ui sixteen wide column" class="dimmer_target">
+				<div class="ui inverted dimmer">
+				    <div class="ui text loader">Loading</div>
+				</div>
+                <div class='ui sixteen wide column results-column'>
+                    <div id="slot1htmltarget">
+                        {{ __SELF__.slot1html|raw }}
+                    </div>
+                </div>
+			</div>
+			<div class="ui eight wide column" class="dimmer_target">
+				<div class="ui inverted dimmer">
+				    <div class="ui text loader">Loading</div>
+				</div>
+				<div class="ui grid">
+					<div class="ui sixteen wide column results-column">
+						<div id="slot3htmltarget">
+							{{ __SELF__.slot3html|raw }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ui eight wide column" class="dimmer_target">
+				<div class="ui inverted dimmer">
+				    <div class="ui text loader">Loading</div>
+				</div>
+				<div class="ui grid">
+					<div class="ui sixteen wide column results-column">
+						<div id="slot4htmltarget">
+							{{ __SELF__.slot4html|raw }}
+						</div>
+					</div>
+				</div>
+            </div>
+
+        <div class="ui eight wide column" class="dimmer_target">
+            <div class="ui inverted dimmer">
+                <div class="ui text loader">Loading</div>
+            </div>
+            <div class="ui grid">
+                <div class="ui sixteen wide column results-column">
+                    <div id="slot2htmltarget">
+                        {{ __SELF__.slot2html|raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+		{% else %}
+			<div class="ui sixteen wide column">
+				<div class="ui three column grid" id="controlfilterstarget">
+					{{ __SELF__.controlfiltershtml|raw }}
+				</div>
+			</div>
+			<div class="ui eight wide column" class="dimmer_target">
+				<div class="ui inverted dimmer">
+				    <div class="ui text loader">Loading</div>
+				</div>
+				<div class="ui grid">
+					<div class="ui sixteen wide column results-column">
+						<div id="slot1htmltarget">
+							{{ __SELF__.slot1html|raw }}
+						</div>
+					</div>
+					<div class="ui sixteen wide column results-column">
+						<div id="slot2htmltarget">
+							{{ __SELF__.slot2html|raw }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ui eight wide column" class="dimmer_target">
+				<div class="ui inverted dimmer">
+				    <div class="ui text loader">Loading</div>
+				</div>
+				<div class="ui grid">
+					<div class="ui sixteen wide column results-column">
+						<div id="slot3htmltarget">
+							{{ __SELF__.slot3html|raw }}
+						</div>
+					</div>
+					<div class="ui sixteen wide column results-column">
+						<div id="slot4htmltarget">
+							{{ __SELF__.slot4html|raw }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="ui sixteen wide column" class="dimmer_target">
+				<div class="ui inverted dimmer">
+				    <div class="ui text loader">Loading</div>
+				</div>
+				<div id="slot5htmltarget">
+					{{ __SELF__.slot5html|raw }}
+				</div>
+			</div>
+		{% endif %}
+	</div>
+</div>
+
+{% put scripts %}
+	<script>
+
+		var type = null;
+		var id = null
+
+        $('body').on('change', '#filter-tags', function() {
+        	id = $(this).find(":selected").val();
+        	type = 'tags';
+        	if(id != 'default'){
+        		runAjax();
+        	}
+        });
+
+        $('body').on('change', '#filter-teams', function() {
+        	id = $(this).find(":selected").val();
+        	type = 'teams';
+        	if(id != 'default'){
+        		runAjax();
+        	}
+        });
+
+        $('body').on('change', '#filter-types', function() {
+        	id = $(this).find(":selected").val();
+        	type = 'types';
+        	if(id != 'default'){
+        		runAjax();
+        	}
+        });
+
+		function runAjax(){
+
+			$('.dimmer_target').dimmer('show');
+
+	        $.request('onUpdatePage', {
+
+	        	data: {
+
+	        		'data-type' : type,
+	        		'data-id' : id,
+
+	        	},
+	            success: function(data) {
+
+	                $('#slot1htmltarget').html(data['slot1html']);
+	                $('#slot2htmltarget').html(data['slot2html']);
+	                $('#slot3htmltarget').html(data['slot3html']);
+	                $('#slot4htmltarget').html(data['slot4html']);
+	                $('#slot5htmltarget').html(data['slot5html']);
+	                $('#controlfilterstarget').html(data['controlfilters']);
+    				$('.dimmer_target').dimmer('hide');
+    				$(".ui.dropdown").dropdown();
+	            },
+	            error: function(data){
+        			$('#dimmer_target').dimmer('hide');
+	                throw data;
+	            },
+
+	        });
+
+        }
+
+	</script>
+
+{% endput %}
+

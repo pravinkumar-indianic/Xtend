@@ -1,0 +1,21 @@
+{% set moduleViewTemplate = __SELF__.moduleViewTemplate %}
+{% set me = __SELF__.user %}
+{% set moduleWidth = __SELF__.moduleWidth %}
+
+<div class ="{{ moduleWidth }} wide column">
+	{% if moduleViewTemplate == 'prizelist' %}
+
+		<div id="updateprizelist">
+		    {% partial __SELF__ ~ '::prizelist'%}
+		</div>
+
+	{% elseif moduleViewTemplate == 'prizecreate' %}
+    
+    	{% partial __SELF__ ~ '::newprize' moduleType=moduleType %} 
+
+	{% elseif moduleViewTemplate == 'prizedetail' %}
+
+	    {% partial __SELF__ ~ '::prizedetail' %} 
+
+	{% endif %}
+</div>

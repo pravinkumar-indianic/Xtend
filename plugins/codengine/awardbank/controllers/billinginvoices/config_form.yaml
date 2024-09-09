@@ -1,0 +1,10 @@
+name: BillingInvoices
+form: $/codengine/awardbank/models/billinginvoice/fields.yaml
+modelClass: Codengine\Awardbank\Models\BillingInvoice
+defaultRedirect: codengine/awardbank/billinginvoices
+create:
+    redirect: 'codengine/awardbank/billinginvoices/update/:id'
+    redirectClose: codengine/awardbank/billinginvoices
+update:
+    redirect: codengine/awardbank/billinginvoices
+    redirectClose: codengine/awardbank/billinginvoices

@@ -1,0 +1,38 @@
+{% put scripts %}
+<script src="/plugins/codengine/awardbank/assets/js/ckeditor5/ckeditor.js"></script>
+<script>
+  function convertToCKEditor(element) {
+    let closestParentDiv = $('#' + element).parent().closest('div');
+    if (closestParentDiv) {
+      $(closestParentDiv).dimmer('show');
+    }
+
+    ClassicEditor
+      .create(document.querySelector('#' + element), {
+        licenseKey: '{{ licenceKey }}',
+        cloudServices: {
+          tokenUrl: '{{ tokenUrl }}',
+          uploadUrl: '{{ uploadUrl }}'
+        },
+        fontSize: {
+          options: [
+            8, 9, 10, 11, 12, 'default', 14, 18, 24, 30, 36, 48
+          ]
+        },
+        removePlugins: ['{{ removePlugins }}'],
+      })
+      .then(editor => {
+        window['ckeditor-' +  element + '-editor'] = editor;
+        if (closestParentDiv) {
+          $(closestParentDiv).dimmer('hide');
+        }
+      })
+      .catch(error => {
+        console.error('Oops, something went wrong!');
+        console.error('Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:');
+        console.warn('Build id: x6b835s55r24-9y5bzsi3lzja');
+        console.error(error);
+      });
+  }
+</script>
+{% endput %}

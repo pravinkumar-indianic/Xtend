@@ -1,0 +1,31 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        sortable: true
+    updated_at:
+        label: updated_at
+        type: datetime
+        sortable: true
+    deleted_at:
+        label: deleted_at
+        type: datetime
+        invisible: true
+    name:
+        label: 'codengine.awardbank::lang.awardbank.regionname'
+        type: text
+        searchable: true
+    description:
+        label: 'codengine.awardbank::lang.awardbank.regiondescription'
+        type: text
+        searchable: true
+    primary_color:
+        label: 'codengine.awardbank::lang.awardbank.regionprimarycolor'
+        type: text
+    secondary_color:
+        label: 'codengine.awardbank::lang.awardbank.regionsecondarycolor'
+        type: text

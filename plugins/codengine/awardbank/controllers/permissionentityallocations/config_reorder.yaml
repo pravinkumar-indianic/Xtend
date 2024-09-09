@@ -1,0 +1,4 @@
+title: PermissionEntityAllocations
+modelClass: Codengine\Awardbank\Models\PermissionEntityAllocation
+toolbar:
+    buttons: reorder_toolbar

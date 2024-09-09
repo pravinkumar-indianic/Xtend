@@ -1,0 +1,55 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        invisible: true
+        sortable: true
+    updated_at:
+        label: updated_at
+        type: datetime
+        sortable: true
+    deleted_at:
+        label: deleted_at
+        type: datetime
+        invisible: true
+        sortable: true
+    dollar_value:
+        label: codengine.awardbank::lang.PointsLedger.dollar_value
+        type: text
+        sortable: true
+    points_value:
+        label: codengine.awardbank::lang.PointsLedger.points_value
+        type: number
+        searchable: true
+        sortable: true
+    type:
+        label: codengine.awardbank::lang.PointsLedger.type
+        type: number
+        searchable: true
+        sortable: true
+    xero_id:
+        label: codengine.awardbank::lang.PointsLedger.xero_id
+        type: text
+    user:
+        label: User
+        relation: user
+        select: full_name
+        searchable: true
+        sortable: true
+    program_id:
+        label: codengine.awardbank::lang.Program.Program
+        number: number
+    order_id:
+        label: codengine.awardbank::lang.Order.Order
+        relation: order
+        number: number
+    product_id:
+        label: codengine.awardbank::lang.Product.Product
+        number: number
+    transaction_id:
+        label: codengine.awardbank::lang.Transaction.Transaction
+        number: number

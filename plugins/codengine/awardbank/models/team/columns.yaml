@@ -1,0 +1,100 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        sortable: true
+    updated_at:
+        label: updated_at
+        type: datetime
+        sortable: true
+    deleted_at:
+        label: deleted_at
+        type: datetime
+        invisible: true
+    name:
+        label: 'codengine.awardbank::lang.awardbank.teamname'
+        type: text
+        searchable: true
+        sortable: true
+    description:
+        label: 'codengine.awardbank::lang.awardbank.teamdescription'
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true   
+    primary_color:
+        label: 'codengine.awardbank::lang.awardbank.teamprimarycolor'
+        type: colorpicker
+    secondary_color:
+        label: 'codengine.awardbank::lang.awardbank.teamsecondarycolor'
+        type: colorpicker
+    external_reference:
+        label: 'External Reference'
+        type: text
+        searchable: true
+        sortable: true
+    parent:
+        label: Parent
+        relation: parent
+        valueFrom: name
+        searchable: true
+        sortable: true
+        default: 'Not Set'
+    program:
+        label: Program
+        relation: program
+        valueFrom: name
+        searchable: true
+        sortable: true
+        default: 'Not Set'
+    billingcontact:
+        label: Billing Contact
+        relation: billingcontact
+        valueFrom: name
+        searchable: true
+        sortable: true 
+        default: 'Not Set'       
+    users:
+        label: Users
+        relation: users
+        valueFrom: full_name
+        searchable: true
+        sortable: true
+        invisible: true   
+        default: 'Not Set'
+    managers:
+        label: Managers
+        relation: managers
+        valueFrom: full_name
+        searchable: true
+        sortable: true 
+        invisible: true 
+        default: 'Not Set'
+    pointsledgers:
+        label: Points Ledgers
+        relation: pointsledgers
+        valueFrom: id
+        searchable: true
+        sortable: true
+        invisible: true   
+        default: 'Not Set'
+    nominations:
+        label: Nominations
+        relation: nominations
+        valueFrom: id
+        searchable: true
+        sortable: true
+        invisible: true 
+        default: 'Not Set'  
+    results:
+        label: Results
+        relation: results
+        valueFrom: id
+        searchable: true
+        sortable: true
+        invisible: true  
+        default: 'Not Set' 

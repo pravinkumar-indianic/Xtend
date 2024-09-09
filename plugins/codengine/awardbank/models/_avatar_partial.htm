@@ -1,0 +1,24 @@
+<div style="margin-left:auto;margin-right:auto;">
+<img src="
+
+<?php 
+
+	if( $record->avatar != null){
+
+		echo $record->avatar->getThumb('100', '100', 'crop');
+
+    } else {
+
+		if( $record->external_image_url != null)
+		{ 
+
+			echo $record->external_image_url;
+
+		} 
+
+	}
+
+?>
+
+" style="width:100px;height:100px;border-radius:100px;">
+</div>

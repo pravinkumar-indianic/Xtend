@@ -1,0 +1,55 @@
+<div class="ui segment">
+    <h3>Criteria</h3>
+    {% if current_section.criteria is empty %}
+        <p>There are no criteria defined yet.</p>
+    {% else %}
+        <div class="section-criteria-list">
+            <div class="ui stackable grid table-header">
+                <div class="sixteen wide tablet three wide computer column">
+                    <span>Key</span>
+                </div>
+                <div class="sixteen wide tablet five wide computer column">
+                    <span>Label</span>
+                </div>
+                <div class="sixteen wide tablet four wide computer column">
+                    <span>Targets</span>
+                </div>
+                <div class="sixteen wide tablet four wide computer mobile-hide column">
+
+                </div>
+            </div>
+            {% for row in current_section.criteria %}
+                <div class="ui stackable grid section-criteria-row">
+                    <div class="sixteen wide tablet three wide computer column">
+                        <span>{{ row.key }}</span>
+                    </div>
+                    <div class="sixteen wide tablet five wide computer column">
+                        <div class="tooltip">
+                            <span>{{ row.label }}</span>
+                            <div class="right">
+                                {{ row.tooltip|raw }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sixteen wide tablet four wide computer column">
+                        {% for target in row.target %}
+                        <p>{{ target.target }} ({{ target.start|date('M') }} - {{ target.end|date('M') }})</p>
+                        {% endfor %}
+                    </div>
+                    <div class="two wide tablet four wide computer column">
+                        <button class="primary section-criteria edit" data-id="{{ row.id }}" title="Edit">
+                            <i class="icon edit"></i>
+                        </button>
+                        <button class="red section-criteria delete" data-id="{{ row.id }}" title="delete">
+                            <i class="icon trash"></i>
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <hr />
+
+    {% partial '@newsectioncriteriaform' %}
+</div>

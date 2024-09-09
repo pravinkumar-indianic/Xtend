@@ -1,0 +1,47 @@
+<div class="scorecard-wrapper">
+    <div class="tabs">
+        <a class="tab {% if step == 1 %}active{% endif %}" data-id="1">Step 1</a>
+        <a class="tab {% if step == 2 %}active{% endif %}" data-id="2">Step 2</a>
+        <a class="tab {% if step == 3 %}active{% endif %}" data-id="3">Step 3</a>
+        <a class="tab {% if step == 4 %}active{% endif %}" data-id="4">Step 4</a>
+        <a class="tab {% if step == 5 %}active{% endif %}" data-id="5">Step 5</a>
+    </div>
+    <div class="ui segment">
+        <div class="step" id="step-1">
+            <h2>Step {{ step }}: {{ stepLabel }}</h2>
+            {% if step == 1 %}
+                {% partial '@sectionform' %}
+            {% endif %}
+
+            <div id="section-wrapper">
+                    {% if step == 1 %}
+                        <div id="section-dropdown">
+                            {% if current_section %}
+                            {% partial '@sectiondropdown' %}
+                            {% endif %}
+                        </div>
+
+                        <div id="section-logo-uploader">
+                            {% if current_section %}
+                            {% partial '@sectionlogo' %}
+                            {% endif %}
+                        </div>
+                    {% endif %}
+
+                <div id="section-criteria-wrapper" class="section-criteria-wrapper">
+                    {% if current_section %}
+                    {% partial '@sectioncriteria' %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="section-import-wrapper" class="section-import-wrapper">
+    {% partial '@sectionimport' %}
+</div>
+
+<div id="section-import-history" class="section-import-history">
+    {% partial '@sectionimporthistory' %}
+</div>

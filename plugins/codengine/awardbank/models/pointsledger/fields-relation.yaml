@@ -1,0 +1,18 @@
+fields:
+    type:
+        label: codengine.awardbank::lang.PointsLedger.type
+        span: auto
+        type: dropdown
+    dollar_value:
+        label: codengine.awardbank::lang.PointsLedger.dollar_value
+        type: number
+        span: auto
+        readOnly: true
+    points_value:
+        label: codengine.awardbank::lang.PointsLedger.points_value
+        type: number
+        span: auto
+    xero_id:
+        label: codengine.awardbank::lang.PointsLedger.xero_id
+        type: text
+        span: auto

@@ -1,0 +1,56 @@
+{% set subtraction = 3 %}
+{% if results.groupstring == 'The Goannas' %}
+	{% set subtraction = 4 %}
+{% endif %}
+{% if results.dashboardview == true %}
+	<div class="ui segment">
+		<h3>{{ results.teamname }} - {{ results.partsservice}} - Criteria</h3>
+		{% if results.data|length >= 1  %}
+			<div class="ui grid four columns row results-column">
+			{% for key, row in results.data %}
+				{% if key <= 4 %}
+					<div class="ui column">
+						<div class="ui statistic {% if key == 4 %}even{% else %}odd{% endif %}">
+					  		<div class="value">{% if row.value != 100000000000000 %}{% if row.value != null %}{{ row.value|number_format(0, '.', ',')  }}{% else %}0{% endif %}{% endif %}
+				  			</div>
+						  	<div class="label">
+						    	{{ row.resulttype.name }}
+						  	</div>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+			</div>
+			<div class="ui grid">
+				<div class="ui sixteen width column">
+					<div style="margin-left:auto;margin-right:auto;width:250px;">
+						<a href="/results-detail/default" class="primary ui button" style="background-color: #eb0a1e !important;color: white !important;border:0px;width:250px;">View Details</a>
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<h4>No data available for this Dealer under {{ results.partsservice}}. Please try another dealer or category.</h4>
+		{% endif %}
+	</div>
+{% else %}
+	<div class="ui segment">
+		<h3>{{ results.teamname }} - {{ results.partsservice}} - Criteria</h3>
+		{% if results.data|length >= 1  %}
+			{% for key, row in results.data %}
+				{% if key <= 4 %}
+					<div class="ui column">
+						<div class="ui statistic {% if key == 4 %}even{% else %}odd{% endif %}">
+					  		<div class="value">{% if row.value != 100000000000000 %}{% if row.value != null %}{{ row.value|number_format(0, '.', ',')  }}{% else %}0{% endif %}{% endif %}
+				  			</div>
+						  	<div class="label">
+						    	{{ row.resulttype.name }}
+						  	</div>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+		{% else %}
+			<h4>No data available for this Dealer under {{ results.partsservice}}. Please try another dealer or category.</h4>
+		{% endif %}
+	</div>
+{% endif %}

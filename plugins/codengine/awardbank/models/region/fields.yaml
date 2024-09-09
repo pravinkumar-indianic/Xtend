@@ -1,0 +1,90 @@
+tabs:    
+    defaultTab: Region Details
+    fields:
+        name:
+            label: 'codengine.awardbank::lang.awardbank.regionname'
+            oc.commentPosition: ''
+            span: full
+            type: text
+            tab: Region Details
+        description:
+            label: 'codengine.awardbank::lang.awardbank.regiondescription'
+            size: large
+            oc.commentPosition: ''
+            span: full
+            type: richeditor
+            tab: Region Details
+        primary_color:
+            label: 'codengine.awardbank::lang.awardbank.regionprimarycolor'
+            oc.commentPosition: ''
+            span: auto
+            type: colorpicker
+            tab: Region Details
+        secondary_color:
+            label: 'codengine.awardbank::lang.awardbank.regionsecondarycolor'
+            oc.commentPosition: ''
+            span: auto
+            type: colorpicker
+            tab: Region Details
+        teams:
+            label: Teams
+            type: relation
+            nameFrom: name
+            span: full
+            emptyOption: None
+            tab: Region Details
+        program:
+            label: Program
+            type: relation
+            nameFrom: name
+            span: full
+            emptyOption: None
+            tab: Region Details
+
+
+        feature_image:
+            label: 'codengine.awardbank::lang.awardbank.supplierfeatureimage'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: 260
+            tab: Image Management
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto
+        images:
+            label: 'codengine.awardbank::lang.awardbank.supplierimages'
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: 260
+            tab: Image Management
+            thumbOptions:
+                mode: crop
+                offset:
+                    - 0
+                    - 0
+                quality: 90
+                sharpen: 0
+                extension: auto       
+
+        accessmanager:
+            label: Access Managers
+            type: relation
+            nameFrom: name
+            span: full
+            emptyOption: None
+            tab: Access Management                
+
+        permissions:
+            label: Permissions Managers
+            type: relation
+            nameFrom: name
+            span: full
+            emptyOption: None
+            tab: Permissions Management            

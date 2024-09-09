@@ -1,0 +1,20 @@
+<div class="ui container">
+	<div class="ui stackable grid">
+        {% if __SELF__.new == false %}
+		<div class="six wide tablet four wide computer column" id="html1target">
+			{{ __SELF__.html1|raw }}
+		</div>
+        {% endif %}
+		<div class="{% if __SELF__.new == false %}ten{% else %}sixteen{% endif %} wide tablet {% if __SELF__.new == false %}twelve{% else %}sixteen{% endif %} wide computer column" id="html2target">
+			{{ __SELF__.html2|raw }}
+		</div>
+	</div>
+</div>
+
+{% component 'CKEditorFactory' %}
+
+{% put scripts %}
+<script>
+  convertToCKEditor('contenttxt');
+</script>
+{% endput %}

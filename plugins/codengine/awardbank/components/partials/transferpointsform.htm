@@ -1,0 +1,17 @@
+<div class="field">
+	<label>Select A User To Recieve Points</label>
+  	<select class="ui fluid dropdown" name="User">
+    	<option value="">Please Select</option>
+		{% for user in users %}
+			<option value="{{ user.id }}">{{ user.full_name }} - {{ user.email }}</option>
+		{% endfor %}				
+	</select>
+</div>
+<div class="field">
+    <label>Number To Transfer</label>
+    <input type="number" name="Points Amount" max="{{ availablepoints }}">
+</div>	
+<div class="field">	
+	<label>Message To Accompany Transfer</label>
+	<textarea class="not-required" name="Message">{{ award.description|striptags }}</textarea>
+</div>

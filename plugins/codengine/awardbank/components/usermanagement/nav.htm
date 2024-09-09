@@ -1,0 +1,7 @@
+<div class="ui segment profile-summary">
+	<div class="ui vertical secondary menu profile-menu">
+		{% for key,value in navoptions %}
+			<a href="/user-management/{{ key }}" class="item {% if key == navoption %}active{% endif %}" data-id="{{ key }}">{{ value }}</a>
+		{% endfor %}
+	</div>
+</div>

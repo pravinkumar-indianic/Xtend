@@ -1,0 +1,22 @@
+<div class="ui segment">
+    <h3>{{ user.currentProgram.points_name }} Totals</h3>
+    <div class="ui four columns stackable center aligned grid">
+    	<div class="column">
+			{% partial '@statistic' value = user.current_points label = 'Current Available' %}
+		</div>
+    	<div class="column">
+			{% partial '@statistic' value = user.pending_points label = 'Current In Cart' %}
+		</div>
+    	<div class="column">
+			{% partial '@statistic' value = startingledger.points_value label = 'Starting Value' %}
+		</div>
+    	<div class="column">
+			{% partial '@statistic' value = pointsaddition label = 'Total Additional Earned' %}
+		</div>
+    	<div class="column">
+			{% partial '@statistic' value = pointssubtraction label = 'Total Spent' %}
+		</div>
+	</div>
+	<h3>{{ user.currentProgram.points_name }} Ledger</h3>
+    {% partial '@pointsledgerlist' pointsledgers = pointsledgers %}
+</div>

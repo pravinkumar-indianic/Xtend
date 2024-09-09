@@ -1,0 +1,37 @@
+<div class="item" id="SwitchProgram">
+	{% if programs.count >= 2 %}
+		<div class="ui dropdown">
+			<a class="active company-avatar" href="/dashboard">
+			    <img src="{{ currentProgram.header_icon.thumb(50,50) }}">   
+			</a>
+			<span class="header-program">{{ currentProgram.name }}
+				<i class="caret down icon"></i>
+			</span>	
+			<div class="menu ">		
+				<div class="item menu-program-switch heading">
+					<span class="item program-option">
+						Available Programs:
+					</span>
+				</div>
+				{% for program in programs %}
+					<div class="item menu-program-switch">
+						<a class="item {% if program.id != currentProgram.id %}change-program-option{% endif %}" 
+							data-id="{{program.id}}">
+							{{ program.name }}  
+							{% if currentProgram.id == program.id %}
+								<i class="checkmark icon"></i>
+							{% endif %}
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	{% else %}
+		<a class="active company-avatar" href="/dashboard">
+		    <img src="{{ currentProgram.header_icon.thumb(50,50) }}">
+		</a>
+        <a class="active company-avatar" href="/dashboard">
+            <span class="header-program">{{ currentProgram.name }}</span>
+        </a>
+	{% endif %}
+</div>

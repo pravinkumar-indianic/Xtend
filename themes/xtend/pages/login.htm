@@ -1,0 +1,136 @@
+title = "Sign In"
+url = "/login/:slug"
+layout = "login"
+description = "Login Page"
+is_hidden = 0
+
+[account]
+redirect = "/dashboard"
+paramCode = "code"
+forceSecure = 0
+
+[PreventIEUser]
+==
+<?php
+function onStart()
+{
+
+    use Codengine\Awardbank\Models\Program as Program;
+    use Codengine\Awardbank\Traits\OembedRenderer;
+
+    $this['slug'] = $this->param('slug');
+    $program = Program::where('slug','=', $this['slug'])->first();
+
+    if($program != null){
+
+      if($program->login_image != null){
+          $this['backgroundImage'] = $program->login_image->getThumb(420,420);
+      } else {
+          $this['backgroundImage'] = 'https://s3-ap-southeast-2.amazonaws.com/production-upload-xtend/media/loginbackup.jpg';
+      }
+      $this['backgroundColor'] = $program->primary_color;
+      $this['registration'] = $program->registration_open;
+
+    if ($program->module_allow_program_settings) {
+        $this['login_page'] = Codengine\Awardbank\Models\LoginPage::where('program_id', '=', $program->id)->first();
+        if ($this['login_page']) {
+            if ($this['login_page']['template'] != 'default') {
+                $this['custom_login_page'] = 'login/' . $this['login_page']['template'];
+            }
+
+            $this['login_page']['paragraph1'] = OembedRenderer::renderOembedMulti($this['login_page']['paragraph1']);
+            $this['login_page']['paragraph2'] = OembedRenderer::renderOembedMulti($this['login_page']['paragraph2']);
+        }
+    }
+
+    } else {
+
+      $this['backgroundImage'] = 'https://s3-ap-southeast-2.amazonaws.com/production-upload-xtend/media/loginbackup.jpg';
+      $this['registration'] = false;
+
+    }
+}
+?>
+==
+<!--
+<div class="ui row" >
+    <div class="ui stackable one column center aligned grid" style="text-align:center;">
+      <h2>Staging</h2>
+    </div>
+</div>
+-->
+{% component 'PreventIEUser' %}
+<div class="ui row" >
+    <div class="ui stackable two column center aligned grid">
+        <div class="column six wide form-hero" style="background-color: #ffffff; height: 420px;background-image:url('{{ backgroundImage}}')">
+
+        </div>
+        <div class="column six wide form-holder" style="background-color: #ffffff; height: 420px;">
+            <div class="ui left aligned grid">
+              <div class="column">
+                <h3 class="ui image header middle aligned">
+                  <div class="content">
+                    Log-in to your account
+                  </div>
+                </h3>
+
+                <form class="ui form segment form4" data-request="onSignin" >
+                  <div class="field">
+                      <label>Email</label>
+                      <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input name="login" id="userSigninLogin" placeholder="Enter your email" type="text">
+                      </div>
+                  </div>
+                  <div class="field">
+                      <label>Password</label>
+                      <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input name="password" id="userSigninPassword" placeholder="Enter your password" type="password">
+                      </div>
+                  </div>
+
+                      <div class="inline field">
+                              <!--
+                          <div class="ui checkbox">
+                              <input name="remember" type="checkbox" tabindex="0" class="hidden">
+                              <label>Remember me</label>
+                          </div>
+                        -->
+                          <div class="ui right aligned" style="margin-bottom:10px;">
+                            <a href="/reset-password/default/default">Forgot Password?</a>
+                          </div>
+                      </div>
+
+                  <button class="ui fluid large teal submit button" type="submit" {% if backgroundColor %} style="background-color:{{ backgroundColor }}" {% endif %}>
+                    <i class="unlock alternate icon"></i>
+                    Login
+                  </button>
+                  <div class="ui error message"></div>
+                </form>
+
+
+              </div>
+            </div>
+
+        </div>
+      </div>
+</div>
+
+{% if registration == true %}
+<div class="ui row">
+    <div class="ui stackable one column center aligned grid">
+        <div class="column sixteen wide form-holder" style="width:50% !important">
+            <a href="/register/{{slug}}" class="ui fluid large teal submit button" type="submit" {% if backgroundColor
+               %} style="background-color:{{ backgroundColor }}" {% endif %}>Don't have an account? <br> Register for
+                the program here.</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if custom_login_page %}
+
+{% partial custom_login_page %}
+
+{% endif %}

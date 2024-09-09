@@ -1,0 +1,48 @@
+<div class="ui segment">
+    <h3>Reports</h3>
+
+    <form class="ui form" id="filters">
+        <div class="ui grid one columns">
+            <div class="column">
+                <div class="field">
+                    <label>Report Type</label>
+                    <select name="type" class="ui selection dropdown">
+                        <option value="posts" selected>Feed</option>
+                        <option value="hashtags">Hashtags</option>
+                        <option value="media">Media</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="ui grid two columns">
+            <div class="column">
+                <div class="field">
+                    <label>Created At Start Range</label>
+                    <div class="ui calendar">
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            <input type="date" name="created_at_start" value="{{ default_start_date }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="field">
+                    <label>Created At End Range</label>
+                    <div class="ui calendar">
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            <input type="date" name="created_at_end" value="{{ default_end_date }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="ui grid one columns">
+        <div class="column">
+            <button class="ui primary filter export button socialfeed" data-attach-loading="">Export</button>
+        </div>
+    </div>
+</div>

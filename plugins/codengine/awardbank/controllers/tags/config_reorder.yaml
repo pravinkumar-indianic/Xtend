@@ -1,0 +1,4 @@
+title: Tags
+modelClass: Codengine\Awardbank\Models\Tag
+toolbar:
+    buttons: reorder_toolbar

@@ -1,0 +1,21 @@
+<div class="ui container" id="dashboard-settings">
+    <div class="ui stackable grid">
+        <div class="ten wide tablet sixteen wide computer column">
+            <div class="ui segment">
+                <h3>Login Page Settings</h3>
+                <div class="login-page-form" id="loginpageform">
+                    {{ loginpageform|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% component 'CKEditorFactory' %}
+
+{% put scripts %}
+<script>
+  convertToCKEditor('paragraph1');
+  convertToCKEditor('paragraph2');
+</script>
+{% endput %}

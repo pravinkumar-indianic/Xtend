@@ -1,0 +1,4 @@
+title: Prizes
+modelClass: Codengine\Awardbank\Models\Prize
+toolbar:
+    buttons: reorder_toolbar

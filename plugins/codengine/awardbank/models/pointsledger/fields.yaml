@@ -1,0 +1,51 @@
+fields:
+    id:
+        label: ID
+        type: number
+        span: auto
+        readOnly: true
+    type:
+        label: codengine.awardbank::lang.PointsLedger.type
+        span: auto
+        type: dropdown
+    dollar_value:
+        label: codengine.awardbank::lang.PointsLedger.dollar_value
+        type: number
+        span: auto
+        readOnly: true
+    points_value:
+        label: codengine.awardbank::lang.PointsLedger.points_value
+        type: number
+        span: auto
+    xero_id:
+        label: codengine.awardbank::lang.PointsLedger.xero_id
+        type: text
+        span: auto
+tabs:
+    defaultTab: program:
+    fields:
+        program:
+            label: codengine.awardbank::lang.Program.Program
+            type: partial
+            path: field_program
+            tab: codengine.awardbank::lang.Program.Program
+        user:
+            label: codengine.awardbank::lang.User.User
+            type: partial
+            path: field_user
+            tab: codengine.awardbank::lang.User.User
+        order:
+            label: codengine.awardbank::lang.Order.Order
+            type: partial
+            path: field_order
+            tab: codengine.awardbank::lang.Order.Order
+        product:
+            label: codengine.awardbank::lang.Product.Product
+            type: partial
+            path: field_product
+            tab: codengine.awardbank::lang.Product.Product
+        transaction:
+            label: codengine.awardbank::lang.Transaction.Transaction
+            type: partial
+            path: field_transaction
+            tab: codengine.awardbank::lang.Transaction.Transaction

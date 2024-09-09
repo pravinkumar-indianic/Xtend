@@ -1,0 +1,262 @@
+
+
+<div class="ui {% if __SELF__.container == true %} container {% endif %} post-create-container">
+
+    <div class="ui grid grid-no-margin">
+
+
+        <div class="right floated ten wide column search column-no-padding" style="margin-bottom:20px">
+
+            <div class="ui search">
+
+                <div class="ui left icon input">
+
+                    <i class="search icon"></i>
+
+                    <input class="search" type="text" placeholder="Search Profiles">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="ui sixteen wide column column-no-padding {% if __SELF__.flushtop == true %}flushtop{% endif %} {% if __SELF__.flushbottom == true %}flushbottom{% endif %}">
+
+            <div class="ui segment profiles profiles-list {{ __SELF__ }}">
+
+                <div class="ui column stackable grid">
+
+                    <div class="breadcrumbs right floated right aligned sixteen wide tablet ten wide computer column product-filter-options">
+
+                        {# 
+                            <div class="filter-sortby">
+
+                                <select class="ui dropdown regionsFilter" id="regionsFilter" name="regionsFilter">
+
+                                    <option value="">{% if __SELF__.region != null %}{{ __SELF__.region.name }}{% else %}{{ access.program.region_label}}{%endif%}</option>
+
+                                    <option value="all">All</option>
+
+                                    {% for region in __SELF__.regions %}
+
+                                        <option value="{{ region.id }}" {% if region.id == __SELF__.region_base_id %} selected="" {% endif %}>{{ region.name }}</option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+                        #}
+
+                        <div class="filter-sortby">
+
+                            <select class="ui dropdown teamsFilter" id="teamsFilter" name="teamsFilter">
+
+                                <option value="">{% if __SELF__.team != null %}{{ __SELF__.team.name }}{% else %}{{ access.program.team_label}}{%endif%}</option>
+
+                                <option value="all">All</option>
+
+                                {% for team in __SELF__.teams %}
+
+                                    <option value="{{ team.id }}" {% if team.id == __SELF__.team_base_id %} selected="" {% endif %}>{{ team.name }}</option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="profileslistwrapper_{{__SELF__}}">
+
+                    <div class="ui inverted dimmer">
+
+                        <div class="ui text loader">Loading</div>
+
+                    </div>
+
+                    <div class="listtarget">
+
+                          {% partial '@listouterpartial' 
+
+                              profiles = __SELF__.profiles
+
+                          %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% put scripts %}
+
+    <script>
+
+        var searchOptions = {
+
+            'region': null,
+            'team' : null,
+            'searchTerm': null,
+            'offset': {{__SELF__.offset}},
+            'totalResults': {{__SELF__.totalResults }},
+            'refresh': false, 
+        };
+
+
+        $('body').on('change', '#regionsFilter', function() {
+
+            searchOptions.region = $(this).find(":selected").val();
+            searchOptions.refresh = true;
+            searchOptions.team = null;
+            refreshRegion();
+            callAjaxList();
+
+        });
+
+        $('body').on('change', '#teamsFilter', function() {
+
+            searchOptions.team = $(this).find(":selected").val();
+            searchOptions.refresh = true;
+            callAjaxList()
+
+        });
+
+        $('body').on('keypress', '.ui.search .search', function (e) {
+
+            if (e.which === 13) {
+
+                searchOptions.searchTerm = $(this).val();
+                searchOptions.refresh = true;               
+                callAjaxList()
+
+                return false;    //<---- Add this line
+            }
+
+        });
+
+        function callAjaxList(){
+
+            if (searchOptions.refresh === true){
+
+                $('.profileslistwrapper_{{__SELF__}} .listtarget').html("<div style='height:400px;'></div>");
+
+            }
+
+            ajaxList(); 
+
+        }
+
+        function ajaxList(){
+
+            $('.profileslistwrapper_{{__SELF__}}').dimmer('show');
+
+            if(searchOptions.refresh === true){
+
+                searchOptions.offset = 0;
+                searchOptions.totalResults = null;
+
+            }
+
+            console.log(searchOptions);
+
+            $.request('onRefreshListFilter', {
+
+                data: searchOptions,
+
+                beforeSend: function(){
+
+                },
+                success: function(data) {
+
+                    $('.profileslistwrapper_{{__SELF__}}').dimmer('hide');
+
+                    if (searchOptions.refresh === true){
+                        $('.profileslistwrapper_{{__SELF__}} .listtarget').html('');
+                    }
+
+                    $('.profileslistwrapper_{{__SELF__}} .listtarget').append(data['html']);
+
+                    searchOptions.totalResults = data['totalResults'];
+                    searchOptions.refresh = false;
+                    $('.a-popup').popup();
+                },
+                error: function(data){
+
+                  throw data;
+
+                },
+            });
+
+        }
+
+
+        $('.profiles-list').visibility({
+
+            once: false,
+            observeChanges: true,
+            onBottomVisible: function() {
+
+                if(searchOptions.refresh === false){
+                    searchOptions.offset = searchOptions.offset + 6;
+                    if (searchOptions.offset < searchOptions.totalResults){
+                        ajaxList();
+                    }
+                }
+            }
+
+        });
+
+        function refreshRegion(){
+
+            $('#teamsFilter').addClass('disabled');
+            $('#teamsFilter').val([]);
+            $('.teamsFilter').find('.text').html('Loading');
+
+            $.request('onGetRegionTeams', {
+
+                data: {
+
+                    'region_id' : searchOptions.region,
+
+                },
+
+                success: function(data) {
+                    $('#teamsFilter').removeClass('disabled');     
+                    $('#teamsFilter').empty();
+                    $option = $("<option></option>")
+                        .attr("value", 'all')
+                        .text('All');
+                    $('#teamsFilter').append($option);
+                    $.each(data['teams'], function(key, value) {
+                        $option = $("<option></option>")
+                            .attr("value", key)
+                            .text(value);
+                        $('#teamsFilter').append($option);
+                    });
+                    $('.teamsFilter').find('.text').html('Teams');
+                },
+                error: function(data){
+
+                    console.log(data);
+                    $('#teamsFilter').removeClass('disabled');     
+                                   
+                },
+            });
+
+        }
+
+    </script>
+
+{%  endput %}

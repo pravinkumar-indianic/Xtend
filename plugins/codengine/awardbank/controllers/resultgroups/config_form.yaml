@@ -1,0 +1,10 @@
+name: ResultTypes
+form: $/codengine/awardbank/models/resultgroup/fields.yaml
+modelClass: Codengine\Awardbank\Models\ResultGroup
+defaultRedirect: codengine/awardbank/resultgroups
+create:
+    redirect: 'codengine/awardbank/resultgroups/update/:id'
+    redirectClose: codengine/awardbank/resultgroups
+update:
+    redirect: codengine/awardbank/resultgroups
+    redirectClose: codengine/awardbank/resultgroups

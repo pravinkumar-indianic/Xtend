@@ -1,0 +1,71 @@
+{% if user.managed == true %}
+	{% if user.is_activated == true and user.email_confirmed == true %}
+		<div class="ui green big label" style="margin-bottom:20px;">
+			<i class="check circle icon"></i>
+			User has been Activated
+		</div>
+	{% else %}
+		{% if user.id %}
+			<div class="ui orange big label send_activation" data-id="{{ user.id}}" style="margin-bottom:20px;">
+				<i class="paper plane icon" data-content="Send User Activation Link."></i>
+				Send user activation email
+			</div>
+		{% endif %}
+	{% endif %}
+	<div class="field">
+		<label>Teams</label>
+		<div class="ui multiple selection searchable dropdown" id="Teams" name="Teams" data-selected='{% for team in user.currentteams %}{{ team }}{% if not loop.last %},{% endif %}{% endfor %}'>
+			<div class="default text">Select</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				{% for team in teams %}
+					<div class="item" data-value='{{ team.id }}'>{{ team.name|capitalize }}</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endif %}
+<div class="field">
+	<label>Company Position</label>
+	<input placeholder="General Manager" name="Company Position" type="text" value="{{user.company_position}}" class="not-required">
+</div>
+<div class="field">
+	<label>First Name <b style="color:red;">*</b></label>
+	<input placeholder="First Name" name="First Name" type="text" value="{{user.name}} ">
+</div>
+<div class="field">
+	<label>Surname <b style="color:red;">*</b></label>
+	<input placeholder="Surname" name="Surname" type="text" value="{{user.surname}}">
+</div>
+<div class="field">
+	<label>Business Name</label>
+	<input placeholder="Business Name" name="Business Name" type="text" value="{{user.business_name}}" class="not-required">
+</div>
+<div class="field">
+	<label>Email <b style="color:red;">*</b></label>
+	<input placeholder="Email" name="Email" type="text" value="{{user.email}}">
+</div>
+<div class="field">
+	<label>Phone Number</label>
+	<input placeholder="Phone Number" name="Phone Number" type="text" value="{{user.phone_number}}" class="not-required">
+</div>
+<div class="field">
+	<label>Birthday</label>
+	<div class="ui calendar" id="Birthday">
+		<div class="ui input left icon">
+			<i class="calendar icon"></i>
+			<input type="date" name="Birthday" class="not-required" {% if user.getBirthdayAttribute %}value="{{user.getBirthdayAttribute|date('Y-m-d') }}"{% endif %}>
+		</div>
+	</div>
+</div>
+{% if user.managed == true %}
+	<div class="field">
+		<label>Start Date <b style="color:red;">*</b></label>
+		<div class="ui calendar" id="Tenure">
+			<div class="ui input left icon">
+				<i class="calendar icon"></i>
+				<input type="date" name="Tenure" {% if user.getTenureAttribute %}value="{{user.getTenureAttribute|date('Y-m-d') }}"{% endif %}>
+			</div>
+		</div>
+	</div>
+{% endif %}

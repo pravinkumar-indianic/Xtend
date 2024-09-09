@@ -1,0 +1,21 @@
+fields:
+    commantable_type:
+        label: 'Comment Of'
+        oc.commentPosition: ''
+        options:
+            Codengine\Awardbank\Models\Post: Post
+            Codengine\Awardbank\Models\Program: Program
+        span: full
+        type: dropdown
+    commantable_id:
+        label: 'commantable id'
+        oc.commentPosition: ''
+        span: full
+        type: number
+    comment_id:
+        label: Comment
+        oc.commentPosition: ''
+        nameFrom: name
+        descriptionFrom: description
+        span: full
+        type: relation

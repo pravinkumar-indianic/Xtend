@@ -1,0 +1,152 @@
+{% set awards = __SELF__.awards %}
+{% set showHeading = __SELF__.showHeading %}
+{% set me = __SELF__.user %}
+
+{% put scripts %}
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	$('#createPrizeForm')
+        .form({
+            fields: {
+                name   : 'empty',
+                order : 'empty',
+                totalpoint: 'empty',
+                pointsource_dropdown: 'empty',
+                award: 'empty'
+            }
+    });
+
+	$('#createPrizeForm').submit(function() {
+		if ($('#createPrizeForm').form('is valid')){
+	        $('#createPrizeForm').addClass('loading');
+	        return true; 
+      	}
+      	return false;
+	});
+});
+
+function checkPermissions(inputselect, outputdiv, outputdropdown){
+
+  if ($(inputselect).val() == "owner" || $(inputselect).val() == ""){
+      $(outputdiv).hide();
+  }else{
+      $(outputdiv).show();
+      $(outputdiv)
+        .dimmer('show')
+      ;
+      $(outputdropdown).dropdown('clear');
+
+      $(this).request('{{ __SELF__}}::onSelectPermission', {
+        data: {type: $(inputselect).val()}, 
+        complete: function(data){
+          $(outputdropdown).children().remove();
+          var options = $.parseJSON(data['responseText']);
+          $.each(options, function (i, user) {
+
+          	if ($(inputselect).val() == "user"){
+              	$(outputdropdown).append($('<option>', { 
+                  	value: user.id,
+                  	text : user.full_name
+              	}));
+            }else{
+	            $(outputdropdown).append($('<option>', { 
+	                value: user.id,
+	                text : user.name 
+	            }));
+	        }
+           
+          });
+          $(outputdiv)
+            .dimmer('hide')
+          ;
+        }
+      });
+
+  }
+  $('#pointsourcename').val('');
+  $('#pointsourcelbl').text('Post to ' + $(inputselect).val() + ': ');
+}
+</script>
+{% endput %}
+
+{% if showHeading == true %}
+    <div class="ui segment">
+        <i class="circular {{ __SELF__.moduleFAIcon }} icon link"></i> {{ __SELF__.moduleHeading }}
+    </div>
+{% endif %}
+
+<div class="ui segment">
+	{{ form_open({ request: 'onPrizeCreate', class:'ui form', id: 'createPrizeForm'}) }}
+
+		<h4 class="ui horizontal divider header">
+		  <i class="tag icon"></i>
+		  Prize Detail
+		</h4>
+		<div class="ui form">
+			<div class="field">
+                <label>Prize Name</label>
+                <input type="text" id="prizename" name="name" class="auto">
+            </div>
+            <div class="field">
+                <label>Order</label>
+                <input type="text" id="prizeorder" name="order" class="auto">
+            </div>
+            <div class="field">
+                <label>Award</label>
+                <div class="ui selection dropdown" >
+		            <div class="default text">Select</div>
+		            <i class="dropdown icon"></i>
+		            <input type="hidden" name="award" id="award">
+		            <div class="menu">
+		            {% if awards %}
+		            	{% for award in awards %}
+		              		<div class="item" data-value="{{award.id}}">{{award.name}}</div>
+		            	{% endfor %}
+		            {% endif %}
+		            </div>
+		        </div>
+            </div>
+            <div class="field">
+	          <label>Point Source</label>
+	          <div class="ui selection dropdown" >
+	            <div class="default text">Select</div>
+	            <i class="dropdown icon"></i>
+	            <input type="hidden" name="pointsource" id="pointsource" onchange="checkPermissions('#pointsource', '#pointsourcediv', '#pointsource_dropdown')">
+	            <div class="menu">
+	              <div class="item" data-value="user">User</div>
+	              <div class="item" data-value="team">Team</div>
+	              <div class="item" data-value="region">Region</div>
+	              <div class="item" data-value="program">Program</div>
+	              <div class="item" data-value="organization">Organisation</div>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="field" style="display: none;" id="pointsourcediv">
+	            <div class="ui inverted dimmer">
+	              <div class="ui text loader">Loading</div>
+	            </div>
+	            <label id="postaslbl">Source Name</label>
+	            <div class="ui search" id="pointsourcesearch">
+	                <select placeholder="Search name..." class="ui fluid search dropdown" id="pointsource_dropdown" name="pointsourcename[]">
+	                  
+	                </select>
+	            </div>
+	        </div>
+	        <div class="field">
+                <label>Total Point</label>
+                <input type="text" id="prizepoint" name="totalpoint" class="auto">
+            </div>
+		
+	        <div class="field">
+	        	<button type="submit" class="ui labeled icon button">
+			        <i class="save icon"></i>
+			        Save
+			    </button>
+	        </div>
+	    </div>
+
+  	{{ form_close() }}
+
+</div>

@@ -1,0 +1,38 @@
+title = "Transaction"
+url = "/transaction/:value/:product"
+layout = "default-v2"
+description = "Transaction Page"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "login"
+
+[access]
+metaarea = 1
+
+[TransactionManager]
+container = 1
+
+/** GLOBAL COMPONENTS **/
+
+[viewBag]
+metaarea = 2
+
+[CustomStyles]
+
+[Sidebar]
+
+[Cart]
+
+[SwitchProgram]
+
+[RewardsNav]
+
+[FooterUsefullInfo]
+
+==
+
+{% component 'CustomStyles' %} 
+
+{% component 'TransactionManager' %}

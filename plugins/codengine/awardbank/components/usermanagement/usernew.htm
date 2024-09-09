@@ -1,0 +1,149 @@
+{% if manager == true %}
+<div class="ui segment">
+    <div id="user-detail-edit">
+
+        <p>
+            <a href="/user-management/list">Back to User List</a>
+        </p>
+
+        <h1>New User</h1>
+        <p>
+            <small><b style="color:red;">*</b> Required</small>
+            <br/>
+            <small><b style="color:darkgray;">**</b> Required for User Types "Member Store" & "Staff Member" only</small>
+            <br/>
+            <small><b style="color:darkgray;">***</b> Required for User Type "Member Store" only.</small>
+        </p>
+
+        <form class="ui form"
+              id="edit-user-form"
+              data-request="onUserCreate"
+              data-request-validate
+              data-request-flash
+        >
+            <div class="two fields">
+                <div class="field">
+                    <label for="crm">CRM<b style="color:darkgray;">***</b></label>
+                    <input type="text" id="crm" name="crm">
+                </div>
+
+                <div class="field">
+                    <label for="roll">User Type (Role)<b style="color:red;">*</b></label>
+                    <select id="roll" name="roll" class="ui selection dropdown">
+                        <option value="Admin">Admin</option>
+                        <option value="Symbion Staff">Symbion Staff</option>
+                        <option value="Sponsor">Sponsor</option>
+                        <option value="KAM">KAM</option>
+                        <option value="Member Store">Member Store</option>
+                        <option value="Staff Member">Staff Member</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="email">Email<b style="color:red;">*</b></label>
+                    <input type="text" id="email" name="email">
+                </div>
+
+                <div class="field">
+                    <label for="phone">Phone<b style="color:grey;">**</b></label>
+                    <input type="text" id="phone" name="phone">
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="business_name">Business (Store) Name<b style="color:red;">*</b></label>
+                    <input type="text" id="business_name" name="business_name">
+                </div>
+
+                <div class="field">
+                    <label for="full_name">Full Name</label>
+                    <input type="text" id="full_name" name="full_name">
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="name">First Name<b style="color:darkgray;">**</b></label>
+                    <input type="text" id="name" name="name">
+                </div>
+
+                <div class="field">
+                    <label for="surname">Last Name</label>
+                    <input type="text" id="surname" name="surname">
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="kam">KAM<b style="color:darkgray;">***</b></label>
+                    <input type="text" id="kam" name="kam">
+                </div>
+
+                <div class="field">
+                    <label for="membership_level">Membership Level<b style="color:darkgray;">**</b></label>
+                    <input type="text" id="membership_level" name="membership_level">
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="address_1">Address 1<b style="color:darkgray;">**</b></label>
+                    <input type="text" id="address_1" name="address_1">
+                </div>
+
+                <div class="field">
+                    <label for="address_2">Address 2</label>
+                    <input type="text" id="address_2" name="address_2">
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="suburb">Suburb<b style="color:darkgray;">**</b></label>
+                    <input type="text" id="suburb" name="suburb">
+                </div>
+
+                <div class="field">
+                    <label for="postcode">Postcode<b style="color:darkgray;">**</b></label>
+                    <input type="text" id="postcode" name="postcode">
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="state">State<b style="color:darkgray;">**</b></label>
+                    <input type="text" id="state" name="state">
+                </div>
+            </div>
+
+            <p>
+                <button type="submit" class="ui primary submit  button" data-attach-loading="">Create user</button>
+            </p>
+        </form>
+    </div>
+</div>
+
+{% put scripts %}
+<script>
+  function successMessage() {
+    $.oc.flashMsg({
+      'text': 'User has been successfully updated.',
+      'class': 'success',
+      'interval': 3
+    })
+  }
+
+  function errorMessage() {
+    $.oc.flashMsg({
+      'text': 'Error while updating user record.',
+      'class': 'error',
+      'interval': 3
+    })
+  }
+
+</script>
+{% endput %}
+{% endif %}

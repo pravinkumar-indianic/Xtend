@@ -1,0 +1,243 @@
+{% set steps = __SELF__.steps %}
+{% set post = __SELF__.post %}
+{% set showHeading = __SELF__.showHeading %}
+{% set moduleType = __SELF__.moduleType %}
+{% set me = __SELF__.user %}
+
+{% put scripts %}
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+	formNext();
+
+	$('.ui form').submit(function() {
+
+		if ($('#steps').val() == "content"){
+
+
+	      if (tinyMCE.get('contenttxt').getContent() == "" || tinyMCE.get('contenttxt').getContent() == "<p>&nbsp;</p>"){
+	        
+	        $('.ui form').form('validate form');
+	        
+	        if( $('error.message').is(':parent') ){
+	        	$(".error.message ul").append('<li>Please add product description</li>');
+	        }else{
+	        	$(".error.message").append('<ul class="list"><li>Please add product description</li></ul>');
+	        }
+	        $('#productcreateform .error.message').show();
+
+	        return false;
+	      }else{
+	        $('li:contains("Please add product description")').remove();
+	      }
+	      
+	  	}
+
+	  	if ($('.ui form').form('is valid')){
+	        $('.ui form').addClass('loading');
+	        return true; 
+      	}
+
+      	return false;
+    });
+});    
+    
+    function formNext(){
+
+    	$('.ui form').removeClass('loading');
+    	
+    	if ($('#steps').val() == "content"){
+    		$('.ui form')
+			  .form({
+			    on: 'blur',
+			    fields: {
+			      title: {
+			        identifier  : 'title',
+			        rules: [
+			          {
+			            type   : 'empty',
+			            prompt : 'Please enter post title'
+			          }
+			        ]
+			      }
+			  	}
+			  })
+			;
+    	
+    	}else if ($('#steps').val() == "config"){
+    		$('.ui.grid form')
+			  .form({
+			    on: 'blur',
+			    fields: {
+			      category: {
+			        identifier  : 'category_dropdown',
+			        rules: [
+			          {
+			            type   : 'empty',
+			            prompt : 'Please Select category'
+			          }
+			        ]
+			      },
+			      postto: {
+			        identifier  : 'postto',
+			        rules: [
+			          {
+			            type   : 'empty',
+			            prompt : 'Please select target post'
+			          }
+			        ]
+			      },
+			      posttoname: {
+			        identifier  : 'postto_dropdown',
+			        rules: [
+			          {
+			            type   : 'empty',
+			            prompt : 'Please enter target name'
+			          }
+			        ]
+			      },
+			      postas: {
+			        identifier  : 'postas',
+			        rules: [
+			          {
+			            type   : 'empty',
+			            prompt : 'Please select poster / alias'
+			          }
+			        ]
+			      },
+			      postasname: {
+			        identifier  : 'postas_dropdown',
+			        rules: [
+			          {
+			            type   : 'empty',
+			            prompt : 'Please enter Poster name'
+			          }
+			        ]
+			      }
+			  	}
+			  })
+			;
+
+			$('#category_dropdown').dropdown();
+
+		  	$('#tags_dropdown')
+			    .dropdown({
+			      allowAdditions: true
+			    })
+		  	;
+
+		  	$('.ui.dropdown').dropdown();
+
+		  	$('#postto_dropdown').dropdown();
+
+		  	$('#postas_dropdown').dropdown();
+
+    	}
+    }
+
+    function checkPostAs(){
+
+      	if ($('#postas').val() == "owner" || $('#postas').val() == ""){
+          $('#postasdiv').hide();
+          
+          $('#postasid').val('{{me.id}}');
+          $('#postas_dropdown').dropdown('clear');
+          $('#postas_dropdown').append($('<option>', { 
+                value: '{{me.id}}',
+                text : '{{me.name}} {{me.surname}}'
+            }));
+          $('#postas_dropdown').val('{{me.id}}');
+      	}else{
+          $('#postasdiv').show();
+          $('#postasdiv')
+            .dimmer('show')
+          ;
+          $('#postas_dropdown').dropdown('clear');
+
+          $(this).request('{{ __SELF__}}::onPostasSelect', {
+            data: {type: $('#postas').val(), postto: $('#postto').val()}, 
+            complete: function(data){
+              //console.log(data['responseText']);
+              $('#postas_dropdown').children().remove();
+              var users = $.parseJSON(data['responseText']);
+              $.each(users, function (i, user) {
+                //alert(user);
+                if ($('#postas').val() == "other"){
+                  $('#postas_dropdown').append($('<option>', { 
+                      value: user.id,
+                      text : user.name + ' ' + user.surname
+                  }));
+                }else{
+                  $('#postas_dropdown').append($('<option>', { 
+                      value: user.id,
+                      text : user.name 
+                  }));
+                }
+                
+              });
+              $('#postasdiv')
+                .dimmer('hide')
+              ;
+            }
+          });
+      	}
+      
+      	$('#postaslbl').text('Post as ' + $('#postas').val() + ': ');
+
+    }
+
+    function checkPostTo(){
+
+      if ($('#postto').val() == "owner" || $('#postto').val() == ""){
+          $('#posttodiv').hide();
+      }else{
+          $('#posttodiv').show();
+          $('#posttodiv')
+            .dimmer('show')
+          ;
+          $('#postto_dropdown').dropdown('clear');
+
+          $(this).request('{{ __SELF__}}::onSelectPostTo', {
+            data: {type: $('#postto').val()}, 
+            complete: function(data){
+              //console.log(data['responseText']);
+              $('#postto_dropdown').children().remove();
+              var users = $.parseJSON(data['responseText']);
+              $.each(users, function (i, user) {
+
+                $('#postto_dropdown').append($('<option>', { 
+                    value: user.id,
+                    text : user.name 
+                }));
+               
+              });
+              $('#posttodiv')
+                .dimmer('hide')
+              ;
+            }
+          });
+
+      }
+      $('#posttoname').val('');
+      $('#posttolbl').text('Post to ' + $('#postto').val() + ': ');
+    }
+
+</script>
+{% endput %}
+
+{% if showHeading == true %}
+    <div class="ui segment">
+        <i class="circular {{ __SELF__.moduleFAIcon }} icon link"></i> {{ __SELF__.moduleHeading }}
+    </div>
+{% endif %}
+
+<div class="ui segment">
+
+	<div id="createpostdiv">
+		            
+		{% partial __SELF__ ~ '::partial/steps' %}
+
+  	</div>
+
+</div>
