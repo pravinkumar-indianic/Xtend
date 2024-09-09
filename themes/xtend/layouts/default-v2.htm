@@ -1,3 +1,56 @@
+==
+<?php
+
+use Illuminate\Support\Facades\Session;
+use October\Rain\Support\Facades\Http;
+function onStart()
+  {
+      $path = request()->path();
+      $user = \Auth::getUser();
+      if (isset($user->name)) {
+        if (!empty($user->programs) && isset($user->programs[0]->name)) {
+            $programName = $user->programs[0]->name;
+        } else {
+            $programName = '';
+        }
+        if(Session::has('unique_visitor_id')){
+          $uniqueVisitorId = Session::get('unique_visitor_id');
+          $pageViewExists = \Codengine\Awardbank\Models\GoogleAnalytics::where('user_id',$user->slug)
+              ->where('session_id', $uniqueVisitorId)
+              ->where('page', $path)
+              ->first();
+              info($uniqueVisitorId);
+          if (!$pageViewExists) {
+              // Save the unique page view data to the database
+              \Codengine\Awardbank\Models\GoogleAnalytics::create([
+                'page' => $path,
+                'user_name' => $user->name.' '.$user->surname,
+                'user_id' => $user->slug,
+                'program_name' => $programName,
+                'email' => $user->email,
+                'session_id' => $uniqueVisitorId,
+                'unique_page_views' => 1,
+              ]);
+          }else{
+            $pageViewExists->increment('unique_page_views');
+          }
+        }else{
+          $uniqueVisitorId = uniqid();
+          Session::put('unique_visitor_id', $uniqueVisitorId);
+          \Codengine\Awardbank\Models\GoogleAnalytics::create([
+            'page' => $path,
+            'user_name' => $user->name.' '.$user->surname,
+            'user_id' => $user->slug,
+            'program_name' => $programName,
+            'email' => $user->email,
+            'session_id' => $uniqueVisitorId,
+            'unique_page_views' => 1,
+          ]);
+        }
+      }
+    }
+?>
+==
 <!DOCTYPE html>
 <html class="no-js" lang="">
     <head>
