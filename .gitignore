@@ -33,3 +33,4 @@ nbproject
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 /public/
+/storage/logs/

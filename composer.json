@@ -22,7 +22,9 @@
         "league/csv": "^9.10",
         "calcinai/xero-php": "^2.5",
         "pagevamp/laravel-cloudwatch-logs": "^1.1",
-        "dusterio/laravel-aws-worker": "^0.1.38"
+        "dusterio/laravel-aws-worker": "^0.1.38",
+        "rap2hpoutre/laravel-log-viewer": "^2.4",
+        "rainlab/builder-plugin": "^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5|^9.0"
