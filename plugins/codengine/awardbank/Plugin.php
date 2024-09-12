@@ -1,28 +1,29 @@
 <?php namespace Codengine\Awardbank;
 
+use Addgod\MandrillTemplate\MandrillTemplateFacade;
 use Addgod\MandrillTemplate\Mandrill\Recipient;
 use Addgod\MandrillTemplate\Mandrill\Template;
-use Addgod\MandrillTemplate\MandrillTemplateFacade;
-use Codengine\Awardbank\Components\ResultsManagement;
-use Codengine\Awardbank\Models\Product;
+use Backend;
+use Carbon\Carbon;
 use Codengine\Awardbank\Components\DashboardSettings;
-use Codengine\Awardbank\Models\ScorecardResultImport;
-use RainLab\User\Models\User;
-use System\Classes\PluginBase;
-use Rainlab\User\Models\User as UserModel;
-use RainLab\User\Controllers\Users as UsersController;
+use Codengine\Awardbank\Components\ResultsManagement;
+use Codengine\Awardbank\Models\CronChecker;
+use Codengine\Awardbank\Models\PointsLedger;
+use Codengine\Awardbank\Models\Product;
 use Codengine\Awardbank\Models\Program;
+use Codengine\Awardbank\Models\ScorecardResultImport;
 use Codengine\Awardbank\Models\Team;
 use Codengine\Awardbank\Models\Transaction;
-use Codengine\Awardbank\Models\PointsLedger;
-use Codengine\Awardbank\Models\CronChecker;
-use Carbon\Carbon;
-use Event;
-use Mail;
-use Db;
-use Backend;
-use Illuminate\Support\Facades\Log;
 use Codengine\Awardbank\Models\XeroAPI;
+use Db;
+use Event;
+use Illuminate\Support\Facades\Log;
+use Mail;
+use RainLab\User\Controllers\Users as UsersController;
+use RainLab\User\Models\User;
+use Rainlab\User\Models\User as UserModel;
+use Rap2hpoutre\LaravelLogViewer\LogViewerController;
+use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
 {
@@ -185,6 +186,7 @@ class Plugin extends PluginBase
 
     public function boot()
     {
+        \Route::get('/logs', [LogViewerController::class, 'index']);
         Event::listen('backend.menu.extendItems', function($manager)
         {
             $manager->addSideMenuItems('RainLab.User', 'user', [
@@ -1626,5 +1628,20 @@ class Plugin extends PluginBase
         $date = new Carbon($date);
         return $date;
     }
-
+    /**
+     * [registerNavigation description]
+     * @return [type] [description]
+     */
+    public function registerNavigation()
+    {
+        return [
+            'logs' => [
+                'label'       => 'Logs',
+                'url'         => Backend::url('/logs'),
+                'icon'        => 'icon-file-text-o',
+                'permissions' => ['your.plugin.access_logs'],
+                'order'       => 500,
+            ],
+        ];
+    }
 }
