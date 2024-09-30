@@ -650,6 +650,10 @@ class ImportExportController extends ControllerBehavior
                     $record[] = $widget->getColumnValueRaw($columnToCheck, $column) ? 'Yes' : 'No';
                 } else if($column->type == 'datetime'){
                     $record[] = $widget->getColumnValueRaw($columnToCheck, $column);
+                } else if ($key == 'name') {
+                    // Decode special HTML characters in name
+                    $name = htmlspecialchars_decode($result['name']);
+                    $record[] = $name;
                 } else  {
                     $record[] = $widget->getColumnValue($columnToCheck, $column);
                 }
