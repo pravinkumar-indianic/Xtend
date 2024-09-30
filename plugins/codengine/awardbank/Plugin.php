@@ -1632,16 +1632,16 @@ class Plugin extends PluginBase
      * [registerNavigation description]
      * @return [type] [description]
      */
-    public function registerNavigation()
-    {
-        return [
-            'logs' => [
-                'label'       => 'Logs',
-                'url'         => Backend::url('/logs'),
-                'icon'        => 'icon-file-text-o',
-                'permissions' => ['your.plugin.access_logs'],
-                'order'       => 500,
-            ],
-        ];
-    }
+    // public function registerNavigation()
+    // {
+    //     return [
+    //         'logs' => [
+    //             'label'       => 'Logs',
+    //             'url'         => Backend::url('/logs'),
+    //             'icon'        => 'icon-file-text-o',
+    //             'permissions' => ['your.plugin.access_logs'],
+    //             'order'       => 500,
+    //         ],
+    //     ];
+    // }
 }
