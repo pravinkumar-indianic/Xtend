@@ -28,7 +28,11 @@ class OrderLineitem extends Model
      */
     public $rules = [
     ];
-
+    /**
+     * [$fillable description]
+     * @var [type]
+     */
+    protected $fillable = ['order_id','product_id','product_name','product_image','product_dollar_value','product_slug','product_deliver_base','product_category_array','product_supplier_id','product_supplier_name','product_status','product_voucher','product_voucher_code','shipped_date','arrived_date','invoice_id','connote_id','shipping_id','shipping_name','option1_selection','option2_selection'];
     /**
      * @var string The database table used by the model.
      */
@@ -71,21 +75,57 @@ class OrderLineitem extends Model
         $this->bounceOrderPlace();
         //$this->bounceProduct();
 
-        $this->order_supplier_name = $this->order->products()->withTrashed()->first()->supplier->name;
-        $this->order_program_id = $this->order->order_program_id;
-        $this->order_program_name = $this->order->order_program_name;
+        if ($this->order) {
+            $product = $this->order->products()->withTrashed()->first();
 
-        if($this->purchase_order_id == null){
+            if ($product && $product->supplier) {
+                $this->order_supplier_name = $product->supplier->name;
+            }
+
+            $this->order_program_id = $this->order->order_program_id ?? null;
+            $this->order_program_name = $this->order->order_program_name ?? null;
+        }
+
+
+        if ($this->purchase_order_id == null) {
             $count = $this->order->orderlineitems->count() + 1;
-            $this->purchase_order_id = $this->order->orderplacer->currentProgram->xero_job_code_suffix.'-'.$this->product_id.$this->order->id.$count;
+
+            if (
+                $this->order && 
+                $this->order->orderplacer && 
+                $this->order->orderplacer->currentProgram
+            ) {
+                $this->purchase_order_id = 
+                    $this->order->orderplacer->currentProgram->xero_job_code_suffix . 
+                    '-' . $this->product_id . 
+                    $this->order->id . 
+                    $count;
+            }
         }
 
-        if($this->invoice_po_variance == null || $this->invoice_po_variance == '' || $this->invoice_po_variance == 0){
-            $this->invoice_po_variance = $this->product_invoiced_amount - ($this->product->cost_ex * $this->product_volume);
+
+        if (
+            $this->invoice_po_variance === null || 
+            $this->invoice_po_variance === '' || 
+            $this->invoice_po_variance == 0
+        ) {
+            if ($this->product && isset($this->product->cost_ex)) {
+                $this->invoice_po_variance = 
+                    $this->product_invoiced_amount - ($this->product->cost_ex * $this->product_volume);
+            }
         }
-        if($this->invoice_freight_variance == null || $this->invoice_freight_variance == '' || $this->invoice_freight_variance == 0){
-            $this->invoice_freight_variance = $this->product_invoiced_freight - ($this->product->cost_freight * $this->product_volume);
+
+        if (
+            $this->invoice_freight_variance === null || 
+            $this->invoice_freight_variance === '' || 
+            $this->invoice_freight_variance == 0
+        ) {
+            if ($this->product && isset($this->product->cost_freight)) {
+                $this->invoice_freight_variance = 
+                    $this->product_invoiced_freight - ($this->product->cost_freight * $this->product_volume);
+            }
         }
+
 
         if($this->last_po_email_sent == ''){
             $this->last_po_email_sent = null;
@@ -124,93 +164,125 @@ class OrderLineitem extends Model
 
     public function createPDF()
     {
-
         $templateCode = 'renatio::invoice'; // unique code of the template
-        if ($this->product->supplier->address){
-            $supplieraddress = $this->product->supplier->address->full_address;
-        } else {
-            $supplieraddress = 'Supplier Address Not Set';
-        }
-        if (!empty($this->order->orderplacer) && !empty($this->order->orderplacer->phone_number)) {
-            $phone = $this->order->orderplacer->phone_number;
-        } else {
-            $phone = 'NA';
-        }
-        $shippingaddress = $this->order->shippingaddress->getPOaddressAttribute();
+
+        // Supplier-related information
+        $supplier = $this->product->supplier ?? null;
+        $supplierAddress = $supplier->address->full_address ?? 'Supplier Address Not Set';
+        $supplierName = $supplier->name ?? 'Supplier Name Not Set';
+        $supplierContact = $supplier->primary_contact_name ?? 'NA';
+        $supplierPhone = $supplier->primary_contact_number ?? 'NA';
+        $supplierEmail = $supplier->primary_contact_email ?? 'NA';
+
+        // Orderplacer-related information
+        $orderplacer = $this->order->orderplacer ?? null;
+        $deliverName = $orderplacer->full_name ?? 'NA';
+        $phone = $orderplacer->phone_number ?? 'NA';
+
+        // Shipping-related information
+        $shippingAddressObj = $this->order->shippingaddress ?? null;
+         $shippingAddress = $shippingAddressObj 
+        ? $shippingAddressObj->getPOaddressAttribute() 
+        : 'Shipping Address Not Set';
+        $businessName = $this->order->shippingaddress->business_name ?? 'NA';
+        $attnName = $this->order->shippingaddress->attn_name ?? 'NA';
+
+        // Product-related information
+        $productPrice = ($this->product->cost_ex ?? 0) * $this->product_volume;
+        $productShipping = $this->product->cost_freight ?? 0;
+
         $data = [
             'po_number' => $this->purchase_order_id,
-            'suppliername' => $this->product->supplier->name,
-            'supplieraddress' => $supplieraddress,
-            'suppliercontact' => $this->product->supplier->primary_contact_name,
-            'supplierphone' => $this->product->supplier->primary_contact_number,
-            'supplieremail' => $this->product->supplier->primary_contact_email,
-            'deliverbusiness' => $this->order->shippingaddress->business_name,
-            'delivercontact' => $this->order->shippingaddress->attn_name,
-            'delivername' => $this->order->orderplacer->full_name,
-            'deliveraddress' => $shippingaddress,
+            'suppliername' => $supplierName,
+            'supplieraddress' => $supplierAddress,
+            'suppliercontact' => $supplierContact,
+            'supplierphone' => $supplierPhone,
+            'supplieremail' => $supplierEmail,
+            'deliverbusiness' => $businessName,
+            'delivercontact' => $attnName,
+            'delivername' => $deliverName,
+            'deliveraddress' => $shippingAddress,
             'deliverphone' => $phone,
-            //'deliveremail' => $this->order_customer_email,
-            'productmodel' => $this->product->model_number,
-            'productname' => $this->product->name,
-            'productcolor' => $this->option1_selection,
-            'productsize' => $this->option2_selection,
-            'productcustom' => $this->option3_selection,
-            'productprice' => ($this->product->cost_ex * $this->product_volume),
-            'productshipping' => $this->product->cost_freight,
-            'note' => $this->notes,
-            'deliver_notes' => $this->order->delivery_notes,
-            'product_volume' => $this->product_volume,
-            'date' => $this->order->created_at,
-        ]; // optional data used in template
-        $pdf = PDF::loadTemplate($templateCode, $data)->output();
-        Storage::put("media/purchaseorders/".$this->purchase_order_id.".pdf", $pdf);
-        Storage::setVisibility("media/purchaseorders/".$this->purchase_order_id.".pdf", 'public');
-        $url = Storage::url("media/purchaseorders/".$this->purchase_order_id.".pdf", $pdf);
-        $this->purchase_order_url = $url;
+            'productmodel' => $this->product->model_number ?? 'NA',
+            'productname' => $this->product->name ?? 'NA',
+            'productcolor' => $this->option1_selection ?? 'NA',
+            'productsize' => $this->option2_selection ?? 'NA',
+            'productcustom' => $this->option3_selection ?? 'NA',
+            'productprice' => $productPrice,
+            'productshipping' => $productShipping,
+            'note' => $this->notes ?? '',
+            'deliver_notes' => $this->order->delivery_notes ?? '',
+            'product_volume' => $this->product_volume ?? 0,
+            'date' => $this->order->created_at ?? now(),
+        ];
 
+        // Generate PDF and store it
+        $pdf = PDF::loadTemplate($templateCode, $data)->output();
+        $path = "media/purchaseorders/" . $this->purchase_order_id . ".pdf";
+        Storage::put($path, $pdf);
+        Storage::setVisibility($path, 'public');
+
+        // Set the public URL
+        $this->purchase_order_url = Storage::url($path);
     }
+
 
     /**SEND E-MAIL TO SUPPLIER**/
 
     public function sendPurchaseOrder()
     {
+        // Ensure supplier and purchase order details are available
+        $supplierName = $this->supplier->name ?? 'Unknown Supplier';
+        $purchaseOrderId = $this->purchase_order_id ?? 'NA';
+        $purchaseOrderUrl = $this->purchase_order_url ?? '#';
 
-        $toemails = ['orders@evtmarketing.com.au'];
-        //$toemails = [$this->supplier->orders_email];
-        $ccemails = ['orders@evtmarketing.com.au', 'anthony@evtmarketing.com.au'];
+        // Email recipients
+        $toEmails = ['orders@evtmarketing.com.au'];  // Default recipients
+        // $toEmails = [$this->supplier->orders_email]; // Uncomment if supplier email is dynamic
+
+        $ccEmails = ['orders@evtmarketing.com.au', 'anthony@evtmarketing.com.au'];
+
+        // Email template variables
         $vars = [
             'title' => 'New Purchase Order',
-            'suppliername' => $this->supplier->name,
-            'ponumber' => $this->purchase_order_id,
-            'pourl' => $this->purchase_order_url,
+            'suppliername' => $supplierName,
+            'ponumber' => $purchaseOrderId,
+            'pourl' => $purchaseOrderUrl,
         ];
 
+        // Prepare email template and message
         $template = new Template('xtend-po-email-xtend-2-0');
         $message = new Message();
-        $message->setSubject("EVT Marketing - Xtend System - $this->purchase_order_id");
+        $message->setSubject("EVT Marketing - Xtend System - $purchaseOrderId");
         $message->setFromEmail('noreply@xtendsystem.com');
         $message->setMergeVars($vars);
 
-        if (!empty($ccemails)) {
-            foreach ($ccemails as $ccemail) {
-                $recipient = new Recipient($ccemail, null, Recipient\Type::CC);
+        // Add CC recipients (if any)
+        if (!empty($ccEmails)) {
+            foreach ($ccEmails as $ccEmail) {
+                $recipient = new Recipient($ccEmail, null, Recipient\Type::CC);
                 $recipient->setMergeVars($vars);
                 $message->addRecipient($recipient);
             }
         }
 
-        foreach ($toemails as $toemail) {
-            $recipient = new Recipient($toemail, null, Recipient\Type::TO);
+        // Add TO recipients
+        foreach ($toEmails as $toEmail) {
+            $recipient = new Recipient($toEmail, null, Recipient\Type::TO);
             $recipient->setMergeVars($vars);
             $message->addRecipient($recipient);
         }
 
-        MandrillTemplateFacade::send($template, $message);
-
-        $this->last_po_email_sent = now();
-        $this->save();
-
+        // Send the email
+        try {
+            MandrillTemplateFacade::send($template, $message);
+            $this->last_po_email_sent = now();  // Log email send time
+            $this->save();
+        } catch (\Exception $e) {
+            \Log::error("Failed to send purchase order email: " . $e->getMessage());
+        }
     }
+
 
     /** BOUNCE DOWN VARIABLES FROM RELATIONSHIPS**/
 
@@ -250,6 +322,18 @@ class OrderLineitem extends Model
     {
         $value = array_get($this->attributes, 'product_status');
         return array_get($this->getProductStatusOptions(), $value);
+    }
+    public function setProductStatusColumnsAttribute($value)
+    {
+        // Reverse lookup to get the key based on the value
+        $statusOptions = array_flip($this->getProductStatusOptions());
+
+        if (isset($statusOptions[$value])) {
+            $this->attributes['product_status'] = $statusOptions[$value];
+        } else {
+            // Handle invalid value (Optional)
+            throw new \InvalidArgumentException("Invalid product status value: {$value}");
+        }
     }
 
     /** REFUND LINE **/

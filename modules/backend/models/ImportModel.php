@@ -36,7 +36,9 @@ abstract class ImportModel extends Model
         'created' => 0,
         'errors' => [],
         'warnings' => [],
-        'skipped' => []
+        'skipped' => [],
+        'processed' => 0,
+        'progress' => 0
     ];
 
     /**
