@@ -1,5 +1,6 @@
 <?php 
 namespace Codengine\Awardbank\Models;
+use Codengine\Awardbank\Models\OrderLineitem;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class OrderLineItemImport extends \Backend\Models\ImportModel
@@ -17,12 +18,12 @@ class OrderLineItemImport extends \Backend\Models\ImportModel
                 $update = false;
 
                 if($data['id']){
-                    $award = OrderLineItem::find($data['id']);
+                    $award = OrderLineitem::find($data['id']);
                     $update = true;;
                 }
 
                 if($award == null){
-                    $award = new OrderLineItem;
+                    $award = new OrderLineitem;
                     $update = false;
                 }
                 $award->fill($data);
