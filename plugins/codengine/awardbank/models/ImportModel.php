@@ -288,37 +288,49 @@ abstract class ImportModel extends Model
 
     public function getResultStats()
     {
-        //Get whole stats from session
-        $resultStats = Session::get('importResults');
+        // Get whole stats from session with default values
+        $resultStats = Session::get('importResults', [
+            'errors' => [],
+            'warnings' => [],
+            'skipped' => [],
+            'updated' => 0,
+            'created' => 0,
+            'processed' => 0,
+            'totalRows' => 1 // Default value to prevent division by zero
+        ]);
 
-        $this->resultStats['errorCount'] = isset($resultStats['errors']) ? count($resultStats['errors']) : 0;
-        $this->resultStats['warningCount'] = isset($resultStats['warnings']) ? count($resultStats['warnings']) : 0;
-        $this->resultStats['skippedCount'] = isset($resultStats['skipped'] )? count($resultStats['skipped']) : 0;
+        // Calculate counts for errors, warnings, and skipped rows
+        $this->resultStats['errorCount'] = count($resultStats['errors']);
+        $this->resultStats['warningCount'] = count($resultStats['warnings']);
+        $this->resultStats['skippedCount'] = count($resultStats['skipped']);
 
+        // Check if there are any messages
         $this->resultStats['hasMessages'] = (
             $this->resultStats['errorCount'] > 0 ||
             $this->resultStats['warningCount'] > 0 ||
             $this->resultStats['skippedCount'] > 0
         );
-        $this->resultStats['updated'] = isset($resultStats['updated']) ? $resultStats['updated'] : 0;
-        $this->resultStats['created'] = isset($resultStats['created']) ? $resultStats['created'] : 0;
 
-        // Calculate how much rows were processed in this importing iteration
+        // Set updated and created counts
+        $this->resultStats['updated'] = $resultStats['updated'];
+        $this->resultStats['created'] = $resultStats['created'];
+
+        // Calculate total processed rows
         $this->resultStats['processed'] =
-                //Sum them all
-                $this->resultStats['created'] +
-                $this->resultStats['updated'] +
-                $this->resultStats['errorCount'] +
-                $this->resultStats['warningCount'] +
-                $this->resultStats['skippedCount'];
+            $this->resultStats['created'] +
+            $this->resultStats['updated'] +
+            $this->resultStats['errorCount'] +
+            $this->resultStats['warningCount'] +
+            $this->resultStats['skippedCount'];
 
+        // Safely calculate progress percentage (avoid division by zero)
+        $totalRows = max($resultStats['totalRows'], 1); // Ensure at least 1
+        $this->resultStats['progress'] = ($this->resultStats['processed'] / $totalRows) * 100;
 
-        //Calculate overal progress status
-        $this->resultStats['progress'] = ($this->resultStats['processed'] / $resultStats['totalRows']) * 100;
-
-        unset($resultStats);
+        // Return the stats as an stdClass object
         return (object) $this->resultStats;
     }
+
 
     protected function logUpdated()
     {
