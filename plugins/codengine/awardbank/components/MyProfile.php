@@ -1,20 +1,21 @@
 <?php namespace Codengine\Awardbank\Components;
 
-use \Cms\Classes\ComponentBase;
-use Codengine\Awardbank\Models\Address;
-use Codengine\Awardbank\Models\PointsLedger;
-use Codengine\Awardbank\Models\Team;
-use Codengine\Awardbank\Models\Message;
-use Codengine\Awardbank\Models\Thankyou;
-use Codengine\Awardbank\Models\BillingContact;
-use Codengine\Awardbank\Models\Transaction;
-use Codengine\Awardbank\Models\Product;
-use RainLab\User\Models\User;
 use Auth;
-use Event;
 use Carbon\Carbon;
+use Codengine\Awardbank\Models\Address;
+use Codengine\Awardbank\Models\BillingContact;
+use Codengine\Awardbank\Models\Message;
+use Codengine\Awardbank\Models\PointsLedger;
+use Codengine\Awardbank\Models\Product;
+use Codengine\Awardbank\Models\Report;
+use Codengine\Awardbank\Models\Team;
+use Codengine\Awardbank\Models\Thankyou;
+use Codengine\Awardbank\Models\Transaction;
 use Config;
+use Event;
+use RainLab\User\Models\User;
 use Responsiv\Uploader\Components\FileUploader;
+use \Cms\Classes\ComponentBase;
 
 class MyProfile extends ComponentBase
 {
@@ -30,6 +31,8 @@ class MyProfile extends ComponentBase
     private $pointsledgers = [];
     private $billingcontact;
     private $pointsaddition = 0;
+    private $pointsAdditionNew = 0;
+    private $totalSpendNew = 0;
     private $pointssubtraction = 0;
     private $startingledger = 0;
     private $orders;
@@ -179,7 +182,7 @@ class MyProfile extends ComponentBase
 
     public function getPointsLedgers()
     {
-        $this->startingledger = PointsLedger::where('user_id','=',$this->user->id)->where('program_id','=',$this->user->current_program_id)->where('type','=',0)->orderBy('id','DESC')->first();
+        $this->startingledger = PointsLedger::where('user_id','=',$this->user->id)->where('program_id','=',$this->user->current_program_id)->where('type','=',1)->orderBy('id','DESC')->first();
         if($this->startingledger != null){
             $startingledgerid = $this->startingledger->id;
         } else {
@@ -196,6 +199,30 @@ class MyProfile extends ComponentBase
             }
             return $pointsledger;
         });
+        $getUserPointsDataBackend = $this->getUserPointsDataBackend($this->user->currentProgram->id);
+        $this->pointsAdditionNew = $getUserPointsDataBackend['pointsAdditionNew'] ?? 0;
+        $this->totalSpendNew = $getUserPointsDataBackend['totalSpendNew'] ?? 0;
+    }
+    public function getUserPointsDataBackend($programId = 0)
+    {
+        $data = array();
+        $userId = \Auth::getUser()->id;
+        $data['pointsAdditionNew'] = 0;
+        $data['totalSpendNew'] = 0;
+        if ($programId > 0) {
+            $obj = new Report();
+            $row = $obj->getUserProgramPointsData($programId,null,null,$userId);
+
+            $order_data = $obj->getUserProgramOrdersData($programId, null,null,$userId);
+            // dd($order_data);
+            // \Log::info($row[$userId]);
+            $data['pointsAdditionNew'] = $row[$userId][1]['points_value'] ?? 0;
+            $refundedPoints = isset($row[$userId]['refund']['points_value']) ? $row[$userId]['refund']['points_value'] : 0;
+            $spentPoints = (isset($order_data[$userId]['points_value']) ? $order_data[$userId]['points_value'] : 0);
+            $data['totalSpendNew'] = $spentPoints - $refundedPoints;
+
+        }
+        return $data;
     }
 
     public function getOrders()
@@ -262,6 +289,8 @@ class MyProfile extends ComponentBase
                 'teams' => $this->teams,
                 'pointsledgers' => $this->pointsledgers,
                 'pointsaddition' => $this->pointsaddition,
+                'pointsAdditionNew' => $this->pointsAdditionNew,
+                'totalSpendNew' => $this->totalSpendNew,
                 'pointssubtraction' => $this->pointssubtraction,
                 'startingledger' => $this->startingledger,
                 'orders' => $this->orders,
