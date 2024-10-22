@@ -997,6 +997,12 @@ class Plugin extends PluginBase
                     'label' => 'External Reference',
                     'type'    => 'text',
                 ],
+                'current_territory' => [
+                    'label' => 'Current Territory',
+                    'type' => 'dropdown',
+                    'options' => ['AU' => 'AU', 'NZ' => 'NZ', 'UK' => 'UK'],
+                    'span' => 'full',
+                ],
             ]);
 
             // Add an extra birthday field
@@ -1019,13 +1025,6 @@ class Plugin extends PluginBase
                     'span' => 'auto',
                     'tab' => 'Xtend Administration',
                 ],
-                'current_territory' => [
-                    'label' => 'Current Territory',
-                    'type'    => 'dropdown',
-                    'span' => 'full',
-                    'options' => ['AU' => 'AU', 'NZ' => 'NZ', 'UK' => 'UK'],
-                    'tab' => 'Xtend Administration',
-                ],
                 'points_limit' => [
                     'label' => 'Maximum Points A User Can Acrue (Dollar Value)',
                     'type'    => 'number',
@@ -1038,6 +1037,7 @@ class Plugin extends PluginBase
                     'tab' => 'Teams',
                     'path' => '~/plugins/codengine/awardbank/controllers/users/_field_teams.htm',
                 ],
+                
                 'teams_manager' => [
                     'label'   => 'Teams Managed',
                     'type'    => 'partial',
@@ -1223,10 +1223,13 @@ class Plugin extends PluginBase
                     'sortable' => 'true',
                 ],
                 'current_territory' => [
-                    'label' => 'Territory',
-                    'type'    => 'text',
-                    'searchable' => 'true',
-                    'sortable' => 'true',
+                    'label' => 'Current Territory',
+                    'type' => 'text',
+                    'tab'   => 'Xtend Administration',
+                    'formatter' => function ($value) {
+                        $options = ['AU' => 'AU', 'NZ' => 'NZ', 'UK' => 'UK'];
+                        return $options[$value] ?? $value;
+                    }
                 ],
                 't_and_c_accept' => [
                     'label' => 'T & Cs Accepted',

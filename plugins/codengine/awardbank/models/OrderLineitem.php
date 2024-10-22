@@ -1,16 +1,16 @@
 <?php namespace Codengine\Awardbank\Models;
 
+use Addgod\MandrillTemplate\MandrillTemplateFacade;
 use Addgod\MandrillTemplate\Mandrill\Message;
 use Addgod\MandrillTemplate\Mandrill\Recipient;
 use Addgod\MandrillTemplate\Mandrill\Template;
-use Addgod\MandrillTemplate\MandrillTemplateFacade;
-use Model;
-//use Session;
-use Storage;
 use Event;
-use Renatio\DynamicPDF\Classes\PDF;
-use System\Models\File;
+use GuzzleHttp\Exception\ClientException;
 use Mail;
+use Model;
+use Renatio\DynamicPDF\Classes\PDF;
+use Storage;
+use System\Models\File;
 
 /**
  * Model
@@ -32,7 +32,7 @@ class OrderLineitem extends Model
      * [$fillable description]
      * @var [type]
      */
-    protected $fillable = ['order_id','product_id','product_name','product_image','product_dollar_value','product_slug','product_deliver_base','product_category_array','product_supplier_id','product_supplier_name','product_status','product_voucher','product_voucher_code','shipped_date','arrived_date','invoice_id','connote_id','shipping_id','shipping_name','option1_selection','option2_selection'];
+    protected $fillable = ['order_id','product_id','product_name','product_image','product_dollar_value','product_slug','product_deliver_base','product_category_array','product_supplier_id','product_supplier_name','product_status','product_voucher','product_voucher_code','shipped_date','arrived_date','invoice_id','connote_id','shipping_id','shipping_name','option1_selection','option2_selection','notes','product_invoiced_amount','product_invoiced_freight'];
     /**
      * @var string The database table used by the model.
      */
@@ -88,7 +88,11 @@ class OrderLineitem extends Model
 
 
         if ($this->purchase_order_id == null) {
-            $count = $this->order->orderlineitems->count() + 1;
+            if ($this->order && $this->order->orderlineitems) {
+                $count = $this->order->orderlineitems->count() + 1;
+            } else {
+                $count = 1;
+            }
 
             if (
                 $this->order && 
@@ -278,6 +282,9 @@ class OrderLineitem extends Model
             MandrillTemplateFacade::send($template, $message);
             $this->last_po_email_sent = now();  // Log email send time
             $this->save();
+        } catch (ClientException $e) {
+            \Log::error("Guzzle ClientException: " . $e->getMessage());
+            \Log::error("Response: " . $e->getResponse()->getBody()->getContents());
         } catch (\Exception $e) {
             \Log::error("Failed to send purchase order email: " . $e->getMessage());
         }

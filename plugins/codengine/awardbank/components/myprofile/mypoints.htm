@@ -10,11 +10,17 @@
     	<div class="column">
 			{% partial '@statistic' value = startingledger.points_value label = 'Starting Value' %}
 		</div>
-    	<div class="column">
+    	{# <div class="column">
 			{% partial '@statistic' value = pointsaddition label = 'Total Additional Earned' %}
+		</div> #}
+		<div class="column">
+			{% partial '@statistic' value = pointsAdditionNew label = 'Total Additional Earned' %}
 		</div>
-    	<div class="column">
+    	{#<div class="column">
 			{% partial '@statistic' value = pointssubtraction label = 'Total Spent' %}
+		</div>#}
+		<div class="column">
+			{% partial '@statistic' value = totalSpendNew label = 'Total Spent' %}
 		</div>
 	</div>
 	<h3>{{ user.currentProgram.points_name }} Ledger</h3>
