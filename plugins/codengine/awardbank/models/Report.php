@@ -207,39 +207,74 @@ class Report extends Model
      * @param null $programId
      * @return array
      */
-    private function getUserProgramPointsData($programId, $startDate, $endDate){
+    public function getUserProgramPointsData($programId, $startDate = null, $endDate=null,$userId = 0){
+        if ($startDate != null && $endDate != null && $userId == 0) {
         //DB::enableQueryLog();
-        $ledgers = \Illuminate\Support\Facades\DB::select(
-            "Select t.user_id, 
-           IF(t.type = 1 AND t.order_id IS NOT NULL, 'refund', t.type) as t_type, 
-           sum(points_value) as total_points, 
-           sum(dollar_value) as total_dollars
-           from codengine_awardbank_points_ledger t
-           inner join(
-                Select max(id) id, user_id
-                from codengine_awardbank_points_ledger
-                where type = 0
-                group by user_id
-                union
-                Select min(id) id, user_id
-                from codengine_awardbank_points_ledger
-                where user_id not in (
-                    Select distinct user_id
+            $ledgers = \Illuminate\Support\Facades\DB::select(
+                "Select t.user_id, 
+               IF(t.type = 1 AND t.order_id IS NOT NULL, 'refund', t.type) as t_type, 
+               sum(points_value) as total_points, 
+               sum(dollar_value) as total_dollars
+               from codengine_awardbank_points_ledger t
+               inner join(
+                    Select max(id) id, user_id
                     from codengine_awardbank_points_ledger
                     where type = 0
-                    and user_id is not null
-                    and deleted_at is null
-                )
-                group by user_id
-            ) a on t.id >= a.id
-            And t.user_id = a.user_id
-            where t.program_id = ?
-            AND t.created_at between CAST(? AS DATE) AND CAST(? AS DATE)
-            AND t.deleted_at is null
-            group by t.user_id, t_type
-            order by t.user_id",
-            [$programId, $startDate, $endDate]
+                    group by user_id
+                    union
+                    Select min(id) id, user_id
+                    from codengine_awardbank_points_ledger
+                    where user_id not in (
+                        Select distinct user_id
+                        from codengine_awardbank_points_ledger
+                        where type = 0
+                        and user_id is not null
+                        and deleted_at is null
+                    )
+                    group by user_id
+                ) a on t.id >= a.id
+                And t.user_id = a.user_id
+                where t.program_id = ?
+                AND t.created_at between CAST(? AS DATE) AND CAST(? AS DATE)
+                AND t.deleted_at is null
+                group by t.user_id, t_type
+                order by t.user_id",
+                [$programId, $startDate, $endDate]
+            );
+        }else{
+            $ledgers = \Illuminate\Support\Facades\DB::select(
+            "SELECT 
+                t.user_id, 
+                IF(t.type = 1 AND t.order_id IS NOT NULL, 'refund', t.type) as t_type, 
+                SUM(points_value) as total_points, 
+                SUM(dollar_value) as total_dollars
+             FROM codengine_awardbank_points_ledger t
+             INNER JOIN (
+                 SELECT MAX(id) id, user_id
+                 FROM codengine_awardbank_points_ledger
+                 WHERE type = 0
+                 GROUP BY user_id
+                 UNION
+                 SELECT MIN(id) id, user_id
+                 FROM codengine_awardbank_points_ledger
+                 WHERE user_id NOT IN (
+                     SELECT DISTINCT user_id
+                     FROM codengine_awardbank_points_ledger
+                     WHERE type = 0
+                     AND user_id IS NOT NULL
+                     AND deleted_at IS NULL
+                 )
+                 GROUP BY user_id
+             ) a ON t.id >= a.id
+             AND t.user_id = a.user_id
+             WHERE t.program_id = ?
+             AND t.user_id = ?
+             AND t.deleted_at IS NULL
+             GROUP BY t.user_id, t_type
+             ORDER BY t.user_id",
+            [$programId, $userId]
         );
+        }
         //dd(DB::getQueryLog());
 
         $userPoints = [];
@@ -258,17 +293,28 @@ class Report extends Model
      * @param null $programId
      * @return array
      */
-    private function getUserProgramOrdersData($programId, $start_date, $end_date){
-        $query = DB::table('codengine_awardbank_orders')
-            ->selectRaw('user_id, SUM(points_value) as points_value, SUM(dollar_value) as dollar_value')
-            ->where('order_program_id', '=', $programId)
-            ->whereBetween(
-                'created_at', [$start_date, $end_date]
-            )
-            ->groupBy('user_id')
-            ->orderBy('user_id');
+    public function getUserProgramOrdersData($programId, $start_date = null, $end_date = null,$userId = 0){
+        if ($start_date != null && $end_date != null && $userId == 0) {
+            $query = DB::table('codengine_awardbank_orders')
+                ->selectRaw('user_id, SUM(points_value) as points_value, SUM(dollar_value) as dollar_value')
+                ->where('order_program_id', '=', $programId)
+                ->whereBetween(
+                    'created_at', [$start_date, $end_date]
+                )
+                ->groupBy('user_id')
+                ->orderBy('user_id');
 
-        $data = $query->get();
+            $data = $query->get();
+        }else{
+            $query = DB::table('codengine_awardbank_orders')
+                ->selectRaw('user_id, SUM(points_value) as points_value, SUM(dollar_value) as dollar_value')
+                ->where('order_program_id', '=', $programId)
+                ->where('user_id',$userId)
+                ->groupBy('user_id')
+                ->orderBy('user_id');
+
+            $data = $query->get();
+        }
         $orders = [];
 
         foreach ($data as $row) {
@@ -342,7 +388,7 @@ class Report extends Model
 
         //Types
         //0 - Fixed, 1 - Addition, 2 - Subtraction, 3 - In Cart, 4 - Out Cart
-
+        \Log::info($data);
         foreach($data as $userId => $row) {
             $points = $row['points'][0]['points_value'] ?? 0;
             $additionsPoints = $row['points'][1]['points_value'] ?? 0;
