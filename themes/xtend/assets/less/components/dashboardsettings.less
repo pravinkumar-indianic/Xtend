@@ -1,23 +1,130 @@
-.switch-field .field-switch {padding-left:85px;float:left}
-.switch-field .field-switch >label {margin-top:3px}
-.custom-switch {display:block;width:65px;height:26px;position:relative;text-transform:uppercase;border:none;cursor:pointer;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
-.custom-switch * {-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
-.custom-switch.disabled {opacity:0.5;filter:alpha(opacity=50)}
-.custom-switch .slide-button {z-index:9;display:block;position:absolute;right:42px;top:3px;width:20px;height:20px;background-color:#f6f6f6;-webkit-border-radius:20px;-moz-border-radius:20px;border-radius:20px;-webkit-transition:all 0.1s;transition:all 0.1s}
-.custom-switch label,
-.custom-switch >span {line-height:23px;vertical-align:middle}
-.custom-switch label {z-index:8;width:100%;display:block;position:relative}
-.custom-switch input {z-index:10;position:absolute;left:0;top:0;opacity:0;filter:alpha(opacity=0)}
-.custom-switch input:checked ~ .slide-button {right:4px}
-.custom-switch input:checked ~ span {background-color:#76a544}
-.custom-switch input:checked ~ span span:first-of-type {color:#FFF;display:block}
-.custom-switch input:checked ~ span span:last-of-type {color:#666;display:none}
-.custom-switch input[disabled] ~ span {background-color:#666 !important}
-.custom-switch >span {display:block;height:100%;position:absolute;left:0;width:100%;background-color:#bb2424;font-size:12px;font-weight:600;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-border-radius:20px;-moz-border-radius:20px;border-radius:20px}
-.custom-switch >span span {z-index:10;display:block;position:absolute;top:2px;left:-1px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
-.custom-switch >span span:last-child {left:28px;color:#FFF;display:block}
-.custom-switch >span span:first-of-type {padding-left:13px;display:none;color:#666}
+.switch-field .field-switch {
+    padding-left: 85px;
+    float: left;
+}
 
-.form-group {position:relative;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+.switch-field .field-switch > label {
+    margin-top: 3px;
+}
+
+.custom-switch {
+    display: block;
+    width: 65px;
+    height: 26px;
+    position: relative;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.custom-switch * {
+    box-sizing: border-box;
+}
+
+.custom-switch.disabled {
+    opacity: 0.5;
+    filter: ~"alpha(opacity=50)"; /* Fix for LESS parser */
+}
+
+.custom-switch .slide-button {
+    z-index: 9;
+    display: block;
+    position: absolute;
+    right: 42px;
+    top: 3px;
+    width: 20px;
+    height: 20px;
+    background-color: #f6f6f6;
+    border-radius: 20px;
+    transition: all 0.1s;
+}
+
+.custom-switch label,
+.custom-switch > span {
+    line-height: 23px;
+    vertical-align: middle;
+}
+
+.custom-switch label {
+    z-index: 8;
+    width: 100%;
+    display: block;
+    position: relative;
+}
+
+.custom-switch input {
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    filter: ~"alpha(opacity=0)"; /* Fix for LESS parser */
+}
+
+.custom-switch input:checked ~ .slide-button {
+    right: 4px;
+}
+
+.custom-switch input:checked ~ span {
+    background-color: #76a544;
+}
+
+.custom-switch input:checked ~ span span:first-of-type {
+    color: #FFF;
+    display: block;
+}
+
+.custom-switch input:checked ~ span span:last-of-type {
+    color: #666;
+    display: none;
+}
+
+.custom-switch input[disabled] ~ span {
+    background-color: #666 !important;
+}
+
+.custom-switch > span {
+    display: block;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: #bb2424;
+    font-size: 12px;
+    font-weight: 600;
+    user-select: none;
+    border-radius: 20px;
+}
+
+.custom-switch > span span {
+    z-index: 10;
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: -1px;
+    box-sizing: border-box;
+}
+
+.custom-switch > span span:last-child {
+    left: 28px;
+    color: #FFF;
+    display: block;
+}
+
+.custom-switch > span span:first-of-type {
+    padding-left: 13px;
+    display: none;
+    color: #666;
+}
+
+.form-group {
+    position: relative;
+    box-sizing: border-box;
+}
+
 .form-group,
-.form-group.layout-item {padding-bottom:20px;margin-bottom:0}
+.form-group.layout-item {
+    padding-bottom: 20px;
+    margin-bottom: 0;
+}
