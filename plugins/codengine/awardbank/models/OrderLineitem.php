@@ -345,7 +345,6 @@ class OrderLineitem extends Model
     public function getProductStatusColumnsAttribute()
     {
         $value = array_get($this->attributes, 'product_status');
-        info(array_get($this->getProductStatusOptions(), $value));
         return array_get($this->getProductStatusOptions(), $value);
     }
     // public function getProductStatusAttribute()
