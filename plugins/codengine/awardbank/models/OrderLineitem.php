@@ -324,24 +324,36 @@ class OrderLineitem extends Model
             7 => 'Product Cancelled + Refund Points',
         ];
     }
+    /**
+     * [getProductStatusOptions description]
+     * @return [type] [description]
+     */
+    public function getProductStatusIndex()
+    {
+        return [
+            'Processing' => 0,
+            'Order Placed With Supplier' => 1,
+            'On Backorder' => 2,
+            'In Warehouse' => 3,
+            'Item Ready For Dispatch' => 4,
+            'Item Dispatched' => 5,
+            'Product Delivered' => 6,
+            'Product Cancelled + Refund Points' => 7,
+        ];
+    }
 
     public function getProductStatusColumnsAttribute()
     {
         $value = array_get($this->attributes, 'product_status');
+        info(array_get($this->getProductStatusOptions(), $value));
         return array_get($this->getProductStatusOptions(), $value);
     }
-    public function setProductStatusColumnsAttribute($value)
-    {
-        // Reverse lookup to get the key based on the value
-        $statusOptions = array_flip($this->getProductStatusOptions());
+    // public function getProductStatusAttribute()
+    // {
+    //     $value = array_get($this->attributes, 'product_status');
+    //     return array_get($this->getProductStatusOptions(), $value);
+    // }
 
-        if (isset($statusOptions[$value])) {
-            $this->attributes['product_status'] = $statusOptions[$value];
-        } else {
-            // Handle invalid value (Optional)
-            throw new \InvalidArgumentException("Invalid product status value: {$value}");
-        }
-    }
 
     /** REFUND LINE **/
 
