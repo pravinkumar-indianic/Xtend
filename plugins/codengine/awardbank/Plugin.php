@@ -1022,8 +1022,8 @@ class Plugin extends PluginBase
                     'type'    => 'dropdown',
                     'span' => 'full',
                     'options' => ['AU' => 'AU', 'NZ' => 'NZ', 'UK' => 'UK','IRL'=>'IRL','PH'=>'PH'],
-                    'tab' => 'Xtend Administration',
-                ],
+                    'tab' => 'Xtend Administration', 
+                ], 
                 'points_limit' => [
                     'label' => 'Maximum Points A User Can Acrue (Dollar Value)',
                     'type'    => 'number',
