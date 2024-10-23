@@ -1,29 +1,28 @@
 <?php namespace Codengine\Awardbank;
 
-use Addgod\MandrillTemplate\MandrillTemplateFacade;
 use Addgod\MandrillTemplate\Mandrill\Recipient;
 use Addgod\MandrillTemplate\Mandrill\Template;
-use Backend;
-use Carbon\Carbon;
-use Codengine\Awardbank\Components\DashboardSettings;
+use Addgod\MandrillTemplate\MandrillTemplateFacade;
 use Codengine\Awardbank\Components\ResultsManagement;
-use Codengine\Awardbank\Models\CronChecker;
-use Codengine\Awardbank\Models\PointsLedger;
 use Codengine\Awardbank\Models\Product;
-use Codengine\Awardbank\Models\Program;
+use Codengine\Awardbank\Components\DashboardSettings;
 use Codengine\Awardbank\Models\ScorecardResultImport;
+use RainLab\User\Models\User;
+use System\Classes\PluginBase;
+use Rainlab\User\Models\User as UserModel;
+use RainLab\User\Controllers\Users as UsersController;
+use Codengine\Awardbank\Models\Program;
 use Codengine\Awardbank\Models\Team;
 use Codengine\Awardbank\Models\Transaction;
-use Codengine\Awardbank\Models\XeroAPI;
-use Db;
+use Codengine\Awardbank\Models\PointsLedger;
+use Codengine\Awardbank\Models\CronChecker;
+use Carbon\Carbon;
 use Event;
-use Illuminate\Support\Facades\Log;
 use Mail;
-use RainLab\User\Controllers\Users as UsersController;
-use RainLab\User\Models\User;
-use Rainlab\User\Models\User as UserModel;
-use Rap2hpoutre\LaravelLogViewer\LogViewerController;
-use System\Classes\PluginBase;
+use Db;
+use Backend;
+use Illuminate\Support\Facades\Log;
+use Codengine\Awardbank\Models\XeroAPI;
 
 class Plugin extends PluginBase
 {
@@ -186,7 +185,6 @@ class Plugin extends PluginBase
 
     public function boot()
     {
-        \Route::get('/logs', [LogViewerController::class, 'index']);
         Event::listen('backend.menu.extendItems', function($manager)
         {
             $manager->addSideMenuItems('RainLab.User', 'user', [
@@ -997,12 +995,6 @@ class Plugin extends PluginBase
                     'label' => 'External Reference',
                     'type'    => 'text',
                 ],
-                'current_territory' => [
-                    'label' => 'Current Territory',
-                    'type' => 'dropdown',
-                    'options' => ['AU' => 'AU', 'NZ' => 'NZ', 'UK' => 'UK'],
-                    'span' => 'full',
-                ],
             ]);
 
             // Add an extra birthday field
@@ -1025,6 +1017,13 @@ class Plugin extends PluginBase
                     'span' => 'auto',
                     'tab' => 'Xtend Administration',
                 ],
+                'current_territory' => [
+                    'label' => 'Current Territory',
+                    'type'    => 'dropdown',
+                    'span' => 'full',
+                    'options' => ['AU' => 'AU', 'NZ' => 'NZ', 'UK' => 'UK','IRL'=>'IRL','PH'=>'PH'],
+                    'tab' => 'Xtend Administration', 
+                ], 
                 'points_limit' => [
                     'label' => 'Maximum Points A User Can Acrue (Dollar Value)',
                     'type'    => 'number',
@@ -1037,7 +1036,6 @@ class Plugin extends PluginBase
                     'tab' => 'Teams',
                     'path' => '~/plugins/codengine/awardbank/controllers/users/_field_teams.htm',
                 ],
-                
                 'teams_manager' => [
                     'label'   => 'Teams Managed',
                     'type'    => 'partial',
@@ -1223,13 +1221,10 @@ class Plugin extends PluginBase
                     'sortable' => 'true',
                 ],
                 'current_territory' => [
-                    'label' => 'Current Territory',
-                    'type' => 'text',
-                    'tab'   => 'Xtend Administration',
-                    'formatter' => function ($value) {
-                        $options = ['AU' => 'AU', 'NZ' => 'NZ', 'UK' => 'UK'];
-                        return $options[$value] ?? $value;
-                    }
+                    'label' => 'Territory',
+                    'type'    => 'text',
+                    'searchable' => 'true',
+                    'sortable' => 'true',
                 ],
                 't_and_c_accept' => [
                     'label' => 'T & Cs Accepted',
@@ -1631,20 +1626,5 @@ class Plugin extends PluginBase
         $date = new Carbon($date);
         return $date;
     }
-    /**
-     * [registerNavigation description]
-     * @return [type] [description]
-     */
-    // public function registerNavigation()
-    // {
-    //     return [
-    //         'logs' => [
-    //             'label'       => 'Logs',
-    //             'url'         => Backend::url('/logs'),
-    //             'icon'        => 'icon-file-text-o',
-    //             'permissions' => ['your.plugin.access_logs'],
-    //             'order'       => 500,
-    //         ],
-    //     ];
-    // }
+
 }
